@@ -197,8 +197,7 @@ impl Layer {
             Self::Damage => vec![([215, 100, 70, 255], "Damaged ground")],
             Self::Elevation => ELEVATION_BANDS
                 .iter()
-                .zip(["Lowest in view", "", "", "", "", "Highest in view"])
-                .filter(|(_, l)| !l.is_empty())
+                .zip(["Lowest in view", "Low", "Lower middle", "Upper middle", "High", "Highest in view"])
                 .map(|(c, l)| (*c, l))
                 .collect(),
             Self::Water => vec![
@@ -2499,7 +2498,7 @@ impl UiState {
                     hotkey: layer.hotkey().into(),
                     entries: entries.into_iter().map(|(c, l)| (c, l.to_string())).collect(),
                     note: match layer {
-                        Layer::Movement => Some("Steep slopes cost extra and very steep ones block.".into()),
+                        Layer::Movement => Some("Slopes add cost; cliffs block.".into()),
                         Layer::Cameras => None,
                         _ if c.visual_memory.is_some() => Some("Outside live video: last-seen state.".into()),
                         _ => None,

@@ -705,7 +705,7 @@ impl UiLayout {
             let gw = (320. * s).max(270.);
             let row = (34. * s).max(32.);
             let header = (36. * s).max(32.);
-            let detail = (46. * s).max(40.);
+            let detail = (64. * s).max(58.);
             let full = header + guide.steps.len() as f32 * row + detail + 8. * s;
             let compact = header + row + detail + 8. * s;
             let gy = top.end_y() as f32 + g;
@@ -2599,7 +2599,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                 small,
                 muted,
                 r.width as f32 - 28. * s,
-                2,
+                3,
             );
         }
         Content::Tooltip(tip) => {

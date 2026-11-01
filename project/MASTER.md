@@ -2,7 +2,7 @@
 
 **Revision:** M10 | **Date:** 2026-10-31 | **Owner:** Tor
 **Where it lives:** Required working files in every game source directory: `project/MASTER.md` and `project/LEDGER.md`. This checkout: `E:\Games I am Making\Last-World\Source\project\`. Keep these paths in every future version, complete Source zip and update package. The Library holds matching versioned source checkpoints and standalone copies; `project/archive/` holds frozen history.
-**Git mirror (secondary):** https://github.com/TorresBD/Last-World, branch `main` (work branches merge back into it; rule 5.13), last inspected head `6ebd5bcb1f11c4be3d225ac89f71e3f5858422d4`.
+**Git mirror (secondary):** https://github.com/TorresBD/Last-World, branch `main` (work branches merge back into it; rule 5.13), last inspected head `d57bbf1efa63ec40982df8d3adfa3678a1544f75` (A-040 merge follows).
 **Voids:** every earlier handoff and the old RULES/STATE/DECISIONS/BLOCKERS/PARITY files as instructions. The superseded source-root copies are removed; their full text remains in the indexed archive, located by `project/archive/legacy-governance-location-map.json` (A-038).
 **Authority order:** Tor's latest chat message > platform rules > this file > LEDGER > ARCHIVE.
 
@@ -39,9 +39,9 @@ For Ctrl+F, type two hash signs, a space, the section number and a period. For a
 
 ## 1. SESSION SUMMARY (overwrite every session; hard limit 1,500 characters)
 
-**This session (2026-11-01):** Tor reported the game is not intuitive: drawing a road gave no shape and no sign it was planned, a feature the old browser build had ("R draws roads") that never came across to native. Restored and extended (A-039, L-0028): live road/trench/bridge outline with length, cost and the reason it would be refused; site footprints under the cursor; planned orders stay drawn (dashed, solid as built, red if blocked); a white/red flash on release; a builder alert; the line tool stays armed for chained segments. HUD redraws on camera moves so outlines stay on the map. Root cause of lost features recorded (L-0028) and rule 5.13 added. CI workflow restored to `main`.
-**Evidence:** Windows CI run on the pushed commit (see L-0028); Tor-PC visual check pending.
-**Next:** Tor plays the update and notes anything still unclear. **Look up:** A-039, L-0028; #ui #process.
+**This session (2026-11-01):** Two batches for Tor's "not intuitive" notes. (1) A-039: live road/trench/bridge outline with length/cost/refusal reason, planned orders kept on the map, accept/refuse flash and alert (B-004). (2) A-040: Field orders checklist driven by real state; Elevation/Water/Movement overlays; legend for every colour overlay; all 12 overlay buttons with hover help; hover info for units and planned orders; camera range ring; selected units' route lines; camera kept on the map (no black void); sentence-case labels (B-005). Rule 5.13 added; CI restored on main and publishes review captures to `ci-evidence/<branch>`.
+**Evidence:** Windows CI green (L-0029); renderer captures reviewed. Tor-PC play and performance UNMEASURED.
+**Next:** Tor plays and notes what is still unclear. **Look up:** A-039, A-040, L-0028, L-0029; #ui.
 
 ---
 
@@ -211,6 +211,7 @@ README.md     one screen: what this is, pointer to project/MASTER.md
 
 **B-003 Windows CI candidate:** Section 8 source compiles; named library/CLI and pixel-map data checks passed in the recorded CI run. A small paused landing, both notices, crew identity/tasks/loadout/real bounded history and role commands, four camera choices, hand-plotted icons and sparse optical terrain/object memory are present. Legacy tool/save identities and full-count constructors remain.
 **Placement feedback (A-039):** road/trench/bridge drafting outline with live length/cost/refusal reason, site footprints, persistent planned-order outlines with progress, accept/refuse flash and builder alert are implemented with named regressions (`road_drag_shows_shape_then_confirms_and_keeps_planned_outline`, `refused_road_is_marked_invalid_while_dragging_and_flashes_on_release`, `road_preview_and_planned_roads_draw_along_their_shape`, `many_long_planned_roads_stay_inside_the_gpu_quad_budget`). Tor-PC visual check pending.
+**Readability pass (A-040):** Field orders checklist, Elevation (Y)/Water (M)/Movement (Z) overlays, legends, full overlay grid with hover help, unit/order hover info, camera range ring, route lines and on-map camera clamp are tested (Windows CI, L-0029) and visible in renderer captures. Tor-PC check pending.
 **Visual evidence:** 12 production-renderer captures were written at small/1080p/1440p sizes. They need human/assistant inspection; creating them alone is not visual approval. Tor-PC playtesting and performance remain UNMEASURED for this candidate.
 **Delivery evidence:** First overlay/source identity and user-data preservation audit passed. The matching records are included in the resealed overlay and dated complete Source zip; upload is conditional on the final audit passing. Source-native inputs and executable identities are in the build stamp. Historical evidence folders absent from the mirror are listed explicitly in the package manifest.
 **Remaining scope:** The resident fixture remains 4.8x3.2km. Production20km streaming, complete mandatory biology, remaining130 mechanisms and all other open 1.0/performance gates are unchanged.
