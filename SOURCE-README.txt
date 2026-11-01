@@ -3,10 +3,10 @@ LAST WORLD - SOURCE SNAPSHOT
 This source is inside the same Last-World update folder as the native executable.
 It is an application-owned reference snapshot, not a second game install or an update service.
 
-Snapshot parent commit: 1177730b5808dfebb3a2806ce8323a18aa287416
+Snapshot parent commit: 7296753d274452e003e4bc11dde6154952e2875f
 Working tree has changes relative to that commit: True
-Native compilation-input SHA-256: 3c9147c8a52073d64788d521c8325c57a614a1f337ada31d0d706522f8686e1e
-Executable SHA-256: 41dbfc9dea9553e6e681aa9a2ac951fa70b412362dc9f74d4aedebc55807e17f
+Native compilation-input SHA-256: 1cc6af5224c957c94295f3063b30a35acdda779247cf6271fb174e27c3d7f2cf
+Executable SHA-256: 234c03baf9c5ad10b8dec0a6e18e0e49218a79e0c53083216bbcbb69938f97d3
 
 The commit identifies ancestry; it does not claim that all snapshot files were committed.
 The outer ../App/build-manifest.json contains a SHA-256/size for every Source file and an aggregate

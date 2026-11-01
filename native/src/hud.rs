@@ -414,6 +414,7 @@ pub struct UiLayout {
     pub minimap: Rect,
     pub minimap_inner: Rect,
     pub selection: Rect,
+    selection_actions: Vec<(String,Rect,UiAction,bool)>,
     pub command: Rect,
     targets: Vec<Target>,
     category_buttons: Vec<(CommandCategory, Rect)>,
@@ -483,9 +484,9 @@ impl UiLayout {
             h,
         );
         let selection_h = if v.selection.selected_count == 0 {
-            t.metric("empty_selection_height") * s
+            (140.*s).max(118.)
         } else {
-            (t.metric("bottom_height") * s).max(3. * hit + 36. * s)
+            (320.*s).max(264.)
         };
         let selection = rect(
             minimap.end_x() as f32 + g,
@@ -505,6 +506,7 @@ impl UiLayout {
             minimap,
             minimap_inner,
             selection,
+            selection_actions: vec![],
             command,
             targets: vec![],
             category_buttons: vec![],
@@ -613,7 +615,7 @@ impl UiLayout {
         for (i, (icon, action)) in [
             ("cursor", UiAction::SelectMode),
             ("road", UiAction::ChooseTool(0)),
-            ("camera", UiAction::ChooseTool(10)),
+            ("camera_pole", UiAction::ChooseTool(10)),
             ("depot", UiAction::ChooseCategory(CommandCategory::Build)),
             ("fauna", UiAction::OpenPanel(PanelKind::Ecology)),
         ]
@@ -671,6 +673,16 @@ impl UiLayout {
             rect: selection,
             hit: UiHit::Action(UiAction::OpenPanel(PanelKind::Selection)),
         });
+        let button_h=(36.*s).max(32.);
+        let rows=v.selection.actions.len().div_ceil(3);
+        for (i,(label,action,enabled)) in v.selection.actions.iter().enumerate() {
+            let width=(selection.width as f32-12.*s)/3.;
+            let rr=rect(selection.x as f32+6.*s+(i%3) as f32*width,
+                selection.end_y() as f32-rows as f32*(button_h+4.)-6.*s+(i/3) as f32*(button_h+4.),
+                width-4.,button_h,w,h);
+            out.selection_actions.push((label.clone(),rr,action.clone(),*enabled));
+            out.targets.push(Target{rect:rr,hit:if *enabled {UiHit::Action(action.clone())}else{UiHit::Blocked}});
+        }
         for (i, a) in v.alerts.iter().take(3).cloned().enumerate() {
             let aw = (t.metric("alert_width") * s).min(w as f32 * 0.36);
             let ah = (t.metric("alert_height") * s).max(hit);
@@ -751,6 +763,10 @@ pub fn hit_test(model: &HudModel, width: u32, height: u32, x: f64, y: f64) -> Ui
             .as_ref()
             .map_or(1., |v| v.prefs.ui_scale_permille as f32 / 1000.),
     );
+    if model.ui.as_ref().is_some_and(|v|v.modal.is_some()) {
+        let (_,button)=modal_rects(&l);
+        return if button.contains(px,py){UiHit::Action(UiAction::DismissModal)}else{UiHit::Blocked};
+    }
     for (panel, r) in l.panels.iter().rev() {
         if !r.contains(px, py) {
             continue;
@@ -910,6 +926,7 @@ fn settings_actions(model: &HudModel) -> Vec<(String, UiAction)> {
             ),
             UiAction::ToggleReduceMotion,
         ),
+        (format!("Show icon IDs: {}",if v.prefs.show_icon_ids {"ON"}else{"OFF"}),UiAction::ToggleIconIds),
         ("Save world  /  F5".into(), UiAction::Save),
         ("Load world  /  F9".into(), UiAction::Load),
     ];
@@ -1310,6 +1327,20 @@ impl Paint {
         if r.width == 0 || r.height == 0 {
             return;
         }
+        if let Some(icon)=crate::ui_icons::get(key) {
+            let size=if r.width>=32&&r.height>=32{32}else{16};
+            let rows=if size==32{&icon.large}else{&icon.small};
+            let fit=(r.width/size).min(r.height/size).max(1);
+            let x=r.x+(r.width.saturating_sub(size*fit))/2;
+            let y=r.y+(r.height.saturating_sub(size*fit))/2;
+            for (yy,row) in rows.iter().enumerate(){for (xx,symbol) in row.bytes().enumerate(){
+                if let Some(mut c)=crate::ui_icons::color(symbol){
+                    if muted{let v=(c[0] as u16+c[1] as u16+c[2] as u16)/5;c=[v as u8,v as u8,v as u8,255];}
+                    self.fill(Rect{x:x+xx as u32*fit,y:y+yy as u32*fit,width:fit,height:fit},c);
+                }
+            }}
+            return;
+        }
         let atlas = Atlas::get();
         let theme = Theme::global();
         let resolved = theme
@@ -1453,7 +1484,7 @@ enum Content {
     Top(Vec<ui::ResourceView>, String),
     Mini(ui::MinimapView),
     Selection(ui::SelectionView),
-    Commands(CommandCategory, Option<usize>, Vec<String>),
+    Commands(CommandCategory, Option<usize>, Vec<String>,Vec<(usize,String)>),
     Layers(Vec<Layer>, Vec<(Layer, String)>),
     Quick(Option<usize>),
     Alert(ui::AlertView),
@@ -1465,6 +1496,7 @@ enum Content {
         Vec<(String, UiAction)>,
         Option<u32>,
     ),
+    Modal(ui::ModalView),
     Tooltip(ui::TooltipView),
     Hint(String),
     Legacy(HudModel),
@@ -1654,7 +1686,7 @@ fn specs(model: &HudModel, l: &UiLayout) -> Vec<Spec> {
         &mut out,
         400,
         l.command,
-        Content::Commands(v.category, v.active_tool, model.tools.clone()),
+        Content::Commands(v.category, v.active_tool, model.tools.clone(),v.disabled_tools.clone()),
     );
     if let (Some((_, first)), Some((_, last))) = (l.layer_buttons.first(), l.layer_buttons.last()) {
         add(
@@ -1726,7 +1758,17 @@ fn specs(model: &HudModel, l: &UiLayout) -> Vec<Spec> {
             Content::Tooltip(tooltip.clone()),
         );
     }
+    if let Some(modal)=&v.modal {
+        add(&mut out,3000,Rect{x:0,y:0,width:l.width,height:l.height},Content::Modal(modal.clone()));
+    }
     out
+}
+fn modal_rects(l:&UiLayout)->(Rect,Rect) {
+    let width=(760.*l.scale).max(560.).min(l.width as f32-32.);
+    let height=(600.*l.scale).max(540.).min(l.height as f32-32.);
+    let r=rect((l.width as f32-width)*0.5,(l.height as f32-height)*0.5,width,height,l.width,l.height);
+    let b=rect(r.x as f32+16.,r.end_y() as f32-60.,r.width as f32-32.,44.,l.width,l.height);
+    (r,b)
 }
 fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
     let mut p = Paint::new(spec.rect);
@@ -1741,6 +1783,20 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
     let small = (t.metric("small_px") * s).max(14.);
     let heading = (t.metric("heading_px") * s).max(18.);
     match &spec.content {
+        Content::Modal(modal)=>{
+            p.fill(r,[0,0,0,180]);
+            let (card,button)=modal_rects(l);
+            p.metal(card,false,true);
+            let x=card.x as f32+20.; let width=card.width as f32-40.;
+            let mut y=p.wrap(x,card.y as f32+18.,&modal.title,heading,accent,width,3)+16.;
+            let font=body.min(18.).max(14.);
+            for line in &modal.lines {
+                if y+font*2.7>button.y as f32-8. {break;}
+                y=p.wrap(x,y,line,font,text,width,3)+10.;
+            }
+            p.metal(button,true,true);
+            p.text(button.x as f32+12.,button.y as f32+12.,&modal.button,body,text,"body",button.width as f32-24.);
+        }
         Content::Top(resources, clock) => {
             p.metal(l.top_resources, false, true);
             p.metal(l.top_controls, false, false);
@@ -1848,7 +1904,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                 }
             }
         }
-        Content::Commands(category, active, names) => {
+        Content::Commands(category, active, names, disabled) => {
             p.metal(r, false, true);
             p.text(
                 r.x as f32 + 12. * s,
@@ -1901,7 +1957,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
             for (index, rr) in &l.tool_buttons {
                 p.metal(*rr, true, *active == Some(*index));
                 let reference = t.tool(*index);
-                let icon = reference.map(|x| x.icon.as_str()).unwrap_or("depot");
+                let icon = ui::tool_icon(*index);
                 let icon_r = rect(
                     rr.x as f32 + 7. * s,
                     rr.y as f32 + 4. * s,
@@ -1910,7 +1966,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                     l.width,
                     l.height,
                 );
-                p.icon(icon_r, icon, false);
+                p.icon(icon_r, icon, disabled.iter().any(|(tool,_)|tool==index));
                 if let Some(key) = reference
                     .map(|x| x.hotkey.as_str())
                     .filter(|x| !x.is_empty())
@@ -1925,10 +1981,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                         26. * s,
                     );
                 }
-                let label = reference
-                    .map(|x| x.label.as_str())
-                    .or_else(|| names.get(*index).map(String::as_str))
-                    .unwrap_or("Build");
+                let label = ui::tool_label(*index);
                 p.text(
                     rr.x as f32 + 6. * s,
                     rr.end_y() as f32 - 20. * s,
@@ -1950,7 +2003,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                 let (label, key) = match action {
                     UiAction::SelectMode => ("Select", "Esc"),
                     UiAction::ChooseTool(0) => ("Road", "F4"),
-                    UiAction::ChooseTool(10) => ("Camera", "F7"),
+                    UiAction::ChooseTool(10) => ("Pole", "F7"),
                     UiAction::ChooseCategory(_) => ("Build", "B"),
                     _ => ("Ecology", "E"),
                 };
@@ -2190,7 +2243,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                         green,
                     );
                 }
-                for (i, line) in sel.stats.iter().take(2).enumerate() {
+                for (i, line) in sel.stats.iter().take(3).enumerate() {
                     p.text(
                         tx,
                         r.y as f32 + 70. * s + i as f32 * 20. * s,
@@ -2202,10 +2255,14 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                     );
                 }
             }
-            let qy = if sel.selected_count == 0 {
-                r.end_y() as f32 - 42. * s
+            for (label,rr,_,enabled) in &l.selection_actions {
+                p.metal(*rr,true,false);
+                p.text(rr.x as f32+5.,rr.y as f32+8.,label,small,if *enabled{text}else{muted},"body",rr.width as f32-10.);
+            }
+            let qy = if let Some((_,rr,_,_))=l.selection_actions.first() {rr.y as f32-44.*s} else if sel.selected_count == 0 {
+                r.end_y() as f32 - 84. * s
             } else {
-                r.end_y() as f32 - 48. * s
+                r.end_y() as f32 - 132. * s
             };
             for (i, q) in sel.queue.iter().take(7).enumerate() {
                 let rr = rect(

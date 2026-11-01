@@ -27,7 +27,7 @@ pub struct Agent {
     pub next: i32,
 }
 #[repr(C)]
-#[derive(Clone, Copy, Pod, Zeroable)]
+#[derive(Clone, Copy, Pod, Zeroable, serde::Serialize, serde::Deserialize)]
 pub struct Object {
     pub pos: [f32; 2],
     pub size: f32,
@@ -1068,6 +1068,65 @@ impl Gpu {
 
     /// CPU data is authoritative. Upload only changed rows/rectangles; all
     /// commands precede the next simulation/render submission on this queue.
+    pub fn upload_campaign_terrain(&mut self,c:&mut crate::campaign::Campaign)->Result<u64,String>{
+        self.params.counts[3]=u32::from(c.data.visual_memory.is_some());
+        if c.data.visual_memory.is_none(){return Ok(self.upload_terrain(&mut c.terrain));}
+        let first=!c.data.visual_memory.as_ref().unwrap().uploaded;
+        let mut bytes=0u64;
+        if first {
+            // Reconstruct only the immutable initial fine survey. Never seed
+            // an unseen upload from the current hidden authoritative state.
+            let mut survey=Terrain::new(c.seed);
+            let _=crate::river::RiverFixture::new(&mut survey)?;
+            let cells=bytemuck::cast_slice::<Cell,u8>(&survey.cells);
+            self.queue.write_buffer(&self.buffers[1],0,cells);bytes+=cells.len() as u64;
+            self.queue.write_texture(wgpu::TexelCopyTextureInfo{texture:&self.ground_texture,mip_level:0,
+                origin:wgpu::Origin3d::ZERO,aspect:wgpu::TextureAspect::All},&survey.rgba,
+                wgpu::TexelCopyBufferLayout{offset:0,bytes_per_row:Some((WW/2*4) as u32),rows_per_image:Some((crate::terrain::HH/2) as u32)},
+                wgpu::Extent3d{width:(WW/2) as u32,height:(crate::terrain::HH/2) as u32,depth_or_array_layers:1});
+            bytes+=survey.rgba.len() as u64;
+        }
+        let mut dirty=vec![false;15_000];
+        for range in c.terrain.take_dirty_cells(){for cell in range{dirty[(cell/CW/4)*150+(cell%CW/4)]=true;}}
+        for r in c.terrain.take_dirty_pixels(){for y in r.y as usize/16..=(r.y as usize+r.height as usize-1)/16{
+            for x in r.x as usize/16..=(r.x as usize+r.width as usize-1)/16{dirty[y*150+x]=true;}}}
+        let objects=c.draw_objects()?;let masks=c.intel().to_vec();
+        let mut overlay_flags=vec![0u8;15_000];
+        let mut mark=|position:[f32;2],radius:f32,flag:u8|{
+            let lo=[((position[0]-radius)/32.).floor().max(0.) as usize,((position[1]-radius)/32.).floor().max(0.) as usize];
+            let hi=[((position[0]+radius)/32.).floor().clamp(0.,149.) as usize,((position[1]+radius)/32.).floor().clamp(0.,99.) as usize];
+            for y in lo[1]..=hi[1]{for x in lo[0]..=hi[0]{
+                if (x as f32*32.-position[0]).hypot(y as f32*32.-position[1])<radius {overlay_flags[y*150+x]|=flag;}
+            }}
+        };
+        for building in &c.data.construction.buildings {
+            if building.team==0&&building.health>0&&matches!(building.kind,crate::construction::BuildKind::Depot|crate::construction::BuildKind::Mine){
+                mark(building.position,building.size_meters.max(32.),1);
+            }
+        }
+        for deposit in &c.data.construction.deposits {mark(deposit.position,32.,2);}
+        let memory=c.data.visual_memory.as_mut().ok_or("Missing presentation memory")?;
+        let spans=memory.refresh(&c.terrain,&masks,&dirty,&objects);
+        for i in 0..15_000 {if masks[i]&crate::campaign_support::VISIBLE!=0 {memory.overlay_flags[i]=overlay_flags[i];}}
+        for (start,end) in spans{
+            let x=start%150;let y=start/150;let width=end-start;
+            for row in 0..4{
+                let mut cells=Vec::with_capacity(width*4);
+                for page in start..end{cells.extend_from_slice(&memory.pages[&page].cells[row*4..row*4+4]);}
+                let data=bytemuck::cast_slice::<Cell,u8>(&cells);
+                self.queue.write_buffer(&self.buffers[1],(((y*4+row)*CW+x*4)*std::mem::size_of::<Cell>()) as u64,data);
+                bytes+=data.len() as u64;
+            }
+            let mut rgba=Vec::with_capacity(width*1024);
+            for row in 0..16{for page in start..end{rgba.extend_from_slice(&memory.pages[&page].rgba[row*64..row*64+64]);}}
+            self.queue.write_texture(wgpu::TexelCopyTextureInfo{texture:&self.ground_texture,mip_level:0,
+                origin:wgpu::Origin3d{x:(x*16) as u32,y:(y*16) as u32,z:0},aspect:wgpu::TextureAspect::All},
+                &rgba,wgpu::TexelCopyBufferLayout{offset:0,bytes_per_row:Some((width*16*4) as u32),rows_per_image:Some(16)},
+                wgpu::Extent3d{width:(width*16) as u32,height:16,depth_or_array_layers:1});
+            bytes+=rgba.len() as u64;
+        }
+        Ok(bytes)
+    }
     pub fn upload_terrain(&mut self, terrain: &mut Terrain) -> u64 {
         let mut bytes = 0u64;
         for range in terrain.take_dirty_cells() {
@@ -1410,7 +1469,9 @@ mod campaign_render_tests {
                 }
             }
         }
-        assert_eq!(names.len(), 19);
+        assert_eq!(names.len(), 22);
+        assert_eq!(BuildKind::ALL[10], BuildKind::Camera, "legacy pole identity remains stable");
+        assert_eq!(&BuildKind::ALL[19..], &[BuildKind::FieldCamera,BuildKind::CameraTower,BuildKind::MountedCamera]);
         assert_eq!(BuildKind::Wall.atlas_kind(), "wall");
         assert_eq!(BuildKind::Turret.atlas_kind(), "turret");
         assert_eq!(BuildKind::Dam.atlas_kind(), "wall");

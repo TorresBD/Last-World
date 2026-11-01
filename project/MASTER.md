@@ -1,6 +1,6 @@
 # LAST WORLD: MASTER FILE
 
-**Revision:** M8 | **Date:** 2026-10-31 | **Owner:** Tor
+**Revision:** M10 | **Date:** 2026-10-31 | **Owner:** Tor
 **Where it lives:** Required working files in every game source directory: `project/MASTER.md` and `project/LEDGER.md`. This checkout: `E:\Games I am Making\Last-World\Source\project\`. Keep these paths in every future version, complete Source zip and update package. The Library holds matching versioned source checkpoints and standalone copies; `project/archive/` holds frozen history.
 **Git mirror (secondary):** https://github.com/TorresBD/Last-World, branch `main`, last inspected head `1177730b5808dfebb3a2806ce8323a18aa287416`.
 **Voids:** every earlier handoff and the old RULES/STATE/DECISIONS/BLOCKERS/PARITY files as instructions. The superseded source-root copies are removed; their full text remains in the indexed archive, located by `project/archive/legacy-governance-location-map.json` (A-038).
@@ -39,17 +39,17 @@ For Ctrl+F, type two hash signs, a space, the section number and a period. For a
 
 ## 1. SESSION SUMMARY (overwrite every session; hard limit 1,500 characters)
 
-**Last session (2026-10-31, governance cleanup):** Cleaned Source snapshot M8 removes five superseded root records (RULES/STATE/DECISIONS/BLOCKERS/PARITY). All their text is verified in the existing indexed archive; a hash/LW location map records coverage. Root README is a compact Master/Ledger index; its unique browser-era text is frozen. Packaging/current pointers are updated. Fourteen focused checks and five source-snapshot cases passed. No gameplay/native compilation input changed or game rebuilt.
-**Placement limitation:** This cleanup is delivered as `LastWorld-Source-B002-2026-10-31-M8.zip`. The original `E:\Games I am Making\Last-World\Source` directory remains at M7 with its old root files: the requested filesystem write grant was not granted. Library synchronization is also unavailable.
-**Next:** Apply the cleaned source snapshot to the intended source checkout; keep source-local Master/Ledger current; then recover/recreate and finish section 8. O-1 remains open.
-**Look up:** Ledger A-038 and L-0024; `#process`.
+**This session (2026-10-31):** Recreated the seven interrupted opening/HUD/recon changes from mirror 9b89dc3. Windows CI compiled locked/pinned source and passed library/CLI regressions ({'cli': 5, 'library': 253}); pixel-map data checks passed. The production renderer captured 12 opening frames at 1366x768, 1920x1080 and 2560x1440 with tick 0 preserved. Screenshots are generated evidence, awaiting visual inspection. First overlay audit passed; this candidate is being resealed with these matching source-local records. No performance or Tor-PC visual qualification follows.
+**Source:** 7296753d274452e003e4bc11dde6154952e2875f; CI run 41271604718; native inputs 1cc6af5224c957c94295f3063b30a35acdda779247cf6271fb174e27c3d7f2cf; exe 234c03baf9c5ad10b8dec0a6e18e0e49218a79e0c53083216bbcbb69938f97d3.
+**Next:** Inspect the captured images, finish any visual corrections, and review Tor's actual-PC play feedback. All larger scope/performance gates remain open.
+**Look up:** L-0026 and B-003; #opening #ui #build.
 
 ---
 
 ## 2. TOP RISKS (max 5; keep current)
 
 1. **Performance is unproven.** On Tor's PC only 1x and 2x were sustained. A 4x attempt reached about 3.42x with growing debt and about 1 presented frame/second. The earlier full baseline showed frame p99 about 120 ms and max about 1,187 ms against goals of 50 ms and 100 ms. These belong to older builds.
-2. **Lost work.** The previous session's HUD/opening edits were never recovered (rule 5.6).
+2. **Opening verification.** The lost HUD/opening changes have been recreated and saved on codex/opening-hud-recon. Native compilation and visual checks remain pending; resume this source, not the older checkpoint.
 3. **Scope vs. reality.** The resident map is 4.8 x 3.2 km, not 20 x 20 km. 130 of 160 traits, complete mandatory biology, full causal scoring and fuller naval/mounted-camera parity remain.
 4. **Information leaks.** The new HUD, terrain memory and radar must not reveal hidden positions, species, health or biology.
 5. **No weaker-hardware evidence.** All measurements are from one PC. Weaker-PC work is deferred, not dropped.
@@ -205,12 +205,10 @@ README.md     one screen: what this is, pointer to project/MASTER.md
 
 ## 7. CURRENT STATE (rewrite each session; current truth only)
 
-**Verified in saved source (head above):** palette-era code; native `3c9147c8...`, Windows exe `41dbfc9d...`; 253 native checks passed for that build. The full-count 24,000-tick headless battle core (10,000 military + 2,000 workers) passed on CPU. Not a Windows, GPU or 4x result.
-**Not in saved source:** the interrupted session's pictograms, camera types, terrain memory, small crew, unit cards and briefing flow. Treat them as unimplemented. The saved checkpoint still starts unpaused with 10,000 military + 2,000 workers, a forward detachment, one generic Camera kind and minimal selection detail.
-**Measured on Tor's PC (older builds):** 1x/2x held; 4x about 3.42x with debt; season phase 1.41x vs 2x requested; largest hitch about 910 ms (cause unknown). ARCHIVE `[LW038]`, `[LW092]`.
-**Milestone B is active (A-021).** The resident map is 4.8 x 3.2 km; 20 km streaming and full mandatory biology are not built.
-
-**Project records:** Cleaned Source snapshot M8 retains Master/Ledger under `project/` and removes the five superseded root governing files; their complete text is already in the indexed archive. Source packaging no longer requires or includes them, and audit checks reject their return. The original E: checkout remains at M7 because write permission was not granted. Native compilation inputs remain `3c9147c8a52073d64788d521c8325c57a614a1f337ada31d0d706522f8686e1e`; no game rebuild or Library save.
+**B-003 Windows CI candidate:** Section 8 source compiles; named library/CLI and pixel-map data checks passed in the recorded CI run. A small paused landing, both notices, crew identity/tasks/loadout/real bounded history and role commands, four camera choices, hand-plotted icons and sparse optical terrain/object memory are present. Legacy tool/save identities and full-count constructors remain.
+**Visual evidence:** 12 production-renderer captures were written at small/1080p/1440p sizes. They need human/assistant inspection; creating them alone is not visual approval. Tor-PC playtesting and performance remain UNMEASURED for this candidate.
+**Delivery evidence:** First overlay/source identity and user-data preservation audit passed. The matching records are included in the resealed overlay and dated complete Source zip; upload is conditional on the final audit passing. Source-native inputs and executable identities are in the build stamp. Historical evidence folders absent from the mirror are listed explicitly in the package manifest.
+**Remaining scope:** The resident fixture remains 4.8x3.2km. Production20km streaming, complete mandatory biology, remaining130 mechanisms and all other open 1.0/performance gates are unchanged.
 
 ---
 
@@ -232,9 +230,10 @@ README.md     one screen: what this is, pointer to project/MASTER.md
 
 ## 9. NEXT STEP
 
-1. Keep the actual source directory's `project/MASTER.md` and `project/LEDGER.md` current in every version; include the entire reviewed `project/` tree in Source packages and synchronize matching Library copies when tools permit.
-2. Look for the interrupted diff; otherwise baseline is head 1177730b.
-3. Implement section 8 in this order: crew and paused opening, briefing and notices, selection and commands, cameras, icons, terrain memory. Run focused checks, package one update with Source, save to the Library.
+1. Resume the saved codex/opening-hud-recon source and L-0025. The seven changes are drafted; do not restart them from the palette checkpoint.
+2. Finish the pinned Windows CI compilation/regressions. Inspect production-renderer captures at 1366/1920/2560 widths and resolve actual failures.
+3. Run the overlay/source identity and user-data preservation audits, seal matching Master/Ledger records, and deliver the update plus dated complete Source zip. Synchronize Library copies when available.
+4. Keep all unmeasured 1.0/performance scope open; do not run a long speed suite for this UI correction.
 
 ---
 

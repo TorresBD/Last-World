@@ -17,7 +17,7 @@
       "height": 1,
       "left": 0,
       "top": 0,
-      "advance": 15.10938,
+      "advance": 15.0,
       "fallback": false
     },
     "33": {
@@ -27,7 +27,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 18.17188,
+      "advance": 18.0,
       "fallback": false
     },
     "34": {
@@ -37,7 +37,7 @@
       "height": 47,
       "left": 0,
       "top": -47,
-      "advance": 26.8125,
+      "advance": 27.0,
       "fallback": false
     },
     "35": {
@@ -47,7 +47,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 45.625,
+      "advance": 46.0,
       "fallback": false
     },
     "36": {
@@ -57,7 +57,7 @@
       "height": 55,
       "left": 0,
       "top": -50,
-      "advance": 38.26562,
+      "advance": 38.0,
       "fallback": false
     },
     "37": {
@@ -67,7 +67,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 59.32812,
+      "advance": 59.0,
       "fallback": false
     },
     "38": {
@@ -77,7 +77,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 44.42188,
+      "advance": 44.0,
       "fallback": false
     },
     "39": {
@@ -87,7 +87,7 @@
       "height": 47,
       "left": 0,
       "top": -47,
-      "advance": 15.48438,
+      "advance": 15.0,
       "fallback": false
     },
     "40": {
@@ -97,7 +97,7 @@
       "height": 58,
       "left": 0,
       "top": -49,
-      "advance": 21.4375,
+      "advance": 21.0,
       "fallback": false
     },
     "41": {
@@ -107,7 +107,7 @@
       "height": 58,
       "left": -1,
       "top": -49,
-      "advance": 21.4375,
+      "advance": 21.0,
       "fallback": false
     },
     "42": {
@@ -117,7 +117,7 @@
       "height": 48,
       "left": 0,
       "top": -48,
-      "advance": 28.79688,
+      "advance": 29.0,
       "fallback": false
     },
     "43": {
@@ -127,7 +127,7 @@
       "height": 36,
       "left": 0,
       "top": -36,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "44": {
@@ -137,7 +137,7 @@
       "height": 16,
       "left": 0,
       "top": -7,
-      "advance": 17.40625,
+      "advance": 17.0,
       "fallback": false
     },
     "45": {
@@ -147,7 +147,7 @@
       "height": 22,
       "left": 0,
       "top": -22,
-      "advance": 25.53125,
+      "advance": 26.0,
       "fallback": false
     },
     "46": {
@@ -157,7 +157,7 @@
       "height": 8,
       "left": 0,
       "top": -7,
-      "advance": 17.40625,
+      "advance": 17.0,
       "fallback": false
     },
     "47": {
@@ -167,7 +167,7 @@
       "height": 57,
       "left": 0,
       "top": -47,
-      "advance": 24.51562,
+      "advance": 25.0,
       "fallback": false
     },
     "48": {
@@ -177,7 +177,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "49": {
@@ -187,7 +187,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "50": {
@@ -197,7 +197,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "51": {
@@ -207,7 +207,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "52": {
@@ -217,7 +217,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "53": {
@@ -227,7 +227,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "54": {
@@ -237,7 +237,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "55": {
@@ -247,7 +247,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "56": {
@@ -257,7 +257,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "57": {
@@ -267,7 +267,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "58": {
@@ -277,7 +277,7 @@
       "height": 34,
       "left": 0,
       "top": -33,
-      "advance": 18.6875,
+      "advance": 19.0,
       "fallback": false
     },
     "59": {
@@ -287,7 +287,7 @@
       "height": 42,
       "left": 0,
       "top": -33,
-      "advance": 18.6875,
+      "advance": 19.0,
       "fallback": false
     },
     "60": {
@@ -297,7 +297,7 @@
       "height": 37,
       "left": 0,
       "top": -36,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "61": {
@@ -307,7 +307,7 @@
       "height": 28,
       "left": 0,
       "top": -28,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "62": {
@@ -317,7 +317,7 @@
       "height": 37,
       "left": 0,
       "top": -36,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "63": {
@@ -327,7 +327,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 30.53125,
+      "advance": 31.0,
       "fallback": false
     },
     "64": {
@@ -337,7 +337,7 @@
       "height": 53,
       "left": 0,
       "top": -45,
-      "advance": 57.03125,
+      "advance": 57.0,
       "fallback": false
     },
     "65": {
@@ -347,7 +347,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 41.03125,
+      "advance": 41.0,
       "fallback": false
     },
     "66": {
@@ -357,7 +357,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 41.79688,
+      "advance": 42.0,
       "fallback": false
     },
     "67": {
@@ -367,7 +367,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 39.75,
+      "advance": 40.0,
       "fallback": false
     },
     "68": {
@@ -377,7 +377,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 42.9375,
+      "advance": 43.0,
       "fallback": false
     },
     "69": {
@@ -387,7 +387,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 37.3125,
+      "advance": 37.0,
       "fallback": false
     },
     "70": {
@@ -397,7 +397,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 35.78125,
+      "advance": 36.0,
       "fallback": false
     },
     "71": {
@@ -407,7 +407,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 44.48438,
+      "advance": 44.0,
       "fallback": false
     },
     "72": {
@@ -417,7 +417,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 45.25,
+      "advance": 45.0,
       "fallback": false
     },
     "73": {
@@ -427,7 +427,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 25.59375,
+      "advance": 26.0,
       "fallback": false
     },
     "74": {
@@ -437,7 +437,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 32.64062,
+      "advance": 33.0,
       "fallback": false
     },
     "75": {
@@ -447,7 +447,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 40.57812,
+      "advance": 41.0,
       "fallback": false
     },
     "76": {
@@ -457,7 +457,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 32.0625,
+      "advance": 32.0,
       "fallback": false
     },
     "77": {
@@ -467,7 +467,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 51.96875,
+      "advance": 52.0,
       "fallback": false
     },
     "78": {
@@ -477,7 +477,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 45.25,
+      "advance": 45.0,
       "fallback": false
     },
     "79": {
@@ -487,7 +487,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 45.3125,
+      "advance": 45.0,
       "fallback": false
     },
     "80": {
@@ -497,7 +497,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 38.78125,
+      "advance": 39.0,
       "fallback": false
     },
     "81": {
@@ -507,7 +507,7 @@
       "height": 56,
       "left": 0,
       "top": -45,
-      "advance": 45.3125,
+      "advance": 45.0,
       "fallback": false
     },
     "82": {
@@ -517,7 +517,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 40.95312,
+      "advance": 41.0,
       "fallback": false
     },
     "83": {
@@ -527,7 +527,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 37.1875,
+      "advance": 37.0,
       "fallback": false
     },
     "84": {
@@ -537,7 +537,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 36.60938,
+      "advance": 37.0,
       "fallback": false
     },
     "85": {
@@ -547,7 +547,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 43.39062,
+      "advance": 43.0,
       "fallback": false
     },
     "86": {
@@ -557,7 +557,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 38.96875,
+      "advance": 39.0,
       "fallback": false
     },
     "87": {
@@ -567,7 +567,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 57.03125,
+      "advance": 57.0,
       "fallback": false
     },
     "88": {
@@ -577,7 +577,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 39.23438,
+      "advance": 39.0,
       "fallback": false
     },
     "89": {
@@ -587,7 +587,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 37.95312,
+      "advance": 38.0,
       "fallback": false
     },
     "90": {
@@ -597,7 +597,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 37.125,
+      "advance": 37.0,
       "fallback": false
     },
     "91": {
@@ -607,7 +607,7 @@
       "height": 58,
       "left": 0,
       "top": -49,
-      "advance": 20.28125,
+      "advance": 20.0,
       "fallback": false
     },
     "92": {
@@ -617,7 +617,7 @@
       "height": 57,
       "left": 0,
       "top": -47,
-      "advance": 24.51562,
+      "advance": 25.0,
       "fallback": false
     },
     "93": {
@@ -627,7 +627,7 @@
       "height": 58,
       "left": 0,
       "top": -49,
-      "advance": 20.28125,
+      "advance": 20.0,
       "fallback": false
     },
     "94": {
@@ -637,7 +637,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "95": {
@@ -647,7 +647,7 @@
       "height": 11,
       "left": 0,
       "top": 0,
-      "advance": 36.15625,
+      "advance": 36.0,
       "fallback": false
     },
     "96": {
@@ -657,7 +657,7 @@
       "height": 50,
       "left": 0,
       "top": -50,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "97": {
@@ -667,7 +667,7 @@
       "height": 35,
       "left": 0,
       "top": -34,
-      "advance": 34.17188,
+      "advance": 34.0,
       "fallback": false
     },
     "98": {
@@ -677,7 +677,7 @@
       "height": 48,
       "left": 0,
       "top": -47,
-      "advance": 37.125,
+      "advance": 37.0,
       "fallback": false
     },
     "99": {
@@ -687,7 +687,7 @@
       "height": 35,
       "left": 0,
       "top": -34,
-      "advance": 32.1875,
+      "advance": 32.0,
       "fallback": false
     },
     "100": {
@@ -697,7 +697,7 @@
       "height": 48,
       "left": 0,
       "top": -47,
-      "advance": 37.125,
+      "advance": 37.0,
       "fallback": false
     },
     "101": {
@@ -707,7 +707,7 @@
       "height": 35,
       "left": 0,
       "top": -34,
-      "advance": 35.14062,
+      "advance": 35.0,
       "fallback": false
     },
     "102": {
@@ -717,7 +717,7 @@
       "height": 47,
       "left": 0,
       "top": -47,
-      "advance": 20.73438,
+      "advance": 21.0,
       "fallback": false
     },
     "103": {
@@ -727,7 +727,7 @@
       "height": 52,
       "left": 0,
       "top": -38,
-      "advance": 33.79688,
+      "advance": 34.0,
       "fallback": false
     },
     "104": {
@@ -737,7 +737,7 @@
       "height": 47,
       "left": 0,
       "top": -47,
-      "advance": 36.35938,
+      "advance": 36.0,
       "fallback": false
     },
     "105": {
@@ -767,7 +767,7 @@
       "height": 47,
       "left": 0,
       "top": -47,
-      "advance": 33.73438,
+      "advance": 34.0,
       "fallback": false
     },
     "108": {
@@ -777,7 +777,7 @@
       "height": 47,
       "left": 0,
       "top": -47,
-      "advance": 17.40625,
+      "advance": 17.0,
       "fallback": false
     },
     "109": {
@@ -787,7 +787,7 @@
       "height": 34,
       "left": 0,
       "top": -34,
-      "advance": 55.875,
+      "advance": 56.0,
       "fallback": false
     },
     "110": {
@@ -797,7 +797,7 @@
       "height": 34,
       "left": 0,
       "top": -34,
-      "advance": 36.35938,
+      "advance": 36.0,
       "fallback": false
     },
     "111": {
@@ -807,7 +807,7 @@
       "height": 35,
       "left": 0,
       "top": -34,
-      "advance": 35.84375,
+      "advance": 36.0,
       "fallback": false
     },
     "112": {
@@ -817,7 +817,7 @@
       "height": 47,
       "left": 0,
       "top": -34,
-      "advance": 37.125,
+      "advance": 37.0,
       "fallback": false
     },
     "113": {
@@ -827,7 +827,7 @@
       "height": 47,
       "left": 0,
       "top": -34,
-      "advance": 37.125,
+      "advance": 37.0,
       "fallback": false
     },
     "114": {
@@ -837,7 +837,7 @@
       "height": 33,
       "left": 0,
       "top": -33,
-      "advance": 23.48438,
+      "advance": 23.0,
       "fallback": false
     },
     "115": {
@@ -847,7 +847,7 @@
       "height": 35,
       "left": 0,
       "top": -34,
-      "advance": 31.17188,
+      "advance": 31.0,
       "fallback": false
     },
     "116": {
@@ -857,7 +857,7 @@
       "height": 42,
       "left": 0,
       "top": -42,
-      "advance": 22.46875,
+      "advance": 22.0,
       "fallback": false
     },
     "117": {
@@ -867,7 +867,7 @@
       "height": 34,
       "left": 0,
       "top": -33,
-      "advance": 36.35938,
+      "advance": 36.0,
       "fallback": false
     },
     "118": {
@@ -877,7 +877,7 @@
       "height": 33,
       "left": 0,
       "top": -33,
-      "advance": 31.48438,
+      "advance": 31.0,
       "fallback": false
     },
     "119": {
@@ -887,7 +887,7 @@
       "height": 33,
       "left": 0,
       "top": -33,
-      "advance": 49.15625,
+      "advance": 49.0,
       "fallback": false
     },
     "120": {
@@ -897,7 +897,7 @@
       "height": 33,
       "left": 0,
       "top": -33,
-      "advance": 32.45312,
+      "advance": 32.0,
       "fallback": false
     },
     "121": {
@@ -907,7 +907,7 @@
       "height": 46,
       "left": 0,
       "top": -33,
-      "advance": 31.9375,
+      "advance": 32.0,
       "fallback": false
     },
     "122": {
@@ -917,7 +917,7 @@
       "height": 33,
       "left": 0,
       "top": -33,
-      "advance": 29.70312,
+      "advance": 30.0,
       "fallback": false
     },
     "123": {
@@ -927,7 +927,7 @@
       "height": 58,
       "left": 0,
       "top": -49,
-      "advance": 21.95312,
+      "advance": 22.0,
       "fallback": false
     },
     "124": {
@@ -937,7 +937,7 @@
       "height": 58,
       "left": 0,
       "top": -49,
-      "advance": 20.09375,
+      "advance": 20.0,
       "fallback": false
     },
     "125": {
@@ -947,7 +947,7 @@
       "height": 58,
       "left": 0,
       "top": -49,
-      "advance": 21.95312,
+      "advance": 22.0,
       "fallback": false
     },
     "126": {
@@ -957,7 +957,7 @@
       "height": 25,
       "left": 0,
       "top": -25,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "215": {
@@ -967,7 +967,7 @@
       "height": 33,
       "left": 0,
       "top": -33,
-      "advance": 38.40625,
+      "advance": 38.0,
       "fallback": false
     },
     "176": {
@@ -977,7 +977,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 29.95312,
+      "advance": 30.0,
       "fallback": false
     },
     "183": {
@@ -987,7 +987,7 @@
       "height": 23,
       "left": 0,
       "top": -23,
-      "advance": 20.85938,
+      "advance": 21.0,
       "fallback": false
     },
     "8211": {
@@ -997,7 +997,7 @@
       "height": 22,
       "left": 0,
       "top": -22,
-      "advance": 37.625,
+      "advance": 38.0,
       "fallback": false
     },
     "8212": {
@@ -1007,7 +1007,7 @@
       "height": 22,
       "left": 0,
       "top": -22,
-      "advance": 49.92188,
+      "advance": 50.0,
       "fallback": false
     },
     "8230": {
@@ -1017,7 +1017,7 @@
       "height": 8,
       "left": 0,
       "top": -7,
-      "advance": 51.39062,
+      "advance": 51.0,
       "fallback": false
     },
     "8593": {
@@ -1027,7 +1027,7 @@
       "height": 45,
       "left": 0,
       "top": -45,
-      "advance": 52.48438,
+      "advance": 52.0,
       "fallback": false
     },
     "8595": {
@@ -1037,7 +1037,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 52.48438,
+      "advance": 52.0,
       "fallback": false
     },
     "8592": {
@@ -1047,7 +1047,7 @@
       "height": 37,
       "left": 0,
       "top": -37,
-      "advance": 52.48438,
+      "advance": 52.0,
       "fallback": false
     },
     "8594": {
@@ -1057,7 +1057,7 @@
       "height": 37,
       "left": 0,
       "top": -37,
-      "advance": 52.48438,
+      "advance": 52.0,
       "fallback": false
     },
     "10003": {
@@ -1067,7 +1067,7 @@
       "height": 46,
       "left": 0,
       "top": -46,
-      "advance": 58.375,
+      "advance": 58.0,
       "fallback": false
     },
     "10005": {
@@ -1077,7 +1077,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 30.53125,
+      "advance": 31.0,
       "fallback": true
     },
     "9654": {
@@ -1087,7 +1087,7 @@
       "height": 46,
       "left": 0,
       "top": -45,
-      "advance": 30.53125,
+      "advance": 31.0,
       "fallback": true
     }
   }
