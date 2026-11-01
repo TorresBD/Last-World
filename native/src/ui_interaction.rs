@@ -1947,9 +1947,7 @@ impl UiState {
             })
             .filter(|(_, d)| *d <= 8. / zoom)
             .min_by(|a, b| a.1.total_cmp(&b.1))?;
-        let name = tool_label(tool_for(job.order.kind).unwrap_or(0));
-        let mut title: String = name.chars().take(1).flat_map(char::to_uppercase).collect();
-        title.push_str(&name[name.chars().next().map_or(0, char::len_utf8)..]);
+        let title = tool_title(tool_for(job.order.kind).unwrap_or(0));
         let mut lines = vec![format!(
             "{}: {}% built",
             job_status(job.phase),
@@ -2107,9 +2105,7 @@ impl UiState {
         if !dragging {
             return None;
         }
-        let name = tool_label(tool);
-        let mut title: String = name.chars().take(1).flat_map(char::to_uppercase).collect();
-        title.push_str(&name[name.chars().next().map_or(0, char::len_utf8)..]);
+        let title = tool_title(tool);
         let mut lines = Vec::new();
         if is_line(kind) {
             if moved {
@@ -2688,7 +2684,7 @@ impl UiState {
                 lines.push(match tool{20=>"Capture requires observed reachable wildlife, a handler and a suitable pen.",21=>"Research requires a delivered specimen, care and a research building.",22=>"Breeding requires researched compatible specimens and real care.",23=>"A handler collects and releases an existing captive.",25|26=>"Launch requires a completed dock, paid materials and sufficient depth.",27|28=>"Use an actual nearby transport and reachable shoreline.",_=>"Click the world to use this command."}.into());
             }
             out.tooltip = Some(TooltipView {
-                title: tool_label(tool).into(),
+                title: tool_title(tool),
                 lines,
                 anchor: self.cursor,
             });
@@ -3439,6 +3435,28 @@ pub fn tool_icon(tool:usize)->&'static str {
         "capture","research_action","breed","release","move","gunboat","transport","board",
         "disembark","cancel","camera","camera_tower","camera_mounted","attack"].get(tool).copied().unwrap_or("inspect")
 }
+/// Tool name for display: sentence case ("Road", "Camera tower").
+pub fn tool_title(tool: usize) -> String {
+    let name = tool_label(tool);
+    let mut chars = name.chars();
+    chars
+        .next()
+        .map(|c| c.to_uppercase().chain(chars).collect())
+        .unwrap_or_default()
+}
+/// Keep the camera's view inside the map so the screen never shows the
+/// empty void beyond the world edge. `view_px` is the window size in pixels.
+pub fn keep_view_on_map(camera: &mut [f32; 3], view_px: [f32; 2]) {
+    let zoom = camera[2].max(0.12);
+    for (axis, extent) in [(0, WW as f32), (1, HH as f32)] {
+        let half = view_px[axis] * 0.5 / zoom;
+        camera[axis] = if extent > 2. * half {
+            camera[axis].clamp(half, extent - half)
+        } else {
+            extent * 0.5
+        };
+    }
+}
 pub fn tool_label(tool: usize) -> &'static str {
     if tool==33{return "Attack move";}
     if let Some(kind) = build_kind(tool) {
@@ -4084,6 +4102,20 @@ mod opening_regressions {
         assert!(ui.presentation(&c, [1920, 1080], 4).legend.is_none());
     }
 
+    #[test]
+    fn camera_view_stays_on_the_map() {
+        let mut cam = [424., 1640., 0.85];
+        keep_view_on_map(&mut cam, [1920., 1080.]);
+        assert!((cam[0] - 960. / 0.85).abs() < 0.01, "left edge pinned to the map edge");
+        assert_eq!(cam[1], 1640.);
+        let mut far = [10_000., -50., 1.];
+        keep_view_on_map(&mut far, [1920., 1080.]);
+        assert_eq!(far, [WW as f32 - 960., 540., 1.]);
+        let mut wide = [0., 0., 0.12];
+        keep_view_on_map(&mut wide, [1920., 1080.]);
+        assert_eq!(wide, [WW as f32 * 0.5, HH as f32 * 0.5, 0.12]);
+        assert_eq!(tool_title(0), "Road");
+    }
     #[test]
     fn foot_cost_matches_tactics_rules() {
         let mut cell = crate::terrain::Terrain::new(78421).cells[0];

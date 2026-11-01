@@ -8,6 +8,9 @@ async fn run()->Result<(),String>{
     std::fs::create_dir_all(directory).map_err(|e|e.to_string())?;
     let (mut gpu,_,terrain)=Gpu::new_campaign(None,78421,1920,1080,Some(wgpu::Backends::DX12)).await?;
     let mut campaign=Campaign::new_crash_landing(terrain)?;
+    // Same view rule as the game: never show the void beyond the map edge.
+    let landing=[campaign.camera[0],campaign.camera[1]];
+    last_world_native::ui_interaction::keep_view_on_map(&mut campaign.camera,[1920.,1080.]);
     let mut ui=UiState::default();ui.begin_landing(&campaign);
     gpu.params.view=[campaign.camera[0],campaign.camera[1],0.,0.];
     gpu.params.screen=[1920.,1080.,campaign.camera[2],0.];
@@ -21,7 +24,7 @@ async fn run()->Result<(),String>{
     // Screen position (1920x1080 canvas) of a world point under the opening camera.
     let cam=campaign.camera;
     let screen=|p:[f32;2]|[(p[0]-cam[0])*cam[2]+960.,(p[1]-cam[1])*cam[2]+540.];
-    let start=[cam[0]+24.,cam[1]+24.];
+    let start=[landing[0]+24.,landing[1]+24.];
     let end=[start[0]+120.,start[1]-40.];
     for stage in 0..6 {
         if stage==1 {ui.dismiss_modal();}
@@ -43,7 +46,7 @@ async fn run()->Result<(),String>{
             ui.activate(UiAction::ToggleLayer(Layer::Elevation),cam,5000);
             ui.escape();
             ui.activate(UiAction::ChooseTool(10),cam,5000);
-            let spot=[cam[0]-60.,cam[1]+30.];
+            let spot=[landing[0]-60.,landing[1]+30.];
             ui.pointer_move(UiHit::World,screen(spot),spot,cam,[1920.,1080.],&[]);
         }
         for (width,height) in [(1366,768),(1920,1080),(2560,1440)] {

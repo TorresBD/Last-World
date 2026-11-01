@@ -332,6 +332,7 @@ pub async fn windowed(
                 if load_reset{load_reset=false;ui.reset_after_load();last_flash_wall=begin;previous_tick=c.clock.tick();measured=begin;measured_frames=0;interval_samples.clear();stage_samples.clear();hud_dirty=true;}
                 if !automated&&focused&&ui.modal.is_none()&&!ui.world_dragging()&&!ui.help_search_focused{let dt=(begin-last_pan).as_secs_f32().min(0.25);let distance=600.*dt/c.camera[2];let(w,h)=hud::canvas_size(config.width,config.height);let edge=ui.edge_pan(ui_point(cursor,config.width,config.height),[w as f32,h as f32]);c.camera[0]=(c.camera[0]+(pan_keys[3] as u8 as f32-pan_keys[2] as u8 as f32+edge[0])*distance).clamp(0.,WW as f32);c.camera[1]=(c.camera[1]+(pan_keys[1] as u8 as f32-pan_keys[0] as u8 as f32+edge[1])*distance).clamp(0.,HH as f32);}
                 last_pan=begin;
+                if !automated {crate::ui_interaction::keep_view_on_map(&mut c.camera,[config.width as f32,config.height as f32]);}
                 if !automated&&begin>=next_ui_save&&ui.prefs!=saved_prefs {match ui.save_layout(Path::new("settings/ui-layout.json")){Ok(())=>saved_prefs=ui.prefs.clone(),Err(error)=>logging::log("UI_LAYOUT_ERROR",&error)}next_ui_save=begin+Duration::from_secs(2);}
                 let sim_begin=Instant::now();
                 let elapsed=sim_begin-last_clock;

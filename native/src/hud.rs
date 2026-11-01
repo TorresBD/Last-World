@@ -2088,11 +2088,11 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                         26. * s,
                     );
                 }
-                let label = ui::tool_label(*index);
+                let label = ui::tool_title(*index);
                 p.text(
                     rr.x as f32 + 6. * s,
                     rr.end_y() as f32 - 20. * s,
-                    label,
+                    &label,
                     small,
                     text,
                     "body",
