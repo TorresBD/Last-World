@@ -2,7 +2,7 @@
 
 **Revision:** M10 | **Date:** 2026-10-31 | **Owner:** Tor
 **Where it lives:** Required working files in every game source directory: `project/MASTER.md` and `project/LEDGER.md`. This checkout: `E:\Games I am Making\Last-World\Source\project\`. Keep these paths in every future version, complete Source zip and update package. The Library holds matching versioned source checkpoints and standalone copies; `project/archive/` holds frozen history.
-**Git mirror (secondary):** https://github.com/TorresBD/Last-World, branch `main`, last inspected head `1177730b5808dfebb3a2806ce8323a18aa287416`.
+**Git mirror (secondary):** https://github.com/TorresBD/Last-World, branch `main` (work branches merge back into it; rule 5.13), last inspected head `6ebd5bcb1f11c4be3d225ac89f71e3f5858422d4`.
 **Voids:** every earlier handoff and the old RULES/STATE/DECISIONS/BLOCKERS/PARITY files as instructions. The superseded source-root copies are removed; their full text remains in the indexed archive, located by `project/archive/legacy-governance-location-map.json` (A-038).
 **Authority order:** Tor's latest chat message > platform rules > this file > LEDGER > ARCHIVE.
 
@@ -25,7 +25,7 @@ For Ctrl+F, type two hash signs, a space, the section number and a period. For a
 | 2 | Top risks |
 | 3 | Vision |
 | 4 | Core scope |
-| 5 | Hard rules (5.0-5.12) |
+| 5 | Hard rules (5.0-5.13) |
 | 6 | Source tree map |
 | 7 | Current state |
 | 8 | Opening, HUD and recon task |
@@ -39,10 +39,9 @@ For Ctrl+F, type two hash signs, a space, the section number and a period. For a
 
 ## 1. SESSION SUMMARY (overwrite every session; hard limit 1,500 characters)
 
-**This session (2026-10-31):** Recreated the seven interrupted opening/HUD/recon changes from mirror 9b89dc3. Windows CI compiled locked/pinned source and passed library/CLI regressions ({'cli': 5, 'library': 253}); pixel-map data checks passed. The production renderer captured 12 opening frames at 1366x768, 1920x1080 and 2560x1440 with tick 0 preserved. Screenshots are generated evidence, awaiting visual inspection. First overlay audit passed; this candidate is being resealed with these matching source-local records. No performance or Tor-PC visual qualification follows.
-**Source:** 7296753d274452e003e4bc11dde6154952e2875f; CI run 41271604718; native inputs 1cc6af5224c957c94295f3063b30a35acdda779247cf6271fb174e27c3d7f2cf; exe 234c03baf9c5ad10b8dec0a6e18e0e49218a79e0c53083216bbcbb69938f97d3.
-**Next:** Inspect the captured images, finish any visual corrections, and review Tor's actual-PC play feedback. All larger scope/performance gates remain open.
-**Look up:** L-0026 and B-003; #opening #ui #build.
+**This session (2026-11-01):** Tor reported the game is not intuitive: drawing a road gave no shape and no sign it was planned, a feature the old browser build had ("R draws roads") that never came across to native. Restored and extended (A-039, L-0028): live road/trench/bridge outline with length, cost and the reason it would be refused; site footprints under the cursor; planned orders stay drawn (dashed, solid as built, red if blocked); a white/red flash on release; a builder alert; the line tool stays armed for chained segments. HUD redraws on camera moves so outlines stay on the map. Root cause of lost features recorded (L-0028) and rule 5.13 added. CI workflow restored to `main`.
+**Evidence:** Windows CI run on the pushed commit (see L-0028); Tor-PC visual check pending.
+**Next:** Tor plays the update and notes anything still unclear. **Look up:** A-039, L-0028; #ui #process.
 
 ---
 
@@ -184,6 +183,11 @@ Did I read this file? Claim anything without evidence? Shrink a requirement? Bre
 
 **Tor's notes.** Tor cites an icon ID (shown when a dev "Show IDs" toggle is on) or the screen and position, in chat or `assets/icons/NOTES.md`. For each note, without asking first: restate it in one line, change the pixels, bump the version, render before/after with the preview tool, ship the fix, and record it in the manifest. For a vague note, ship the best variant and include two alternatives (B, C) in the preview so Tor can swap by letter later. Only after 2 rounds on the same icon fail does the AI ask Tor for a coordinate hint or ASCII sketch.
 
+### 5.13 Never lose a working feature (A-039)
+- Never remove or silently drop a player-facing feature (controls, previews, feedback, camera options). Replacing one needs Tor's approval and an equal or better version in the same build.
+- Every restored or Tor-requested feature gets a named regression test; keep those tests passing.
+- Start from the newest `main` (or a newer Library checkpoint), never an older copy. Merge finished branches into `main` in the same session, `.github/` included.
+
 ---
 
 ## 6. SOURCE TREE MAP (approved, A-033; same layout in the Library zip and Git mirror)
@@ -206,6 +210,7 @@ README.md     one screen: what this is, pointer to project/MASTER.md
 ## 7. CURRENT STATE (rewrite each session; current truth only)
 
 **B-003 Windows CI candidate:** Section 8 source compiles; named library/CLI and pixel-map data checks passed in the recorded CI run. A small paused landing, both notices, crew identity/tasks/loadout/real bounded history and role commands, four camera choices, hand-plotted icons and sparse optical terrain/object memory are present. Legacy tool/save identities and full-count constructors remain.
+**Placement feedback (A-039):** road/trench/bridge drafting outline with live length/cost/refusal reason, site footprints, persistent planned-order outlines with progress, accept/refuse flash and builder alert are implemented with named regressions (`road_drag_shows_shape_then_confirms_and_keeps_planned_outline`, `refused_road_is_marked_invalid_while_dragging_and_flashes_on_release`, `road_preview_and_planned_roads_draw_along_their_shape`, `many_long_planned_roads_stay_inside_the_gpu_quad_budget`). Tor-PC visual check pending.
 **Visual evidence:** 12 production-renderer captures were written at small/1080p/1440p sizes. They need human/assistant inspection; creating them alone is not visual approval. Tor-PC playtesting and performance remain UNMEASURED for this candidate.
 **Delivery evidence:** First overlay/source identity and user-data preservation audit passed. The matching records are included in the resealed overlay and dated complete Source zip; upload is conditional on the final audit passing. Source-native inputs and executable identities are in the build stamp. Historical evidence folders absent from the mirror are listed explicitly in the package manifest.
 **Remaining scope:** The resident fixture remains 4.8x3.2km. Production20km streaming, complete mandatory biology, remaining130 mechanisms and all other open 1.0/performance gates are unchanged.
@@ -230,7 +235,7 @@ README.md     one screen: what this is, pointer to project/MASTER.md
 
 ## 9. NEXT STEP
 
-1. Resume the saved codex/opening-hud-recon source and L-0025. The seven changes are drafted; do not restart them from the palette checkpoint.
+1. Work from `main`; it already contains the codex/opening-hud-recon code (4c6794c) plus A-039. Do not restart from older checkpoints (rule 5.13).
 2. Finish the pinned Windows CI compilation/regressions. Inspect production-renderer captures at 1366/1920/2560 widths and resolve actual failures.
 3. Run the overlay/source identity and user-data preservation audits, seal matching Master/Ledger records, and deliver the update plus dated complete Source zip. Synchronize Library copies when available.
 4. Keep all unmeasured 1.0/performance scope open; do not run a long speed suite for this UI correction.

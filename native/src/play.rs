@@ -262,6 +262,8 @@ pub async fn windowed(
     let mut measured = last_clock;
     let mut next_hud = last_clock;
     let mut hud_dirty = true;
+    // Screen-space overlays (planned roads, layers) must follow camera moves.
+    let mut last_hud_camera = [f32::NAN; 3];
     let mut previous_tick = 0;
     let mut frame_id = 0u64;
     let mut accepted_frames = 0u64;
@@ -380,7 +382,8 @@ pub async fn windowed(
                     bytes+=gpu.upload_campaign_agents(&agents)?;
                     bytes+=gpu.upload_campaign_objects(&objects,objects.len())?;
                     bytes+=gpu.upload_campaign_intel(c.intel())?;
-                    if hud_dirty||begin>=next_hud {
+                    if hud_dirty||begin>=next_hud||c.camera!=last_hud_camera {
+                        last_hud_camera=c.camera;
                         hud_model=campaign_hud(&c,&mut ui,config.width,config.height,ui_started.elapsed().as_millis() as u64);
                         bytes+=gpu.set_hud(&hud_model,config.width,config.height)?;
                         next_hud=begin+Duration::from_millis(200);hud_dirty=false;

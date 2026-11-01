@@ -589,7 +589,8 @@ impl ConstructionWorld {
         let cell = Self::validate_position(order.position)?;
         Self::validate_position(order.end)?;
         if order.kind == BuildKind::Road
-            && (order.end[0] - order.position[0]).hypot(order.end[1] - order.position[1]) > 512.
+            && (order.end[0] - order.position[0]).hypot(order.end[1] - order.position[1])
+                > MAX_ROAD_ORDER_METERS
         {
             return Err("Split roads longer than512m into connected orders".into());
         }
@@ -639,13 +640,7 @@ impl ConstructionWorld {
             return Err("Building footprint overlaps an existing construction order".into());
         }
         let edits = Self::plan(order, terrain)?;
-        let units = if matches!(order.kind, BuildKind::Road | BuildKind::Trench) {
-            ((order.end[0] - order.position[0]).hypot(order.end[1] - order.position[1]) / 16.)
-                .ceil()
-                .max(1.) as u64
-        } else {
-            1
-        };
+        let units = order_units(order.kind, order.position, order.end);
         let base = order.kind.base_cost();
         let cost = Resources::new(
             base.metal.checked_mul(units).ok_or("Cost overflow")?,
@@ -1280,15 +1275,7 @@ impl ConstructionWorld {
                     health: 1000,
                     max_health: 1000,
                     complete: true,
-                    size_meters: match j.order.kind {
-                        BuildKind::Camera => 20.,
-                        BuildKind::FieldCamera => 12.,
-                        BuildKind::CameraTower => 32.,
-                        BuildKind::MountedCamera => 10.,
-                        BuildKind::Wall => 24.,
-                        BuildKind::Barracks => 56.,
-                        _ => 40.,
-                    },
+                    size_meters: site_size_meters(j.order.kind),
                     deck_height_mm: deck,
                     draft_clearance_mm: if j.order.kind == BuildKind::Bridge {
                         2500
@@ -1546,6 +1533,28 @@ impl ConstructionWorld {
         Ok(())
     }
 }
+/// Footprint width of a completed site, also used for the placement outline.
+pub fn site_size_meters(kind: BuildKind) -> f32 {
+    match kind {
+        BuildKind::Camera => 20.,
+        BuildKind::FieldCamera => 12.,
+        BuildKind::CameraTower => 32.,
+        BuildKind::MountedCamera => 10.,
+        BuildKind::Wall => 24.,
+        BuildKind::Barracks => 56.,
+        _ => 40.,
+    }
+}
+/// Material units charged for a line order (one per started 16 m), or 1.
+pub fn order_units(kind: BuildKind, from: [f32; 2], to: [f32; 2]) -> u64 {
+    if matches!(kind, BuildKind::Road | BuildKind::Trench) {
+        ((to[0] - from[0]).hypot(to[1] - from[1]) / 16.).ceil().max(1.) as u64
+    } else {
+        1
+    }
+}
+/// Longest road accepted in one order.
+pub const MAX_ROAD_ORDER_METERS: f32 = 512.;
 fn distance(a: [f32; 2], b: [f32; 2]) -> f32 {
     (a[0] - b[0]).hypot(a[1] - b[1])
 }

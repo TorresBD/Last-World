@@ -322,6 +322,49 @@ pub struct LayerCell {
     pub rect: UiRect,
     pub color: [u8; 4],
 }
+/// How a construction outline is drawn on the map.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum PlanState {
+    /// Being dragged now and currently acceptable.
+    Drafting,
+    /// Being dragged now but would be rejected (reason in the tooltip).
+    Invalid,
+    /// Accepted order waiting for, or under, construction.
+    Planned,
+    /// Accepted order whose workers report a blocking problem.
+    Blocked,
+    /// Just released and refused; flashes briefly so the failure is visible.
+    Rejected,
+    /// Just released and accepted; flashes briefly as confirmation.
+    Confirmed,
+}
+/// Screen-space outline of a planned or drafted construction order.
+/// A line order has distinct ends; a site order has `from == to` and is drawn
+/// as a square footprint `width` pixels across.
+#[derive(Clone, Debug, PartialEq)]
+pub struct PlanOutline {
+    pub from: [f32; 2],
+    pub to: [f32; 2],
+    pub width: f32,
+    pub state: PlanState,
+    pub progress_permille: u16,
+}
+/// A just-released construction drag, judged against the real job list.
+#[derive(Clone, Debug)]
+struct PlanFlash {
+    from: [f32; 2],
+    to: [f32; 2],
+    tool: usize,
+    created_ms: u64,
+    /// Highest job id that existed before this order was sent.
+    after_job: u64,
+}
+/// How long the accepted/refused flash stays on the map.
+pub const PLAN_FLASH_MS: u64 = 2600;
+/// Terrain line tools: road, trench and bridge.
+pub fn is_line_tool(tool: usize) -> bool {
+    matches!(tool, 0 | 1 | 15)
+}
 #[derive(Clone, Debug, PartialEq)]
 pub struct ModalView { pub title: String, pub lines: Vec<String>, pub button: String }
 #[derive(Clone, Debug, Default, PartialEq)]
@@ -338,6 +381,10 @@ pub struct UiPresentation {
     pub layers: Vec<Layer>,
     pub tooltip: Option<TooltipView>,
     pub selection_box: Option<UiRect>,
+    /// Live outline of the road/trench/bridge or site being placed.
+    pub build_preview: Option<PlanOutline>,
+    /// Own accepted construction orders, drawn until complete or cancelled.
+    pub planned: Vec<PlanOutline>,
     pub world_marks: Vec<WorldMarker>,
     pub overlay_cells: Vec<LayerCell>,
     pub hints: Vec<String>,
@@ -532,6 +579,11 @@ pub struct UiState {
     resource_trends: [String; 4],
     hint_until_ms: u64,
     hint_text: String,
+    cursor_world: [f32; 2],
+    cursor_over_world: bool,
+    plan_flash: Option<PlanFlash>,
+    /// Highest construction job id seen when the HUD was last presented.
+    last_job_id: u64,
 }
 impl Default for UiState {
     fn default() -> Self {
@@ -567,6 +619,10 @@ impl Default for UiState {
             resource_trends: std::array::from_fn(|_| String::new()),
             hint_until_ms: 0,
             hint_text: String::new(),
+            cursor_world: [0.; 2],
+            cursor_over_world: false,
+            plan_flash: None,
+            last_job_id: 0,
         }
     }
 }
@@ -1090,6 +1146,8 @@ impl UiState {
         now_ms: u64,
     ) -> Vec<UiCommand> {
         self.cursor = screen;
+        self.cursor_world = world;
+        self.cursor_over_world = matches!(hit, UiHit::World);
         self.drag = None;
         self.dirty = true;
         if self.modal.is_some() && hit!=UiHit::Action(UiAction::DismissModal) {return vec![];}
@@ -1219,6 +1277,16 @@ impl UiState {
         visible: &[Selectable],
     ) -> Vec<UiCommand> {
         self.cursor = screen;
+        self.cursor_world = world;
+        let over_world = matches!(hit, UiHit::World);
+        if over_world != self.cursor_over_world {
+            self.dirty = true;
+        }
+        self.cursor_over_world = over_world;
+        if over_world && self.active_tool.is_some() {
+            // The placement outline follows the cursor.
+            self.dirty = true;
+        }
         let previous_hover = self.hovered;
         let previous_action = self.hover_action.clone();
         self.hovered = if matches!(hit, UiHit::World) {
@@ -1338,6 +1406,13 @@ impl UiState {
                     } else {
                         world
                     };
+                    self.plan_flash = Some(PlanFlash {
+                        from,
+                        to,
+                        tool,
+                        created_ms: now_ms,
+                        after_job: self.last_job_id,
+                    });
                     UiCommand::BuildSegment {
                         tool,
                         from,
@@ -1345,13 +1420,30 @@ impl UiState {
                         queue: modifiers.shift,
                     }
                 } else {
+                    if build_kind(tool).is_some() {
+                        self.plan_flash = Some(PlanFlash {
+                            from: world,
+                            to: world,
+                            tool,
+                            created_ms: now_ms,
+                            after_job: self.last_job_id,
+                        });
+                    }
                     UiCommand::UseTool {
                         tool,
                         position: world,
                     }
                 };
-                if !modifiers.shift {
+                // Line tools stay armed so a road can be drawn as several
+                // connected segments; Escape or right-click puts the tool away.
+                if !modifiers.shift && !is_segment {
                     self.active_tool = None;
+                } else if is_segment {
+                    self.hint(
+                        "line_chain",
+                        "Road tool stays active: drag again to add a segment. Esc or right-click to finish.",
+                        now_ms,
+                    );
                 }
                 vec![command]
             }
@@ -1546,10 +1638,11 @@ impl UiState {
                 || lower.contains("command:")
                 || lower.contains("unavailable")
                 || lower.contains("cannot");
+            let planned = !warning && lower.contains(" planned");
             if !c.status.is_empty() {
                 self.notice(
-                    if warning { "supply" } else { "feedback" },
-                    if warning { 2 } else { 0 },
+                    if warning { "supply" } else if planned { "builder" } else { "feedback" },
+                    if warning { 2 } else if planned { 1 } else { 0 },
                     c.status.clone(),
                     None,
                     now_ms,
@@ -1582,6 +1675,165 @@ impl UiState {
         });
         self.last_world_tick = c.processed_tick;
         self.hint("welcome","F4 Road · F6 Trench · F7 Camera. Box-select troops; right-click orders them. E Ecology.",now_ms);
+    }
+    /// Construction outlines: own accepted orders, the order being placed, and
+    /// a short accepted/refused flash. Returns live placement tooltip text.
+    fn plan_outlines(
+        &mut self,
+        c: &Campaign,
+        canvas: [f32; 2],
+        now_ms: u64,
+        out: &mut UiPresentation,
+    ) -> Option<TooltipView> {
+        use crate::construction::{
+            JobPhase, MAX_ROAD_ORDER_METERS, order_units, site_size_meters,
+        };
+        let zoom = c.camera[2];
+        let is_line = |k: BuildKind| matches!(k, BuildKind::Road | BuildKind::Trench | BuildKind::Bridge);
+        let line_px = |k: BuildKind| {
+            (match k {
+                BuildKind::Road => 8.,
+                BuildKind::Trench => 6.,
+                _ => 10.,
+            } * zoom)
+                .max(3.)
+        };
+        let site_px = |k: BuildKind| (site_size_meters(k) * zoom).max(6.);
+        let visible = |a: [f32; 2], b: [f32; 2], pad: f32| {
+            a[0].max(b[0]) >= -pad
+                && a[1].max(b[1]) >= -pad
+                && a[0].min(b[0]) <= canvas[0] + pad
+                && a[1].min(b[1]) <= canvas[1] + pad
+        };
+        let outline = |kind: BuildKind, from: [f32; 2], to: [f32; 2], state: PlanState, progress: u16| {
+            let line = is_line(kind);
+            PlanOutline {
+                from: world_to_screen(from, c.camera, canvas),
+                to: world_to_screen(if line { to } else { from }, c.camera, canvas),
+                width: if line { line_px(kind) } else { site_px(kind) },
+                state,
+                progress_permille: progress,
+            }
+        };
+        let mut newest = self.last_job_id;
+        for j in &c.construction.jobs {
+            newest = newest.max(j.id);
+            if j.order.team != 0 || matches!(j.phase, JobPhase::Complete | JobPhase::Cancelled) {
+                continue;
+            }
+            let progress = (j.work_done as u64 * 1000 / j.work_required.max(1) as u64).min(1000) as u16;
+            let state = if j.blocked_reason.is_some() { PlanState::Blocked } else { PlanState::Planned };
+            let o = outline(j.order.kind, j.order.position, j.order.end, state, progress);
+            if visible(o.from, o.to, o.width) {
+                out.planned.push(o);
+            }
+        }
+        // Accepted or refused feedback for the order just released.
+        if let Some(f) = self.plan_flash.clone() {
+            let age = now_ms.saturating_sub(f.created_ms);
+            match build_kind(f.tool) {
+                Some(kind) if age <= PLAN_FLASH_MS => {
+                    let accepted = c.construction.jobs.iter().find(|j| {
+                        j.id > f.after_job && j.order.team == 0 && j.order.kind == kind
+                    });
+                    out.build_preview = Some(match accepted {
+                        Some(j) => outline(kind, j.order.position, j.order.end, PlanState::Confirmed, 0),
+                        // Give the command one frame to be applied before calling it refused.
+                        None if age < 150 => outline(kind, f.from, f.to, PlanState::Drafting, 0),
+                        None => outline(kind, f.from, f.to, PlanState::Rejected, 0),
+                    });
+                }
+                _ => self.plan_flash = None,
+            }
+        }
+        self.last_job_id = newest;
+        // Live outline while placing.
+        let (tool, from, moved) = match &self.drag {
+            Some(Drag::Build { screen, world, tool }) => (
+                *tool,
+                *world,
+                (self.cursor[0] - screen[0]).hypot(self.cursor[1] - screen[1]) >= 5.,
+            ),
+            _ if self.cursor_over_world && self.modal.is_none() => match self.active_tool {
+                Some(t) => (t, self.cursor_world, false),
+                None => return None,
+            },
+            _ => return None,
+        };
+        let kind = build_kind(tool)?;
+        let dragging = matches!(self.drag, Some(Drag::Build { .. }));
+        let (from, to) = if is_line(kind) {
+            (from, if moved { self.cursor_world } else { from })
+        } else {
+            (self.cursor_world, self.cursor_world)
+        };
+        let units = order_units(kind, from, to);
+        let base = kind.base_cost();
+        let cost = Resources::new(
+            base.metal.saturating_mul(units),
+            base.timber.saturating_mul(units),
+            base.rations.saturating_mul(units),
+            base.power.saturating_mul(units),
+        );
+        let length = distance(from, to);
+        let problem: Option<String> = if !c.recon.visible(0, from) {
+            Some(if is_line(kind) && dragging {
+                "the start point has no current video coverage".into()
+            } else {
+                "no current video coverage here".into()
+            })
+        } else if moved && !c.recon.visible(0, to) {
+            Some("the end point has no current video coverage".into())
+        } else if kind == BuildKind::Road && length > MAX_ROAD_ORDER_METERS {
+            Some(format!(
+                "too long ({length:.0} m); one road order is at most {MAX_ROAD_ORDER_METERS:.0} m, so release earlier and chain segments"
+            ))
+        } else if c.construction.stores[0].checked_sub(cost).is_err() {
+            Some("not enough supplies for this length".into())
+        } else {
+            None
+        };
+        // A flash from the previous release keeps priority until the cursor
+        // starts a new drag.
+        if out.build_preview.is_none() || dragging {
+            out.build_preview = Some(outline(
+                kind,
+                from,
+                to,
+                if problem.is_some() { PlanState::Invalid } else { PlanState::Drafting },
+                0,
+            ));
+        }
+        if !dragging {
+            return None;
+        }
+        let name = tool_label(tool);
+        let mut title: String = name.chars().take(1).flat_map(char::to_uppercase).collect();
+        title.push_str(&name[name.chars().next().map_or(0, char::len_utf8)..]);
+        let mut lines = Vec::new();
+        if is_line(kind) {
+            if moved {
+                lines.push(format!(
+                    "Length {length:.0} m{}",
+                    if units > 1 { format!(" · {units} segments") } else { String::new() }
+                ));
+            } else {
+                lines.push("Drag to the point where it should end.".into());
+            }
+        }
+        lines.push(format!(
+            "Cost: {} metal | {} timber | {} food | {} power",
+            cost.metal, cost.timber, cost.rations, cost.power
+        ));
+        lines.push(match &problem {
+            Some(p) => format!("Cannot plan: {p}."),
+            None => "Release to plan it. Workers then haul materials and build.".into(),
+        });
+        Some(TooltipView {
+            title: format!("Planning {title}"),
+            lines,
+            anchor: self.cursor,
+        })
     }
     pub fn presentation(&mut self, c: &Campaign, canvas: [u32; 2], now_ms: u64) -> UiPresentation {
         self.observe_world(c, now_ms);
@@ -2012,6 +2264,7 @@ impl UiState {
                 }
             }
         }
+        let placement_tip = self.plan_outlines(c, canvas_f, now_ms, &mut out);
         if let Some(tool) = self
             .hover_action
             .as_ref()
@@ -2042,7 +2295,10 @@ impl UiState {
                     cost.metal, cost.timber, cost.rations, cost.power
                 ));
                 if matches!(kind, BuildKind::Road | BuildKind::Trench) {
-                    lines.push("Cost is per segment; final length is priced when ordered.".into());
+                    lines.push("Cost is per 16 m segment; the outline shows live length and price.".into());
+                }
+                if is_line_tool(tool) {
+                    lines.push("Click and drag on the map to draw it. Esc or right-click to finish.".into());
                 }
                 if let Some((height, range))=kind.camera_spec() {
                     lines.push(format!("{}m high | {}m optical range | blocked by terrain and canopy",height/1000,range));
@@ -2057,6 +2313,9 @@ impl UiState {
                 lines,
                 anchor: self.cursor,
             });
+        }
+        if placement_tip.is_some() {
+            out.tooltip = placement_tip;
         }
         if self.prefs.hints && now_ms < self.hint_until_ms {
             out.hints.push(self.hint_text.clone());
@@ -3226,5 +3485,91 @@ mod opening_regressions {
             let cost=kind.base_cost();assert!(costs.insert((cost.metal,cost.timber,cost.power)));
         }
         assert!(build_kind(19).is_none());assert!(build_kind(33).is_none());
+    }
+
+    /// Two points with current friendly video, `apart` metres apart.
+    fn visible_pair(c: &Campaign, apart: f32) -> ([f32; 2], [f32; 2]) {
+        let centre = [c.camera[0], c.camera[1]];
+        for ring in 0..40 {
+            for step in 0..16 {
+                let a = step as f32 * std::f32::consts::TAU / 16.;
+                let from = [centre[0] + a.cos() * ring as f32 * 16., centre[1] + a.sin() * ring as f32 * 16.];
+                for dir in [[1., 0.], [0., 1.], [-1., 0.], [0., -1.]] {
+                    let to = [from[0] + dir[0] * apart, from[1] + dir[1] * apart];
+                    if c.recon.visible(0, from) && c.recon.visible(0, to) {
+                        return (from, to);
+                    }
+                }
+            }
+        }
+        panic!("the crash-landing opening must have current video near the ship");
+    }
+
+    /// Regression (A-039): dragging a road must show its shape and live price,
+    /// and releasing must visibly confirm the planned order.
+    #[test]
+    fn road_drag_shows_shape_then_confirms_and_keeps_planned_outline() {
+        let mut c = Campaign::new_crash_landing(crate::terrain::Terrain::new(78421)).unwrap();
+        let canvas = [1280., 800.];
+        let (from, to) = visible_pair(&c, 64.);
+        let s_from = world_to_screen(from, c.camera, canvas);
+        let s_to = world_to_screen(to, c.camera, canvas);
+        let mut ui = UiState::default();
+        ui.active_tool = Some(0);
+        // Armed tool over the map: an outline follows the cursor before any click.
+        ui.pointer_move(UiHit::World, s_from, from, c.camera, canvas, &[]);
+        assert!(ui.presentation(&c, [1280, 800], 0).build_preview.is_some());
+        ui.pointer_down(UiHit::World, s_from, from, false, Modifiers::default(), c.camera, canvas, &[], 0);
+        ui.pointer_move(UiHit::World, s_to, to, c.camera, canvas, &[]);
+        let view = ui.presentation(&c, [1280, 800], 10);
+        let preview = view.build_preview.expect("road drag draws its outline");
+        assert_eq!(preview.state, PlanState::Drafting);
+        assert!(distance(preview.from, s_from) < 0.01 && distance(preview.to, s_to) < 0.01);
+        let tip = view.tooltip.expect("road drag shows live details");
+        assert_eq!(tip.title, "Planning Road");
+        assert!(tip.lines.iter().any(|l| l.starts_with("Length 64 m")), "{:?}", tip.lines);
+        assert!(tip.lines.iter().any(|l| l.starts_with("Release to plan")), "{:?}", tip.lines);
+
+        let commands = ui.pointer_up(UiHit::World, s_to, to, Modifiers::default(), c.camera, canvas, &[], 20);
+        assert_eq!(commands.len(), 1);
+        assert!(matches!(commands[0], UiCommand::BuildSegment { tool: 0, .. }));
+        assert_eq!(ui.active_tool, Some(0), "the road tool stays armed for the next segment");
+        c.apply_ui_command(&commands[0]).unwrap();
+        assert!(c.status.starts_with("Road planned: 64 m"), "{}", c.status);
+
+        let view = ui.presentation(&c, [1280, 800], 400);
+        assert_eq!(view.build_preview.as_ref().unwrap().state, PlanState::Confirmed);
+        let planned = view.planned.iter().find(|o| distance(o.from, s_from) < 0.01).expect("planned road stays on the map");
+        assert!(distance(planned.to, s_to) < 0.01);
+        assert_eq!(planned.state, PlanState::Planned);
+        assert!(view.alerts.iter().any(|a| a.icon == "builder" && a.priority >= 1));
+        // The flash expires; the planned outline remains until built.
+        let view = ui.presentation(&c, [1280, 800], 400 + PLAN_FLASH_MS + 1);
+        assert!(!view.planned.is_empty());
+        assert_ne!(view.build_preview.map(|p| p.state), Some(PlanState::Confirmed));
+        ui.escape();
+        assert!(ui.active_tool.is_none());
+    }
+
+    #[test]
+    fn refused_road_is_marked_invalid_while_dragging_and_flashes_on_release() {
+        let mut c = Campaign::new_crash_landing(crate::terrain::Terrain::new(78421)).unwrap();
+        let canvas = [1280., 800.];
+        let (from, _) = visible_pair(&c, 16.);
+        let to = [from[0] + 700., from[1]];
+        let s_from = world_to_screen(from, c.camera, canvas);
+        let s_to = world_to_screen(to, c.camera, canvas);
+        let mut ui = UiState::default();
+        ui.active_tool = Some(0);
+        ui.pointer_down(UiHit::World, s_from, from, false, Modifiers::default(), c.camera, canvas, &[], 0);
+        ui.pointer_move(UiHit::World, s_to, to, c.camera, canvas, &[]);
+        let view = ui.presentation(&c, [1280, 800], 10);
+        assert_eq!(view.build_preview.unwrap().state, PlanState::Invalid);
+        assert!(view.tooltip.unwrap().lines.iter().any(|l| l.starts_with("Cannot plan:")));
+        let commands = ui.pointer_up(UiHit::World, s_to, to, Modifiers::default(), c.camera, canvas, &[], 20);
+        assert!(c.apply_ui_command(&commands[0]).is_err());
+        let view = ui.presentation(&c, [1280, 800], 400);
+        assert_eq!(view.build_preview.unwrap().state, PlanState::Rejected);
+        assert!(view.planned.is_empty());
     }
 }

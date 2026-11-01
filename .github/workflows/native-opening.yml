@@ -1,0 +1,94 @@
+name: Native opening and HUD checks
+on:
+  push:
+    branches: [main, 'claude/**', 'codex/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: native-opening-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Rust and GNU linker
+        shell: pwsh
+        run: |
+          rustup toolchain install 1.97.1 --profile minimal
+          rustup default 1.97.1
+          rustup target add x86_64-pc-windows-gnu
+          "C:\msys64\mingw64\bin" >> $env:GITHUB_PATH
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            native/target
+          key: native-windows-${{ hashFiles('native/Cargo.lock') }}-${{ github.run_id }}
+          restore-keys: native-windows-${{ hashFiles('native/Cargo.lock') }}-
+      - name: Rebuild existing bundled assets
+        shell: pwsh
+        run: |
+          python -m pip install Pillow fonttools
+          node native/scripts/export-pixels.mjs
+          python native/scripts/bake-ui-fonts.py
+      - name: Check pixel-map data
+        run: python native/scripts/check-ui-icons.py
+      - name: Compile and run library and CLI regressions
+        shell: pwsh
+        run: cargo test --manifest-path native/Cargo.toml --locked --release --target x86_64-pc-windows-gnu --lib --bin last-world
+      - name: Build stamped Windows release and test harnesses
+        shell: pwsh
+        run: python native/scripts/build-release.py --target x86_64-pc-windows-gnu --test-harnesses
+      - name: Capture production opening renderer
+        run: cargo run --manifest-path native/Cargo.toml --locked --release --target x86_64-pc-windows-gnu --example opening-check
+      - name: Emit opening review images
+        if: always()
+        run: python native/scripts/emit-opening-preview.py
+      - name: Package overlay with matching complete Source
+        shell: pwsh
+        run: python native/scripts/package-windows.py --update-bundle
+      - name: Audit overlay and seal source-local records
+        shell: pwsh
+        run: |
+          python native/scripts/check-overlay-package.py dist/downloads/Last-World-Update-Windows.zip
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python native/scripts/seal-opening-records.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python native/scripts/package-windows.py --update-bundle
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python native/scripts/check-overlay-package.py dist/downloads/Last-World-Update-Windows.zip
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python native/scripts/seal-opening-records.py --source-zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Last-World-Windows-Opening-HUD
+          path: dist/downloads/*.zip
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Last-World-Opening-Evidence
+          path: |
+            evidence/opening-hud
+            console.txt
+          if-no-files-found: warn
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            native/target
+          key: native-windows-${{ hashFiles('native/Cargo.lock') }}-${{ github.run_id }}

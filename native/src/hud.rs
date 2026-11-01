@@ -2804,6 +2804,13 @@ pub fn world_quads(model: &HudModel, width: u32, height: u32) -> Vec<UiQuad> {
     for cell in &v.overlay_cells {
         add(cell.rect, cell.color);
     }
+    // Construction outlines: accepted orders first, the live/flashing one on top.
+    for o in v.planned.iter().take(MAX_PLANNED_OUTLINES) {
+        plan_quads(o, &t, false, &mut add);
+    }
+    if let Some(o) = &v.build_preview {
+        plan_quads(o, &t, true, &mut add);
+    }
     for m in &v.world_marks {
         if !m.selected && !m.hovered {
             continue;
@@ -2877,7 +2884,94 @@ pub fn world_quads(model: &HudModel, width: u32, height: u32) -> Vec<UiQuad> {
             add(rr, c);
         }
     }
+    // Never exceed the GPU instance buffer: losing a few overlay squares is
+    // better than stopping the game.
+    out.truncate(WORLD_QUAD_BUDGET);
     out
+}
+
+/// Planned orders drawn per frame; more are still listed in the queue panel.
+pub const MAX_PLANNED_OUTLINES: usize = 96;
+/// Squares sampled along one planned line / the live preview.
+const PLANNED_LINE_SAMPLES: f32 = 400.;
+const PREVIEW_LINE_SAMPLES: f32 = 1200.;
+/// Below the GPU's UI_QUAD_CAPACITY (131072) with headroom.
+pub const WORLD_QUAD_BUDGET: usize = 120_000;
+
+/// Draw one construction outline as screen-space squares. Lines are sampled
+/// along their length (dashed while only planned); sites are a square frame.
+fn plan_quads(o: &ui::PlanOutline, t: &Theme, live: bool, add: &mut impl FnMut(UiRect, [u8; 4])) {
+    use ui::PlanState::*;
+    let with_alpha = |mut c: [u8; 4], a: u8| {
+        c[3] = a;
+        c
+    };
+    let color = match o.state {
+        Drafting => with_alpha(t.color("biology"), 230),
+        Invalid | Rejected => with_alpha(t.color("damage"), 235),
+        Planned => with_alpha(t.color("faction0"), 215),
+        Blocked => with_alpha(t.color("damage"), 200),
+        Confirmed => with_alpha(t.color("text"), 245),
+    };
+    let border = with_alpha(t.color("black"), 200);
+    let dashed = matches!(o.state, Planned | Blocked);
+    let w = o.width.max(3.);
+    let dx = o.to[0] - o.from[0];
+    let dy = o.to[1] - o.from[1];
+    let length = dx.hypot(dy);
+    if length < 0.5 {
+        // Site footprint: dark frame, coloured frame, translucent fill.
+        let half = w * 0.5;
+        let r = UiRect { x: o.from[0] - half, y: o.from[1] - half, width: w, height: w };
+        let edge = (w * 0.08).clamp(2., 4.);
+        fn frame(r: UiRect, e: f32, c: [u8; 4], add: &mut dyn FnMut(UiRect, [u8; 4])) {
+            add(UiRect { height: e, ..r }, c);
+            add(UiRect { y: r.y + r.height - e, height: e, ..r }, c);
+            add(UiRect { width: e, ..r }, c);
+            add(UiRect { x: r.x + r.width - e, width: e, ..r }, c);
+        }
+        if matches!(o.state, Drafting | Invalid | Rejected | Confirmed) {
+            add(r, with_alpha(color, 60));
+        }
+        frame(UiRect { x: r.x - 1., y: r.y - 1., width: r.width + 2., height: r.height + 2. }, edge + 2., border, &mut *add);
+        frame(r, edge, color, &mut *add);
+        if o.progress_permille > 0 {
+            let bar = UiRect { x: r.x, y: r.y + r.height + 2., width: r.width, height: 3. };
+            add(bar, border);
+            add(UiRect { width: bar.width * o.progress_permille.min(1000) as f32 / 1000., ..bar }, color);
+        }
+        return;
+    }
+    let budget = if live { PREVIEW_LINE_SAMPLES } else { PLANNED_LINE_SAMPLES };
+    let step = (w * 0.45).max(1.).max(length / budget);
+    let dash = (w * 2.).max(8.);
+    let built = length * o.progress_permille.min(1000) as f32 / 1000.;
+    let samples = (length / step).ceil() as usize;
+    let mut squares = Vec::with_capacity(samples + 1);
+    for i in 0..=samples {
+        let d = (i as f32 * step).min(length);
+        // Built part is solid; the rest of a planned line is dashed.
+        if dashed && d > built && ((d / dash) as u32) % 2 == 1 {
+            continue;
+        }
+        let f = d / length;
+        squares.push([o.from[0] + dx * f, o.from[1] + dy * f]);
+    }
+    let square = |p: [f32; 2], size: f32| UiRect { x: p[0] - size * 0.5, y: p[1] - size * 0.5, width: size, height: size };
+    if live {
+        for &p in &squares {
+            add(square(p, w + 2.), border);
+        }
+    }
+    for &p in &squares {
+        add(square(p, w), color);
+    }
+    // End knobs make the start and end of the shape obvious.
+    let knob = (w * 1.6).max(7.);
+    for p in [o.from, o.to] {
+        add(square(p, knob + 2.), border);
+        add(square(p, knob), color);
+    }
 }
 
 fn entry_icon(p: &mut Paint, entry: &ui::PanelEntry, r: Rect) {
@@ -3155,5 +3249,50 @@ mod tests {
         assert!(digits.iter().all(|v| (*v - digits[0]).abs() < 0.001));
         assert!(fonts.body.meta.source_pixels >= 64.);
         assert!(fonts.body.alpha.iter().any(|a| *a > 0 && *a < 255));
+    }
+
+    fn outline(from: [f32; 2], to: [f32; 2], state: ui::PlanState) -> ui::PlanOutline {
+        ui::PlanOutline { from, to, width: 8., state, progress_permille: 0 }
+    }
+    /// Regression (A-039): the road being drawn and planned roads are visible
+    /// on the map along their real shape.
+    #[test]
+    fn road_preview_and_planned_roads_draw_along_their_shape() {
+        let mut m = model();
+        let v = m.ui.as_mut().unwrap();
+        v.build_preview = Some(outline([100., 300.], [500., 300.], ui::PlanState::Drafting));
+        let quads = world_quads(&m, 1920, 1080);
+        assert!(quads.len() > 20, "a 400 px road preview is drawn");
+        for q in &quads {
+            let centre_y = q.rect[1] + q.rect[3] * 0.5;
+            let centre_x = q.rect[0] + q.rect[2] * 0.5;
+            assert!((centre_y - 300.).abs() < 0.5 && (99.0..=501.).contains(&centre_x), "{q:?}");
+        }
+        let mut m = model();
+        let v = m.ui.as_mut().unwrap();
+        v.planned.push(outline([100., 100.], [400., 400.], ui::PlanState::Planned));
+        v.planned.push(outline([700., 500.], [700., 500.], ui::PlanState::Blocked));
+        let quads = world_quads(&m, 1920, 1080);
+        assert!(quads.iter().any(|q| q.rect[0] < 300. && q.rect[1] < 300.), "planned road drawn");
+        assert!(quads.iter().any(|q| q.rect[0] > 680. && q.rect[1] > 480.), "planned site drawn");
+    }
+    #[test]
+    fn many_long_planned_roads_stay_inside_the_gpu_quad_budget() {
+        let mut m = model();
+        let v = m.ui.as_mut().unwrap();
+        for i in 0..1000 {
+            let y = (i % 50) as f32 * 20.;
+            v.planned.push(outline([0., y], [1900., 1070. - y], ui::PlanState::Planned));
+        }
+        v.build_preview = Some(outline([0., 0.], [1900., 1070.], ui::PlanState::Drafting));
+        v.overlay_cells = (0..15000)
+            .map(|i| ui::LayerCell {
+                rect: UiRect { x: (i % 150) as f32 * 12., y: (i / 150) as f32 * 10., width: 12., height: 10. },
+                color: [1, 2, 3, 100],
+            })
+            .collect();
+        let quads = world_quads(&m, 1920, 1080);
+        assert!(quads.len() <= WORLD_QUAD_BUDGET);
+        assert!(quads.len() > 15000);
     }
 }

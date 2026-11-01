@@ -174,6 +174,13 @@ impl DerefMut for Campaign {
         &mut self.data
     }
 }
+fn capitalized(name: &str) -> String {
+    let mut chars = name.chars();
+    chars
+        .next()
+        .map(|c| c.to_uppercase().chain(chars).collect())
+        .unwrap_or_default()
+}
 fn distance(a: [f32; 2], b: [f32; 2]) -> f32 {
     (a[0] - b[0]).hypot(a[1] - b[1])
 }
@@ -2098,10 +2105,10 @@ impl Campaign {
             &self.terrain,
         )?;
         self.data.status = format!(
-            "Order{} queued: {} {:.0}m. Workers must haul and build it.",
-            id,
-            kind.name(),
-            distance(from, to)
+            "{} planned: {:.0} m (order {}). Workers will haul materials and build it.",
+            capitalized(kind.name()),
+            distance(from, to),
+            id
         );
         Ok(())
     }
@@ -2142,9 +2149,9 @@ impl Campaign {
                 &self.terrain,
             )?;
             self.data.status = format!(
-                "Order{} queued:{}. A worker must collect and deliver the materials.",
-                id,
-                kind.name()
+                "{} planned (order {}). A worker will collect and deliver the materials.",
+                capitalized(kind.name()),
+                id
             );
             return Ok(());
         }
