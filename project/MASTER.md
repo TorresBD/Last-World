@@ -39,7 +39,7 @@ For Ctrl+F, type two hash signs, a space, the section number and a period. For a
 
 ## 1. SESSION SUMMARY (overwrite every session; hard limit 1,500 characters)
 
-**This session (2026-10-31):** Recreated the previously missing opening/HUD/recon source changes from Git mirror 9b89dc312c888492f389b3280d8f9480ec0265f6 on isolated branch codex/opening-hud-recon. Draft covers small paused landing, two notices, crew details/loadout/history and role commands, four camera options, authored pixel-map UI icons and separate optical terrain/object memory with save persistence. New focused regressions and a production-renderer capture example are present. Local icon-data checks passed; Rust compilation, Windows package and visual evidence are pending in GitHub Actions. Do not call the game implemented/tested yet.
+**This session (2026-10-31):** Recreated the previously missing opening/HUD/recon source changes from Git mirror 9b89dc312c888492f389b3280d8f9480ec0265f6 on isolated branch codex/opening-hud-recon. Draft covers small paused landing, two notices, crew details/loadout/history and role commands, four camera options, authored pixel-map UI icons and sparse optical terrain/object memory with save persistence. New focused regressions and a production-renderer capture example are present. Local icon-data checks passed; Rust compilation, Windows package and visual evidence are pending in GitHub Actions. Do not call the game implemented/tested yet.
 **Environment:** Library archive retrieval failed; local runtime lacks Rust. Repository connector reads/writes work; Windows CI has successfully installed the pinned toolchain and rebuilt existing assets. No access to Tor's installed game is needed.
 **Next:** Resolve compiler/check failures, inspect opening evidence at 1366/1920/2560 widths, package the Windows overlay with complete Source, update these records with actual evidence, and synchronize when possible.
 **Look up:** Ledger L-0025; #opening #ui #process.
@@ -207,7 +207,7 @@ README.md     one screen: what this is, pointer to project/MASTER.md
 
 **Baseline:** Git mirror 9b89dc312c888492f389b3280d8f9480ec0265f6 contains the M8 governance cleanup and palette-era game (native 3c9147c8..., exe 41dbfc9d...). Earlier 253-check and PC performance results are historical.
 **Current source draft:** Branch codex/opening-hud-recon contains recreated section 8 changes. Small opening uses a separate constructor; full-count constructors remain unchanged. The legacy Camera enum/tool 10 stays an 8m/420m pole; new field/tower/mounted choices append identities. Presentation memory is separate from simulation and serialized; only optical masks refresh pages, and radar remains anonymous. Unit histories contain actual accepted commands and shot/hit events, bounded to 16 per unit. Pixel maps are authored source data.
-**Evidence:** Local pixel-map data checks passed for 36 initial icons, with an additional attack icon now drafted. Rust compilation and production-renderer screenshots are pending. No new Windows executable has been accepted or measured; no performance claim follows.
+**Evidence:** Local pixel-map data checks passed for 41 icons (including separate resource and attack symbols). Rust compilation and production-renderer screenshots are pending. No new Windows executable has been accepted or measured; no performance claim follows.
 **Remaining:** Finish the focused checks and visual review, then package. The 4.8x3.2km resident fixture, 20km streaming work and remaining biological scope are unchanged.
 ---
 

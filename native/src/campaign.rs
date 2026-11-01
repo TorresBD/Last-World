@@ -1108,6 +1108,12 @@ impl Campaign {
     }
     fn tactical_events(&mut self, events: Vec<TacticalEvent>, tick: u64) -> Result<(), String> {
         for event in events {
+            match &event {
+                TacticalEvent::Arrived{agent,..}=>self.record_unit_event(*agent,"Arrived at assigned destination"),
+                TacticalEvent::Died{agent,..}=>self.record_unit_event(*agent,"Unit killed"),
+                TacticalEvent::WaterDamage{agent,..}=>self.record_unit_event(*agent,"Damaged by deep water exposure"),
+                _=>{}
+            }
             match event {
                 TacticalEvent::StructureHit {
                     source,

@@ -45,7 +45,7 @@ jobs:
         run: python native/scripts/check-ui-icons.py
       - name: Compile and run library and CLI regressions
         shell: pwsh
-        run: cargo test --manifest-path native/Cargo.toml --locked --target x86_64-pc-windows-gnu --lib --bin last-world
+        run: cargo test --manifest-path native/Cargo.toml --locked --release --target x86_64-pc-windows-gnu --lib --bin last-world
       - name: Build stamped Windows release and test harnesses
         shell: pwsh
         run: python native/scripts/build-release.py --target x86_64-pc-windows-gnu --test-harnesses
@@ -54,10 +54,22 @@ jobs:
       - name: Package overlay with matching complete Source
         shell: pwsh
         run: python native/scripts/package-windows.py --update-bundle
+      - name: Audit overlay and seal source-local records
+        shell: pwsh
+        run: |
+          python native/scripts/check-overlay-package.py dist/downloads/Last-World-Update-Windows.zip
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python native/scripts/seal-opening-records.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python native/scripts/package-windows.py --update-bundle
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python native/scripts/check-overlay-package.py dist/downloads/Last-World-Update-Windows.zip
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python native/scripts/seal-opening-records.py --source-zip
       - uses: actions/upload-artifact@v4
         with:
           name: Last-World-Windows-Opening-HUD
-          path: dist/downloads/Last-World-Update-Windows.zip
+          path: dist/downloads/*.zip
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
         if: always()

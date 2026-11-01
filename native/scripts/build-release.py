@@ -61,13 +61,13 @@ if args.test_harnesses:
         # A host inventory is an expected cross-target list, not proof that the
         # Windows cfg selected identical tests. The PC supervisor enumerates its
         # actual Windows runners before launching exact individual test cases.
-        if not args.target:
+        if not args.target or (os.name == 'nt' and 'windows' in args.target):
             listed = subprocess.run([str(path), '--list', '--format', 'terse'], cwd=root,
                                     capture_output=True, text=True, check=True)
             entry['test_names'] = [line[:-6] for line in listed.stdout.splitlines() if line.endswith(': test')]
             if not entry['test_names']:
                 raise SystemExit('Empty host test inventory; no release stamp accepted')
-            entry['inventory_source'] = 'host_cfg_expected; Windows runtime discovery required'
+            entry['inventory_source'] = ('actual Windows runtime inventory' if os.name == 'nt' else 'host_cfg_expected; Windows runtime discovery required')
         test_harnesses.append(entry)
 after = source_digest(root)
 after_times = {str(p): p.stat().st_mtime_ns for p in native_inputs(root)}

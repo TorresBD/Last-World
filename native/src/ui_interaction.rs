@@ -346,6 +346,7 @@ pub struct UiPresentation {
     pub food_web_pan: [f32; 2],
     pub food_web_zoom: f32,
     pub disabled_layers: Vec<(Layer, String)>,
+    pub disabled_tools: Vec<(usize,String)>,
 }
 #[derive(Clone, Debug, PartialEq)]
 pub enum UiAction {
@@ -1599,10 +1600,10 @@ impl UiState {
         };
         let resources = c.construction.stores[0];
         for (i, (name, icon)) in [
-            ("Metal", "mine"),
-            ("Timber", "mill"),
-            ("Food", "farm"),
-            ("Power", "solar"),
+            ("Metal", "metal"),
+            ("Timber", "timber"),
+            ("Food", "food"),
+            ("Power", "power"),
         ]
         .iter()
         .enumerate()
@@ -1735,6 +1736,18 @@ impl UiState {
         };
         if self.selection.is_empty() {
             out.selection.actions=vec![("Builders".into(),UiAction::SelectBuilders,true),("Defenders".into(),UiAction::SelectDefenders,true),("Camera crew".into(),UiAction::SelectCameras,true)];
+        }
+        for tool in 0..34 {
+            let reason=if let Some(kind)=build_kind(tool) {
+                if kind==BuildKind::MountedCamera&&!c.construction.buildings.iter().any(|b|b.team==0&&b.health>0&&matches!(b.kind,BuildKind::Wall|BuildKind::Depot|BuildKind::Barracks|BuildKind::Research)) {
+                    Some("Build an owned wall or suitable building before mounting a camera.")
+                }else if resources.checked_sub(kind.base_cost()).is_err(){Some("Insufficient supplies for this construction order.")}else{None}
+            }else if matches!(tool,24|27)&&selected.is_empty(){Some("Select your crew before giving this order.")}
+            else if tool==33&&(!selected.iter().any(|a|matches!(a.role,Role::Soldier|Role::Boat))||selected.iter().any(|a|!matches!(a.role,Role::Soldier|Role::Boat))) {Some("Select defenders or gunboats for an attack order.")}
+            else if tool==28&&!roles.contains(&Role::Transport){Some("Select a troop transport to disembark.")}
+            else if matches!(tool,25|26)&&!c.construction.buildings.iter().any(|b|b.team==0&&b.kind==BuildKind::Dock&&b.health>0){Some("Complete a dock before launching a vessel.")}
+            else{None};
+            if let Some(reason)=reason{out.disabled_tools.push((tool,reason.into()));}
         }
         let unit_orders = selected
             .iter()
@@ -1939,7 +1952,7 @@ impl UiState {
                     continue;
                 }
                 let cell = (i / 150 * 4 + 2) * CW + i % 150 * 4 + 2;
-                let remembered=c.visual_memory.as_ref().map(|m|m.cells[cell]).unwrap_or(c.terrain.cells[cell]);
+                let remembered=c.visual_memory.as_ref().map(|m|m.cell_at(cell)).unwrap_or(c.terrain.cells[cell]);
                 let p = patch_at(world);
                 let tint = match layer {
                     Layer::Cameras => Some([85, 170, 158, 32]),
@@ -2005,6 +2018,7 @@ impl UiState {
             .or(self.active_tool)
         {
             let mut lines = Vec::new();
+            if let Some((_,reason))=out.disabled_tools.iter().find(|(t,_)|*t==tool){lines.push(reason.clone());}
             if self.prefs.show_icon_ids {lines.push(format!("Icon ID: {}",tool_icon(tool)));}
             if let Some(hotkey) = match tool {
                 0 => Some("F4"),
@@ -3188,7 +3202,7 @@ mod opening_regressions {
         ui.dismiss_modal();
         assert_eq!(ui.modal.as_ref().unwrap().title,"What is the build plan immediately after landing?");
         ui.dismiss_modal();assert!(ui.modal.is_none());
-        c.clock.set_speed(crate::clock::SimulationSpeed::try_from(4).unwrap());
+        c.clock.set_speed(crate::clock::SimulationSpeed::try_from(4u32).unwrap());
         c.advance(std::time::Duration::from_secs(3)).unwrap();
         assert!(c.paused);assert_eq!(c.clock.tick(),0);
     }

@@ -875,6 +875,9 @@ pub fn hit_test(model: &HudModel, width: u32, height: u32, x: f64, y: f64) -> Ui
                     return UiHit::Blocked;
                 }
             }
+            if let UiHit::Action(UiAction::ChooseTool(tool))=&target.hit {
+                if model.ui.as_ref().is_some_and(|v|v.disabled_tools.iter().any(|(disabled,_)|disabled==tool)){return UiHit::Blocked;}
+            }
             return target.hit.clone();
         }
     }
@@ -1484,7 +1487,7 @@ enum Content {
     Top(Vec<ui::ResourceView>, String),
     Mini(ui::MinimapView),
     Selection(ui::SelectionView),
-    Commands(CommandCategory, Option<usize>, Vec<String>),
+    Commands(CommandCategory, Option<usize>, Vec<String>,Vec<(usize,String)>),
     Layers(Vec<Layer>, Vec<(Layer, String)>),
     Quick(Option<usize>),
     Alert(ui::AlertView),
@@ -1686,7 +1689,7 @@ fn specs(model: &HudModel, l: &UiLayout) -> Vec<Spec> {
         &mut out,
         400,
         l.command,
-        Content::Commands(v.category, v.active_tool, model.tools.clone()),
+        Content::Commands(v.category, v.active_tool, model.tools.clone(),v.disabled_tools.clone()),
     );
     if let (Some((_, first)), Some((_, last))) = (l.layer_buttons.first(), l.layer_buttons.last()) {
         add(
@@ -1904,7 +1907,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                 }
             }
         }
-        Content::Commands(category, active, names) => {
+        Content::Commands(category, active, names, disabled) => {
             p.metal(r, false, true);
             p.text(
                 r.x as f32 + 12. * s,
@@ -1966,7 +1969,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                     l.width,
                     l.height,
                 );
-                p.icon(icon_r, icon, false);
+                p.icon(icon_r, icon, disabled.iter().any(|(tool,_)|tool==index));
                 if let Some(key) = reference
                     .map(|x| x.hotkey.as_str())
                     .filter(|x| !x.is_empty())
