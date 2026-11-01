@@ -1,0 +1,28 @@
+{
+  "adapter": "AdapterInfo { name: \"Microsoft Basic Render Driver\", vendor: 5140, device: 140, device_type: Cpu, driver: \"10.0.26100.33648\", driver_info: \"\", backend: Dx12 }",
+  "captures": [
+    "evidence/opening-hud\\opening-0-1366x768.png",
+    "evidence/opening-hud\\opening-0-1920x1080.png",
+    "evidence/opening-hud\\opening-0-2560x1440.png",
+    "evidence/opening-hud\\opening-1-1366x768.png",
+    "evidence/opening-hud\\opening-1-1920x1080.png",
+    "evidence/opening-hud\\opening-1-2560x1440.png",
+    "evidence/opening-hud\\opening-2-1366x768.png",
+    "evidence/opening-hud\\opening-2-1920x1080.png",
+    "evidence/opening-hud\\opening-2-2560x1440.png",
+    "evidence/opening-hud\\opening-3-1366x768.png",
+    "evidence/opening-hud\\opening-3-1920x1080.png",
+    "evidence/opening-hud\\opening-3-2560x1440.png",
+    "evidence/opening-hud\\opening-4-1366x768.png",
+    "evidence/opening-hud\\opening-4-1920x1080.png",
+    "evidence/opening-hud\\opening-4-2560x1440.png",
+    "evidence/opening-hud\\opening-5-1366x768.png",
+    "evidence/opening-hud\\opening-5-1920x1080.png",
+    "evidence/opening-hud\\opening-5-2560x1440.png"
+  ],
+  "paused": true,
+  "performance_qualification": false,
+  "player_PC_visual_review": false,
+  "source": "production Campaign and Gpu renderer",
+  "tick": 0
+}
