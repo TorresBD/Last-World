@@ -689,7 +689,14 @@ impl UiLayout {
             }
             let rows = legend.entries.len() + usize::from(legend.note.is_some());
             let lh = 34. * s + rows as f32 * (24. * s).max(20.) + 8. * s;
-            out.legend = rect(minimap.x as f32, strip_y - g - lh, lw, lh, w, h);
+            let column_y = strip_y - g - lh;
+            out.legend = if column_y >= top.end_y() as f32 + g {
+                rect(minimap.x as f32, column_y, lw, lh, w, h)
+            } else {
+                // Too short a screen for the left column: sit under the top bar,
+                // right of the layer grid.
+                rect(out.layer_strip.end_x() as f32 + g, top.end_y() as f32 + g, lw, lh, w, h)
+            };
         }
         if let Some(guide) = &v.guide {
             let gw = (320. * s).max(270.);
@@ -700,10 +707,12 @@ impl UiLayout {
             let compact = header + row + detail + 8. * s;
             let gy = top.end_y() as f32 + g;
             // Bottom-left column below: the legend, else the layer grid.
-            let limit = if out.legend.width > 0 { out.legend.y } else { out.layer_strip.y } as f32 - g;
+            let legend_in_column = out.legend.width > 0 && out.legend.x == minimap.x;
+            let limit = if legend_in_column { out.legend.y } else { out.layer_strip.y } as f32 - g;
             out.guide_compact = gy + full > limit;
             let gh = if out.guide_compact { compact } else { full };
-            let gx = if gy + gh <= limit {
+            let legend_on_top = out.legend.width > 0 && !legend_in_column;
+            let gx = if gy + gh <= limit && !legend_on_top {
                 g
             } else {
                 out.legend.end_x().max(out.layer_strip.end_x()) as f32 + g
@@ -3583,7 +3592,7 @@ mod tests {
                         assert!(!overlap, "{r:?} overlaps {core:?} at {w}x{h}@{scale}");
                     }
                 }
-                assert!(l.legend.end_y() <= l.layer_strip.y);
+                assert!(l.legend.end_y() <= l.layer_strip.y || l.legend.x > l.layer_strip.end_x());
                 let sx = w as f64 / cw as f64;
                 let sy = h as f64 / ch as f64;
                 let overlap = |a: Rect, b: Rect| a.x < b.end_x() && b.x < a.end_x() && a.y < b.end_y() && b.y < a.end_y();
