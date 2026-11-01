@@ -1,6 +1,6 @@
 # LAST WORLD: MASTER FILE
 
-**Revision:** M8 | **Date:** 2026-10-31 | **Owner:** Tor
+**Revision:** M10-WIP | **Date:** 2026-10-31 | **Owner:** Tor
 **Where it lives:** Required working files in every game source directory: `project/MASTER.md` and `project/LEDGER.md`. This checkout: `E:\Games I am Making\Last-World\Source\project\`. Keep these paths in every future version, complete Source zip and update package. The Library holds matching versioned source checkpoints and standalone copies; `project/archive/` holds frozen history.
 **Git mirror (secondary):** https://github.com/TorresBD/Last-World, branch `main`, last inspected head `1177730b5808dfebb3a2806ce8323a18aa287416`.
 **Voids:** every earlier handoff and the old RULES/STATE/DECISIONS/BLOCKERS/PARITY files as instructions. The superseded source-root copies are removed; their full text remains in the indexed archive, located by `project/archive/legacy-governance-location-map.json` (A-038).
@@ -39,10 +39,10 @@ For Ctrl+F, type two hash signs, a space, the section number and a period. For a
 
 ## 1. SESSION SUMMARY (overwrite every session; hard limit 1,500 characters)
 
-**Last session (2026-10-31, governance cleanup):** Cleaned Source snapshot M8 removes five superseded root records (RULES/STATE/DECISIONS/BLOCKERS/PARITY). All their text is verified in the existing indexed archive; a hash/LW location map records coverage. Root README is a compact Master/Ledger index; its unique browser-era text is frozen. Packaging/current pointers are updated. Fourteen focused checks and five source-snapshot cases passed. No gameplay/native compilation input changed or game rebuilt.
-**Placement limitation:** This cleanup is delivered as `LastWorld-Source-B002-2026-10-31-M8.zip`. The original `E:\Games I am Making\Last-World\Source` directory remains at M7 with its old root files: the requested filesystem write grant was not granted. Library synchronization is also unavailable.
-**Next:** Apply the cleaned source snapshot to the intended source checkout; keep source-local Master/Ledger current; then recover/recreate and finish section 8. O-1 remains open.
-**Look up:** Ledger A-038 and L-0024; `#process`.
+**This session (2026-10-31):** Recreated the previously missing opening/HUD/recon source changes from Git mirror 9b89dc312c888492f389b3280d8f9480ec0265f6 on isolated branch codex/opening-hud-recon. Draft covers small paused landing, two notices, crew details/loadout/history and role commands, four camera options, authored pixel-map UI icons and separate optical terrain/object memory with save persistence. New focused regressions and a production-renderer capture example are present. Local icon-data checks passed; Rust compilation, Windows package and visual evidence are pending in GitHub Actions. Do not call the game implemented/tested yet.
+**Environment:** Library archive retrieval failed; local runtime lacks Rust. Repository connector reads/writes work; Windows CI has successfully installed the pinned toolchain and rebuilt existing assets. No access to Tor's installed game is needed.
+**Next:** Resolve compiler/check failures, inspect opening evidence at 1366/1920/2560 widths, package the Windows overlay with complete Source, update these records with actual evidence, and synchronize when possible.
+**Look up:** Ledger L-0025; #opening #ui #process.
 
 ---
 
@@ -205,13 +205,10 @@ README.md     one screen: what this is, pointer to project/MASTER.md
 
 ## 7. CURRENT STATE (rewrite each session; current truth only)
 
-**Verified in saved source (head above):** palette-era code; native `3c9147c8...`, Windows exe `41dbfc9d...`; 253 native checks passed for that build. The full-count 24,000-tick headless battle core (10,000 military + 2,000 workers) passed on CPU. Not a Windows, GPU or 4x result.
-**Not in saved source:** the interrupted session's pictograms, camera types, terrain memory, small crew, unit cards and briefing flow. Treat them as unimplemented. The saved checkpoint still starts unpaused with 10,000 military + 2,000 workers, a forward detachment, one generic Camera kind and minimal selection detail.
-**Measured on Tor's PC (older builds):** 1x/2x held; 4x about 3.42x with debt; season phase 1.41x vs 2x requested; largest hitch about 910 ms (cause unknown). ARCHIVE `[LW038]`, `[LW092]`.
-**Milestone B is active (A-021).** The resident map is 4.8 x 3.2 km; 20 km streaming and full mandatory biology are not built.
-
-**Project records:** Cleaned Source snapshot M8 retains Master/Ledger under `project/` and removes the five superseded root governing files; their complete text is already in the indexed archive. Source packaging no longer requires or includes them, and audit checks reject their return. The original E: checkout remains at M7 because write permission was not granted. Native compilation inputs remain `3c9147c8a52073d64788d521c8325c57a614a1f337ada31d0d706522f8686e1e`; no game rebuild or Library save.
-
+**Baseline:** Git mirror 9b89dc312c888492f389b3280d8f9480ec0265f6 contains the M8 governance cleanup and palette-era game (native 3c9147c8..., exe 41dbfc9d...). Earlier 253-check and PC performance results are historical.
+**Current source draft:** Branch codex/opening-hud-recon contains recreated section 8 changes. Small opening uses a separate constructor; full-count constructors remain unchanged. The legacy Camera enum/tool 10 stays an 8m/420m pole; new field/tower/mounted choices append identities. Presentation memory is separate from simulation and serialized; only optical masks refresh pages, and radar remains anonymous. Unit histories contain actual accepted commands and shot/hit events, bounded to 16 per unit. Pixel maps are authored source data.
+**Evidence:** Local pixel-map data checks passed for 36 initial icons, with an additional attack icon now drafted. Rust compilation and production-renderer screenshots are pending. No new Windows executable has been accepted or measured; no performance claim follows.
+**Remaining:** Finish the focused checks and visual review, then package. The 4.8x3.2km resident fixture, 20km streaming work and remaining biological scope are unchanged.
 ---
 
 ## 8. ACTIVE TASK: OPENING / HUD / RECON CORRECTION (A-022)

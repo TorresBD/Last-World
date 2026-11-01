@@ -1157,6 +1157,9 @@ impl ConstructionWorld {
             .get(index)
             .ok_or("Construction job missing")?
             .clone();
+        if j.order.kind==BuildKind::MountedCamera && self.mount_host(j.order).is_none() {
+            return Err("Camera mount was lost before completion; cancel or restore its host".into());
+        }
         let team = j.order.team as usize;
         let next_revision = self
             .navigation_revision

@@ -17,7 +17,13 @@ pub fn get(key:&str)->Option<&'static PixelIcon> {
     catalog().icons.get(key)
 }
 pub fn color(symbol:u8)->Option<[u8;4]> {
-    catalog().palette.get(&(symbol as char).to_string()).copied().flatten()
+    static COLORS:OnceLock<[Option<[u8;4]>;256]>=OnceLock::new();
+    let colors=COLORS.get_or_init(||{
+        let mut colors=[None;256];
+        for (key,value) in &catalog().palette {if let Some(symbol)=key.bytes().next(){colors[symbol as usize]=*value;}}
+        colors
+    });
+    colors[symbol as usize]
 }
 #[cfg(test)]
 mod tests {
@@ -25,7 +31,7 @@ mod tests {
     #[test]
     fn every_command_has_a_distinct_valid_pixel_map() {
         let mut seen=std::collections::BTreeSet::new();
-        for i in 0..33 {
+        for i in 0..34 {
             let icon=get(crate::ui_interaction::tool_icon(i)).expect("command icon");
             assert!(seen.insert(icon.small.join("")),"duplicate command icon {i}");
             for (rows,size) in [(&icon.small,16),(&icon.large,32)] {

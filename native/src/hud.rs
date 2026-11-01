@@ -615,7 +615,7 @@ impl UiLayout {
         for (i, (icon, action)) in [
             ("cursor", UiAction::SelectMode),
             ("road", UiAction::ChooseTool(0)),
-            ("camera", UiAction::ChooseTool(10)),
+            ("camera_pole", UiAction::ChooseTool(10)),
             ("depot", UiAction::ChooseCategory(CommandCategory::Build)),
             ("fauna", UiAction::OpenPanel(PanelKind::Ecology)),
         ]
@@ -926,6 +926,7 @@ fn settings_actions(model: &HudModel) -> Vec<(String, UiAction)> {
             ),
             UiAction::ToggleReduceMotion,
         ),
+        (format!("Show icon IDs: {}",if v.prefs.show_icon_ids {"ON"}else{"OFF"}),UiAction::ToggleIconIds),
         ("Save world  /  F5".into(), UiAction::Save),
         ("Load world  /  F9".into(), UiAction::Load),
     ];
@@ -2002,7 +2003,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                 let (label, key) = match action {
                     UiAction::SelectMode => ("Select", "Esc"),
                     UiAction::ChooseTool(0) => ("Road", "F4"),
-                    UiAction::ChooseTool(10) => ("Camera", "F7"),
+                    UiAction::ChooseTool(10) => ("Pole", "F7"),
                     UiAction::ChooseCategory(_) => ("Build", "B"),
                     _ => ("Ecology", "E"),
                 };
@@ -2258,7 +2259,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                 p.metal(*rr,true,false);
                 p.text(rr.x as f32+5.,rr.y as f32+8.,label,small,if *enabled{text}else{muted},"body",rr.width as f32-10.);
             }
-            let qy = if sel.selected_count == 0 {
+            let qy = if let Some((_,rr,_,_))=l.selection_actions.first() {rr.y as f32-44.*s} else if sel.selected_count == 0 {
                 r.end_y() as f32 - 84. * s
             } else {
                 r.end_y() as f32 - 132. * s

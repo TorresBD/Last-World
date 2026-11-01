@@ -32,17 +32,18 @@ fn water_depth(pos:vec2<f32>,nearest:Cell)->f32{
  return max(0.,head/wet_weight-bed);
 }
 @fragment fn fragment(@builtin(position) pixel:vec4<f32>)->@location(0)vec4<f32>{let world=floor(p.view.xy+(pixel.xy-p.screen.xy*.5)/p.screen.z);if any(world<vec2(0.))||any(world>=vec2(4800.,3200.)){return vec4(.035,.065,.045,1.);}let cell=cells[cell_at(world)];var color=textureLoad(ground,vec2<i32>(world*.5),0).rgb;let grain=random(vec2<i32>(world/2.))*.08-.04;
+ let vision_cell=u32(world.y/32.)*150u+u32(world.x/32.);let mask=intel[240000u+vision_cell];let visible=p.misc.y<.5||(mask&1u)!=0u;
  // Water is derived from finite CPU storage. Only connected wetted samples can
  // draw water; animated grain follows actual last-tick transfer direction.
  if (cell.flags&2u)!=0u&&cell.water>0u{
   let velocity=vec2(bitcast<f32>(cell.pad.x),bitcast<f32>(cell.pad.y));
-  let moving_grain=random(vec2<i32>(floor((world-velocity*(p.screen.w%512.))*.5)))*.055-.0275;
+  let moving_grain=random(vec2<i32>(floor((world-velocity*(select(0.,p.screen.w,visible)%512.))*.5)))*.055-.0275;
   let depth=water_depth(world,cell);
   let water_color=mix(vec3(.30,.205,.115),vec3(.085,.05,.027),clamp(depth/2.,0.,1.))+moving_grain*.5;
   color=mix(color,water_color,smoothstep(0.,.08,depth)*.96);
  }
  if (cell.flags&1u)!=0u{color=vec3(.412,.431,.427)+grain;if cell.water>0u{color=vec3(.443,.412,.329)+grain;}}
- let vision_cell=u32(world.y/32.)*150u+u32(world.x/32.);let mask=intel[240000u+vision_cell];let visible=p.misc.y<.5||(mask&1u)!=0u;
+
  if !visible{
   if p.counts.z!=0u {
    // Campaign buffers contain the initial survey / last optical snapshot.

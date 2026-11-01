@@ -284,7 +284,7 @@ impl Campaign {
             tactics.spawn_formation(
                 team,
                 Role::Soldier,
-                [base[0] + inward * 96., base[1] - 100.],
+                if opening {[base[0]+inward*48.,base[1]-36.]}else{[base[0] + inward * 96., base[1] - 100.]},
                 guards,
                 &nav,
             )?;

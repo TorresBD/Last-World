@@ -69,7 +69,7 @@ impl CommandCategory {
         match self {
             Self::Build => &[0, 1, 2, 3, 4, 14],
             Self::Economy => &[5, 6, 7, 8, 9, 29],
-            Self::Defense => &[12, 13, 24, 29],
+            Self::Defense => &[12, 13, 24, 33, 29],
             Self::Recon => &[30, 10, 31, 32, 11, 19],
             Self::Ecology => &[17, 18, 19, 20, 21, 22, 23],
             Self::Naval => &[15, 16, 25, 26, 27, 28],
@@ -168,6 +168,8 @@ pub struct UiPrefs {
     pub edge_scroll: bool,
     pub reduce_motion: bool,
     pub hints: bool,
+    #[serde(default)]
+    pub show_icon_ids: bool,
     pub minimap_size: [u32; 2],
     pub minimap_zoom_permille: u16,
     pub minimap_center: [f32; 2],
@@ -184,6 +186,7 @@ impl Default for UiPrefs {
             edge_scroll: false,
             reduce_motion: false,
             hints: true,
+            show_icon_ids: false,
             minimap_size: [224, 160],
             minimap_zoom_permille: 1000,
             minimap_center: [0.5, 0.5],
@@ -363,6 +366,7 @@ pub enum UiAction {
     DismissAlert(u64),
     ToggleEdgeScroll,
     ToggleHints,
+    ToggleIconIds,
     ToggleReduceMotion,
     SetUiScale(u16),
     SelectMode,
@@ -916,6 +920,7 @@ impl UiState {
                 self.prefs.edge_scroll = !self.prefs.edge_scroll;
                 vec![]
             }
+            UiAction::ToggleIconIds => {self.prefs.show_icon_ids=!self.prefs.show_icon_ids;vec![]}
             UiAction::ToggleHints => {
                 self.prefs.hints = !self.prefs.hints;
                 vec![]
@@ -1276,7 +1281,9 @@ impl UiState {
                 }
                 let is_segment = matches!(tool, 0 | 1 | 15);
                 let selected = || self.selection.iter().copied().collect();
-                let command = if tool == 24 {
+                let command = if tool == 33 {
+                    UiCommand::AttackSelected {ids:selected(),position:world,target:None,queue:modifiers.shift}
+                } else if tool == 24 {
                     UiCommand::MoveSelected {
                         ids: selected(),
                         position: world,
@@ -1630,7 +1637,7 @@ impl UiState {
             })
             .sum::<u64>();
         out.selection = SelectionView {
-            actions: vec![("Loadout".into(),UiAction::Loadout,!selected.is_empty()),("History".into(),UiAction::History,!selected.is_empty()),("Hold".into(),UiAction::Stop,!selected.is_empty()),
+            actions: vec![("Move".into(),UiAction::ChooseTool(24),!selected.is_empty()),("Attack".into(),UiAction::ChooseTool(33),!selected.is_empty()&&selected.iter().all(|a|matches!(a.role,Role::Soldier|Role::Boat))),("Loadout".into(),UiAction::Loadout,!selected.is_empty()),("History".into(),UiAction::History,!selected.is_empty()),("Hold".into(),UiAction::Stop,!selected.is_empty()),
                 ("Build".into(),UiAction::ChooseCategory(CommandCategory::Build),roles.contains(&Role::Worker)),
                 ("Recon".into(),UiAction::ChooseCategory(CommandCategory::Recon),roles.contains(&Role::Scout)||roles.contains(&Role::Worker))],
             title: if self.selection.is_empty() {
@@ -1834,6 +1841,14 @@ impl UiState {
             out.panels.push(panel_projection(c, p, &self.help_query));
         }
         for p in &mut out.panels {
+            if p.kind==PanelKind::Selection {
+                p.title=out.selection.title.clone();
+                p.lines=vec![out.selection.subtitle.clone()];
+                p.lines.extend(out.selection.stats.clone());
+                for q in &out.selection.queue {
+                    p.lines.push(format!("{} / {}%{}",q.label,q.progress_permille/10,q.warning.as_ref().map(|s|format!(" / {s}")).unwrap_or_default()));
+                }
+            }
             p.rect = clamp_panel(p.rect, canvas_f);
         }
         for a in c.tactics.agents.iter().filter(|a| {
@@ -1910,7 +1925,7 @@ impl UiState {
             .copied();
         if let Some(layer) = layer {
             for i in 0..15000 {
-                if c.recon.masks(0)[i] & VISIBLE == 0 {
+                if c.recon.masks(0)[i] & VISIBLE == 0 && (c.visual_memory.is_none() || !matches!(layer,Layer::Roads|Layer::Ecology|Layer::Damage)) {
                     continue;
                 }
                 let world = [(i % 150) as f32 * 32., (i / 150) as f32 * 32.];
@@ -1924,10 +1939,11 @@ impl UiState {
                     continue;
                 }
                 let cell = (i / 150 * 4 + 2) * CW + i % 150 * 4 + 2;
+                let remembered=c.visual_memory.as_ref().map(|m|m.cells[cell]).unwrap_or(c.terrain.cells[cell]);
                 let p = patch_at(world);
                 let tint = match layer {
                     Layer::Cameras => Some([85, 170, 158, 32]),
-                    Layer::Roads if c.terrain.cells[cell].flags & 1 != 0 => {
+                    Layer::Roads if remembered.flags & 1 != 0 => {
                         Some([232, 187, 81, 90])
                     }
                     Layer::Supply
@@ -1949,16 +1965,16 @@ impl UiState {
                         Some([210, 171, 73, 100])
                     }
                     Layer::Ecology => {
-                        let m = ((c.terrain.cells[cell].flags & SOIL_MOISTURE_MASK)
+                        let m = ((remembered.flags & SOIL_MOISTURE_MASK)
                             >> SOIL_MOISTURE_SHIFT) as u16;
                         Some([
                             80,
-                            (90 + c.ecology.plant_fraction_permille(p as u32) / 10).min(200) as u8,
+                            (90 + (remembered.cover as u16)*110/255).min(200) as u8,
                             (70 + m / 20).min(150) as u8,
                             35,
                         ])
                     }
-                    Layer::Damage if c.terrain.cells[cell].flags & 4 != 0 => {
+                    Layer::Damage if remembered.flags & 4 != 0 => {
                         Some([215, 100, 70, 60])
                     }
                     _ => None,
@@ -1989,6 +2005,7 @@ impl UiState {
             .or(self.active_tool)
         {
             let mut lines = Vec::new();
+            if self.prefs.show_icon_ids {lines.push(format!("Icon ID: {}",tool_icon(tool)));}
             if let Some(hotkey) = match tool {
                 0 => Some("F4"),
                 1 => Some("F6"),
@@ -2660,9 +2677,10 @@ pub fn tool_icon(tool:usize)->&'static str {
     ["road","trench","foundation","smooth","depot","mine","mill","barracks","solar","farm",
         "camera_pole","radar","wall","turret","dam","bridge","dock","pen","research","inspect",
         "capture","research_action","breed","release","move","gunboat","transport","board",
-        "disembark","cancel","camera","camera_tower","camera_mounted"].get(tool).copied().unwrap_or("inspect")
+        "disembark","cancel","camera","camera_tower","camera_mounted","attack"].get(tool).copied().unwrap_or("inspect")
 }
 pub fn tool_label(tool: usize) -> &'static str {
+    if tool==33{return "Attack move";}
     if let Some(kind) = build_kind(tool) {
         return kind.name();
     }
@@ -3146,5 +3164,43 @@ mod tests {
         assert_eq!(ui.edge_pan([1., 400.], [1280., 800.]), [-1., 0.]);
         ui.prefs.ui_scale_permille = 3000;
         assert!(ui.prefs.validate().is_err());
+    }
+}
+
+#[cfg(test)]
+mod opening_regressions {
+    use super::*;
+    #[test]
+    fn crash_landing_roster_and_notices_keep_tick_zero_until_play() {
+        let mut c=Campaign::new_crash_landing(crate::terrain::Terrain::new(78421)).unwrap();
+        for team in 0..2 {
+            for (role,count) in [(Role::Worker,6),(Role::Soldier,4),(Role::Scout,1)] {
+                assert_eq!(c.tactics.agents.iter().filter(|a|a.team==team&&a.role==role).count(),count);
+            }
+        }
+        assert!(c.construction.buildings.is_empty());
+        assert!(c.paused);
+        assert!(c.recon.satellite_circle(0,0).is_some());
+        let mut ui=UiState::default();ui.begin_landing(&c);
+        assert!(ui.activate(UiAction::Pause,c.camera,0).is_empty());
+        assert!(ui.pointer_down(UiHit::World,[600.,300.],[400.,1600.],false,Modifiers::default(),c.camera,[1280.,800.],&[],0).is_empty());
+        assert!(!ui.world_dragging());
+        ui.dismiss_modal();
+        assert_eq!(ui.modal.as_ref().unwrap().title,"What is the build plan immediately after landing?");
+        ui.dismiss_modal();assert!(ui.modal.is_none());
+        c.clock.set_speed(crate::clock::SimulationSpeed::try_from(4).unwrap());
+        c.advance(std::time::Duration::from_secs(3)).unwrap();
+        assert!(c.paused);assert_eq!(c.clock.tick(),0);
+    }
+    #[test]
+    fn camera_tools_keep_legacy_ids_and_have_distinct_physical_specs() {
+        assert_eq!(build_kind(10),Some(BuildKind::Camera));
+        let mut specs=BTreeSet::new();let mut costs=BTreeSet::new();
+        for tool in [10,30,31,32] {
+            let kind=build_kind(tool).unwrap();let (height,range)=kind.camera_spec().unwrap();
+            assert!(specs.insert((height,range as u32)));
+            let cost=kind.base_cost();assert!(costs.insert((cost.metal,cost.timber,cost.power)));
+        }
+        assert!(build_kind(19).is_none());assert!(build_kind(33).is_none());
     }
 }
