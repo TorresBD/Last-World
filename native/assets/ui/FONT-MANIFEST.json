@@ -1,0 +1,37 @@
+{
+  "license": "SIL Open Font License1.1",
+  "sources": {
+    "Rajdhani-SemiBold.ttf": "https://github.com/google/fonts/blob/main/ofl/rajdhani/Rajdhani-SemiBold.ttf",
+    "IBMPlexSans-Regular.ttf": "https://github.com/IBM/plex/blob/master/packages/plex-sans/fonts/complete/ttf/IBMPlexSans-Regular.ttf",
+    "IBMPlexSans-Medium.ttf": "https://github.com/IBM/plex/blob/master/packages/plex-sans/fonts/complete/ttf/IBMPlexSans-Medium.ttf"
+  },
+  "fonts": [
+    {
+      "file": "IBMPlexSans-Medium.ttf",
+      "bytes": 202460,
+      "sha256": "331c8639d7598b2cde62a911a71db195e30cb655cd6bdf2e324a7e984955f907",
+      "git_blob_sha": "a3826c4e9ab3f2d6e64e0c9aea7122ea3431e174",
+      "family": "IBM Plex Sans Medm",
+      "subfamily": "Regular",
+      "version": "Version 3.005"
+    },
+    {
+      "file": "IBMPlexSans-Regular.ttf",
+      "bytes": 200500,
+      "sha256": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5",
+      "git_blob_sha": "bd6817d5202895da5ac4fad88de3da71e652881a",
+      "family": "IBM Plex Sans",
+      "subfamily": "Regular",
+      "version": "Version 3.005"
+    },
+    {
+      "file": "Rajdhani-SemiBold.ttf",
+      "bytes": 390340,
+      "sha256": "94bbd25a18ca665999feb05a537de9fd2b860dcfb78bbe9ca00270825bf235da",
+      "git_blob_sha": "d43750bd05c130d36c8e7fbeb06ecd7c5d3c3b17",
+      "family": "Rajdhani",
+      "subfamily": "SemiBold",
+      "version": "Version 1.201;PS 1.0;hotconv 1.0.78;makeotf.lib2.5.61930; ttfautohint (v1.1) -l 7 -r 28 -G 50 -x 13 -D latn -f deva -w G"
+    }
+  ]
+}

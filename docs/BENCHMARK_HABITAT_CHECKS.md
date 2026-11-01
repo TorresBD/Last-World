@@ -1,0 +1,111 @@
+# Coupled benchmark: habitat, ecology and water checks
+
+2026-10-30 read-only integration review. This document recommends observations for the new BenchmarkSession/OrderExercise work. It does not claim that a benchmark, build, fixture or native-PC run executed during this review. Native core code was not changed for this audit.
+
+## Evidence classes and workload identity
+
+Use three separate evidence classes:
+
+1. **Ordinary coupled world:** actual generated species, finite supplies, normal AI, actual worker orders and every due simulation tick. Report what naturally occurred, what did not occur, and why. Do not insert a dam, animal, clutch, reserve or tunnel merely to turn a coverage indicator green.
+2. **Explicit mechanism fixture:** a named deterministic case that establishes the prerequisites for a specific interaction and then exercises the real mechanism. Report its founding animal/material/water stocks and deliberate setup. Existing unit mechanisms are valuable evidence here; they are not proof that ordinary AI naturally produced the same event during the long game.
+3. **Performance load fixture:** a named starting world with explicit military, civilians, detailed wildlife, cohort wildlife and species counts. Those are founding stocks for that case, not later rescue spawning or a silent change to the live game's selected populations. Report actual counts, map dimensions, active render payload and the subsystems enabled.
+
+The present resident Campaign is4.8×3.2km, with a96×128fine-cell dynamic river region. Large20×20km streaming and all160traits must not be inferred from stressing this resident map. Simulation speed and population load are different axes. Requesting100× means attempting2000action ticks per real second; it neither creates100times the organisms nor proves those ticks were achieved. Current ordinary GameClock supports1×/2×/4×; benchmark-only rate control must charge requested elapsed time exactly once and clearly record its separate semantics.
+
+The newly added `Campaign::advance_benchmark` provides separate1..100rate accrual while preserving the ordinary speed choices. At the initial audit its16tick call budget imposed a48× ceiling at60Hz. Parent changes now give benchmark calls a separate64tick budget (ordinary play remains16), making the budget ceiling192× at60Hz. Record actual call rate, frame rate and budget: low frame/call rate can still make that budget binding. These source changes are not a claim of achieved throughput. Headless and windowed timing require their separate execution budgets and contexts.
+
+Use **observed / not_reached / unsupported_or_unimplemented / failed / skipped_after_two_failures** where appropriate. A conservation pass with zero construction, zero feeding, zero movement or zero engineering is not successful functional coverage. A slow case is a measured throughput failure or timeout, not automatically a crash. A timed-out/failed case still leaves a useful report and must not stop later cases.
+
+Use **not_instrumented/ambiguous** when the mechanism can run but current observations cannot attribute it. In particular `Ecology::physical_effects_committed` has30slots but is incremented only by the11physical engineering dispatches. It is not an execution counter for the remaining19traits. Migration may be caused by hunger rather than season; a clutch's `guarded` capability flag does not prove its parent was actually guarding; final nutrients combine growth, death and decomposition. New finite sperm/pollen/seed tickets, stage transitions, real transit, deep-store drawdown, incubation history, establishment and field projections are useful observations, but attribution must remain as narrow as the evidence.
+
+## Existing cheap sources
+
+No `HabitatWorld::report` exists. Its sparse maps are public and can be scanned by reference. `HabitatWorld::validate`, `EcosystemPhysics::validate`, `Ecology::validate`, `WaterGraph::validate`, `GroundTotals::balanced`, `GroundModel::combined_water_balanced` and `Campaign::validate` exist. `physical.report()` already includes committed trait counts, active job XY/site/labor/progress tick, queued optional intents, rejection/stale/stall-release/cooldown counts and finite-source transfer totals.
+
+Do not call `serde_json::to_value(game)` or clone the full world every frame to obtain counters. A compact numeric scan of sparse habitat records at a checkpoint is sufficient. Store a small previous-state map of relevant IDs only when transition evidence is needed. Treat sampled transitions as a lower bound if an object can fail and regrow between samples. Prefer the physical-tick/event boundary for precise cumulative event counters.
+
+| Observable group | Existing source | Minimum useful counters / deltas | What these do not prove alone |
+|---|---|---|---|
+|Engineering scheduling|`physical.report()`|Per-trait commit delta; queue size; active jobs; stalled releases/cooldowns; active position/site/labor and time since progress; observed finished jobs per simulated minute.|A proposed intent is not a committed effect. Four occupied worker slots do not prove any useful work. Large pending queues may hide starvation.|
+|Burrow geometry|`habitats.nodes`, `passages`|Entrances/chambers; total path length and excavated volume; multi-segment passages and verified direction changes; nonvertical segments; branch degree≥3; second connected exit where generated.|A single bent tunnel does not prove the normal generator/AI made a branch or a second entrance. Geometry is data/topology, not new sprite artwork.|
+|Underground use and safety|`occupants`, node/passages state|Actual underground organism/group counts; distinct entries/travels/exits; blocked edges; collapsed roofs; flooded nodes and flood-depth maxima; exposed/dead organism/clutch deltas tied to a cause where available.|Underground flood depth is a connected hazard projection of actual surface water, not another volumetric fluid solver. Hidden organisms must not become player-visible just because benchmark diagnostics can inspect them.|
+|Dens and nests|`shelters`, `occupants`, `Ecology.cohorts[].breeding_refuge`, `clutches`|Occupied den slots; live/empty/flooded nests; actual unique clutch references; nested-nest count; room adult+egg use; successful eligible reproduction versus missing shelter.|Patch-wide shelter capacity is not an individual mother's reservation. Building a nest cannot count as conceiving eggs.|
+|Canopy/cavities|`supports`, `shelters`, ecological plant tissue|Living/dead aggregate support transitions; canopy occupants; cavity occupancy; actual supporting trait157shoot/leaf stock; exposed occupants, fall health change and exact clutch destruction.|There is one aggregate canopy host per macro patch, not one simulated host tree. Partial thinning changes biological fields; aggregate host failure occurs only at zero supporting tissue.|
+|Animal dams|`dams`, `physical.dam_sites`, `dam_links`, actual water links|Started/completed/damaged/breached dams; invested wood; crest/permeability; mapped hydraulic link count and their actual barriers; affected upstream/downstream stored liters, wet area and flux over elapsed time.|Dam record or changed crest alone does not prove a reservoir filled or flow changed. Dynamic dams outside the managed hydraulic region are rejected.|
+|Reefs|`reefs`, `physical.reef_sites`, nav cells|Mineral/solid height; draft clearance; refuge capacity; real nav reef overlay; resistance changes; erosion/destruction debris; solid surviving actual builder loss when that coupling is established.|`living_builder_units` is currently a build-time cache without an actual builder-identity/death bridge. Do not claim natural builder-death coverage from this field or from a standalone `reef_builders_died` test.|
+|Pits/webs/wallows|`traps`, `wallows`, finite prey and terrain|Built and intact traps by kind; actual unique trapped prey; paid prey meal; pit excavation/backfill; wallow use/depth/spoil; terrain height/moisture/traction response.|A web must not create a crater. The first wallow contact must not create its later repeated-use excavation. A trap count alone does not establish prey interception or exact food transfer.|
+|Soil mixing|`physical.patches[].upper/lower`, root-zone nutrients, actual Ground cells|Layer mineral/nutrient sums; paid exchanges; porosity changes; projected infiltration change and actual water transfer.|Changing a porosity label without projecting it into real water exchange does not cover the coupling.|
+|Roots/cover/shade|`Ecology` contribution fields and projected Ground conditions|Live root/cover/canopy values; ground erosion thresholds/rates; infiltration; shade-sensitive drying; wet/dry traction; tissue loss/recovery and its source.|Initial visual foliage is not an independent supply of harvestable ecological timber. Numerical fields and their rendered appearance are separate observations.|
+|Water and sediment|`river.water.totals()/cells()/links()`, `river.ground.totals()/cells()`|Stored/input/output/extracted/returned liters; wet cells/area and depth distribution; signed flux at affected boundaries; soil moisture; eroded/deposited/exported sediment; washed/deposited/exported foliage debris.|A changed water color is not fluid behavior. Reservoir area must change from finite supply/flow over time, never from an instant painted lake.|
+|Seasonal ecology|`processed_tick`, clock, `SeasonState`, ecology ledger/census|Completed72000tick cycles; temperature/rain/evaporation; uptake/drought/flood injury; flowering/food/seed output; breeding/incubation roles; migration, dormancy and wake; viable stocks/extinction.|A long wall-time run does not establish one season unless enough actual simulation ticks committed. Generic climate progress does not prove each species-specific response occurred.|
+|Ecological score|`ecological_damage`, outcome, exact source action and ecology death/tissue deltas|Faction damage deltas; action/event IDs and timing; monotonic score; no double attribution; winner selected under the actual ecological stalemate rule.|Natural deaths/erosion are not automatically faction damage. Do not add a second score charge in the benchmark or habitat helper. Current delayed causal attribution should not be claimed broader than implemented.|
+
+### Minimal proposed snapshot pattern
+
+This is a documentation example, not an added native implementation:
+
+```rust
+// Sample at a defined simulation/checkpoint boundary, by reference.
+let h = &game.habitats;
+let tunnel_mm: u128 = h.passages.values().map(|p| p.length_mm as u128).sum();
+let tunnel_void_mm3: u128 = h.passages.values().map(|p| p.excavated_mm3 as u128).sum();
+let multi_segment = h.passages.values().filter(|p| p.centerline.len() > 2).count();
+let collapsed = h.nodes.values().filter(|n| n.collapsed).count();
+let flooded = h.nodes.values().filter(|n| n.flooded_depth_mm > 0).count();
+let occupied_animals: u128 = h.occupants.values().map(|o| o.group_size as u128).sum();
+let completed_dams = h.dams.values().filter(|d| d.completed()).count();
+let dam_wood: u128 = h.dams.values().map(|d| d.invested_wood_units as u128).sum();
+let reef_solid: u128 = h.reefs.values().map(|r| r.solid_height_mm as u128).sum();
+// Include these scalars with tick, source/case identity and prior-sample delta.
+// Keep final geometry alone distinct from observed transitions and causes.
+```
+
+## Finite ownership checks
+
+Use checked integer arithmetic and retain native validations. Benchmark code must not repair a failed invariant, clamp stocks or regenerate a species.
+
+- **Animals:** `initial_animals + conceived_animals = living wild + transit + captive + viable offspring + dead_animals`. A materialized animal is still one existing animal. Habitat occupancy references are not extra population. Actual ID continuity must hold through capture, handler death, release, ordinary transport and save/load. The same mother/clutch/seed/pollen/sperm stock cannot appear in two owners.
+- **Biological material:** `initial_material + material_imported = current biological material + material_exported + respired_material`. Engineering timber/fiber is an explicit export from this owner. Tissue harvested into a wallet cannot also become litter from the same removal. Check the actual HabitatWorld material total against the derived physical cached total when exposing that view; the earlier nested-nest fixture caught a stale derived cache, so self-reported `conserved:true` alone should not substitute for cross-owner checks.
+- **Physical material:** underground and mixing-layer substrate + fine surface residuals + actor wallets + built material/debris must equal finite founding sources plus named surface/biological transfers, less named returns. Preserve submillimeter fine-volume residuals. A tunnel does not lower its whole surface patch. Wallows/pits do not obtain free soil through coarse geometry rounding.
+- **Room capacity:** each living occupant references an existing compatible structure/room. Count adults and attached nested eggs against the same node capacity. Sum actual reserved group slots, not full shelter capacity copied onto every mother. One mother owns at most one available nest claim, and a clutch is attached at most once. Host loss/flood/collapse removes the exact invalid claims and produces the actual exposure/death consequences once.
+- **Water:** `initial + added + returned = stored + drained + extracted`; surface/soil exchange balances between owners. Animal drinking, plant uptake, captive-care water, rain and evaporation need explicit source/sink entries. Closing/damaging a barrier cannot itself create/delete liters. Flow later changes storage/inundation. No extra underground water stock is inferred from flood-depth projection.
+- **Sediment/foliage:** use GroundTotals sediment/biomass balances, including construction imports/exports and named outlet loss. Suspended transport must not travel twice in one tick. Visual foliage and biological tissue remain distinct representations; their projection must not harvest both.
+- **Hydraulic/nav overlays:** each natural dam maps to real managed links; independent barriers compose without a weak animal dam opening a stronger human dam. Breach removes only its layer. Reef overlays preserve raw water depth and change effective draft clearance once. A navigation revision count alone is insufficient; report an actual changed passability/cost/route outcome.
+- **Score:** capture baseline attributed scores and source action receipts. Check monotonic deltas and no repeated charge on idempotent damage or replayed checkpoint actions. A natural ecological event needs no invented faction culprit. Record unsupported delayed causality separately.
+
+Current attribution boundary: `Campaign::project_water_cover_loss` forwards water-driven cover loss to `account_cover_loss(..., None)`. That does not prove faction attribution for a player dam's later downstream/upstream ecological damage. An exhaustive scoring report must distinguish implemented direct attribution from this delayed causal limitation; overall ecological decline is not a substitute for assigning the correct faction. Natural animal dam effects remain unassigned.
+
+## Crash/retry/resume checks for the controller
+
+BenchmarkSession's stated contract is a complete successful Campaign checkpoint plus serialized session/OrderExercise state, with CPU/window groups separate. The implementation should be checked against these concrete failure modes:
+
+1. **Double speed/debt loss:** multiplying elapsed time by100while GameClock also applies4requests400×. Changing requested phase while old debt remains can mix rates. Retain and report debt; either define independent baseline-restored comparison cases or explicitly carry/decompose previous-phase debt. Never clear debt to finish or claim achieved100×.
+2. **Incomplete checkpoint pair:** saving Campaign first and controller state later under unrelated names can restore a paid dam with a pre-issue command index, or restore a later phase against an earlier world. Use one atomic envelope or generation-linked files whose manifest is committed last. Validate case/group/build/schema, committed tick, phase and next event tick together.
+3. **Replayed orders/material:** persist OrderExercise issue cursor, successful order IDs, blocked/retry state, next due action tick, phase and completion receipts. On resume, reconcile existing actual jobs before issuing again. A repeated command may consume a second real reservation even if its UI label looks identical.
+4. **Failed-state reuse:** retries start from the last complete validated checkpoint, not partially mutated state after an error. The supervisor records an attempt before launching the child; two failures then produce an explicit skipped case and advance. A child crash must not reset its own attempt count. Preserve each attempt's exit, reason, last heartbeat/tick and artifacts.
+5. **Phase/winner confusion:** a won/paused game intentionally stops accruing/draining gameplay ticks. Mark ended/incomplete coverage or start a new named case. Do not treat a live render loop with frozen simulation as a successful high-rate benchmark.
+6. **Population mutation:** an independent larger-load case may start with a new, explicitly named founding population. Restoring/resuming a live world must preserve its actual species, extinctions, viable stocks and initial ledgers. Never rerun procedural generation to replace extinct organisms or silently reduce selected counts after overload.
+7. **Timing contamination:** persist cumulative active measurement time and exact committed simulation-tick interval. Loading, startup, pause and downtime must be named rather than accidentally counted as simulation throughput. Report end-to-end frame hitches plus separate checkpoint/serialization attribution; do not silently omit expensive real saves.
+8. **Concurrent output collision:** CPU/window and simultaneous cases require distinct group/checkpoint/progress names or writer locking. A unique report filename does not protect a shared `GROUP.save` if two live writers share the group.
+
+## Known costs and current limits worth exposing
+
+`EcosystemPhysics::execute` stages work by cloning Ecology and sometimes RiverFixture. `Campaign::save` clones CampaignData before serializing. These are real implementation costs, particularly at larger named cohorts/species/agent loads. Do not hide them with additional full-world diagnostic clones or benchmark-only simplified ecology. Report peak RAM, save size/duration, physical/ecology stage time, queued engineering delay and actual rate alongside renderer/GPU/frame statistics.
+
+Ordinary AI currently need not naturally produce every valid geometry or rare trait combination within one run. For example, public burrow APIs support branches/multiple exits while the automatic first engineering action normally makes one bent segment; reef builder-death coupling has the limitation above. A full season may have no suitable aquatic builder at the managed river. Report **not_reached** with actual prerequisites and keep an explicit fixture result separate. “All current systems covered” requires this inventory and honest distinctions, not substituting a counter label or weakening the scenario gate.
+
+## Bounded source review of the new drivers
+
+The subsequently published `campaign_benchmark.rs` prepare/step/finish implementation now uses a single atomic successful Campaign+controller checkpoint, validates build/group/workload identity, locks each checkpoint group, retains exact clock debt, does not drain debt at finish, and measures72000new ticks relative to the seasonal case start. Interrupted attempts intentionally restart from the last **completed phase**, not from the middle of their failed phase. The rate ladder is an explicitly named evolving-world ramp, not a same-state comparison. These are source observations; compilation and actual execution belong to the primary batch.
+
+Actionable findings were sent directly to the owning agents:
+
+- Recognize or explicitly reject an already completed earlier case ID when a later group checkpoint exists. The initial `prepare` implementation recognized only `last_case`, even though its controller also stored `completed_cases`.
+- Validate the declared materialized-wildlife target rather than silently applying `target.min(5000)` or implying a target was met when finite eligible founders were insufficient. Current compiled cases request at most5000; no population rescue is permitted to satisfy a target.
+- Label truncated timing quantiles by their retained sample scope. The owner confirmed samples are accepted actual ticks/batches, not empty polling calls, and is adding an explicit first-million/full-case distinction.
+- Mine placement initially retried the same nearest deposit without trying another reachable finite source. An unreachable nearest deposit could exhaust all placement attempts despite a valid alternative. This is a workload reachability issue, not permission to place a free mine.
+- An emptied vessel manifest can mean passenger death as well as disembarkation; successful coverage needs actual passenger identity/survival/location evidence. A vanished started command queue likewise does not by itself prove successful arrival rather than cancellation/failure.
+- `river.dam_closed` and the fixed first81riverrows upstream sample describe the canonical player fixture dam, not every animal dam. Satellite sample counts are not distinct satellite passes. Keep those labels precise and include actual natural dam link/site/flux evidence separately.
+- The harness explicitly controls omniscient placements/opponent commands; its production player UI remains recon-filtered, and its conservation capture/release follows ordinary observation rules. State both scopes rather than presenting all harness decisions as ordinary player knowledge.
+
+Controller site-search/reachability work is outside the individual fixed-rule tick timer but inside total achieved/frame wall time. Its worker-seed flood cache may rebuild as workers move. A separate driver-time measurement helps distinguish synthetic command-generation overhead from simulation cost without removing either from end-to-end results.

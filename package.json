@@ -1,0 +1,10 @@
+{
+  "name": "last-world",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/check.mjs --test",
+    "benchmark": "node tests/benchmark.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": 2,
+  "status": "planned",
+  "purpose": "Future integrated-campaign qualification contract; not executable benchmark presets",
+  "not_implemented_by_current_benchmark": true,
+  "approved": {
+    "large_map_meters": [20000, 20000],
+    "map_types": ["Continental", "Archipelago", "Large Land Mass", "Medium Islands"],
+    "military_pawns": 10000,
+    "non_military_and_wildlife_are_additional": true,
+    "large_war_hours": [3, 4],
+    "smaller_map_balance_targets_not_forced_cutoffs": [
+      {"map_meters": [5000, 5000], "war_minutes": [45, 60]},
+      {"map_meters": [10000, 10000], "war_minutes": [90, 120]}
+    ],
+    "first_slice_additional_traits": 30,
+    "first_slice_catalogue_ids_selected_under_map_engineering_direction": [11, 12, 46, 61, 64, 65, 67, 72, 75, 84, 86, 93, 96, 101, 102, 103, 104, 105, 106, 107, 121, 125, 128, 129, 132, 135, 143, 156, 157, 159],
+    "all_additional_trait_mechanisms_in_release_scope": 160,
+    "mandatory_biology_outside_additional_trait_count": true,
+    "requested_speed_options_in_first_gameplay_build": [1, 2, 4],
+    "achieved_accelerated_speed_is_not_guaranteed": true,
+    "season_cycle_seconds_at_1x": 3600,
+    "fixed_action_ticks_per_second": 20,
+    "season_cycle_action_ticks": 72000,
+    "season_semantics": "Season phase derives from the same authoritative game clock; local biome-specific climate and biological responses remain active offscreen. At sustained2x/4x a full cycle takes30/15 wall-clock minutes, excluding pauses and overload.",
+    "water_transport_and_combat": ["bridges", "docks", "troop_and_cargo_transport_vessels", "combat_navy"],
+    "platform": "native_pc"
+  },
+  "approved_development_targets": {
+    "qualification_fixture_not_population_caps_or_every_world_defaults": {
+      "civilian_pawns": 2000,
+      "detailed_wildlife": 5000,
+      "additional_cohort_wildlife_individual_count": 1000000,
+      "species_definitions": 256,
+      "requested_speeds_to_characterize_not_guarantee": [1, 2, 4]
+    },
+    "budgets_not_measurements_guarantees_or_approved_minimum_specs": {
+      "nominal_render_fps": 60,
+      "steady_frame_median_ms": 16.67,
+      "steady_frame_p95_ms": 25,
+      "steady_frame_p99_ms": 50,
+      "steady_max_frame_flag_ms": 100,
+      "process_ram_peak_bytes": 4294967296,
+      "gpu_payload_cache_budget_bytes_on_development_adapter": 2147483648,
+      "gpu_budget_context": "2GiB payload/cache target on Tor's8GiB GPU; size caches to reported limits on other adapters and record actual accounting scope. This is not a total driver-managed VRAM measurement.",
+      "game_speed": "Prioritize full-workload1x; expose2x/4x testing options from the first gameplay build and report requested/achieved speed without dropped rules or silently reduced counts",
+      "save_size_bytes": 268435456,
+      "save_load_seconds": 15,
+      "save_context": "3-4 hour heavily edited large-map campaign; actual storage device recorded"
+    }
+  },
+  "scenarios": [
+    {"id": "distributed_logistics", "status": "planned", "exercise": "All military plus real civilian jobs, carrying, building and road congestion; wildlife/cohorts evolve throughout map"},
+    {"id": "contested_chokepoint", "status": "planned", "exercise": "Shared-route reuse and invalidation, dense individual avoidance, real attacks/projectiles, terrain and resource bottlenecks"},
+    {"id": "satellite_and_recon", "status": "planned", "exercise": "Large circular sweep, ahead-of-time bounded render preparation, radar blockers, cameras and strict knowledge filtering"},
+    {"id": "terrain_burst", "status": "planned", "exercise": "Simultaneous craters, construction cut/fill and smoothing with bounded dirty uploads and consistent slope/LOS queries"},
+    {"id": "dam_reservoir_and_breach", "status": "planned", "exercise": "Build a material-funded cross-channel dam; retain incoming volume, expand connected upstream inundation, reduce downstream discharge subject to leakage/spill/tributaries, then overtop or breach. Track volume balance, bank change, habitat/route invalidation and save continuity offscreen as well as onscreen"},
+    {"id": "burrow_routes_flood_and_collapse", "status": "planned", "exercise": "Construct angled/branching passages with multiple entrances and finite chambers; enforce aperture/body-size/occupancy, excavation/spoil ownership, blocked-edge reroutes, flooding, crater/roof intersection and collapse. Preserve exact occupants across cohort/detail transitions and saves; reveal no hidden underground geometry"},
+    {"id": "seasonal_ecology_and_ground", "status": "planned", "exercise": "Run complete72000-tick seasonal cycles with biome-specific rainfall/temperature/evaporation; track soil moisture, groundwater, river/reservoir supply, saturation/traction, growth/flower/fruit/seed windows, migration, dormancy, hydration, incubation and reproduction. Snow/freeze apply only where generated climate supports them; coarse offscreen ecology shares the same calendar"},
+    {"id": "naval_transport_and_combat", "status": "planned", "exercise": "Exercise bridges/docks and actual loaded transports alongside combat vessels. Water depth, draft, solid/reef clearance and connected routes respond to reservoir changes, exposed banks, bridge clearance and destruction; cargo, embarked agents and disembarkation retain one owner; reconnaissance filters naval combat knowledge"},
+    {"id": "map_engineering_feedback", "status": "planned", "exercise": "Combine pits, wallows, soil mixing, tree thinning, host cavities, reef growth, ground cover, canopy and litter with rain/runoff, habitat connectivity and finite resources. Physical structures persist after their builders fold offscreen or die; versioned secondary-buffer transfers commit once"},
+    {"id": "ecology_and_conservation", "status": "planned", "exercise": "Mandatory biology plus selected30 in docs/MILESTONE_A_TRAIT_PROPOSAL.md, migration/transit, captive transfers, shortages, reproduction and complete extinction accounting"},
+    {"id": "speed_and_calendar_continuity", "status": "planned", "exercise": "Expose1x/2x/4x in the first gameplay build; compare equal authoritative tick endpoints for actions, scheduled ecology, seasons and saves. Record actual achieved speed and backlog under full loads without silently skipping simulation ticks or rules"},
+    {"id": "long_war_save_reload", "status": "planned", "exercise": "3-4 hours, all map types, dense terrain edit pages, persistent dams/tunnels/reefs, seasonal and water state, naval cargo, save migration/atomicity and continued population/resource ownership"}
+  ],
+  "required_recorded_context": [
+    "source/build identity", "actual OS/CPU/RAM/GPU/driver/backend", "software/proxy limitations",
+    "seed/settings/generator version", "map dimensions/type", "requested and actual simulation speed",
+    "authoritative tick/fixed-step duration/backlog and speed transitions", "season cycle ticks/phase and local climate envelope",
+    "military/civilian/exact wildlife/additional cohort totals", "species and resident cohort records",
+    "active/queued chunks", "frame median/p95/p99/max", "CPU submission versus GPU execution",
+    "process RAM high-water and VRAM accounting scope", "terrain upload bytes/backlog",
+    "path requests/cache hits/invalidations and terrain/water/habitat revision stamps",
+    "water storage/inflow/outflow/loss terms and conservation residual scope", "wet extent/depth and affected basin/channel counts",
+    "dam material/construction/permeability/overflow/breach state", "hydrology work/substeps/backlog and stale-result rejection",
+    "burrow nodes/edges/entrances/chambers/occupied slots and aperture eligibility", "excavation/spoil ownership and flood/collapse transfers",
+    "plant/soil/canopy contribution edits and physical-structure persistence", "naval draft/clearance/route changes and embarked cargo/agent ownership",
+    "save/load bytes/time and storage identity", "correctness failures"
+  ]
+}

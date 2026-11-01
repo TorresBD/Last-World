@@ -1,0 +1,444 @@
+{
+  "version": 1,
+  "name": "Last World field terminal",
+  "identity": "Improvised graphite equipment against living jungle; restrained amber/blue trim with pattern cues.",
+  "palette": {
+    "frame": [
+      23,
+      29,
+      31,
+      252
+    ],
+    "panel": [
+      38,
+      48,
+      52,
+      248
+    ],
+    "recess": [
+      15,
+      21,
+      23,
+      250
+    ],
+    "edge": [
+      101,
+      113,
+      109,
+      255
+    ],
+    "edge_light": [
+      137,
+      149,
+      140,
+      255
+    ],
+    "text": [
+      238,
+      233,
+      216,
+      255
+    ],
+    "muted": [
+      173,
+      184,
+      173,
+      255
+    ],
+    "faction0": [
+      233,
+      179,
+      90,
+      255
+    ],
+    "faction1": [
+      103,
+      183,
+      225,
+      255
+    ],
+    "biology": [
+      131,
+      201,
+      145,
+      255
+    ],
+    "damage": [
+      229,
+      125,
+      112,
+      255
+    ],
+    "warning": [
+      233,
+      179,
+      90,
+      255
+    ],
+    "disabled": [
+      83,
+      94,
+      94,
+      255
+    ],
+    "black": [
+      8,
+      12,
+      13,
+      245
+    ],
+    "fog": [
+      31,
+      42,
+      39,
+      255
+    ]
+  },
+  "metrics": {
+    "reference_height": 1080.0,
+    "body_px": 16.0,
+    "small_px": 14.0,
+    "heading_px": 20.0,
+    "resource_px": 18.0,
+    "gap": 8.0,
+    "padding": 10.0,
+    "hit": 44.0,
+    "top_height": 58.0,
+    "bottom_height": 168.0,
+    "command_width": 360.0,
+    "selection_width": 440.0,
+    "minimap_width": 224.0,
+    "minimap_height": 160.0,
+    "border": 2.0,
+    "tooltip_width": 320.0,
+    "panel_header": 40.0,
+    "alert_width": 310.0,
+    "alert_height": 60.0,
+    "tool_icon": 44.0,
+    "command_columns": 3.0,
+    "command_tile_height": 72.0,
+    "quick_width": 80.0,
+    "quick_height": 60.0,
+    "hint_height": 52.0,
+    "empty_selection_height": 90.0,
+    "category_min_width": 50.0,
+    "quick_min_width": 70.0,
+    "quick_min_height": 52.0
+  },
+  "materials": {
+    "seed": 78421,
+    "grain_strength": 4,
+    "scanline_stride": 4,
+    "scanline_strength": 2,
+    "bevel_px": 2,
+    "rivets": true,
+    "wear_frequency": 311,
+    "faction0_trim": "double_notch_hazard",
+    "faction1_trim": "stepped_rib",
+    "motion": "Static by default; bounded highlights only; respect reduce_motion."
+  },
+  "fonts": {
+    "heading": {
+      "family": "Rajdhani",
+      "weight": 600,
+      "file": "Rajdhani-SemiBold.ttf",
+      "atlas": "heading-atlas.png",
+      "metrics": "heading-atlas.json",
+      "license": "Rajdhani-OFL.txt"
+    },
+    "body": {
+      "family": "IBM Plex Sans",
+      "weight": 400,
+      "file": "IBMPlexSans-Regular.ttf",
+      "atlas": "body-atlas.png",
+      "metrics": "body-atlas.json",
+      "license": "IBMPlex-OFL.txt"
+    },
+    "numbers": {
+      "family": "IBM Plex Sans",
+      "weight": 500,
+      "file": "IBMPlexSans-Medium.ttf",
+      "atlas": "numbers-atlas.png",
+      "metrics": "numbers-atlas.json",
+      "license": "IBMPlex-OFL.txt"
+    }
+  },
+  "categories": {
+    "Build": {
+      "icon": "depot",
+      "label": "Build"
+    },
+    "Economy": {
+      "icon": "mine",
+      "label": "Economy"
+    },
+    "Defense": {
+      "icon": "turret",
+      "label": "Defense"
+    },
+    "Recon": {
+      "icon": "camera",
+      "label": "Recon"
+    },
+    "Ecology": {
+      "icon": "fauna:0:0:0",
+      "label": "Ecology"
+    },
+    "Naval": {
+      "icon": "ship",
+      "label": "Naval"
+    }
+  },
+  "tools": [
+    {
+      "index": 0,
+      "label": "Road",
+      "icon": "road",
+      "hotkey": "F4"
+    },
+    {
+      "index": 1,
+      "label": "Trench",
+      "icon": "trench",
+      "hotkey": "F6"
+    },
+    {
+      "index": 2,
+      "label": "Foundation",
+      "icon": "depot",
+      "hotkey": ""
+    },
+    {
+      "index": 3,
+      "label": "Smooth",
+      "icon": "restore",
+      "hotkey": ""
+    },
+    {
+      "index": 4,
+      "label": "Depot",
+      "icon": "depot",
+      "hotkey": ""
+    },
+    {
+      "index": 5,
+      "label": "Mine",
+      "icon": "mine",
+      "hotkey": ""
+    },
+    {
+      "index": 6,
+      "label": "Mill",
+      "icon": "mill",
+      "hotkey": ""
+    },
+    {
+      "index": 7,
+      "label": "Barracks",
+      "icon": "barracks",
+      "hotkey": ""
+    },
+    {
+      "index": 8,
+      "label": "Power",
+      "icon": "solar",
+      "hotkey": ""
+    },
+    {
+      "index": 9,
+      "label": "Farm",
+      "icon": "farm",
+      "hotkey": ""
+    },
+    {
+      "index": 10,
+      "label": "Camera",
+      "icon": "camera",
+      "hotkey": "F7"
+    },
+    {
+      "index": 11,
+      "label": "Radar",
+      "icon": "radar",
+      "hotkey": ""
+    },
+    {
+      "index": 12,
+      "label": "Wall",
+      "icon": "wall",
+      "hotkey": ""
+    },
+    {
+      "index": 13,
+      "label": "Turret",
+      "icon": "turret",
+      "hotkey": ""
+    },
+    {
+      "index": 14,
+      "label": "Dam",
+      "icon": "wall",
+      "hotkey": ""
+    },
+    {
+      "index": 15,
+      "label": "Bridge",
+      "icon": "road",
+      "hotkey": ""
+    },
+    {
+      "index": 16,
+      "label": "Dock",
+      "icon": "depot",
+      "hotkey": ""
+    },
+    {
+      "index": 17,
+      "label": "Wildlife pen",
+      "icon": "restore",
+      "hotkey": ""
+    },
+    {
+      "index": 18,
+      "label": "Research",
+      "icon": "beacon",
+      "hotkey": ""
+    },
+    {
+      "index": 19,
+      "label": "Inspect",
+      "icon": "fauna:0:0:0",
+      "hotkey": ""
+    },
+    {
+      "index": 20,
+      "label": "Capture",
+      "icon": "fauna:1:0:0",
+      "hotkey": ""
+    },
+    {
+      "index": 21,
+      "label": "Study",
+      "icon": "beacon",
+      "hotkey": ""
+    },
+    {
+      "index": 22,
+      "label": "Breed",
+      "icon": "fauna:2:0:0",
+      "hotkey": ""
+    },
+    {
+      "index": 23,
+      "label": "Release",
+      "icon": "fauna:3:0:0",
+      "hotkey": ""
+    },
+    {
+      "index": 24,
+      "label": "Rally",
+      "icon": "unit:0:1:0:0",
+      "hotkey": ""
+    },
+    {
+      "index": 25,
+      "label": "Patrol boat",
+      "icon": "ship",
+      "hotkey": ""
+    },
+    {
+      "index": 26,
+      "label": "Transport",
+      "icon": "ship",
+      "hotkey": ""
+    },
+    {
+      "index": 27,
+      "label": "Board",
+      "icon": "unit:0:1:1:0",
+      "hotkey": ""
+    },
+    {
+      "index": 28,
+      "label": "Disembark",
+      "icon": "unit:0:1:2:0",
+      "hotkey": ""
+    },
+    {
+      "index": 29,
+      "label": "Cancel order",
+      "icon": "restore",
+      "hotkey": ""
+    }
+  ],
+  "resources": {
+    "metal": "mine",
+    "timber": "mill",
+    "food": "farm",
+    "power": "solar",
+    "water": "farm"
+  },
+  "layers": {
+    "Radar": "radar",
+    "Video": "camera",
+    "Roads": "road",
+    "Supply": "depot",
+    "Resources": "mine",
+    "Ecology": "fauna:0:0:0",
+    "Damage": "mortar",
+    "Fauna": "fauna:1:0:0",
+    "Territory": "tower"
+  },
+  "panels": {
+    "Ecology": "fauna:0:0:0",
+    "Known food web": "fauna:1:0:0",
+    "Logistics": "depot",
+    "Ecological damage": "mortar",
+    "Field manual": "beacon",
+    "Settings": "solar",
+    "Selection": "unit:0:1:0:0"
+  },
+  "states": {
+    "selected": "faction trim + inset outline",
+    "disabled": "diagonal hatch + muted tint",
+    "shortage": "warning triangle + text tooltip",
+    "unknown": "neutral existing silhouette + question field; no invented species",
+    "enemy": "blue stepped trim; never reveal hidden identity"
+  },
+  "evidence": {
+    "style": "docs/UI_STYLE_DIRECTION.md",
+    "requirements": "docs/UI_REQUIREMENTS.md",
+    "mockups": "docs/ui-mockups/",
+    "cpu_budget_ms_target": 1.0,
+    "gpu_budget_ms_target": 1.0,
+    "budget_status": "targets; not measured on hardware"
+  },
+  "hotkeys": {
+    "select": "Esc",
+    "build": "B",
+    "naval": "N",
+    "economy": "Ctrl+E",
+    "defense": "Ctrl+D",
+    "recon": "Ctrl+R",
+    "ecology": "E",
+    "food_web": "F",
+    "logistics": "I",
+    "damage": "J",
+    "help": "H",
+    "settings": "P",
+    "pause": "Space",
+    "speed_1": "F1",
+    "speed_2": "F2",
+    "speed_4": "F3",
+    "save": "F5",
+    "load": "F9",
+    "camera_trooper": "Q",
+    "artillery": "X",
+    "queue": "Shift",
+    "groups": "Ctrl+1..9 / 1..9",
+    "bookmarks": "Alt+Shift+1..4 / Alt+1..4",
+    "road": "F4",
+    "trench": "F6",
+    "camera": "F7"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "kind": "static_UI_mockups_not_native_evidence",
+  "world_original": "evidence/pc-coupled-2026-10-30/returned/river-check-17376-1793326377221-start.png",
+  "atlas_original": "native/assets/pixel-atlas.png",
+  "physical_source_pixels_edited": false,
+  "reference_files": [
+    {
+      "name": "IBMPlex-OFL.txt",
+      "sha256": "37784b44044a4ffd9256702b7c0982c37e5c8887ba90c6dca0479aea93dc898d"
+    },
+    {
+      "name": "IBMPlexSans-Regular.ttf",
+      "sha256": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5"
+    },
+    {
+      "name": "Rajdhani-OFL.txt",
+      "sha256": "f62ef357d3a1c3d27edd35a6e1ba350e8a8d13499797964eeadefbf0b3b15d1f"
+    },
+    {
+      "name": "Rajdhani-SemiBold.ttf",
+      "sha256": "94bbd25a18ca665999feb05a537de9fd2b860dcfb78bbe9ca00270825bf235da"
+    },
+    {
+      "name": "pixel-atlas.png",
+      "sha256": "afeca73105e0378b6607bf19d52cdb32511f84bba9ce7e706cb8d884265aba75"
+    },
+    {
+      "name": "world-start.png",
+      "sha256": "686c527a50a70f937923ce06f57cb5847fdd2e9e345969d644fe0c55259c8aaa"
+    }
+  ],
+  "font_families": [
+    "Rajdhani SemiBold",
+    "IBM Plex Sans Regular"
+  ],
+  "contrast_on_panel": {
+    "text": 12.346317555686552,
+    "muted": 7.31272711342754,
+    "amber": 7.901329841665957,
+    "blue": 6.741856720994865,
+    "bio": 7.6642834993251086,
+    "damage": 5.3571481281498565
+  },
+  "render_engine": "Sharp/libvips/librsvg with bundled fonts through private fontconfig",
+  "chromium_available": false,
+  "inspection": "Source rectangle/hitbox audit plus manual PNG inspection; actual native runtime not established"
+}
