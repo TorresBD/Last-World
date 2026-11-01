@@ -1,0 +1,3332 @@
+{
+  "checkpoints": [
+    {
+      "stage": "initial",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          0,
+          0
+        ],
+        "biology_events": 0,
+        "civilian_jobs_present": true,
+        "completed_jobs": 0,
+        "ecology": {
+          "animal_hydration": 1184000,
+          "biomass_units": 20315200,
+          "captive_animals": 0,
+          "dead_animals": 0,
+          "dead_plants": 0,
+          "extinct_species": [],
+          "living_plants": 24000,
+          "root_zone_water": 16800000,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 144000,
+          "wild_animals": 14800
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 0,
+          "biomass_received_from_ecology": 0,
+          "biomass_returned_to_ecology": 0,
+          "committed_traits": {},
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 0,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 0,
+          "stale_optional_intents": 0,
+          "surface_received_mm3": 0,
+          "tracked_real_actors": 0,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 0,
+          "route_cache_hits": 0,
+          "route_invalidations": 0,
+          "route_node_expansions": 0,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 0,
+        "water": {
+          "boundary_outflow_liters": 0,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 0,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 393216000,
+            "biomass_outflow_units": 0,
+            "cumulative_deposited_liters": 0,
+            "cumulative_eroded_liters": 0,
+            "current_deposit_subset_liters": 0,
+            "deposited_debris_units": 0,
+            "evaporated_liters": 0,
+            "infiltrated_liters": 0,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 49194717,
+            "mobile_debris_units": 0,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 0,
+            "soil_water_liters": 0,
+            "suspended_sediment_liters": 0
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 0,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 17510400,
+          "upstream_liters": 11008000,
+          "water_extracted_to_other_stocks_liters": 0,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 684
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": false
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          0,
+          0
+        ],
+        "biology_events": 9144,
+        "civilian_jobs_present": true,
+        "completed_jobs": 0,
+        "ecology": {
+          "animal_hydration": 893712,
+          "biomass_units": 19836342,
+          "captive_animals": 0,
+          "dead_animals": 78,
+          "dead_plants": 0,
+          "extinct_species": [],
+          "living_plants": 24212,
+          "root_zone_water": 16566504,
+          "transit_animals": 4619,
+          "viable_offspring": 0,
+          "viable_seeds": 149679,
+          "wild_animals": 10103
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 6,
+          "biomass_returned_to_ecology": 0,
+          "committed_traits": {
+            "11": 2,
+            "46": 2,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 600,
+          "queued_optional_intents": 3761,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 3,
+          "stale_optional_intents": 0,
+          "surface_received_mm3": 128000000,
+          "tracked_real_actors": 10,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 4,
+          "route_cache_hits": 596,
+          "route_invalidations": 3,
+          "route_node_expansions": 247,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 600,
+        "water": {
+          "boundary_outflow_liters": 2186495,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 750000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391639997,
+            "biomass_outflow_units": 18074,
+            "cumulative_deposited_liters": 101373,
+            "cumulative_eroded_liters": 1677376,
+            "current_deposit_subset_liters": 101309,
+            "deposited_debris_units": 931,
+            "evaporated_liters": 0,
+            "foliage_exported_units": 684542,
+            "infiltrated_liters": 1708542,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 48260438,
+            "mobile_debris_units": 230732,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 163401,
+            "soil_water_liters": 1708542,
+            "suspended_sediment_liters": 1412602
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 600,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 14365363,
+          "upstream_liters": 8779423,
+          "water_extracted_to_other_stocks_liters": 1708542,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 1013
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          0,
+          0
+        ],
+        "biology_events": 19975,
+        "civilian_jobs_present": true,
+        "completed_jobs": 0,
+        "ecology": {
+          "animal_hydration": 864532,
+          "biomass_units": 19303035,
+          "captive_animals": 0,
+          "dead_animals": 138,
+          "dead_plants": 0,
+          "extinct_species": [],
+          "living_plants": 24359,
+          "root_zone_water": 16037779,
+          "transit_animals": 9687,
+          "viable_offspring": 0,
+          "viable_seeds": 154045,
+          "wild_animals": 4975
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 6,
+          "biomass_returned_to_ecology": 0,
+          "committed_traits": {
+            "11": 2,
+            "46": 2,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 1240,
+          "queued_optional_intents": 3802,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 9,
+          "stale_optional_intents": 6,
+          "surface_received_mm3": 128000000,
+          "tracked_real_actors": 15,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 312,
+          "route_cache_hits": 3220,
+          "route_invalidations": 304,
+          "route_node_expansions": 688166,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 1240,
+        "water": {
+          "boundary_outflow_liters": 4194255,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 1550000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391738826,
+            "biomass_outflow_units": 74553,
+            "cumulative_deposited_liters": 283914,
+            "cumulative_eroded_liters": 1761088,
+            "current_deposit_subset_liters": 283082,
+            "deposited_debris_units": 2738,
+            "evaporated_liters": 924,
+            "foliage_exported_units": 1239745,
+            "infiltrated_liters": 3430205,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 47463059,
+            "mobile_debris_units": 414622,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 356535,
+            "soil_water_liters": 3429281,
+            "suspended_sediment_liters": 1120639
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 1240,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 11435940,
+          "upstream_liters": 6529016,
+          "water_extracted_to_other_stocks_liters": 3430205,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 949
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          0,
+          0
+        ],
+        "biology_events": 25702,
+        "civilian_jobs_present": true,
+        "completed_jobs": 0,
+        "ecology": {
+          "animal_hydration": 693116,
+          "biomass_units": 18801183,
+          "captive_animals": 0,
+          "dead_animals": 200,
+          "dead_plants": 0,
+          "extinct_species": [],
+          "living_plants": 24380,
+          "root_zone_water": 15687931,
+          "transit_animals": 9110,
+          "viable_offspring": 0,
+          "viable_seeds": 160601,
+          "wild_animals": 5490
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 6,
+          "biomass_returned_to_ecology": 0,
+          "committed_traits": {
+            "11": 2,
+            "12": 5,
+            "46": 2,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 1840,
+          "queued_optional_intents": 3792,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 16,
+          "stale_optional_intents": 34,
+          "surface_received_mm3": 128000000,
+          "tracked_real_actors": 23,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 482,
+          "route_cache_hits": 7850,
+          "route_invalidations": 474,
+          "route_node_expansions": 997341,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 1840,
+        "water": {
+          "boundary_outflow_liters": 5977525,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 2300000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391824259,
+            "biomass_outflow_units": 160683,
+            "cumulative_deposited_liters": 444931,
+            "cumulative_eroded_liters": 1836672,
+            "current_deposit_subset_liters": 443459,
+            "deposited_debris_units": 4799,
+            "evaporated_liters": 45381,
+            "foliage_exported_units": 1671517,
+            "infiltrated_liters": 4964779,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 46820849,
+            "mobile_debris_units": 536869,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 527678,
+            "soil_water_liters": 4919398,
+            "suspended_sediment_liters": 864063
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 1840,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 8868096,
+          "upstream_liters": 4546569,
+          "water_extracted_to_other_stocks_liters": 4964779,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 895
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          0
+        ],
+        "biology_events": 29545,
+        "civilian_jobs_present": true,
+        "completed_jobs": 1,
+        "ecology": {
+          "animal_hydration": 611174,
+          "biomass_units": 18477333,
+          "captive_animals": 0,
+          "dead_animals": 341,
+          "dead_plants": 0,
+          "extinct_species": [],
+          "living_plants": 24466,
+          "root_zone_water": 15260951,
+          "transit_animals": 7528,
+          "viable_offspring": 0,
+          "viable_seeds": 165480,
+          "wild_animals": 6931
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 2,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 2440,
+          "queued_optional_intents": 3793,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 19,
+          "stale_optional_intents": 45,
+          "surface_received_mm3": 128000000,
+          "tracked_real_actors": 27,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 633,
+          "route_cache_hits": 13040,
+          "route_invalidations": 623,
+          "route_node_expansions": 1278477,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 2440,
+        "water": {
+          "boundary_outflow_liters": 7673690,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 3050000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391904253,
+            "biomass_outflow_units": 284436,
+            "cumulative_deposited_liters": 597821,
+            "cumulative_eroded_liters": 1909568,
+            "current_deposit_subset_liters": 595389,
+            "deposited_debris_units": 7709,
+            "evaporated_liters": 164415,
+            "foliage_exported_units": 2013442,
+            "foliage_imported_units": 384,
+            "infiltrated_liters": 6427597,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 46287729,
+            "mobile_debris_units": 601785,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 689867,
+            "soil_water_liters": 6263182,
+            "suspended_sediment_liters": 621880
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 2440,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 6459113,
+          "upstream_liters": 2686258,
+          "water_extracted_to_other_stocks_liters": 6427597,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 813
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          0
+        ],
+        "biology_events": 31987,
+        "civilian_jobs_present": true,
+        "completed_jobs": 1,
+        "ecology": {
+          "animal_hydration": 309249,
+          "biomass_units": 18299636,
+          "captive_animals": 0,
+          "dead_animals": 6016,
+          "dead_plants": 0,
+          "extinct_species": [
+            10
+          ],
+          "living_plants": 24556,
+          "root_zone_water": 15152823,
+          "transit_animals": 4917,
+          "viable_offspring": 0,
+          "viable_seeds": 170429,
+          "wild_animals": 3867
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 6,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 3040,
+          "queued_optional_intents": 3760,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 28,
+          "stale_optional_intents": 83,
+          "surface_received_mm3": 384000000,
+          "tracked_real_actors": 34,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 761,
+          "route_cache_hits": 18945,
+          "route_invalidations": 750,
+          "route_node_expansions": 1524157,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 3040,
+        "water": {
+          "boundary_outflow_liters": 9351930,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 3800000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391853749,
+            "biomass_outflow_units": 444451,
+            "cumulative_deposited_liters": 641205,
+            "cumulative_eroded_liters": 2003456,
+            "current_deposit_subset_liters": 630773,
+            "deposited_debris_units": 8724,
+            "evaporated_liters": 294992,
+            "foliage_exported_units": 2227533,
+            "foliage_imported_units": 684,
+            "infiltrated_liters": 6484706,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 45896410,
+            "mobile_debris_units": 618283,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 850267,
+            "soil_water_liters": 6189714,
+            "suspended_sediment_liters": 511984
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 3040,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 5473764,
+          "upstream_liters": 1717029,
+          "water_extracted_to_other_stocks_liters": 6484706,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 816
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          0
+        ],
+        "biology_events": 32857,
+        "civilian_jobs_present": true,
+        "completed_jobs": 1,
+        "ecology": {
+          "animal_hydration": 126924,
+          "biomass_units": 18192657,
+          "captive_animals": 0,
+          "dead_animals": 9656,
+          "dead_plants": 0,
+          "extinct_species": [
+            10,
+            11
+          ],
+          "living_plants": 24705,
+          "root_zone_water": 15090586,
+          "transit_animals": 3230,
+          "viable_offspring": 0,
+          "viable_seeds": 172782,
+          "wild_animals": 1914
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 7,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 3640,
+          "queued_optional_intents": 3615,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 37,
+          "stale_optional_intents": 226,
+          "surface_received_mm3": 448000000,
+          "tracked_real_actors": 41,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 874,
+          "route_cache_hits": 25432,
+          "route_invalidations": 863,
+          "route_node_expansions": 1747957,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 3640,
+        "water": {
+          "boundary_outflow_liters": 11050275,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 4550000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391790538,
+            "biomass_outflow_units": 638248,
+            "cumulative_deposited_liters": 675658,
+            "cumulative_eroded_liters": 2101120,
+            "current_deposit_subset_liters": 658634,
+            "deposited_debris_units": 9302,
+            "evaporated_liters": 449546,
+            "foliage_exported_units": 2401781,
+            "foliage_imported_units": 708,
+            "infiltrated_liters": 6501591,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 45556863,
+            "mobile_debris_units": 589231,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1012858,
+            "soil_water_liters": 6052045,
+            "suspended_sediment_liters": 412604
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 3640,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 4508534,
+          "upstream_liters": 1461902,
+          "water_extracted_to_other_stocks_liters": 6501591,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 794
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          0
+        ],
+        "biology_events": 33341,
+        "civilian_jobs_present": true,
+        "completed_jobs": 1,
+        "ecology": {
+          "animal_hydration": 94323,
+          "biomass_units": 18157704,
+          "captive_animals": 0,
+          "dead_animals": 12466,
+          "dead_plants": 0,
+          "extinct_species": [
+            10,
+            11
+          ],
+          "living_plants": 24735,
+          "root_zone_water": 14934122,
+          "transit_animals": 757,
+          "viable_offspring": 0,
+          "viable_seeds": 177392,
+          "wild_animals": 1577
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 7,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 4240,
+          "queued_optional_intents": 3593,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 42,
+          "stale_optional_intents": 283,
+          "surface_received_mm3": 448000000,
+          "tracked_real_actors": 45,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 981,
+          "route_cache_hits": 31925,
+          "route_invalidations": 970,
+          "route_node_expansions": 1971757,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 4240,
+        "water": {
+          "boundary_outflow_liters": 12751530,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 5300000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391725555,
+            "biomass_outflow_units": 890091,
+            "cumulative_deposited_liters": 712435,
+            "cumulative_eroded_liters": 2202880,
+            "current_deposit_subset_liters": 688115,
+            "deposited_debris_units": 10110,
+            "evaporated_liters": 615376,
+            "foliage_exported_units": 2553562,
+            "foliage_imported_units": 708,
+            "infiltrated_liters": 6513165,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 45251035,
+            "mobile_debris_units": 490627,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1175597,
+            "soil_water_liters": 5897789,
+            "suspended_sediment_liters": 314848
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 4240,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 3545705,
+          "upstream_liters": 1539275,
+          "water_extracted_to_other_stocks_liters": 6513165,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 766
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          0
+        ],
+        "biology_events": 33810,
+        "civilian_jobs_present": true,
+        "completed_jobs": 1,
+        "ecology": {
+          "animal_hydration": 27652,
+          "biomass_units": 18144254,
+          "captive_animals": 0,
+          "dead_animals": 13894,
+          "dead_plants": 0,
+          "extinct_species": [
+            7,
+            10,
+            11
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14891673,
+          "transit_animals": 270,
+          "viable_offspring": 0,
+          "viable_seeds": 179857,
+          "wild_animals": 636
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 7,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 4840,
+          "queued_optional_intents": 3322,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 51,
+          "stale_optional_intents": 565,
+          "surface_received_mm3": 448000000,
+          "tracked_real_actors": 50,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1075,
+          "route_cache_hits": 39571,
+          "route_invalidations": 1062,
+          "route_node_expansions": 2163560,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 4840,
+        "water": {
+          "boundary_outflow_liters": 14408040,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 6050000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391662731,
+            "biomass_outflow_units": 1236547,
+            "cumulative_deposited_liters": 752331,
+            "cumulative_eroded_liters": 2305600,
+            "current_deposit_subset_liters": 723083,
+            "deposited_debris_units": 10751,
+            "evaporated_liters": 756327,
+            "foliage_exported_units": 2683921,
+            "foliage_imported_units": 708,
+            "infiltrated_liters": 6521964,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 44977436,
+            "mobile_debris_units": 286770,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1333667,
+            "soil_water_liters": 5765637,
+            "suspended_sediment_liters": 219602
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 4840,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 2630396,
+          "upstream_liters": 1621986,
+          "water_extracted_to_other_stocks_liters": 6521964,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 746
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          0
+        ],
+        "biology_events": 34181,
+        "civilian_jobs_present": true,
+        "completed_jobs": 1,
+        "ecology": {
+          "animal_hydration": 14484,
+          "biomass_units": 18136364,
+          "captive_animals": 0,
+          "dead_animals": 14507,
+          "dead_plants": 0,
+          "extinct_species": [
+            7,
+            9,
+            10,
+            11
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14814243,
+          "transit_animals": 13,
+          "viable_offspring": 0,
+          "viable_seeds": 184978,
+          "wild_animals": 280
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 3,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 14,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 5440,
+          "queued_optional_intents": 2913,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 60,
+          "stale_optional_intents": 987,
+          "surface_received_mm3": 896000000,
+          "tracked_real_actors": 62,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1161,
+          "route_cache_hits": 47840,
+          "route_invalidations": 1147,
+          "route_node_expansions": 2341038,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 5440,
+        "water": {
+          "boundary_outflow_liters": 15384160,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 6800000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391620864,
+            "biomass_outflow_units": 1436352,
+            "cumulative_deposited_liters": 791040,
+            "cumulative_eroded_liters": 2386176,
+            "current_deposit_subset_liters": 757248,
+            "deposited_debris_units": 11012,
+            "evaporated_liters": 866770,
+            "foliage_exported_units": 2811482,
+            "foliage_imported_units": 2900,
+            "infiltrated_liters": 6530425,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 44720974,
+            "mobile_debris_units": 217797,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1422957,
+            "soil_water_liters": 5663655,
+            "suspended_sediment_liters": 172179
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 5440,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 2395815,
+          "upstream_liters": 1706495,
+          "water_extracted_to_other_stocks_liters": 6530425,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 731
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          0
+        ],
+        "biology_events": 34487,
+        "civilian_jobs_present": true,
+        "completed_jobs": 1,
+        "ecology": {
+          "animal_hydration": 7506,
+          "biomass_units": 18129593,
+          "captive_animals": 0,
+          "dead_animals": 14670,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            9,
+            10,
+            11
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14738224,
+          "transit_animals": 1,
+          "viable_offspring": 0,
+          "viable_seeds": 187274,
+          "wild_animals": 129
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 0,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 14,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 6040,
+          "queued_optional_intents": 2036,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 72,
+          "stale_optional_intents": 1870,
+          "surface_received_mm3": 896000000,
+          "tracked_real_actors": 69,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1253,
+          "route_cache_hits": 56148,
+          "route_invalidations": 1239,
+          "route_node_expansions": 2516838,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 6040,
+        "water": {
+          "boundary_outflow_liters": 16030035,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 7550000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391554424,
+            "biomass_outflow_units": 1564199,
+            "cumulative_deposited_liters": 831864,
+            "cumulative_eroded_liters": 2493440,
+            "current_deposit_subset_liters": 792760,
+            "deposited_debris_units": 11393,
+            "evaporated_liters": 975771,
+            "foliage_exported_units": 2922102,
+            "foliage_imported_units": 4412,
+            "infiltrated_liters": 6537491,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 44489215,
+            "mobile_debris_units": 212220,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1481126,
+            "soil_water_liters": 5561720,
+            "suspended_sediment_liters": 180450
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 6040,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 2492874,
+          "upstream_liters": 1794460,
+          "water_extracted_to_other_stocks_liters": 6537491,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 726
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          382
+        ],
+        "biology_events": 34706,
+        "civilian_jobs_present": true,
+        "completed_jobs": 2,
+        "ecology": {
+          "animal_hydration": 5950,
+          "biomass_units": 18123707,
+          "captive_animals": 0,
+          "dead_animals": 14699,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14659882,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 191029,
+          "wild_animals": 101
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 14,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 6640,
+          "queued_optional_intents": 201,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 74,
+          "stale_optional_intents": 3708,
+          "surface_received_mm3": 896000000,
+          "tracked_real_actors": 71,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1344,
+          "route_cache_hits": 63981,
+          "route_invalidations": 1330,
+          "route_node_expansions": 2693956,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 6640,
+        "water": {
+          "boundary_outflow_liters": 16672275,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 8300000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391485114,
+            "biomass_outflow_units": 1684683,
+            "cumulative_deposited_liters": 878586,
+            "cumulative_eroded_liters": 2609472,
+            "current_deposit_subset_liters": 838330,
+            "deposited_debris_units": 11583,
+            "evaporated_liters": 1054583,
+            "foliage_exported_units": 3009562,
+            "foliage_imported_units": 5060,
+            "infiltrated_liters": 6542855,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 44289279,
+            "mobile_debris_units": 204670,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1539705,
+            "soil_water_liters": 5488272,
+            "suspended_sediment_liters": 191181
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 6640,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 2595270,
+          "upstream_liters": 1852190,
+          "water_extracted_to_other_stocks_liters": 6542855,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 725
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          1019
+        ],
+        "biology_events": 34774,
+        "civilian_jobs_present": true,
+        "completed_jobs": 4,
+        "ecology": {
+          "animal_hydration": 4216,
+          "biomass_units": 18118802,
+          "captive_animals": 0,
+          "dead_animals": 14730,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14582617,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 192867,
+          "wild_animals": 70
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 14,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 7240,
+          "queued_optional_intents": 96,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 103,
+          "stale_optional_intents": 3787,
+          "surface_received_mm3": 896000000,
+          "tracked_real_actors": 80,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1428,
+          "route_cache_hits": 71438,
+          "route_invalidations": 1414,
+          "route_node_expansions": 2875118,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 7240,
+        "water": {
+          "boundary_outflow_liters": 17337395,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 9050000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391416621,
+            "biomass_outflow_units": 1797709,
+            "cumulative_deposited_liters": 929453,
+            "cumulative_eroded_liters": 2728832,
+            "current_deposit_subset_liters": 888813,
+            "deposited_debris_units": 11695,
+            "evaporated_liters": 1103201,
+            "foliage_exported_units": 3091077,
+            "foliage_imported_units": 5620,
+            "infiltrated_liters": 6547459,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 44106640,
+            "mobile_debris_units": 193216,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1601028,
+            "soil_water_liters": 5444258,
+            "suspended_sediment_liters": 198351
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 7240,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 2675546,
+          "upstream_liters": 1895527,
+          "water_extracted_to_other_stocks_liters": 6547459,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 720
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          1519
+        ],
+        "biology_events": 34788,
+        "civilian_jobs_present": true,
+        "completed_jobs": 6,
+        "ecology": {
+          "animal_hydration": 1740,
+          "biomass_units": 18114623,
+          "captive_animals": 0,
+          "dead_animals": 14771,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14507747,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 197447,
+          "wild_animals": 29
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 19,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 7840,
+          "queued_optional_intents": 42,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 120,
+          "stale_optional_intents": 3824,
+          "surface_received_mm3": 1216000000,
+          "tracked_real_actors": 90,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1512,
+          "route_cache_hits": 77904,
+          "route_invalidations": 1501,
+          "route_node_expansions": 3077292,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 7840,
+        "water": {
+          "boundary_outflow_liters": 18015630,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 9800000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391349590,
+            "biomass_outflow_units": 1901064,
+            "cumulative_deposited_liters": 983446,
+            "cumulative_eroded_liters": 2849856,
+            "current_deposit_subset_liters": 942486,
+            "deposited_debris_units": 11805,
+            "evaporated_liters": 1116779,
+            "foliage_exported_units": 3156716,
+            "foliage_imported_units": 5684,
+            "infiltrated_liters": 6550379,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 43956033,
+            "mobile_debris_units": 174783,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1663799,
+            "soil_water_liters": 5433600,
+            "suspended_sediment_liters": 202611
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 7840,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 2744391,
+          "upstream_liters": 1960917,
+          "water_extracted_to_other_stocks_liters": 6550379,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 714
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          1519
+        ],
+        "biology_events": 34790,
+        "civilian_jobs_present": true,
+        "completed_jobs": 6,
+        "ecology": {
+          "animal_hydration": 434,
+          "biomass_units": 18110923,
+          "captive_animals": 0,
+          "dead_animals": 14793,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14432654,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 199276,
+          "wild_animals": 7
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 0,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 19,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 8440,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 134,
+          "stale_optional_intents": 3852,
+          "surface_received_mm3": 1216000000,
+          "tracked_real_actors": 94,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1575,
+          "route_cache_hits": 83881,
+          "route_invalidations": 1564,
+          "route_node_expansions": 3303605,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 8440,
+        "water": {
+          "boundary_outflow_liters": 18673925,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 10550000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391283353,
+            "biomass_outflow_units": 1989064,
+            "cumulative_deposited_liters": 1040345,
+            "cumulative_eroded_liters": 2972992,
+            "current_deposit_subset_liters": 998553,
+            "deposited_debris_units": 11917,
+            "evaporated_liters": 1119909,
+            "foliage_exported_units": 3210612,
+            "foliage_imported_units": 5684,
+            "infiltrated_liters": 6554665,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 43834269,
+            "mobile_debris_units": 154539,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1724782,
+            "soil_water_liters": 5434756,
+            "suspended_sediment_liters": 207865
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 8440,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 2831810,
+          "upstream_liters": 2055146,
+          "water_extracted_to_other_stocks_liters": 6554665,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 709
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          1519
+        ],
+        "biology_events": 34790,
+        "civilian_jobs_present": true,
+        "completed_jobs": 6,
+        "ecology": {
+          "animal_hydration": 60,
+          "biomass_units": 18107316,
+          "captive_animals": 0,
+          "dead_animals": 14799,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14357176,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 202908,
+          "wild_animals": 1
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 0,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 19,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 9040,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 134,
+          "stale_optional_intents": 3852,
+          "surface_received_mm3": 1216000000,
+          "tracked_real_actors": 94,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1645,
+          "route_cache_hits": 90411,
+          "route_invalidations": 1634,
+          "route_node_expansions": 3527405,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 9040,
+        "water": {
+          "boundary_outflow_liters": 19300055,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 11300000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391216245,
+            "biomass_outflow_units": 2062051,
+            "cumulative_deposited_liters": 1099445,
+            "cumulative_eroded_liters": 3099200,
+            "current_deposit_subset_liters": 1056885,
+            "deposited_debris_units": 12005,
+            "evaporated_liters": 1122769,
+            "foliage_exported_units": 3254660,
+            "foliage_imported_units": 5684,
+            "infiltrated_liters": 6559222,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 43736076,
+            "mobile_debris_units": 135609,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1782339,
+            "soil_water_liters": 5436453,
+            "suspended_sediment_liters": 217416
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 9040,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 2951123,
+          "upstream_liters": 2157894,
+          "water_extracted_to_other_stocks_liters": 6559222,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 709
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          2182
+        ],
+        "biology_events": 34791,
+        "civilian_jobs_present": true,
+        "completed_jobs": 7,
+        "ecology": {
+          "animal_hydration": 0,
+          "biomass_units": 18103716,
+          "captive_animals": 0,
+          "dead_animals": 14800,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14281835,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 204714,
+          "wild_animals": 0
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 0,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 19,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 9640,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 134,
+          "stale_optional_intents": 3852,
+          "surface_received_mm3": 1216000000,
+          "tracked_real_actors": 94,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1702,
+          "route_cache_hits": 96834,
+          "route_invalidations": 1692,
+          "route_node_expansions": 3759628,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 9640,
+        "water": {
+          "boundary_outflow_liters": 19912895,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 12050000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391151738,
+            "biomass_outflow_units": 2125251,
+            "cumulative_deposited_liters": 1161658,
+            "cumulative_eroded_liters": 3225920,
+            "current_deposit_subset_liters": 1118394,
+            "deposited_debris_units": 12073,
+            "evaporated_liters": 1125504,
+            "foliage_exported_units": 3300554,
+            "foliage_imported_units": 5684,
+            "infiltrated_liters": 6563664,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 43642564,
+            "mobile_debris_units": 119959,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1838626,
+            "soil_water_liters": 5438160,
+            "suspended_sediment_liters": 225636
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 9640,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 3083841,
+          "upstream_liters": 2263502,
+          "water_extracted_to_other_stocks_liters": 6563664,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 707
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          2552
+        ],
+        "biology_events": 34791,
+        "civilian_jobs_present": true,
+        "completed_jobs": 8,
+        "ecology": {
+          "animal_hydration": 0,
+          "biomass_units": 18100116,
+          "captive_animals": 0,
+          "dead_animals": 14800,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14206486,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 209130,
+          "wild_animals": 0
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 0,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 19,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 10240,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 134,
+          "stale_optional_intents": 3852,
+          "surface_received_mm3": 1216000000,
+          "tracked_real_actors": 94,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1763,
+          "route_cache_hits": 102206,
+          "route_invalidations": 1754,
+          "route_node_expansions": 4033823,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 10240,
+        "water": {
+          "boundary_outflow_liters": 20520910,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 12800000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391097902,
+            "biomass_outflow_units": 2178272,
+            "cumulative_deposited_liters": 1224622,
+            "cumulative_eroded_liters": 3342720,
+            "current_deposit_subset_liters": 1179310,
+            "deposited_debris_units": 12141,
+            "evaporated_liters": 1129914,
+            "foliage_exported_units": 3337678,
+            "foliage_imported_units": 5748,
+            "infiltrated_liters": 6571751,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 43563508,
+            "mobile_debris_units": 108866,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1894622,
+            "soil_water_liters": 5441837,
+            "suspended_sediment_liters": 223476
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 10240,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 3217739,
+          "upstream_liters": 2369320,
+          "water_extracted_to_other_stocks_liters": 6571751,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 700
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          2552
+        ],
+        "biology_events": 34791,
+        "civilian_jobs_present": true,
+        "completed_jobs": 8,
+        "ecology": {
+          "animal_hydration": 0,
+          "biomass_units": 18096516,
+          "captive_animals": 0,
+          "dead_animals": 14800,
+          "dead_plants": 0,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "living_plants": 24753,
+          "root_zone_water": 14131277,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 210928,
+          "wild_animals": 0
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 0,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 19,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 10840,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 134,
+          "stale_optional_intents": 3852,
+          "surface_received_mm3": 1216000000,
+          "tracked_real_actors": 94,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1815,
+          "route_cache_hits": 107554,
+          "route_invalidations": 1806,
+          "route_node_expansions": 4307423,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 10840,
+        "water": {
+          "boundary_outflow_liters": 21124425,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 13550000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 391040020,
+            "biomass_outflow_units": 2224642,
+            "cumulative_deposited_liters": 1289428,
+            "cumulative_eroded_liters": 3465408,
+            "current_deposit_subset_liters": 1240340,
+            "deposited_debris_units": 12200,
+            "evaporated_liters": 1135403,
+            "foliage_exported_units": 3375619,
+            "foliage_imported_units": 5880,
+            "infiltrated_liters": 6580704,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 43486123,
+            "mobile_debris_units": 102013,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 1950282,
+            "soil_water_liters": 5445301,
+            "suspended_sediment_liters": 225698
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 10840,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 3355271,
+          "upstream_liters": 2477327,
+          "water_extracted_to_other_stocks_liters": 6580704,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 700
+        },
+        "winner": null
+      }
+    },
+    {
+      "gates": {
+        "actual_combat": false,
+        "capture_and_handler_return": false,
+        "compatible_breeding": false,
+        "continuing_care": false,
+        "cross_seed_smoke": false,
+        "discovery": true,
+        "exact_invariants": true,
+        "existing_animal_release": false,
+        "generated_habitat_food_web": true,
+        "mining_and_delivery": false,
+        "paid_worker_construction": false,
+        "real_captive_offspring": false,
+        "research": false,
+        "save_load_continuity": true
+      },
+      "stage": "ordinary_connected_ticks",
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          291,
+          2552
+        ],
+        "biology_events": 34791,
+        "civilian_jobs_present": true,
+        "completed_jobs": 8,
+        "ecology": {
+          "animal_hydration": 0,
+          "biomass_units": 18092916,
+          "captive_animals": 0,
+          "dead_animals": 14800,
+          "dead_plants": 780,
+          "extinct_species": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "living_plants": 23973,
+          "root_zone_water": 14057701,
+          "transit_animals": 0,
+          "viable_offspring": 0,
+          "viable_seeds": 214292,
+          "wild_animals": 0
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 0,
+          "biomass_received_from_ecology": 106,
+          "biomass_returned_to_ecology": 90,
+          "committed_traits": {
+            "102": 1,
+            "11": 2,
+            "12": 5,
+            "46": 19,
+            "64": 1,
+            "65": 1
+          },
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 11440,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 134,
+          "stale_optional_intents": 3852,
+          "surface_received_mm3": 1216000000,
+          "tracked_real_actors": 94,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 20480,
+          "lost_ammunition": 0,
+          "route_builds": 1863,
+          "route_cache_hits": 112906,
+          "route_invalidations": 1854,
+          "route_node_expansions": 4581023,
+          "spawned": [
+            288,
+            288
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 11440,
+        "water": {
+          "boundary_outflow_liters": 21724730,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 14300000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 390974778,
+            "biomass_outflow_units": 2266148,
+            "cumulative_deposited_liters": 1354554,
+            "cumulative_eroded_liters": 3595776,
+            "current_deposit_subset_liters": 1299066,
+            "deposited_debris_units": 12232,
+            "evaporated_liters": 1141577,
+            "foliage_exported_units": 3463876,
+            "foliage_imported_units": 6084,
+            "infiltrated_liters": 6590641,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 43361468,
+            "mobile_debris_units": 97077,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 2005883,
+            "soil_water_liters": 5449064,
+            "suspended_sediment_liters": 235339
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 11440,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 3495029,
+          "upstream_liters": 2564955,
+          "water_extracted_to_other_stocks_liters": 6590641,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 697
+        },
+        "winner": null
+      }
+    }
+  ],
+  "cross_seed_checks": [
+    {
+      "exact_invariants": true,
+      "military": 128,
+      "seed": 78422,
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          0,
+          0
+        ],
+        "biology_events": 2942,
+        "civilian_jobs_present": true,
+        "completed_jobs": 0,
+        "ecology": {
+          "animal_hydration": 1027670,
+          "biomass_units": 20156650,
+          "captive_animals": 0,
+          "dead_animals": 119,
+          "dead_plants": 0,
+          "extinct_species": [],
+          "living_plants": 24000,
+          "root_zone_water": 16782796,
+          "transit_animals": 5151,
+          "viable_offspring": 0,
+          "viable_seeds": 146400,
+          "wild_animals": 9530
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 0,
+          "biomass_returned_to_ecology": 0,
+          "committed_traits": {},
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 200,
+          "queued_optional_intents": 2942,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 0,
+          "stale_optional_intents": 0,
+          "surface_received_mm3": 0,
+          "tracked_real_actors": 4,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 5120,
+          "lost_ammunition": 0,
+          "route_builds": 0,
+          "route_cache_hits": 0,
+          "route_invalidations": 0,
+          "route_node_expansions": 0,
+          "spawned": [
+            72,
+            72
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 200,
+        "water": {
+          "boundary_outflow_liters": 752890,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 250000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 392099160,
+            "biomass_outflow_units": 1840,
+            "cumulative_deposited_liters": 10072,
+            "cumulative_eroded_liters": 1126912,
+            "current_deposit_subset_liters": 10072,
+            "deposited_debris_units": 75,
+            "evaporated_liters": 0,
+            "foliage_exported_units": 321530,
+            "infiltrated_liters": 552499,
+            "initial_foliage_units": 55010133,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 54609250,
+            "mobile_debris_units": 77438,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 32704,
+            "soil_water_liters": 552499,
+            "suspended_sediment_liters": 1084136
+          },
+          "initial_liters": 15411200,
+          "links": 24352,
+          "processed_through_game_tick": 200,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 14355811,
+          "upstream_liters": 9436197,
+          "water_extracted_to_other_stocks_liters": 552499,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 996
+        },
+        "winner": null
+      },
+      "ticks": 200,
+      "workers": 16
+    },
+    {
+      "exact_invariants": true,
+      "military": 128,
+      "seed": 78423,
+      "state": {
+        "all160_implemented": false,
+        "attributed_ecological_damage": [
+          0,
+          0
+        ],
+        "biology_events": 2713,
+        "civilian_jobs_present": true,
+        "completed_jobs": 0,
+        "ecology": {
+          "animal_hydration": 1036000,
+          "biomass_units": 20156092,
+          "captive_animals": 0,
+          "dead_animals": 0,
+          "dead_plants": 0,
+          "extinct_species": [],
+          "living_plants": 24000,
+          "root_zone_water": 16771644,
+          "transit_animals": 4752,
+          "viable_offspring": 0,
+          "viable_seeds": 145643,
+          "wild_animals": 10048
+        },
+        "integrated_performance_qualified": false,
+        "kind": "connected_native_milestone_B_small_map_not_production20km",
+        "map_meters": [
+          4800,
+          3200
+        ],
+        "military_rules_present": true,
+        "pending_ticks": 0,
+        "physical": {
+          "active_jobs": 4,
+          "biomass_received_from_ecology": 0,
+          "biomass_returned_to_ecology": 0,
+          "committed_traits": {},
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 200,
+          "queued_optional_intents": 2713,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 0,
+          "stale_optional_intents": 0,
+          "surface_received_mm3": 0,
+          "tracked_real_actors": 4,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "requested_speed": 1,
+        "ship_health": [
+          10000,
+          10000
+        ],
+        "tactics": {
+          "deaths": [
+            0,
+            0
+          ],
+          "fired_ammunition": 0,
+          "initial_ammunition": 5120,
+          "lost_ammunition": 0,
+          "route_builds": 0,
+          "route_cache_hits": 0,
+          "route_invalidations": 0,
+          "route_node_expansions": 0,
+          "spawned": [
+            72,
+            72
+          ],
+          "supplied_ammunition": 0
+        },
+        "tick": 200,
+        "water": {
+          "boundary_outflow_liters": 879570,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 250000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 392086128,
+            "biomass_outflow_units": 2099,
+            "cumulative_deposited_liters": 10672,
+            "cumulative_eroded_liters": 1140544,
+            "current_deposit_subset_liters": 10544,
+            "deposited_debris_units": 112,
+            "evaporated_liters": 0,
+            "foliage_exported_units": 150978,
+            "infiltrated_liters": 572343,
+            "initial_foliage_units": 48585666,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 48354743,
+            "mobile_debris_units": 77734,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 38255,
+            "soil_water_liters": 572343,
+            "suspended_sediment_liters": 1091617
+          },
+          "initial_liters": 15436800,
+          "links": 24352,
+          "processed_through_game_tick": 200,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 14234887,
+          "upstream_liters": 9559890,
+          "water_extracted_to_other_stocks_liters": 572343,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 1013
+        },
+        "winner": null
+      },
+      "ticks": 200,
+      "workers": 16
+    }
+  ],
+  "final": {
+    "all160_implemented": false,
+    "attributed_ecological_damage": [
+      291,
+      2552
+    ],
+    "biology_events": 34791,
+    "civilian_jobs_present": true,
+    "completed_jobs": 8,
+    "ecology": {
+      "animal_hydration": 0,
+      "biomass_units": 18089316,
+      "captive_animals": 0,
+      "dead_animals": 14800,
+      "dead_plants": 780,
+      "extinct_species": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "living_plants": 24542,
+      "root_zone_water": 14398823,
+      "transit_animals": 0,
+      "viable_offspring": 0,
+      "viable_seeds": 215483,
+      "wild_animals": 0
+    },
+    "integrated_performance_qualified": false,
+    "kind": "connected_native_milestone_B_small_map_not_production20km",
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "military_rules_present": true,
+    "pending_ticks": 0,
+    "physical": {
+      "active_jobs": 0,
+      "biomass_received_from_ecology": 106,
+      "biomass_returned_to_ecology": 90,
+      "committed_traits": {
+        "102": 1,
+        "11": 2,
+        "12": 5,
+        "46": 19,
+        "64": 1,
+        "65": 1
+      },
+      "conserved": true,
+      "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+      "last_tick": 12000,
+      "queued_optional_intents": 0,
+      "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+      "rejected_optional_intents": 134,
+      "stale_optional_intents": 3852,
+      "surface_received_mm3": 1216000000,
+      "tracked_real_actors": 94,
+      "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+    },
+    "requested_speed": 1,
+    "ship_health": [
+      10000,
+      10000
+    ],
+    "tactics": {
+      "deaths": [
+        0,
+        0
+      ],
+      "fired_ammunition": 0,
+      "initial_ammunition": 20480,
+      "lost_ammunition": 0,
+      "route_builds": 1896,
+      "route_cache_hits": 117913,
+      "route_invalidations": 1887,
+      "route_node_expansions": 4836383,
+      "spawned": [
+        288,
+        288
+      ],
+      "supplied_ammunition": 0
+    },
+    "tick": 12000,
+    "water": {
+      "boundary_outflow_liters": 22299425,
+      "cells": 12288,
+      "conserved": true,
+      "dam_closed": false,
+      "dam_crest_mm": 11000,
+      "external_inflow_liters": 15024528,
+      "fixture": "isolated_river_water_no_military_or_campaign_rules",
+      "ground": {
+        "bed_sediment_liters": 390911447,
+        "biomass_outflow_units": 2301249,
+        "cumulative_deposited_liters": 1413975,
+        "cumulative_eroded_liters": 3718528,
+        "current_deposit_subset_liters": 1353879,
+        "deposited_debris_units": 12256,
+        "evaporated_liters": 1169269,
+        "foliage_exported_units": 3475896,
+        "foliage_imported_units": 6196,
+        "infiltrated_liters": 6624848,
+        "initial_foliage_units": 49194717,
+        "initial_sediment_liters": 393216000,
+        "initial_soil_water_liters": 0,
+        "live_foliage_units": 43318723,
+        "mobile_debris_units": 92789,
+        "returned_to_surface_liters": 0,
+        "sediment_outflow_liters": 2059428,
+        "soil_water_liters": 5455579,
+        "suspended_sediment_liters": 245125
+      },
+      "initial_liters": 17510400,
+      "links": 24352,
+      "processed_through_game_tick": 12000,
+      "rainfall_groundwater_ecosystem_biology_implemented": false,
+      "sample_meters": 8,
+      "stored_liters": 3610655,
+      "upstream_liters": 2614901,
+      "water_extracted_to_other_stocks_liters": 6624848,
+      "water_returned_from_other_stocks_liters": 0,
+      "wet_cells_10mm_or_more": 688
+    },
+    "winner": null
+  },
+  "fixture": {
+    "default_game_counts_unchanged": [
+      10000,
+      2000
+    ],
+    "live_wildlife": true,
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "military": 512,
+    "workers": 64
+  },
+  "full_20km_campaign_or_hardware_performance_qualified": false,
+  "gates": {
+    "actual_combat": false,
+    "capture_and_handler_return": false,
+    "compatible_breeding": false,
+    "continuing_care": false,
+    "cross_seed_smoke": true,
+    "discovery": true,
+    "exact_invariants": true,
+    "existing_animal_release": false,
+    "generated_habitat_food_web": true,
+    "mining_and_delivery": false,
+    "paid_worker_construction": false,
+    "real_captive_offspring": false,
+    "research": false,
+    "save_load_continuity": true
+  },
+  "kind": "connected_campaign_cpu_correctness_not_performance",
+  "maximum_ticks": 12000,
+  "milestones": [
+    {
+      "details": {
+        "compared_through_tick": 1240,
+        "exact_serialized_state_match": true,
+        "fixture_files_removed_after_verification": true,
+        "save_bytes": 63857916,
+        "saved_tick": 1200
+      },
+      "stage": "save_load_and_next_ticks_match",
+      "tick": 1240
+    },
+    {
+      "details": {
+        "patch": 302,
+        "species": 10
+      },
+      "stage": "observed_species_selected",
+      "tick": 2140
+    }
+  ],
+  "passed": false,
+  "recent_command_errors": [
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2480
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2500
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2520
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2540
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2560
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2580
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2600
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2620
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2640
+    },
+    {
+      "action": "capture",
+      "error": "No currently visible accessible animal of that species here",
+      "tick": 2660
+    }
+  ],
+  "released_existing_animal": null,
+  "remaining130traits_implemented": false,
+  "save_receipt": {
+    "compared_through_tick": 1240,
+    "exact_serialized_state_match": true,
+    "fixture_files_removed_after_verification": true,
+    "save_bytes": 63857916,
+    "saved_tick": 1200
+  },
+  "schema_version": 1,
+  "seed": 78421,
+  "selected_observed_species": 10,
+  "ticks": 12000
+}

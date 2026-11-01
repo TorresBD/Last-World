@@ -1,0 +1,8 @@
+{
+  "native_source_sha256": "7f903735711224e890734952248dc52a9532c408bd5a82e13f615e06c7243805",
+  "executable_sha256": "e7c04932393da1ec526df9ca3d6de4ebd2aa412b052e394444713c8e04649844",
+  "all14gates_passed": true,
+  "kind": "actual_connected_cpu_correctness_not_speed_test",
+  "heavy_build_concurrency": false,
+  "performance_qualification": false
+}

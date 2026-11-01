@@ -1,0 +1,16 @@
+{
+  "retained_directory": "/tmp/Last World Feedback ' & [2-048e343f25d24a62983cf12e258c5ee7]",
+  "windows_locked_destination_replacement_verified": false,
+  "passed": true,
+  "checks": [
+    "first_publication",
+    "two_existing_feedback_overwrites_with_true_null_backup",
+    "failed_publication_preserves_old_zip_closed_candidate_and_error",
+    "fallback_honors_persistent_data_lock",
+    "recovery_includes_error_and_preserves_local_state"
+  ],
+  "running_on_windows": false,
+  "portable_requested": true,
+  "schema_version": 2,
+  "powershell_version": "7.4.6"
+}

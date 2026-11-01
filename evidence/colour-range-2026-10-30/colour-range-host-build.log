@@ -1,0 +1,21 @@
+   Compiling last-world-native v0.1.0 (/workspace/scratch/5f5799dd0333/last-world/native)
+error[E0277]: cannot multiply `f64` by `f32`
+  --> src/natural_colors.rs:54:61
+   |
+54 |     let range = |i| ranges[i] + (ranges[i + 1] - ranges[i]) * unit(key, i as u32 + 3);
+   |                                                             ^ no implementation for `f64 * f32`
+   |
+   = help: the trait `std::ops::Mul<f32>` is not implemented for `f64`
+   = help: the following other types implement trait `std::ops::Mul<Rhs>`:
+             `&f64` implements `std::ops::Mul<&DMat2>`
+             `&f64` implements `std::ops::Mul<&DMat3>`
+             `&f64` implements `std::ops::Mul<&DMat4>`
+             `&f64` implements `std::ops::Mul<&DVec2>`
+             `&f64` implements `std::ops::Mul<&DVec3>`
+             `&f64` implements `std::ops::Mul<&DVec4>`
+             `&f64` implements `std::ops::Mul<DMat2>`
+             `&f64` implements `std::ops::Mul<DMat3>`
+           and 21 others
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `last-world-native` (lib) due to 1 previous error

@@ -1,0 +1,17 @@
+{
+  "native_source_sha256": "837a1f280cc337679f3bd2845b8c14ab2d38dd7944119d9c698d93b904b0f6cd",
+  "host_executable_sha256": "196a75c4627d8072b57d6ee2812caaa3a841e6f18402ec53fa5f6093b37a2dfd",
+  "windows_executable_sha256": "e80b77a9e1f0c919969f05071e0ef9a873b4da2cf2d2dec48b7596b6c0201db5",
+  "native_host_checks": 250,
+  "library_checks": 245,
+  "cli_checks": 5,
+  "existing_form_comparisons": 3328,
+  "actual_atlas_changed_rgb_pixels": 1232,
+  "shape_alpha_atlas_metadata_and_all_non_fauna_rgba_unchanged": true,
+  "visual_only": true,
+  "gameplay_code_changed": false,
+  "save_schema_changed": false,
+  "performance_benchmark_run": false,
+  "actual_new_native_scene_screenshot_available": false,
+  "old_battle_qualification_source": "0f1ddec07ab13aa609297fcda21b6cd136cb780b0fe033eab645b3b29aba4565"
+}

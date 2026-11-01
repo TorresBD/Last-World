@@ -1,0 +1,83 @@
+{
+  "actual_counts": null,
+  "attempt": 2,
+  "case": {
+    "backend": null,
+    "capture_last_frame": true,
+    "checkpoint_group": "window-pop-100000-20000",
+    "fault_probe": null,
+    "harness_control_probe": false,
+    "height": 1080,
+    "id": "window-pop-100000-20000",
+    "materialized_wildlife_target": 5000,
+    "military": 100000,
+    "mode": "window",
+    "requested_rate": 100,
+    "seed": 78421,
+    "target_ticks": null,
+    "timeout_seconds": 600,
+    "wall_seconds": 20,
+    "width": 1920,
+    "window_size": [
+      1920,
+      1080
+    ],
+    "workers": 20000
+  },
+  "case_id": "window-pop-100000-20000",
+  "coverage": {
+    "reason": "world or checkpoint preparation failed",
+    "status": "not_reached"
+  },
+  "failure": "Native renderer supports at most 100000 tactical display agents; this case requests 120000 military + workers. The declared capacity is unsupported; no population is constructed or reduced.",
+  "kind": "native_coupled_campaign_stress_measurement",
+  "metrics": {},
+  "native_window": {
+    "actual_simulated_agents": null,
+    "capacity_rejection": true,
+    "gpu_agent_capacity": 100000,
+    "gpu_execution_ms": null,
+    "no_count_clamp": true,
+    "render_started": false,
+    "requested_tactical_agents": 120000,
+    "scope": "declared unsupported native renderer population; no hardware saturation or FPS measurement",
+    "setup_ms": 2.5457,
+    "world_construction_skipped": true
+  },
+  "passed": false,
+  "process_id": 2544,
+  "replay_origin": "preparation_failed",
+  "requested_rate": 100,
+  "schema_version": 1,
+  "session_id": "window-pop-100000-20000-2544-1793398351422",
+  "source_identity": {
+    "built_at_utc": "2026-10-30T06:12:29.767751+00:00",
+    "executable_sha256": "6bac0962241beebcd60ab3476bc2bf1bd17a06304343687adbb5f92e67e790d9",
+    "native_source_sha256": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5",
+    "schema_version": 1,
+    "source_commit": "44e645fc638e78afd0252b220d9acc28e1a73c52",
+    "source_frozen_through_build": true,
+    "target": "x86_64-pc-windows-gnu",
+    "test_harnesses": [
+      {
+        "bytes": 1066250,
+        "inventory_source": null,
+        "path": "native/target/x86_64-pc-windows-gnu/release/deps/last_world-f133de0b800d76fa.exe",
+        "sha256": "e72a1ec3cd5d57823796a9cd179d896bb21972c5aad394b44a42650cd0bc1b42",
+        "suite": "cli",
+        "test_names": []
+      },
+      {
+        "bytes": 11145933,
+        "inventory_source": null,
+        "path": "native/target/x86_64-pc-windows-gnu/release/deps/last_world_native-f3c00bc9461da115.exe",
+        "sha256": "a3104a6f0c9b62ecbff9d1ddf3eebe67704b1ed4fa5eefaf75f3e0212d19e2cb",
+        "suite": "library",
+        "test_names": []
+      }
+    ],
+    "worktree_dirty": true
+  },
+  "started_utc_ms": 1793398351422,
+  "status": "failed"
+}

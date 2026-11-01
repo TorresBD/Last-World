@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "target": "host",
+  "built_at_utc": "2026-10-30T04:23:11.957106+00:00",
+  "source_commit": "abd078c5a513152fece94d7865ca3e6e4821a053",
+  "native_source_sha256": "aa6cd2350dafb24b2bf63ddaf0230df3d12d7648420b3c3aa2356a6a273a0d01",
+  "executable_sha256": "75e3eeaba34bb0f0b0be3b935d530b542faa38b8f1e3aede152998c2be6ab5fb",
+  "source_frozen_through_build": true,
+  "worktree_dirty": true
+}

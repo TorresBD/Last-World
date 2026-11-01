@@ -1,0 +1,21 @@
+{
+  "native_source_sha256": "3c9147c8a52073d64788d521c8325c57a614a1f337ada31d0d706522f8686e1e",
+  "host_executable_sha256": "7f8ec3033c8cfdb5e0a96d47552e672971ae3f7cbd653cbacc7fa72fb79f0198",
+  "windows_executable_sha256": "41dbfc9dea9553e6e681aa9a2ac951fa70b412362dc9f74d4aedebc55807e17f",
+  "native_checks": 253,
+  "library_checks": 248,
+  "cli_checks": 5,
+  "continuous_hsv_genes": true,
+  "form_comparisons": 3328,
+  "distinct_js_coats_from_4096_samples": 4073,
+  "world_seed_and_species_coats": true,
+  "physical_hash_comparison_seeds": [
+    78421,
+    31415
+  ],
+  "physical_hashes_unchanged": true,
+  "rgba_hashes_changed": true,
+  "cpu_terrain_texture_crop_inspected": true,
+  "actual_native_gpu_screenshot_available": false,
+  "new_performance_measurement": false
+}

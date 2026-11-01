@@ -1,0 +1,23 @@
+IDENT flat {'ticks': '0', 'path': None}
+Last-World read-only live progress check (two samples, five seconds apart).
+Your running checks continue. Existing Send-Back.zip is unchanged.
+Run: probe-run | suite status: running
+Phase: benchmark-cpu-season-78421 | attempt 1/2 | PID 2147483647
+Sample 2026-10-31T00:18:08.2309067Z | ticks 100/72000 (0.14%) | actual rate 1.25x at 20 Hz | debt 20 ticks | progress age 0.6 s | owner absent
+Sample 2026-10-31T00:18:13.3080628Z | ticks 225/72000 (0.31%) | actual rate 1.25x at 20 Hz | debt 20 ticks | progress age 2.6 s | owner absent
+Observed 5.1 s | tick advance 125 | process CPU unavailable | RAM unavailable | private unavailable
+Child is absent or its ownership cannot be verified; no running/stuck conclusion is safe.
+Saved Progress.txt and /tmp/LW progress ' & [probe-8v3o3nre/flat/Send-Back-Progress.zip
+ 
+IDENT organized {'ticks': '0', 'path': None}
+Last-World read-only live progress check (two samples, five seconds apart).
+Your running checks continue. Existing Send-Back.zip is unchanged.
+Run: probe-run | suite status: running
+Phase: benchmark-cpu-season-78421 | attempt 1/2 | PID 2147483647
+Sample 2026-10-31T00:18:19.6309426Z | ticks 100/72000 (0.14%) | actual rate 1.25x at 20 Hz | debt 20 ticks | progress age 0.6 s | owner absent
+Sample 2026-10-31T00:18:24.6877565Z | ticks 225/72000 (0.31%) | actual rate 1.25x at 20 Hz | debt 20 ticks | progress age 2.6 s | owner absent
+Observed 5.1 s | tick advance 125 | process CPU unavailable | RAM unavailable | private unavailable
+Child is absent or its ownership cannot be verified; no running/stuck conclusion is safe.
+Saved Progress.txt and /tmp/LW progress ' & [probe-8v3o3nre/organized/Send-Back-Progress.zip
+ 
+{"passed": true, "checks": ["flat_progress_samples_archive_and_preservation", "existing_progress_zip_replace_and_stationary_sample", "organized_progress_samples_archive_and_preservation"], "platform": "Linux portable PowerShell 7.4.6; not Windows CMD or PowerShell 5.1 execution", "fixture": "/tmp/LW progress ' & [probe-8v3o3nre"}

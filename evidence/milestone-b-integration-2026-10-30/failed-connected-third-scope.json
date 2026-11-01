@@ -1,0 +1,6 @@
+{
+  "source_checkpoint": "ffc01ad",
+  "kind": "correctness_only_not_performance_qualification",
+  "concurrent_activity": "Windows cross-build; simulation uses explicit fixed elapsed input, no FPS claims",
+  "outcome": "combat/finite save/count checks pass; player worker corridor remains blocked; physical engineering has real commits"
+}

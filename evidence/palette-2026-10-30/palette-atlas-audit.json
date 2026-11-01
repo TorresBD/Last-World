@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "dimensions": [
+    1024,
+    1024
+  ],
+  "changed_rgb_pixels": 1232,
+  "alpha": "byte-identical",
+  "all_non_fauna_rgba": "byte-identical",
+  "atlas_metadata": "byte-identical",
+  "image_editing": "none; read-only comparison of existing generator output"
+}

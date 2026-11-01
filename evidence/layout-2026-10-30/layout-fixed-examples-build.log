@@ -1,0 +1,26 @@
+   Compiling last-world-native v0.1.0 (/workspace/scratch/5f5799dd0333/last-world/native)
+warning: methods `neighbor` and `forage_destination` are never used
+   --> src/ecology.rs:730:8
+    |
+502 | impl Ecology {
+    | ------------ methods in this implementation
+...
+730 |     fn neighbor(&self, patch: usize, salt: u64) -> Option<usize> {
+    |        ^^^^^^^^
+...
+926 |     fn forage_destination(&self, c: &Cohort, s: &Species, env: &[EcologyPatch]) -> Option<usize> {
+    |        ^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `last-world-native` (lib) generated 1 warning
+error[E0786]: found invalid metadata files for crate `last_world_native`
+ --> examples/battle-qualification.rs:4:5
+  |
+4 | use last_world_native::campaign_benchmark;
+  |     ^^^^^^^^^^^^^^^^^
+  |
+  = note: corrupt metadata encountered in /workspace/scratch/5f5799dd0333/last-world/native/target/release/deps/liblast_world_native.rlib
+
+For more information about this error, try `rustc --explain E0786`.
+error: could not compile `last-world-native` (example "battle-qualification") due to 1 previous error

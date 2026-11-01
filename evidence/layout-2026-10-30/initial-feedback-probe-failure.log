@@ -1,0 +1,7 @@
+InvalidOperation: /workspace/scratch/5f5799dd0333/last-world/native/scripts/test-feedback-windows.ps1:87
+Line |
+  87 |          & $hostExecutable -NoProfile -ExecutionPolicy Bypass -File $h …
+     |            ~~~~~~~~~~~~~~~
+     | The expression after '&' in a pipeline element produced an object that
+     | was not valid. It must result in a command name, a script block, or a
+     | CommandInfo object.

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "target": "host_correctness_example_not_production",
+  "native_source_sha256": "0f1ddec07ab13aa609297fcda21b6cd136cb780b0fe033eab645b3b29aba4565",
+  "executable_sha256": "a45a06ea305b410d21d7666e0acd6f4ae29d1b10c8536a8a4aaf26219db786ce",
+  "source_frozen_through_build": true,
+  "driver_source_sha256": "0bfbd845c61247ac8197cd3db9c757c930b80d348fcc2c09b5adaeb59fe99f0f",
+  "performance_qualification": false,
+  "heavy_build_concurrency": true,
+  "scope": "Unpaced fixed50ms-input full-count24000tick correctness, no native GPU renderer; compiled release source source frozen"
+}

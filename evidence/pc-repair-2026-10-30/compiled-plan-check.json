@@ -1,0 +1,50 @@
+{
+  "native_source_sha256": "7f903735711224e890734952248dc52a9532c408bd5a82e13f615e06c7243805",
+  "host_executable_sha256": "e7c04932393da1ec526df9ca3d6de4ebd2aa412b052e394444713c8e04649844",
+  "all_compiled_case_fields_match_source": true,
+  "comparison_scope": "Rust plan/case schema; raw metadata-only fields audited by package contract",
+  "initial_proof_assertion_corrected": "Raw plan contains metadata not retained by runtime struct; optional speed_ramp null is normalized",
+  "case_count": 12,
+  "adaptive_case": {
+    "id": "window-speed-ramp",
+    "mode": "window",
+    "requested_rate": 1,
+    "military": 10000,
+    "workers": 2000,
+    "seed": 78421,
+    "wall_seconds": 0,
+    "target_ticks": null,
+    "timeout_seconds": 1200,
+    "checkpoint_group": "window-speed-ramp-78421",
+    "backend": null,
+    "width": 1920,
+    "height": 1080,
+    "window_size": [
+      1920,
+      1080
+    ],
+    "capture_last_frame": true,
+    "materialized_wildlife_target": 5000,
+    "fault_probe": null,
+    "harness_control_probe": false,
+    "speed_ramp": {
+      "rates": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        100
+      ],
+      "initial_warmup_seconds": 15,
+      "settle_seconds": 5,
+      "window_seconds": 10,
+      "minimum_windows": 2,
+      "maximum_windows": 4
+    }
+  },
+  "other_probes_max_requested_rate": 2,
+  "actual_speed_tests_executed_on_host": false
+}

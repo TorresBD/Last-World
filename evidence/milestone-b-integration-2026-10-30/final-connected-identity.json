@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "identity": "final_frozen_connected_cpu_correctness_small_fixture",
+  "build_stamp_file": "final-linux-build-stamp.json",
+  "build_stamp_sha256": "929fbdfed0352c704732d49fe54ee625c6fb5f52bf3daafb8233ee55ef31ef93",
+  "source_commit": "88693b62bdc49bf4fb47ede22c0a65ad2fb68b85",
+  "native_source_sha256": "7e8cdb70e5db3346dae53bd9991a9cf52237f1a2e0c92ffcc2bce7334e575f0a",
+  "executable_sha256": "def0abdf61669cc8750b5573178a41df22e9d03827379a9b2692fac6d150437f",
+  "report_sha256": "35c534bdb61ff0106cf7f60fba30818aeeaf13cc8ff67c228ed7947fabcf323f",
+  "stdout_sha256": "4961a238e000279e1c3d8d3786abe5847e34f1d127ee2d0f7990970d38c0b9f6",
+  "reported_passed": true,
+  "verified_passed": true,
+  "independent_checks": {
+    "all_14_gates": true,
+    "nonnull_late_receipt": true,
+    "late_exact_match": true,
+    "late_next_40_ticks": true,
+    "matching_named_late_milestone": true,
+    "explicit_post_gameplay_40_ticks": true,
+    "fixture_counts_preserved": true,
+    "source_commit_matches": true,
+    "native_source_matches": true,
+    "executable_matches": true,
+    "no_runtime_fatal_or_panic": true
+  },
+  "failed_gates": [],
+  "fixture": {
+    "default_game_counts_unchanged": [
+      10000,
+      2000
+    ],
+    "live_wildlife": true,
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "military": 512,
+    "workers": 64
+  },
+  "ticks": 17320,
+  "maximum_ticks": 24000,
+  "late_save_receipt": {
+    "compared_through_tick": 17320,
+    "exact_serialized_state_match": true,
+    "fixture_files_removed_after_verification": true,
+    "save_bytes": 91373408,
+    "saved_tick": 17280
+  },
+  "actual_tactical_totals": {
+    "deaths": [
+      14,
+      16
+    ],
+    "fired_ammunition": 422,
+    "initial_ammunition": 20480,
+    "lost_ammunition": 799,
+    "route_builds": 832,
+    "route_cache_hits": 150794,
+    "route_cost_refreshes": 706,
+    "route_invalidations": 804,
+    "route_node_expansions": 8057611,
+    "spawned": [
+      288,
+      288
+    ],
+    "supplied_ammunition": 0
+  },
+  "actual_ecology_counts": {
+    "animal_hydration": 1137674,
+    "biomass_units": 19729874,
+    "captive_animals": 3,
+    "dead_animals": 857,
+    "dead_plants": 1520,
+    "death_reasons": {
+      "offspring/flooding": 30,
+      "predation": 354,
+      "transit/starvation": 2,
+      "wild/starvation": 471
+    },
+    "extinct_species": [
+      0
+    ],
+    "generation_accepted": true,
+    "generation_relocations": 258,
+    "living_plants": 22500,
+    "root_zone_water": 29832734,
+    "transit_animals": 117,
+    "viable_offspring": 136,
+    "viable_seeds": 173354,
+    "wild_animals": 16205
+  },
+  "ore_delivered": [
+    40,
+    40
+  ],
+  "retained_command_rejection_count": 10,
+  "retained_command_rejection_kinds": [
+    "Breeding needs compatible housed reproductive roles and space for the viable offspring"
+  ],
+  "hardware_performance_qualified": false,
+  "full_20km_campaign_qualified": false
+}

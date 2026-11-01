@@ -1,0 +1,63 @@
+{
+  "seed": 78421,
+  "patches": 600,
+  "width": 30,
+  "through_tick": 72000,
+  "simulated_seconds": 3600,
+  "checkpoints": 61,
+  "invariants": "exact material, water, animal, plant and unique ownership checks passed every20ticks",
+  "founders": 14800,
+  "initial": {
+    "animal_hydration": 1184000,
+    "biomass_units": 20315200,
+    "captive_animals": 0,
+    "dead_animals": 0,
+    "dead_plants": 0,
+    "death_reasons": {},
+    "extinct_species": [],
+    "generation_accepted": true,
+    "generation_relocations": 258,
+    "living_plants": 24000,
+    "root_zone_water": 16800000,
+    "transit_animals": 0,
+    "viable_offspring": 0,
+    "viable_seeds": 144000,
+    "wild_animals": 14800
+  },
+  "final": {
+    "animal_hydration": 1384647,
+    "biomass_units": 17350953,
+    "captive_animals": 0,
+    "dead_animals": 14697,
+    "dead_plants": 1720,
+    "death_reasons": {
+      "offspring/flooding": 52,
+      "offspring/maternal_loss": 2,
+      "predation": 9136,
+      "transit/starvation": 296,
+      "wild/starvation": 5211
+    },
+    "extinct_species": [
+      0
+    ],
+    "generation_accepted": true,
+    "generation_relocations": 258,
+    "living_plants": 22280,
+    "root_zone_water": 292500103,
+    "transit_animals": 640,
+    "viable_offspring": 332,
+    "viable_seeds": 459321,
+    "wild_animals": 22119
+  },
+  "all_eight_fauna_species_extant": true,
+  "rescue_spawning": false,
+  "founder_count_reductions": false,
+  "limitation": "Isolated biological correctness/viability run. Actual initial Campaign environmental matrix and border masks, seasonal climate/rainfall, finite biology. Physical surface depths/connectivity remain at their initial snapshot; no moving-water, military simulation, rendering, GPU or performance qualification.",
+  "source_sha256": {
+    "native/src/ecology.rs": "8cffbc8b94bc50c2e7fc2ada5c73c9a1a2adebc7b02877bf4a22f98018e72d88",
+    "native/src/ecology_behavior.rs": "333a8e7f74192ea3dda0fa3c29a92df043a4900194f7030d0549f72f9b859f50",
+    "native/src/climate.rs": "6840959979ddb039b6e093132659487d3e3189c0e5a36315f8b28230c2fdcf31",
+    "native/scripts/ecology-qualification.rs": "cca6262585ba6d7ce3885447eb6ca0bbe84cb7eb630cdc470979906e5385f697",
+    "evidence/milestone-b-integration-2026-10-30/initial-environment.json": "caf2f0cf8d38bfaa8d75abbc87b8f130f93124c498547de8878c91c0f828e2f8"
+  }
+}

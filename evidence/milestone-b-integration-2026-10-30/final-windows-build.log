@@ -1,0 +1,27 @@
+    Blocking waiting for file lock on build directory
+   Compiling last-world-native v0.1.0 (/workspace/sites/last-world/native)
+warning: unused variable: `path`
+   --> src/campaign_support.rs:178:20
+    |
+178 |     fn sync_parent(path: &Path) -> Result<(), String> {
+    |                    ^^^^ help: if this is intentional, prefix it with an underscore: `_path`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `neighbor` and `forage_destination` are never used
+   --> src/ecology.rs:730:8
+    |
+502 | impl Ecology {
+    | ------------ methods in this implementation
+...
+730 |     fn neighbor(&self, patch: usize, salt: u64) -> Option<usize> {
+    |        ^^^^^^^^
+...
+926 |     fn forage_destination(&self, c: &Cohort, s: &Species, env: &[EcologyPatch]) -> Option<usize> {
+    |        ^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `last-world-native` (lib) generated 2 warnings (run `cargo fix --lib -p last-world-native` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 6m 22s
+[BUILD_STAMP] {"built_at_utc": "2026-10-30T05:05:41.896528+00:00", "executable_sha256": "d9aa4b559610375014e7b4615e17f528af7229917b65f9928ca4a80695c5f3c3", "native_source_sha256": "7e8cdb70e5db3346dae53bd9991a9cf52237f1a2e0c92ffcc2bce7334e575f0a", "schema_version": 1, "source_commit": "ec909d1c2b11e490ceb6181dc9f14287af1def58", "source_frozen_through_build": true, "target": "x86_64-pc-windows-gnu", "worktree_dirty": true}

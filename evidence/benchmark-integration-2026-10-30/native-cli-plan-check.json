@@ -1,0 +1,20 @@
+{
+  "kind": "native_compiled_plan_and_normal_speed_contract",
+  "passed": true,
+  "compiled_cases": 27,
+  "rates": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    100
+  ],
+  "max_military": 200000,
+  "max_workers": 40000,
+  "normal_game100_rejected": true,
+  "hardware_performance_qualified": false,
+  "qa_history": "An initial ad-hoc assertion removed spaces from stderr but retained spaces in its expected string; the corrected assertion above passed without changing game code."
+}

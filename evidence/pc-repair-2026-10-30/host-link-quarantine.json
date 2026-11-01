@@ -1,0 +1,621 @@
+{
+  "reason": "host_lib_test_link_failed_generated_bevy_object_zero_bytes; no source change; original235-test executable not final proof",
+  "moved": [
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.rustc_std_workspace_alloc-99955b4d3549c390.rustc_std_workspace_alloc.72f1d2b17b1ec12d-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 648
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_transform-8388c2700dd03542.bevy_transform.865671e1f8f9f419-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.fdeflate-c18776e63b794ee2.fdeflate.a332c06af8e84913-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 59944
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.profiling-c59a20bfcf6bf119.profiling.9215c2acaf1138ea-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.const_fnv1a_hash-0045cd175fb410d9.const_fnv1a_hash.971e1d2c1053155-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_ecs-6bfb309652e640ab.bevy_ecs.ad2be5c2391a92a3-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 1196592
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.disqualified-68baf79c2630e3db.disqualified.7bdde204e926b0ba-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 15696
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.once_cell-b41f9b8fe943ed97.once_cell.1007694981343ff9-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.linux_raw_sys-0d8782026d8d320b.linux_raw_sys.f6deb870fdf8db9b-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.rustc_std_workspace_core-79f73bde78643b0a.rustc_std_workspace_core.d41282e69a32c891-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 640
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.itoa-28018599007469ec.itoa.2c9fe6b5d451b895-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 6536
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.hashbrown-51d9ae21a16391ba.hashbrown.c42db024a0c43d25-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 4592
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.crossbeam_channel-bbc31df724b48fa8.crossbeam_channel.58882a73c06bc0ee-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2464
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.panic_unwind-e8f3c569ec017ae8.panic_unwind.eff3ae1a09718b05-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 17920
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy-67e6493e79934841.bevy.e3979118836ae2de-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.std-c64e6e11aa24fc43.std.1e3c4ec04c5261a9-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 4947408
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.lock_api-1924333dde7e1219.lock_api.2b99a0b0babf838a-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.fastrand-78cda0f47323d685.fastrand.73909a8fa237fcaa-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 3168
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.codespan_reporting-1d6b6a80fd080665.codespan_reporting.9b10456e27871cf6-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 39480
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.wgpu_core-3dd35de1616735b5.wgpu_core.943552e914b241ca-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.smallvec-c0117927d3f30b05.smallvec.9a80cc5f016d5488-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.downcast_rs-5cf5bd4b929fd795.downcast_rs.12f2fb1703ef443-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.rustix-09f340735d4e59c4.rustix.6fece2d9753b4494-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.hashbrown-e83c1a8558bf06ee.hashbrown.7941ffb519c81848-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.event_listener_strategy-88d8ba7c4fb9a4e9.event_listener_strategy.e4af67b5fe7102fd-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 640
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_math-5763a2b8e93cd513.bevy_math.77f74ac7e84bdbc4-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.hashbrown-6225307d69013b07.hashbrown.611e5b3c3850aabf-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2432
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.core-b5d59729c8525f07.core.37f591cfbe66b0b1-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 662640
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.cfg_if-c966e4159bd8bc70.cfg_if.ca8a76409977a004-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_ptr-bb46fa17b5256cd3.bevy_ptr.6e5656178403c220-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.arrayvec-6b5c99e8ed08be42.arrayvec.8c7edc106a1b1036-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 1432
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_shape-63ed6ddc84aae342.bevy_shape.26c3eea3087f8a9a-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.67ayrvdk09n97qf7waqs7dwsq.rcgu.o",
+      "bytes": 3080
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.smol_str-63d42e0de87bb3f7.smol_str.5de621d976cd0b38-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.crc32fast-e22d3244d0ccecc8.crc32fast.ece7b1659f7fdec6-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 27552
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bit_vec-3e672aa7836e1a84.bit_vec.174458f5ab47d864-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2648
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.thiserror-3b4c2595375c172a.thiserror.1f1dd0626cb65190-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.serde-548440dcb9e340b4.serde.7dc459286de041e6-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2592
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_input-e2136213b1269c2e.bevy_input.914bb61f399ae145-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.libc-bdb37ed461159377.libc.164ae325c1dc2cac-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.slotmap-cb7597c9e6afcf62.slotmap.fe721a174a5b2518-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 1808
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.dlib-ed68265e8677a9d5.dlib.d24064fb1a3442d9-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.libc-8da72b3f3dca3868.libc.d2ed16407a239f33-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.xkbcommon_dl-33d0fb3c15f68f95.xkbcommon_dl.3042a06f9c01aabc-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.as_raw_xcb_connection-c34febe74048ad72.as_raw_xcb_connection.af8b0b5133b85b67-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 640
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.flate2-f4f8c2789bf2c818.flate2.b0e63f504bd4ec19-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bumpalo-5e467f273ce420fd.bumpalo.f7d44a1a5986f05-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2672
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.gpu_alloc_types-f5723d4e4c743d51.gpu_alloc_types.7361478df9df477a-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.scopeguard-1bbe6959b06cc318.scopeguard.e0f64a9547211153-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.rustix-a5ecb835799949c1.rustix.d2363377d2f55002-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.async_channel-12379f63c68c5267.async_channel.fb54016fc3230ee7-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.miniz_oxide-c91c7cb2fb6d514e.miniz_oxide.d7987fc8616c2130-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bytemuck-d5afe3dd6cff1a01.bytemuck.b968d5256c4ed359-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.ordered_float-627800e1492ed1e0.ordered_float.8286ab5e243cd4a4-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.thread_local-af31566e6ad5d56d.thread_local.61e847439c3f98c-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.cursor_icon-7bf7a5215f455d80.cursor_icon.6fdfa2d4d7f0108e-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_internal-67f51497f930e4c6.bevy_internal.ceb4cebc89f9f0c9-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 25248
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.nonmax-e1aed7634af18daa.nonmax.28ef43279e69d792-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bitflags-809ce347cf2f50a6.bitflags.3038ee80d2df0c0d-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.concurrent_queue-bfeff7d6ea14e7b0.concurrent_queue.aebddf6604b80b6d-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.spirv-35174ed3dfcc2d25.spirv.c2f1e3ee91fcbdcd-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.foldhash-a51566d48f62e4fa.foldhash.dd30330ead22ef95-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.parking_lot_core-08d83bec5de3be1d.parking_lot_core.b215c9e93a4c888f-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.object-f810d9e1ec7b3602.object.a94530f7628a2afe-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 1328
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.indexmap-ce68be478e53087a.indexmap.fcad18624dcc6d64-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.percent_encoding-ca29b2d6b9a1505c.percent_encoding.54be4c7a5b93ae73-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bit_set-0bc11a051696715b.bit_set.1cd3ef2d12d87df7-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.equivalent-f64000199d90714e.equivalent.837fb4e84de58b8d-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.addr2line-02954dcf5cbc5891.addr2line.9e63b7047c162d6b-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 4552
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.foldhash-5c29bb4fd519ec25.foldhash.eec84b26fd38840d-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 1568
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.cfg_if-e326f6c6a3a910a0.cfg_if.19b823b58abcc20a-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.typeid-42b9b4ae10c48032.typeid.d20917abc0caac02-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_utils-6977830b2334c27e.bevy_utils.139d0727a7461afc-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 3184
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.libm-64ba6dd511468e9a.libm.51bdf6bc2b030cb2-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 49568
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.khronos_egl-722836a76ff00430.khronos_egl.7bb17ee7eda61487-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_platform-158716046118ccf5.bevy_platform.cd929ef5f5560a42-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.getopts-bbdff6f3ac33b345.getopts.204dadd8f98f0773-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 348672
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.wgpu-173f4cca3915b243.wgpu.ca228fbe9a36107f-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.alloc-e17b81f57125c74c.alloc.24b8200b0946867-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 97024
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.naga-16e48cb060f2523f.naga.9fc5f15f086d0a43-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2677272
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.derive_more-1b2187982fbe5022.derive_more.68004d802e537dc7-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.gpu_descriptor_types-a886af9d8324f9e9.gpu_descriptor_types.5690f17d4bbb7d0e-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 640
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.renderdoc_sys-6b5ff603283fb528.renderdoc_sys.f909166c6bda6c65-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.zerocopy-e9123f205e3cd17f.zerocopy.1f7553de1e706e9-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.tracing-805e3d0c9eb9b1a3.tracing.8c2ea05372bfa197-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_app-f571d6bdda14964d.bevy_app.4796c9e369660f40-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 0
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.parking_lot-b7af28dfbcdc5088.parking_lot.b0a1533f89a54918-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.pin_project_lite-67ec395a74c616d8.pin_project_lite.d9754faf15de1bf2-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.glam-e52f8a9a10c702ad.glam.61353aea597eafc9-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.dpi-fb34bf9bd0db4dd4.dpi.6fbe88cb898260ab-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.gimli-34f31eace0d7245f.gimli.dfc0009c5daac8ab-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 30520
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.adler2-57de982d9269a3a4.adler2.c621d4ef247fadde-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2328
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_time-89887f5f0bd8b4b9.bevy_time.6567b4803483451a-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 1232008
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.memchr-b05be8b5d4933b1b.memchr.b0f2956e020d1927-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 12984
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.polling-5782a813869e5109.polling.9d2edf69f13942fc-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.zmij-c7bf77b8a1539a80.zmij.9e8d662aabfa4959-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 21592
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.wgpu_types-f29ee5132ed3c354.wgpu_types.dbe6b9dbe594fdaf-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.static_assertions-befaadd0ce4360cf.static_assertions.f78a90d01f7c4f2c-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 640
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.log-4a1739c6aba85fde.log.d8792d8fc2f5fc18-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 3728
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.x11rb-b49db0926597afb1.x11rb.14ac49589f8a0c59-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.fixedbitset-56f62e5ceefa1b5f.fixedbitset.b70f929801c8c461-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 7528
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.erased_serde-95c7120176616796.erased_serde.2b70cac773d4c3d5-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 22432
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.rustc_hash-97dafce77b6fbc9c.rustc_hash.4c21236697d4dece-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.simd_adler32-31f4e1f4bd3e57b5.simd_adler32.635eb7183a53803a-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 7096
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_reflect-829abf727c2aacd3.bevy_reflect.c4f65af8780b3592-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 1658952
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.async_task-dc4f4ae4378c7b4d.async_task.381a12d777d8fbef-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 3496
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.unicode_width-30e4da2c3d66e27c.unicode_width.7a2bab617afb6c9c-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 8704
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.winit-5c67814e80d2a0dc.winit.8c7476e3b5310826-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.unwind-d90fb703b61b002d.unwind.4f7ac1db53c5e9c1-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.ash-7f39bb08bbd1ecd3.ash.e5ef0866be14ba6e-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.last_world_native.21e4c7d114868622-cgu.0.rcgu.o",
+      "bytes": 11637512
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.unicode_ident-388d93495c240769.unicode_ident.8731321f6a657f71-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 11512
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_diagnostic-034af94caf1ae8be.bevy_diagnostic.8a3383364f252ee6-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 162848
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.rustc_demangle-73bcb43673848f30.rustc_demangle.ef7cce9dbef1cca7-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 89872
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.png-d5aba405f60a6c29.png.805075405ca4611-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 147536
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.gpu_alloc-5cb7ee7e3393b15d.gpu_alloc.ec78fc8a179518bb-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.wgpu_hal-01e35ae4b2b0dd4d.wgpu_hal.2c998a32b107686d-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2904
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.miniz_oxide-24b69c27fbe9064f.miniz_oxide.25d2ac20fa75ff7a-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 30648
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.half-4363a2fa09427b3b.half.3fa0b15066ecf00-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2968
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.d",
+      "bytes": 3268
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.glow-83f5369b33e407df.glow.e2576d5c95b07a85-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.slab-1973a555e0574d0b.slab.42c23d3ef77a32e6-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.async_executor-92afb542dbc19b41.async_executor.a7adee55c8b9e96f-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 37024
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.serde_json-9f86b7e8ba909d88.serde_json.810fe5e41f897a06-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 157960
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.thiserror-026d77665226cdb9.thiserror.750dac3159373a98-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.gethostname-bac8dae556f92a0b.gethostname.9f1db0f48a2b7319-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.hexf_parse-bfe761f4a8404143.hexf_parse.adab9f84ee5a92a3-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 4528
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.futures_lite-72a4adde4a4eadf4.futures_lite.cbf2e540dcd0865c-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 5344
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.linux_raw_sys-284e0b97de5bd8c8.linux_raw_sys.170dd4873a1592a3-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.futures_io-70d83af1a148734b.futures_io.9b909d3fc90a05ce-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.crossbeam_utils-f9146a061c660b3f.crossbeam_utils.22f3f2c38fa7a9b1-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 2624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.libloading-4a9b7d649681fb4d.libloading.aed8ff7b2b4ec955-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.nix-138f5c5f898353dd.nix.7d5346b8067597c0-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.memchr-5338843b9da46083.memchr.c3052ed117561fcc-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 20760
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.test-009e9a84885f0921.test.498d5a82ff81f7f6-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 4464544
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.std_detect-64da8f7c5e658436.std_detect.48c3ddcc2b620de0-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 18480
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.parking-c162b024dbba29e6.parking.86ba1b4bce3e2e88-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 14104
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.gpu_descriptor-28633fd2f9068116.gpu_descriptor.8fd889b084ce1367-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.bevy_tasks-ceb7b688d9452d00.bevy_tasks.b7daff8ac48ad7e-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 114880
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.hashbrown-27f7059fcf3b028d.hashbrown.abd931f3e993dfbd-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.num_traits-67562358b605e85f.num_traits.8a77c8fbd2f6b9cc-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.x11_dl-41ea826bbc2efca4.x11_dl.e45dde6ad7b5ec72-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.calloop-a20534e4747eee1c.calloop.f7c7a564f1b62771-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.xkeysym-b9fd87224fe716c2.xkeysym.9eaa5f79dc37da50-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c",
+      "bytes": 11912968
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.tracing_core-9b0d5fb6a6a882e1.tracing_core.3d78d73e8ce302d2-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.raw_window_handle-5b0dbfb2bf2b1652.raw_window_handle.41f99e118fb9740a-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 640
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.ctrlc-a071f7f85e53b38c.ctrlc.6e68f25f3c28f436-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.rustc_std_workspace_std-6aad90a2a10ef45d.rustc_std_workspace_std.1731b3a94b3841bb-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 640
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.serde_core-b4ce65056a0959d9.serde_core.6a77a0bfe050c3ba-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 26184
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.x11rb_protocol-a2f4a509756fb31a.x11rb_protocol.eb8fc4ba465dbc29-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 4616
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.futures_core-6bcb116405ce417f.futures_core.46b770a98488f20-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 632
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.web_time-8f079a3a55f96d2c.web_time.18ba3d55f65b1b70-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 624
+    },
+    {
+      "path": "native/target/release/deps/last_world_native-783c17570846f95c.event_listener-4ccac3ec3de48e0e.event_listener.55c7b3d5bad542ee-cgu.0.rcgu.o.rcgu.o",
+      "bytes": 3056
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "identity": "intermediate_frozen_fifth_connected_run_not_final_release_validation",
+  "source_commit": "2a2a2d1b6b8f79ccf307d693e5cb9a76a72648c3",
+  "native_source_sha256": "3e4901b55ed32d3b612c29e1491ffe25b92a2a9fb381b6354df62d0494227e26",
+  "executable_sha256": "e9a9226af6e242ea60a53ca7b1ec494b5d503f16c58e3f7ebf38d9cc9aea8df1",
+  "report_sha256": "0464d26794b804b31fb613dd431a4c20cd415b33e16286f247fff6c63eac46ca",
+  "stdout_sha256": "3586a1a78624166ee9dbdc0c7508e332625f3c94e6a7c4e3c74d55b8c2b5ae18",
+  "fixture": {
+    "default_game_counts_unchanged": [
+      10000,
+      2000
+    ],
+    "live_wildlife": true,
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "military": 512,
+    "workers": 64
+  },
+  "passed": true,
+  "failed_gates": [],
+  "ticks": 17280,
+  "maximum_ticks": 24000,
+  "hardware_performance_qualified": false,
+  "note": "Parent is correcting additional mortality/controller edges separately; this frozen build does not contain those later source changes."
+}

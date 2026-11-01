@@ -1,0 +1,15 @@
+{
+  "native/src/campaign.rs": "12285552de61e534c3610d3665b1902e34bfad14e860f58c6275b238b8f653e1",
+  "native/src/campaign_commands.rs": "19dcdd430de28cea21547aeb052eaadad13ab04e0a8ddff9627e8b077f7834d6",
+  "native/src/ecology.rs": "8cffbc8b94bc50c2e7fc2ada5c73c9a1a2adebc7b02877bf4a22f98018e72d88",
+  "native/src/ecology_behavior.rs": "333a8e7f74192ea3dda0fa3c29a92df043a4900194f7030d0549f72f9b859f50",
+  "native/src/ecology_navigation.rs": "2c6cc3231d31472ede89854420af5360d8de22d928c3ce1475c83ad2fa77584f",
+  "native/src/ecosystem_physics.rs": "e40218f13d3014c2676360c6b66d969ecbc4eb9a87801fde57670b73bbbdeeb9",
+  "native/src/habitat.rs": "cde6d737afdaaf1712fbccbe6ac835cde14f60ff97094083e6a8095f259e8e13",
+  "native/src/construction.rs": "07ff38d4a8021851a8237c8e8dbab8fbcea760958b7ba99f0bc9d65ed85ff858",
+  "native/src/ground.rs": "dfb858c0a7dd52e417c309c3914f5694fe9cbf6bf71d911115690f1f97ab5cd0",
+  "native/src/river.rs": "93d4252481b0e4b4060a55c603194bffd90a205ee0dfe9e15913bef717d81d6e",
+  "native/src/tactics.rs": "5862861a6e87c1d968152a221bdedceb9d021840f907e776df746b5d6d1b66d8",
+  "native/src/campaign_support.rs": "b9a4e782551c8915a2382cf5ebec77f609c4ff7ffe3536af683f5095f5b5573b",
+  "native/src/faction_support.rs": "30a99b5fb711d0438dd18007a001cf8ae0f1afa771423a7bb52656be1f97be31"
+}

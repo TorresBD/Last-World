@@ -1,0 +1,46 @@
+=== NATIVE 2026-10-30T04:55:49.095524+00:00 ===
+['/root/.cargo/bin/cargo', 'test', '--manifest-path', 'native/Cargo.toml', '--locked', '--lib', 'custody_mortality_tests', '--', '--test-threads=1']
+   Compiling last-world-native v0.1.0 (/workspace/sites/last-world/native)
+warning: methods `neighbor` and `forage_destination` are never used
+   --> src/ecology.rs:730:8
+    |
+502 | impl Ecology {
+    | ------------ methods in this implementation
+...
+730 |     fn neighbor(&self, patch: usize, salt: u64) -> Option<usize> {
+    |        ^^^^^^^^
+...
+926 |     fn forage_destination(&self, c: &Cohort, s: &Species, env: &[EcologyPatch]) -> Option<usize> {
+    |        ^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `last-world-native` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.31s
+     Running unittests src/lib.rs (native/target/debug/deps/last_world_native-2123653b4c1f8fb1)
+
+running 2 tests
+test campaign::custody_mortality_tests::actual_captive_mortality_cancels_return_and_both_release_phases_without_respawn ... ok
+test campaign::custody_mortality_tests::killed_handler_releases_same_animal_wallet_and_detail_at_actual_carrier_position ... FAILED
+
+failures:
+
+---- campaign::custody_mortality_tests::killed_handler_releases_same_animal_wallet_and_detail_at_actual_carrier_position stdout ----
+[1793336167893] [CAMPAIGN_NEW] {"ecology":{"animal_hydration":1184000,"biomass_units":20315200,"captive_animals":0,"dead_animals":0,"dead_plants":0,"death_reasons":{},"extinct_species":[],"generation_accepted":true,"generation_relocations":258,"living_plants":24000,"root_zone_water":16800000,"transit_animals":0,"viable_offspring":0,"viable_seeds":144000,"wild_animals":14800},"map_meters":[4800,3200],"military":2,"scope":"Milestone B connected small map; production20km and remaining130traits in C","seed":78421,"workers":2}
+[1793336167902] [CAPTURE_HANDLER_LOST] {"animal":1601,"position_mm":[424000,1720000],"tick":0,"worker":2}
+
+thread 'campaign::custody_mortality_tests::killed_handler_releases_same_animal_wallet_and_detail_at_actual_carrier_position' (294) panicked at src/campaign.rs:2873:9:
+assertion `left == right` failed
+  left: [424.00003, 1720.0001]
+ right: [424.0, 1720.0]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    campaign::custody_mortality_tests::killed_handler_releases_same_animal_wallet_and_detail_at_actual_carrier_position
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 212 filtered out; finished in 11.40s
+
+error: test failed, to rerun pass `--lib`
+
+EXIT 101

@@ -1,0 +1,17 @@
+{
+  "source": "0f1ddec07ab13aa609297fcda21b6cd136cb780b0fe033eab645b3b29aba4565",
+  "results": [
+    {
+      "suite": "cli",
+      "sha256": "1a079cb01d81edfcf1d660edda24b7b98d566e57f26b466f30ac4411036c785f",
+      "exit_code": 0,
+      "expected_names": 5
+    },
+    {
+      "suite": "library",
+      "sha256": "96c3d467bc15f3c1dfef70331655c2f5af54b334799dc9ceabd5b865af6f6afe",
+      "exit_code": 0,
+      "expected_names": 245
+    }
+  ]
+}

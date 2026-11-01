@@ -1,0 +1,3472 @@
+{
+  "actual_counts": {
+    "actual_tactical_records": 145,
+    "captive_animals": 0,
+    "cohort_struct_records": 1832,
+    "deaths_by_faction": [
+      0,
+      0
+    ],
+    "fine_wildlife_records": 256,
+    "living_plants": 24000,
+    "population_counts_were_not_reduced": true,
+    "requested_initial_military": 128,
+    "requested_initial_workers": 16,
+    "role_ledger": {
+      "Scout": {
+        "alive": 1,
+        "dead": 0,
+        "spawned_records": 1
+      },
+      "Soldier": {
+        "alive": 128,
+        "dead": 0,
+        "spawned_records": 128
+      },
+      "Worker": {
+        "alive": 16,
+        "dead": 0,
+        "spawned_records": 16
+      }
+    },
+    "roles_total_and_alive": {
+      "Scout": [
+        1,
+        1
+      ],
+      "Soldier": [
+        128,
+        128
+      ],
+      "Worker": [
+        16,
+        16
+      ]
+    },
+    "spawned_by_faction": [
+      73,
+      72
+    ],
+    "species_profiles": 15,
+    "transit_animals": 0,
+    "wild_animals": 14800
+  },
+  "attempt": 1,
+  "case": {
+    "backend": null,
+    "capture_last_frame": false,
+    "checkpoint_group": "recovery-controls-78421",
+    "fault_probe": "after_commit_crash_once",
+    "harness_control_probe": true,
+    "height": null,
+    "id": "probe-after-commit-crash-once",
+    "materialized_wildlife_target": 64,
+    "military": 128,
+    "mode": "cpu",
+    "requested_rate": 4,
+    "seed": 78421,
+    "target_ticks": null,
+    "timeout_seconds": 60,
+    "wall_seconds": 1,
+    "width": null,
+    "window_size": [
+      1920,
+      1080
+    ],
+    "workers": 16
+  },
+  "case_id": "probe-after-commit-crash-once",
+  "checkpoint": {
+    "awaiting_window_validation": false,
+    "bytes": 62265627,
+    "clock_debt_preserved": true,
+    "committed": true,
+    "path": "check-results/20261030T214513275Z-20960/benchmark\\checkpoints\\recovery-controls-78421.save",
+    "phase_controller_and_world_one_envelope": true,
+    "write_seconds": 0.5046495
+  },
+  "conservation_controller": {
+    "actual_existing_animal_released": false,
+    "actual_offspring": false,
+    "actual_pair_delivered": false,
+    "breeding_enabled": false,
+    "milestones": [],
+    "next_action_tick": 80,
+    "no_species_or_stock_rescue": true,
+    "pending_handlers": [],
+    "pending_release": null,
+    "recent_command_rejections": [],
+    "selected_species": null,
+    "study800ticks": false,
+    "water_given_to_care": 0
+  },
+  "controller_scope": "explicit qualification harness; ordinary paid commands and currently observed capture/release; no player UI knowledge bypass",
+  "core_phase_passed": true,
+  "coverage": {
+    "conservation": {
+      "evidence": {
+        "actual_existing_animal_released": false,
+        "actual_offspring": false,
+        "actual_pair_delivered": false,
+        "breeding_enabled": false,
+        "milestones": [],
+        "next_action_tick": 80,
+        "no_species_or_stock_rescue": true,
+        "pending_handlers": [],
+        "pending_release": null,
+        "recent_command_rejections": [],
+        "selected_species": null,
+        "study800ticks": false,
+        "water_given_to_care": 0
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "not_reached"
+    },
+    "construction": {
+      "evidence": {
+        "buildings": 0,
+        "completed_jobs": 0,
+        "phase_completed_jobs": 0,
+        "unfinished_jobs": 9
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "not_reached"
+    },
+    "ecological_score": {
+      "evidence": {
+        "damage_attribution": [
+          0,
+          0
+        ],
+        "outcome": "",
+        "winner": null
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "not_reached"
+    },
+    "logistics_economy": {
+      "evidence": {
+        "actual_ore_cargo": {},
+        "external_inputs": [
+          {
+            "metal": 0,
+            "power": 0,
+            "rations": 0,
+            "timber": 0
+          },
+          {
+            "metal": 0,
+            "power": 0,
+            "rations": 0,
+            "timber": 0
+          }
+        ],
+        "finite_deposits": [
+          {
+            "id": 0,
+            "initial": 50000,
+            "position": [
+              604.0,
+              1448.0
+            ],
+            "remaining": 50000
+          },
+          {
+            "id": 1,
+            "initial": 50000,
+            "position": [
+              4196.0,
+              1502.0
+            ],
+            "remaining": 50000
+          }
+        ],
+        "ore_delivered": [
+          0,
+          0
+        ],
+        "stores": [
+          {
+            "metal": 11020,
+            "power": 19766,
+            "rations": 3980,
+            "timber": 9600
+          },
+          {
+            "metal": 11660,
+            "power": 19954,
+            "rations": 4000,
+            "timber": 9920
+          }
+        ]
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "not_reached"
+    },
+    "military": {
+      "evidence": {
+        "deaths": [
+          0,
+          0
+        ],
+        "fired_ammunition": 0,
+        "phase_shots": 0,
+        "queued_units": 0,
+        "route_builds": 2,
+        "route_cost_refreshes": 0,
+        "route_invalidations": 0,
+        "route_node_expansions": 147,
+        "ship_health": [
+          10000,
+          10000
+        ]
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "not_reached"
+    },
+    "mutation": {
+      "reason": "Seed-generated profiles are not heritable mutation events",
+      "status": "unimplemented"
+    },
+    "order_exercise": {
+      "actual_boarded_passenger_ids": [],
+      "actual_combat": {
+        "deaths": [
+          0,
+          0
+        ],
+        "fired_ammunition": 0,
+        "initial_ammunition": 5120,
+        "lost_ammunition": 0,
+        "route_builds": 2,
+        "route_cache_hits": 138,
+        "route_cost_refreshes": 0,
+        "route_invalidations": 0,
+        "route_node_expansions": 147,
+        "spawned": [
+          73,
+          72
+        ],
+        "supplied_ammunition": 0
+      },
+      "actual_field_support": {
+        "automatic_refill": false,
+        "candidate_limit_per_acquisition": 512,
+        "conserved": true,
+        "kind": "finite_paid_structure_ammunition_and_local_support",
+        "stocks": {},
+        "tick": 80,
+        "totals": {
+          "acquisitions": 0,
+          "candidates_examined": 0,
+          "converted_metal_units": [
+            0,
+            0
+          ],
+          "destroyed_rounds": [
+            0,
+            0
+          ],
+          "fired_rounds": [
+            0,
+            0
+          ],
+          "imported_from_paid_construction": [
+            0,
+            0
+          ],
+          "supplied_rounds": [
+            0,
+            0
+          ],
+          "targets_killed": [
+            0,
+            0
+          ]
+        }
+      },
+      "actual_unit_queues": 0,
+      "attributed_ecological_damage": [
+        0,
+        0
+      ],
+      "boats": [
+        null,
+        null
+      ],
+      "bootstrap_attempted": true,
+      "bootstrap_error": null,
+      "builds": [
+        {
+          "accepted_job_ids": [
+            1
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "trench",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [
+            7
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "trench",
+          "last_placement_error": null,
+          "placement_attempts": 1,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [
+            5
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "mine",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [
+            8
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "mine",
+          "last_placement_error": null,
+          "placement_attempts": 1,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [
+            6
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "solar",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [
+            9
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "solar",
+          "last_placement_error": null,
+          "placement_attempts": 1,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "road",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "road",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "depot",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "depot",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "mill",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "mill",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "barracks",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "barracks",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "farm",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "farm",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [
+            4
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "camera",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "camera",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "radar",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "radar",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "wall",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "wall",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "turret",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "turret",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [
+            2
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "pen",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "pen",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [
+            3
+          ],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "research",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 1
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "research",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "foundation",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "foundation",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "smooth",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "smooth",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "bridge",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "bridge",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "dock",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "dock",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "dam",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 0,
+          "waiting": 0
+        },
+        {
+          "accepted_job_ids": [],
+          "blocked": [],
+          "cancelled": 0,
+          "completed": 0,
+          "kind": "dam",
+          "last_placement_error": null,
+          "placement_attempts": 0,
+          "site_search_exhausted": false,
+          "team": 1,
+          "waiting": 0
+        }
+      ],
+      "command_budget": "Maximum four ordinary commands per drive: at most enqueue+immediate cancellation, and two activity commands. The once-only bootstrap separately queues up to six ordinary paid build orders. No missed-deadline catch-up dump.",
+      "commands": {
+        "build/1/mine": {
+          "accepted": 1,
+          "attempted": 1,
+          "last_error": null,
+          "last_tick": 40,
+          "rejected": 0
+        },
+        "build/1/solar": {
+          "accepted": 1,
+          "attempted": 1,
+          "last_error": null,
+          "last_tick": 60,
+          "rejected": 0
+        },
+        "build/1/trench": {
+          "accepted": 1,
+          "attempted": 1,
+          "last_error": null,
+          "last_tick": 20,
+          "rejected": 0
+        },
+        "camera_trooper_paid_recruitment": {
+          "accepted": 1,
+          "attempted": 1,
+          "last_error": null,
+          "last_tick": 40,
+          "rejected": 0
+        },
+        "ordinary_automation_bootstrap": {
+          "accepted": 1,
+          "attempted": 1,
+          "last_error": null,
+          "last_tick": 0,
+          "rejected": 0
+        }
+      },
+      "crater_spoil_liters": [
+        0,
+        0
+      ],
+      "disembark_target": null,
+      "driver_coarse_cache_bytes": 360000,
+      "explicit_limits": [
+        "This is observed coverage, not a guarantee every order completes or every emergent trait occurs.",
+        "Sanctuary is not an implemented separate building: the supported equivalent is Pen plus handlers, care, research, breeding, release and habitat protection.",
+        "No paid demolition command exists; dam breach/destruction must come from actual opposing weapons or ecological physical events.",
+        "Production20km streaming and the remaining130traits are not implemented by this small-map test.",
+        "Naval faction1 launch uses the ordinary core paid transaction because there is no faction1 player UI.",
+        "Dedicated invariant/mechanism fixtures remain separately labelled from this ordinary long run."
+      ],
+      "finite_materials": {
+        "cargo": {},
+        "consumed": [
+          {
+            "metal": 220,
+            "power": 60,
+            "rations": 20,
+            "timber": 30
+          },
+          {
+            "metal": 0,
+            "power": 0,
+            "rations": 0,
+            "timber": 0
+          }
+        ],
+        "cut_liters": [
+          0,
+          0
+        ],
+        "fill_liters": [
+          0,
+          0
+        ],
+        "ledger_valid": true,
+        "named_external_production": [
+          {
+            "metal": 0,
+            "power": 0,
+            "rations": 0,
+            "timber": 0
+          },
+          {
+            "metal": 0,
+            "power": 0,
+            "rations": 0,
+            "timber": 0
+          }
+        ],
+        "ore_delivered": [
+          0,
+          0
+        ],
+        "ownership_note": "Reserved job materials remain owned exactly once by their job; a worker reference or delivered flag does not create another copy. Ore cargo and cancellation recovery crates are separate finite stocks.",
+        "recovery_crates": [],
+        "remaining_ore": [
+          {
+            "id": 0,
+            "initial": 50000,
+            "position": [
+              604.0,
+              1448.0
+            ],
+            "remaining": 50000
+          },
+          {
+            "id": 1,
+            "initial": 50000,
+            "position": [
+              4196.0,
+              1502.0
+            ],
+            "remaining": 50000
+          }
+        ],
+        "reserved_job_materials": [
+          {
+            "delivered": false,
+            "job": 1,
+            "phase": "Pickup",
+            "pickup_position": [
+              424.0,
+              1640.0
+            ],
+            "resources": {
+              "metal": 0,
+              "power": 4,
+              "rations": 0,
+              "timber": 0
+            },
+            "team": 0,
+            "work_position": [
+              424.0,
+              1750.0
+            ],
+            "worker": 65
+          },
+          {
+            "delivered": false,
+            "job": 2,
+            "phase": "Pickup",
+            "pickup_position": [
+              424.0,
+              1640.0
+            ],
+            "resources": {
+              "metal": 100,
+              "power": 20,
+              "rations": 0,
+              "timber": 160
+            },
+            "team": 0,
+            "work_position": [
+              466.0,
+              1652.0
+            ],
+            "worker": 66
+          },
+          {
+            "delivered": false,
+            "job": 3,
+            "phase": "Pickup",
+            "pickup_position": [
+              424.0,
+              1640.0
+            ],
+            "resources": {
+              "metal": 260,
+              "power": 100,
+              "rations": 0,
+              "timber": 120
+            },
+            "team": 0,
+            "work_position": [
+              382.0,
+              1652.0
+            ],
+            "worker": 67
+          },
+          {
+            "delivered": false,
+            "job": 4,
+            "phase": "Pickup",
+            "pickup_position": [
+              424.0,
+              1640.0
+            ],
+            "resources": {
+              "metal": 60,
+              "power": 20,
+              "rations": 0,
+              "timber": 10
+            },
+            "team": 0,
+            "work_position": [
+              496.0,
+              1610.0
+            ],
+            "worker": 68
+          },
+          {
+            "delivered": false,
+            "job": 5,
+            "phase": "Pickup",
+            "pickup_position": [
+              424.0,
+              1640.0
+            ],
+            "resources": {
+              "metal": 180,
+              "power": 30,
+              "rations": 0,
+              "timber": 80
+            },
+            "team": 0,
+            "work_position": [
+              556.0,
+              1496.0
+            ],
+            "worker": 69
+          },
+          {
+            "delivered": false,
+            "job": 6,
+            "phase": "Pickup",
+            "pickup_position": [
+              424.0,
+              1640.0
+            ],
+            "resources": {
+              "metal": 160,
+              "power": 0,
+              "rations": 0,
+              "timber": 0
+            },
+            "team": 0,
+            "work_position": [
+              424.0,
+              1530.0
+            ],
+            "worker": 70
+          },
+          {
+            "delivered": false,
+            "job": 7,
+            "phase": "Pickup",
+            "pickup_position": [
+              4376.0,
+              1712.0
+            ],
+            "resources": {
+              "metal": 0,
+              "power": 16,
+              "rations": 0,
+              "timber": 0
+            },
+            "team": 1,
+            "work_position": [
+              4280.0,
+              1712.0001220703125
+            ],
+            "worker": 137
+          },
+          {
+            "delivered": false,
+            "job": 8,
+            "phase": "Pickup",
+            "pickup_position": [
+              4376.0,
+              1712.0
+            ],
+            "resources": {
+              "metal": 180,
+              "power": 30,
+              "rations": 0,
+              "timber": 80
+            },
+            "team": 1,
+            "work_position": [
+              4244.0,
+              1550.0
+            ],
+            "worker": 138
+          },
+          {
+            "delivered": false,
+            "job": 9,
+            "phase": "Pickup",
+            "pickup_position": [
+              4376.0,
+              1712.0
+            ],
+            "resources": {
+              "metal": 160,
+              "power": 0,
+              "rations": 0,
+              "timber": 0
+            },
+            "team": 1,
+            "work_position": [
+              4200.0,
+              1888.0001220703125
+            ],
+            "worker": 139
+          }
+        ],
+        "spoil_liters": [
+          0,
+          0
+        ],
+        "stores": [
+          {
+            "metal": 11020,
+            "power": 19766,
+            "rations": 3980,
+            "timber": 9600
+          },
+          {
+            "metal": 11660,
+            "power": 19954,
+            "rations": 4000,
+            "timber": 9920
+          }
+        ]
+      },
+      "initial_ecological_damage": [
+        0,
+        0
+      ],
+      "initial_ore_deposits": 100000,
+      "initial_spawned": [
+        72,
+        72
+      ],
+      "kind": "stateful_ordinary_benchmark_orders",
+      "last_drive_tick": 79,
+      "metric_scope": {
+        "controller": "Declared omniscient test-harness placement and both-faction core orders; production player UI and ConservationDriver capture/release remain recon-filtered.",
+        "queues": "Completion evidence means queue ended after observed physical departure and return to its final waypoint. Cancellations without this physical evidence only count as ended.",
+        "satellite": "Active samples at the10second observation cadence, not a distinct pass count.",
+        "water": "Canonical PLAYER fixture-dam flag. Upstream means the first81managedriverrows, not upstream of every animal dam; natural dam/physical counters are reported separately by Campaign.physical."
+      },
+      "observations": {
+        "bridge_deck_cells_max": 0,
+        "camera_battery_depleted": false,
+        "camera_minimum_battery": null,
+        "camera_recharged": false,
+        "dam_closed_observed": false,
+        "dam_reopened_observed": false,
+        "deposited_liters": 0,
+        "eroded_liters": 0,
+        "evaporated_liters": 0,
+        "explored_cells": [
+          9,
+          284
+        ],
+        "flooded_road_blocked_cells_max": 0,
+        "flooded_road_cells_max": 0,
+        "infiltrated_liters": 2660,
+        "maximum_surface_water_liters": 17500990,
+        "maximum_upstream_liters": 11004794,
+        "minimum_upstream_liters": 11004794,
+        "queued_order_completions": 0,
+        "radar_cells_max": [
+          0,
+          0
+        ],
+        "satellite_active_samples": [
+          1,
+          0
+        ],
+        "seasons": [
+          "dry season"
+        ],
+        "transport_disembarked_observed": false,
+        "transport_loaded_observed": false,
+        "video_cells_max": [
+          9,
+          284
+        ]
+      },
+      "resume_contract": "Serialize OrderExercise with Campaign; restoring only one is an invalid checkpoint.",
+      "scout": 145,
+      "selected_queue_watches": {},
+      "transports": [
+        null,
+        null
+      ],
+      "unfinished_build_coverage": [
+        "faction0:trench",
+        "faction1:trench",
+        "faction0:mine",
+        "faction1:mine",
+        "faction0:solar",
+        "faction1:solar",
+        "faction0:road",
+        "faction1:road",
+        "faction0:depot",
+        "faction1:depot",
+        "faction0:mill",
+        "faction1:mill",
+        "faction0:barracks",
+        "faction1:barracks",
+        "faction0:farm",
+        "faction1:farm",
+        "faction0:camera",
+        "faction1:camera",
+        "faction0:radar",
+        "faction1:radar",
+        "faction0:wall",
+        "faction1:wall",
+        "faction0:turret",
+        "faction1:turret",
+        "faction0:pen",
+        "faction1:pen",
+        "faction0:research",
+        "faction1:research",
+        "faction0:foundation",
+        "faction1:foundation",
+        "faction0:smooth",
+        "faction1:smooth",
+        "faction0:bridge",
+        "faction1:bridge",
+        "faction0:dock",
+        "faction1:dock",
+        "faction0:dam",
+        "faction1:dam"
+      ],
+      "version": 1
+    },
+    "physical_ecology": {
+      "evidence": {
+        "final": {
+          "active_jobs": 0,
+          "active_progress": [],
+          "biomass_received_from_ecology": 0,
+          "biomass_returned_to_ecology": 0,
+          "breeding_refuges": "specific_reserved_den_group_slots_and_unique_builder_owned_nest;underground_nest_shares_actual_room_with_adults_and_eggs",
+          "canopy_hosts": "one_aggregate_reference_per_macro_patch;fails_at_zero_actual_living_canopy_tissue;no_per_tree_precision",
+          "committed_traits": {},
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 80,
+          "optional_retry_cooldowns": 0,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 0,
+          "stale_optional_intents": 0,
+          "stalled_optional_jobs_released": 0,
+          "surface_received_mm3": 0,
+          "tracked_real_actors": 0,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "habitats_final": {
+          "attached_clutches": 0,
+          "bent_passages": 0,
+          "blocked_passages": 0,
+          "branch_nodes_degree_above_two": 0,
+          "canopy_occupant_groups": 0,
+          "cavities": 0,
+          "collapsed_nodes": 0,
+          "conserved": true,
+          "dams": [],
+          "dead_canopy_supports": 0,
+          "debris": {
+            "fiber_units": 0,
+            "mineral_units": 0,
+            "soil_mm3": 0,
+            "wood_units": 0
+          },
+          "dens": 0,
+          "distinct_entrances": 0,
+          "excavated_passage_mm3": 0,
+          "flooded_nodes": 0,
+          "live_canopy_supports": 0,
+          "mapped_animal_dam_links": 0,
+          "nests": 0,
+          "nodes": 0,
+          "occupant_groups": 0,
+          "passage_length_mm": 0,
+          "passages": 0,
+          "passages_with_horizontal_displacement": 0,
+          "reef_navigation_overlay_cells": 0,
+          "reefs": [],
+          "reserved_real_organisms": 0,
+          "revision": 4,
+          "shelter_fiber": 0,
+          "shelter_wood": 0,
+          "shelters": 0,
+          "trap_excavated_mm3": 0,
+          "trapped_organism_ids": 0,
+          "traps": 0,
+          "underground_nested_nests": 0,
+          "wallow_displaced_mm3": 0,
+          "wallow_uses": 0,
+          "wallows": 0
+        },
+        "habitats_initial": {
+          "attached_clutches": 0,
+          "bent_passages": 0,
+          "blocked_passages": 0,
+          "branch_nodes_degree_above_two": 0,
+          "canopy_occupant_groups": 0,
+          "cavities": 0,
+          "collapsed_nodes": 0,
+          "conserved": true,
+          "dams": [],
+          "dead_canopy_supports": 0,
+          "debris": {
+            "fiber_units": 0,
+            "mineral_units": 0,
+            "soil_mm3": 0,
+            "wood_units": 0
+          },
+          "dens": 0,
+          "distinct_entrances": 0,
+          "excavated_passage_mm3": 0,
+          "flooded_nodes": 0,
+          "live_canopy_supports": 0,
+          "mapped_animal_dam_links": 0,
+          "nests": 0,
+          "nodes": 0,
+          "occupant_groups": 0,
+          "passage_length_mm": 0,
+          "passages": 0,
+          "passages_with_horizontal_displacement": 0,
+          "reef_navigation_overlay_cells": 0,
+          "reefs": [],
+          "reserved_real_organisms": 0,
+          "revision": 0,
+          "shelter_fiber": 0,
+          "shelter_wood": 0,
+          "shelters": 0,
+          "trap_excavated_mm3": 0,
+          "trapped_organism_ids": 0,
+          "traps": 0,
+          "underground_nested_nests": 0,
+          "wallow_displaced_mm3": 0,
+          "wallow_uses": 0,
+          "wallows": 0
+        },
+        "initial": {
+          "active_jobs": 0,
+          "active_progress": [],
+          "biomass_received_from_ecology": 0,
+          "biomass_returned_to_ecology": 0,
+          "breeding_refuges": "specific_reserved_den_group_slots_and_unique_builder_owned_nest;underground_nest_shares_actual_room_with_adults_and_eggs",
+          "canopy_hosts": "one_aggregate_reference_per_macro_patch;fails_at_zero_actual_living_canopy_tissue;no_per_tree_precision",
+          "committed_traits": {},
+          "conserved": true,
+          "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+          "last_tick": 0,
+          "optional_retry_cooldowns": 0,
+          "queued_optional_intents": 0,
+          "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+          "rejected_optional_intents": 0,
+          "stale_optional_intents": 0,
+          "stalled_optional_jobs_released": 0,
+          "surface_received_mm3": 0,
+          "tracked_real_actors": 0,
+          "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+        },
+        "mechanism_fixtures_are_separate": true,
+        "phase_commit_deltas": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "not_reached"
+    },
+    "recon": {
+      "evidence": {
+        "actual_masks": [
+          {
+            "explored_cells": 2894,
+            "radar_coverage_cells": 0,
+            "radar_sweep_cells": 0,
+            "team": 0,
+            "visual_cells": 2894
+          },
+          {
+            "explored_cells": 284,
+            "radar_coverage_cells": 0,
+            "radar_sweep_cells": 0,
+            "team": 1,
+            "visual_cells": 284
+          }
+        ],
+        "no_troop_vision_was_enabled": true,
+        "satellite_period_ticks": 3600
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "observed"
+    },
+    "sanctuary": {
+      "reason": "Holding pens do not implement a sanctuary game system",
+      "status": "unimplemented"
+    },
+    "saves": {
+      "evidence": {
+        "checkpoint_group": "recovery-controls-78421",
+        "clock_pending_ticks": 1,
+        "completed_earlier_case_ids": "Supervisor must skip completed cases; only the most recently committed case is recovered idempotently by native prepare",
+        "interrupted_case_resume": "last successful complete phase, never partial failed state",
+        "restored_completed_cases": []
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "not_reached"
+    },
+    "seasons": {
+      "evidence": {
+        "end_tick": 80,
+        "full_cycles_executed_in_this_phase": 0,
+        "one_full_cycle_requires": 72000,
+        "partial_run_is_not_full_season_qualification": true,
+        "phase_committed_ticks": 80,
+        "season_boundaries_crossed": 0,
+        "start_tick": 0
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "not_reached"
+    },
+    "traits": {
+      "actual_state_samples": {
+        "afloat_seed_units": 0,
+        "dormant_animals": 0,
+        "extinct_species": [
+          0
+        ],
+        "guarded_clutches": 0,
+        "plant_nectar_units": 120000,
+        "pollen_carried_units": 0,
+        "seed_carried_units": 0,
+        "serviced_pollen_units": 0,
+        "stored_sperm_doses": 0,
+        "temperature_sampled_clutches": 0,
+        "viable_seeds": 0
+      },
+      "all160_implemented": false,
+      "all30consequences_qualified": false,
+      "rows": [
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            7
+          ],
+          "status": "not_reached",
+          "trait_id": 11
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            6
+          ],
+          "status": "not_reached",
+          "trait_id": 12
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            12
+          ],
+          "status": "not_reached",
+          "trait_id": 46
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            10
+          ],
+          "status": "not_instrumented",
+          "trait_id": 61
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            6,
+            13
+          ],
+          "status": "not_reached",
+          "trait_id": 64
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            7,
+            11
+          ],
+          "status": "not_reached",
+          "trait_id": 65
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [],
+          "status": "not_reached",
+          "trait_id": 67
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            6,
+            11
+          ],
+          "status": "not_instrumented",
+          "trait_id": 72
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            6,
+            8,
+            9,
+            10,
+            12,
+            13
+          ],
+          "status": "not_instrumented",
+          "trait_id": 75
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            6,
+            8
+          ],
+          "status": "not_instrumented",
+          "trait_id": 84
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            9,
+            10
+          ],
+          "status": "not_instrumented",
+          "trait_id": 86
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [],
+          "status": "not_instrumented",
+          "trait_id": 93
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            9,
+            10
+          ],
+          "status": "not_instrumented",
+          "trait_id": 96
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            13
+          ],
+          "status": "not_reached",
+          "trait_id": 101
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            6
+          ],
+          "status": "not_reached",
+          "trait_id": 102
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            7
+          ],
+          "status": "not_reached",
+          "trait_id": 103
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [
+            7
+          ],
+          "status": "not_reached",
+          "trait_id": 104
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": 0,
+          "natural_commits_phase_delta": 0,
+          "note": "Actual physical transaction counters; mechanism fixtures remain separate",
+          "present_in_species_profiles": [],
+          "status": "not_reached",
+          "trait_id": 105
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            10,
+            11
+          ],
+          "status": "not_instrumented",
+          "trait_id": 106
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            7,
+            8
+          ],
+          "status": "not_instrumented",
+          "trait_id": 107
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            0
+          ],
+          "status": "not_instrumented",
+          "trait_id": 121
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            1,
+            2,
+            5
+          ],
+          "status": "not_instrumented",
+          "trait_id": 125
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            1,
+            3
+          ],
+          "status": "not_instrumented",
+          "trait_id": 128
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [],
+          "status": "not_instrumented",
+          "trait_id": 129
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            3,
+            4
+          ],
+          "status": "not_instrumented",
+          "trait_id": 132
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            5
+          ],
+          "status": "not_instrumented",
+          "trait_id": 135
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            2,
+            5
+          ],
+          "status": "not_instrumented",
+          "trait_id": 143
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            1,
+            3
+          ],
+          "status": "not_instrumented",
+          "trait_id": 156
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            0,
+            4
+          ],
+          "status": "not_instrumented",
+          "trait_id": 157
+        },
+        {
+          "counter_scope": "continued-world cumulative; this phase delta is separate",
+          "natural_commits_cumulative": null,
+          "natural_commits_phase_delta": null,
+          "note": "Trait presence and aggregate biology events do not establish this trait's consequences; inspect state samples and dedicated mechanism fixtures",
+          "present_in_species_profiles": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "status": "not_instrumented",
+          "trait_id": 159
+        }
+      ],
+      "status": "partially_instrumented"
+    },
+    "water_ground": {
+      "evidence": {
+        "final": {
+          "boundary_outflow_liters": 403580,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 100000,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 392699033,
+            "biomass_outflow_units": 252,
+            "cumulative_deposited_liters": 281,
+            "cumulative_eroded_liters": 517248,
+            "current_deposit_subset_liters": 281,
+            "deposited_debris_units": 12,
+            "evaporated_liters": 0,
+            "foliage_exported_units": 20992,
+            "infiltrated_liters": 262876,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 49140680,
+            "mobile_debris_units": 32781,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 6538,
+            "soil_water_liters": 262876,
+            "suspended_sediment_liters": 510429
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 80,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 16943944,
+          "upstream_liters": 10683241,
+          "water_extracted_to_other_stocks_liters": 262876,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 1077
+        },
+        "initial": {
+          "boundary_outflow_liters": 0,
+          "cells": 12288,
+          "conserved": true,
+          "dam_closed": false,
+          "dam_crest_mm": 11000,
+          "external_inflow_liters": 0,
+          "fixture": "isolated_river_water_no_military_or_campaign_rules",
+          "ground": {
+            "bed_sediment_liters": 393216000,
+            "biomass_outflow_units": 0,
+            "cumulative_deposited_liters": 0,
+            "cumulative_eroded_liters": 0,
+            "current_deposit_subset_liters": 0,
+            "deposited_debris_units": 0,
+            "evaporated_liters": 0,
+            "infiltrated_liters": 0,
+            "initial_foliage_units": 49194717,
+            "initial_sediment_liters": 393216000,
+            "initial_soil_water_liters": 0,
+            "live_foliage_units": 49194717,
+            "mobile_debris_units": 0,
+            "returned_to_surface_liters": 0,
+            "sediment_outflow_liters": 0,
+            "soil_water_liters": 0,
+            "suspended_sediment_liters": 0
+          },
+          "initial_liters": 17510400,
+          "links": 24352,
+          "processed_through_game_tick": 0,
+          "rainfall_groundwater_ecosystem_biology_implemented": false,
+          "sample_meters": 8,
+          "stored_liters": 17510400,
+          "upstream_liters": 11008000,
+          "water_extracted_to_other_stocks_liters": 0,
+          "water_returned_from_other_stocks_liters": 0,
+          "wet_cells_10mm_or_more": 684
+        },
+        "scope": "Actual coupled managed river; remaining generated water outside managed region is static"
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "observed"
+    },
+    "wildlife_detail": {
+      "evidence": {
+        "current_fine_records": 256,
+        "initial_existing_identities_materialized": 64,
+        "keepalive_scope": "Explicit benchmark tracking retains existing fine-position records, does not grant player vision or replace deaths",
+        "population_multiplication": false,
+        "requested_detail_target_fully_met": true,
+        "requested_existing_materializations": 64,
+        "tracked_identity_count": 64,
+        "unmet_requested_existing_detail_count": 0
+      },
+      "scope": "actual continued world; phase deltas where available",
+      "status": "observed"
+    }
+  },
+  "failure": null,
+  "final_state": {
+    "all160_implemented": false,
+    "attributed_ecological_damage": [
+      0,
+      0
+    ],
+    "biology_events": 1,
+    "civilian_jobs_present": true,
+    "completed_jobs": 0,
+    "ecology": {
+      "animal_hydration": 1184000,
+      "biomass_units": 20315200,
+      "captive_animals": 0,
+      "dead_animals": 0,
+      "dead_plants": 0,
+      "death_reasons": {},
+      "extinct_species": [
+        0
+      ],
+      "generation_accepted": true,
+      "generation_relocations": 258,
+      "living_plants": 24000,
+      "root_zone_water": 16790400,
+      "transit_animals": 0,
+      "viable_offspring": 0,
+      "viable_seeds": 144000,
+      "wild_animals": 14800
+    },
+    "field_support": {
+      "automatic_refill": false,
+      "candidate_limit_per_acquisition": 512,
+      "conserved": true,
+      "kind": "finite_paid_structure_ammunition_and_local_support",
+      "stocks": {},
+      "tick": 80,
+      "totals": {
+        "acquisitions": 0,
+        "candidates_examined": 0,
+        "converted_metal_units": [
+          0,
+          0
+        ],
+        "destroyed_rounds": [
+          0,
+          0
+        ],
+        "fired_rounds": [
+          0,
+          0
+        ],
+        "imported_from_paid_construction": [
+          0,
+          0
+        ],
+        "supplied_rounds": [
+          0,
+          0
+        ],
+        "targets_killed": [
+          0,
+          0
+        ]
+      }
+    },
+    "integrated_performance_qualified": false,
+    "kind": "connected_native_milestone_B_small_map_not_production20km",
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "military_rules_present": true,
+    "pending_ticks": 1,
+    "physical": {
+      "active_jobs": 0,
+      "active_progress": [],
+      "biomass_received_from_ecology": 0,
+      "biomass_returned_to_ecology": 0,
+      "breeding_refuges": "specific_reserved_den_group_slots_and_unique_builder_owned_nest;underground_nest_shares_actual_room_with_adults_and_eggs",
+      "canopy_hosts": "one_aggregate_reference_per_macro_patch;fails_at_zero_actual_living_canopy_tissue;no_per_tree_precision",
+      "committed_traits": {},
+      "conserved": true,
+      "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+      "last_tick": 80,
+      "optional_retry_cooldowns": 0,
+      "queued_optional_intents": 0,
+      "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+      "rejected_optional_intents": 0,
+      "stale_optional_intents": 0,
+      "stalled_optional_jobs_released": 0,
+      "surface_received_mm3": 0,
+      "tracked_real_actors": 0,
+      "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+    },
+    "requested_speed": 1,
+    "ship_health": [
+      10000,
+      10000
+    ],
+    "tactics": {
+      "deaths": [
+        0,
+        0
+      ],
+      "fired_ammunition": 0,
+      "initial_ammunition": 5120,
+      "lost_ammunition": 0,
+      "route_builds": 2,
+      "route_cache_hits": 138,
+      "route_cost_refreshes": 0,
+      "route_invalidations": 0,
+      "route_node_expansions": 147,
+      "spawned": [
+        73,
+        72
+      ],
+      "supplied_ammunition": 0
+    },
+    "tick": 80,
+    "water": {
+      "boundary_outflow_liters": 403580,
+      "cells": 12288,
+      "conserved": true,
+      "dam_closed": false,
+      "dam_crest_mm": 11000,
+      "external_inflow_liters": 100000,
+      "fixture": "isolated_river_water_no_military_or_campaign_rules",
+      "ground": {
+        "bed_sediment_liters": 392699033,
+        "biomass_outflow_units": 252,
+        "cumulative_deposited_liters": 281,
+        "cumulative_eroded_liters": 517248,
+        "current_deposit_subset_liters": 281,
+        "deposited_debris_units": 12,
+        "evaporated_liters": 0,
+        "foliage_exported_units": 20992,
+        "infiltrated_liters": 262876,
+        "initial_foliage_units": 49194717,
+        "initial_sediment_liters": 393216000,
+        "initial_soil_water_liters": 0,
+        "live_foliage_units": 49140680,
+        "mobile_debris_units": 32781,
+        "returned_to_surface_liters": 0,
+        "sediment_outflow_liters": 6538,
+        "soil_water_liters": 262876,
+        "suspended_sediment_liters": 510429
+      },
+      "initial_liters": 17510400,
+      "links": 24352,
+      "processed_through_game_tick": 80,
+      "rainfall_groundwater_ecosystem_biology_implemented": false,
+      "sample_meters": 8,
+      "stored_liters": 16943944,
+      "upstream_liters": 10683241,
+      "water_extracted_to_other_stocks_liters": 262876,
+      "water_returned_from_other_stocks_liters": 0,
+      "wet_cells_10mm_or_more": 1077
+    },
+    "winner": null
+  },
+  "habitats_final": {
+    "attached_clutches": 0,
+    "bent_passages": 0,
+    "blocked_passages": 0,
+    "branch_nodes_degree_above_two": 0,
+    "canopy_occupant_groups": 0,
+    "cavities": 0,
+    "collapsed_nodes": 0,
+    "conserved": true,
+    "dams": [],
+    "dead_canopy_supports": 0,
+    "debris": {
+      "fiber_units": 0,
+      "mineral_units": 0,
+      "soil_mm3": 0,
+      "wood_units": 0
+    },
+    "dens": 0,
+    "distinct_entrances": 0,
+    "excavated_passage_mm3": 0,
+    "flooded_nodes": 0,
+    "live_canopy_supports": 0,
+    "mapped_animal_dam_links": 0,
+    "nests": 0,
+    "nodes": 0,
+    "occupant_groups": 0,
+    "passage_length_mm": 0,
+    "passages": 0,
+    "passages_with_horizontal_displacement": 0,
+    "reef_navigation_overlay_cells": 0,
+    "reefs": [],
+    "reserved_real_organisms": 0,
+    "revision": 4,
+    "shelter_fiber": 0,
+    "shelter_wood": 0,
+    "shelters": 0,
+    "trap_excavated_mm3": 0,
+    "trapped_organism_ids": 0,
+    "traps": 0,
+    "underground_nested_nests": 0,
+    "wallow_displaced_mm3": 0,
+    "wallow_uses": 0,
+    "wallows": 0
+  },
+  "habitats_initial": {
+    "attached_clutches": 0,
+    "bent_passages": 0,
+    "blocked_passages": 0,
+    "branch_nodes_degree_above_two": 0,
+    "canopy_occupant_groups": 0,
+    "cavities": 0,
+    "collapsed_nodes": 0,
+    "conserved": true,
+    "dams": [],
+    "dead_canopy_supports": 0,
+    "debris": {
+      "fiber_units": 0,
+      "mineral_units": 0,
+      "soil_mm3": 0,
+      "wood_units": 0
+    },
+    "dens": 0,
+    "distinct_entrances": 0,
+    "excavated_passage_mm3": 0,
+    "flooded_nodes": 0,
+    "live_canopy_supports": 0,
+    "mapped_animal_dam_links": 0,
+    "nests": 0,
+    "nodes": 0,
+    "occupant_groups": 0,
+    "passage_length_mm": 0,
+    "passages": 0,
+    "passages_with_horizontal_displacement": 0,
+    "reef_navigation_overlay_cells": 0,
+    "reefs": [],
+    "reserved_real_organisms": 0,
+    "revision": 0,
+    "shelter_fiber": 0,
+    "shelter_wood": 0,
+    "shelters": 0,
+    "trap_excavated_mm3": 0,
+    "trapped_organism_ids": 0,
+    "traps": 0,
+    "underground_nested_nests": 0,
+    "wallow_displaced_mm3": 0,
+    "wallow_uses": 0,
+    "wallows": 0
+  },
+  "harness_control_probe": true,
+  "initial_state": {
+    "all160_implemented": false,
+    "attributed_ecological_damage": [
+      0,
+      0
+    ],
+    "biology_events": 0,
+    "civilian_jobs_present": true,
+    "completed_jobs": 0,
+    "ecology": {
+      "animal_hydration": 1184000,
+      "biomass_units": 20315200,
+      "captive_animals": 0,
+      "dead_animals": 0,
+      "dead_plants": 0,
+      "death_reasons": {},
+      "extinct_species": [],
+      "generation_accepted": true,
+      "generation_relocations": 258,
+      "living_plants": 24000,
+      "root_zone_water": 16800000,
+      "transit_animals": 0,
+      "viable_offspring": 0,
+      "viable_seeds": 144000,
+      "wild_animals": 14800
+    },
+    "field_support": {
+      "automatic_refill": false,
+      "candidate_limit_per_acquisition": 512,
+      "conserved": true,
+      "kind": "finite_paid_structure_ammunition_and_local_support",
+      "stocks": {},
+      "tick": 0,
+      "totals": {
+        "acquisitions": 0,
+        "candidates_examined": 0,
+        "converted_metal_units": [
+          0,
+          0
+        ],
+        "destroyed_rounds": [
+          0,
+          0
+        ],
+        "fired_rounds": [
+          0,
+          0
+        ],
+        "imported_from_paid_construction": [
+          0,
+          0
+        ],
+        "supplied_rounds": [
+          0,
+          0
+        ],
+        "targets_killed": [
+          0,
+          0
+        ]
+      }
+    },
+    "integrated_performance_qualified": false,
+    "kind": "connected_native_milestone_B_small_map_not_production20km",
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "military_rules_present": true,
+    "pending_ticks": 0,
+    "physical": {
+      "active_jobs": 0,
+      "active_progress": [],
+      "biomass_received_from_ecology": 0,
+      "biomass_returned_to_ecology": 0,
+      "breeding_refuges": "specific_reserved_den_group_slots_and_unique_builder_owned_nest;underground_nest_shares_actual_room_with_adults_and_eggs",
+      "canopy_hosts": "one_aggregate_reference_per_macro_patch;fails_at_zero_actual_living_canopy_tissue;no_per_tree_precision",
+      "committed_traits": {},
+      "conserved": true,
+      "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+      "last_tick": 0,
+      "optional_retry_cooldowns": 0,
+      "queued_optional_intents": 0,
+      "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+      "rejected_optional_intents": 0,
+      "stale_optional_intents": 0,
+      "stalled_optional_jobs_released": 0,
+      "surface_received_mm3": 0,
+      "tracked_real_actors": 0,
+      "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+    },
+    "requested_speed": 1,
+    "ship_health": [
+      10000,
+      10000
+    ],
+    "tactics": {
+      "deaths": [
+        0,
+        0
+      ],
+      "fired_ammunition": 0,
+      "initial_ammunition": 5120,
+      "lost_ammunition": 0,
+      "route_builds": 0,
+      "route_cache_hits": 0,
+      "route_cost_refreshes": 0,
+      "route_invalidations": 0,
+      "route_node_expansions": 0,
+      "spawned": [
+        72,
+        72
+      ],
+      "supplied_ammunition": 0
+    },
+    "tick": 0,
+    "water": {
+      "boundary_outflow_liters": 0,
+      "cells": 12288,
+      "conserved": true,
+      "dam_closed": false,
+      "dam_crest_mm": 11000,
+      "external_inflow_liters": 0,
+      "fixture": "isolated_river_water_no_military_or_campaign_rules",
+      "ground": {
+        "bed_sediment_liters": 393216000,
+        "biomass_outflow_units": 0,
+        "cumulative_deposited_liters": 0,
+        "cumulative_eroded_liters": 0,
+        "current_deposit_subset_liters": 0,
+        "deposited_debris_units": 0,
+        "evaporated_liters": 0,
+        "infiltrated_liters": 0,
+        "initial_foliage_units": 49194717,
+        "initial_sediment_liters": 393216000,
+        "initial_soil_water_liters": 0,
+        "live_foliage_units": 49194717,
+        "mobile_debris_units": 0,
+        "returned_to_surface_liters": 0,
+        "sediment_outflow_liters": 0,
+        "soil_water_liters": 0,
+        "suspended_sediment_liters": 0
+      },
+      "initial_liters": 17510400,
+      "links": 24352,
+      "processed_through_game_tick": 0,
+      "rainfall_groundwater_ecosystem_biology_implemented": false,
+      "sample_meters": 8,
+      "stored_liters": 17510400,
+      "upstream_liters": 11008000,
+      "water_extracted_to_other_stocks_liters": 0,
+      "water_returned_from_other_stocks_liters": 0,
+      "wet_cells_10mm_or_more": 684
+    },
+    "winner": null
+  },
+  "kind": "native_coupled_campaign_stress_measurement",
+  "metrics": {
+    "achieved_simulation_rate": 3.920049031973292,
+    "actual_fixed_20hz_tick": {
+      "count": 80,
+      "distribution_complete": true,
+      "max_ms": 20.3556,
+      "mean_ms": 5.9165875,
+      "p50_ms": 5.5829,
+      "p95_ms": 6.7456,
+      "p99_ms": 20.3556,
+      "quantile_method": "nearest_rank",
+      "quantile_scope": "whole_case",
+      "retained_subset_p95_ms": 6.7456,
+      "sample_limit": 1000000
+    },
+    "advance_batches": {
+      "count": 80,
+      "distribution_complete": true,
+      "max_ms": 20.357,
+      "mean_ms": 5.9176275,
+      "p50_ms": 5.5843,
+      "p95_ms": 6.7471,
+      "p99_ms": 20.357,
+      "quantile_method": "nearest_rank",
+      "quantile_scope": "whole_case",
+      "retained_subset_p95_ms": 6.7471,
+      "sample_limit": 1000000
+    },
+    "advance_calls": 397,
+    "advance_calls_per_second": 389.06486642334926,
+    "committed_ticks": 80,
+    "complete_frame_intervals": {
+      "count": 0,
+      "distribution_complete": true,
+      "max_ms": 0.0,
+      "mean_ms": null,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "quantile_method": "nearest_rank",
+      "quantile_scope": "whole_case",
+      "retained_subset_p95_ms": null,
+      "sample_limit": 1000000
+    },
+    "controller_and_tracking_overhead": {
+      "count": 397,
+      "distribution_complete": true,
+      "max_ms": 3.2407,
+      "mean_ms": 0.02813350125944584,
+      "p50_ms": 0.0002,
+      "p95_ms": 0.0027,
+      "p99_ms": 1.8288,
+      "quantile_method": "nearest_rank",
+      "quantile_scope": "whole_case",
+      "retained_subset_p95_ms": 0.0027,
+      "sample_limit": 1000000
+    },
+    "elapsed_charged_seconds": 1.0203954,
+    "end_tick": 80,
+    "final_validation_seconds_outside_phase": 0.0015309,
+    "harness_overhead_scope": "Controller/tracking, periodic validation and progress I/O are inside measured phase wall but outside actual fixed-rule tick timers",
+    "memory_guard_bytes": 6442450944,
+    "memory_guard_scope": "Linux native RSS if available; Windows external supervisor also guards the process",
+    "pending_ticks_end": 1,
+    "pending_ticks_max": 1,
+    "pending_ticks_start": 0,
+    "periodic_validation_overhead": {
+      "count": 0,
+      "distribution_complete": true,
+      "max_ms": 0.0,
+      "mean_ms": null,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "quantile_method": "nearest_rank",
+      "quantile_scope": "whole_case",
+      "retained_subset_p95_ms": null,
+      "sample_limit": 1000000
+    },
+    "preparation_seconds": 1.5536836,
+    "progress_io_and_memory_sampling_overhead": {
+      "count": 0,
+      "distribution_complete": true,
+      "max_ms": 0.0,
+      "mean_ms": null,
+      "p50_ms": null,
+      "p95_ms": null,
+      "p99_ms": null,
+      "quantile_method": "nearest_rank",
+      "quantile_scope": "whole_case",
+      "retained_subset_p95_ms": null,
+      "sample_limit": 1000000
+    },
+    "requested_simulation_rate": 4,
+    "rss_bytes_max": null,
+    "save_and_setup_excluded_from_phase_sampling": true,
+    "scheduler_ceiling_simulation_rate": 1245.0075725547176,
+    "start_tick": 0,
+    "tick_budget_per_call": 64,
+    "validation_calls": 2,
+    "wall_seconds": 1.0203954
+  },
+  "mode": "cpu",
+  "order_exercise": {
+    "actual_boarded_passenger_ids": [],
+    "actual_combat": {
+      "deaths": [
+        0,
+        0
+      ],
+      "fired_ammunition": 0,
+      "initial_ammunition": 5120,
+      "lost_ammunition": 0,
+      "route_builds": 2,
+      "route_cache_hits": 138,
+      "route_cost_refreshes": 0,
+      "route_invalidations": 0,
+      "route_node_expansions": 147,
+      "spawned": [
+        73,
+        72
+      ],
+      "supplied_ammunition": 0
+    },
+    "actual_field_support": {
+      "automatic_refill": false,
+      "candidate_limit_per_acquisition": 512,
+      "conserved": true,
+      "kind": "finite_paid_structure_ammunition_and_local_support",
+      "stocks": {},
+      "tick": 80,
+      "totals": {
+        "acquisitions": 0,
+        "candidates_examined": 0,
+        "converted_metal_units": [
+          0,
+          0
+        ],
+        "destroyed_rounds": [
+          0,
+          0
+        ],
+        "fired_rounds": [
+          0,
+          0
+        ],
+        "imported_from_paid_construction": [
+          0,
+          0
+        ],
+        "supplied_rounds": [
+          0,
+          0
+        ],
+        "targets_killed": [
+          0,
+          0
+        ]
+      }
+    },
+    "actual_unit_queues": 0,
+    "attributed_ecological_damage": [
+      0,
+      0
+    ],
+    "boats": [
+      null,
+      null
+    ],
+    "bootstrap_attempted": true,
+    "bootstrap_error": null,
+    "builds": [
+      {
+        "accepted_job_ids": [
+          1
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "trench",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [
+          7
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "trench",
+        "last_placement_error": null,
+        "placement_attempts": 1,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [
+          5
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "mine",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [
+          8
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "mine",
+        "last_placement_error": null,
+        "placement_attempts": 1,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [
+          6
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "solar",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [
+          9
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "solar",
+        "last_placement_error": null,
+        "placement_attempts": 1,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "road",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "road",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "depot",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "depot",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "mill",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "mill",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "barracks",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "barracks",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "farm",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "farm",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [
+          4
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "camera",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "camera",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "radar",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "radar",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "wall",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "wall",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "turret",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "turret",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [
+          2
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "pen",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "pen",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [
+          3
+        ],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "research",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 1
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "research",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "foundation",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "foundation",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "smooth",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "smooth",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "bridge",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "bridge",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "dock",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "dock",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "dam",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 0,
+        "waiting": 0
+      },
+      {
+        "accepted_job_ids": [],
+        "blocked": [],
+        "cancelled": 0,
+        "completed": 0,
+        "kind": "dam",
+        "last_placement_error": null,
+        "placement_attempts": 0,
+        "site_search_exhausted": false,
+        "team": 1,
+        "waiting": 0
+      }
+    ],
+    "command_budget": "Maximum four ordinary commands per drive: at most enqueue+immediate cancellation, and two activity commands. The once-only bootstrap separately queues up to six ordinary paid build orders. No missed-deadline catch-up dump.",
+    "commands": {
+      "build/1/mine": {
+        "accepted": 1,
+        "attempted": 1,
+        "last_error": null,
+        "last_tick": 40,
+        "rejected": 0
+      },
+      "build/1/solar": {
+        "accepted": 1,
+        "attempted": 1,
+        "last_error": null,
+        "last_tick": 60,
+        "rejected": 0
+      },
+      "build/1/trench": {
+        "accepted": 1,
+        "attempted": 1,
+        "last_error": null,
+        "last_tick": 20,
+        "rejected": 0
+      },
+      "camera_trooper_paid_recruitment": {
+        "accepted": 1,
+        "attempted": 1,
+        "last_error": null,
+        "last_tick": 40,
+        "rejected": 0
+      },
+      "ordinary_automation_bootstrap": {
+        "accepted": 1,
+        "attempted": 1,
+        "last_error": null,
+        "last_tick": 0,
+        "rejected": 0
+      }
+    },
+    "crater_spoil_liters": [
+      0,
+      0
+    ],
+    "disembark_target": null,
+    "driver_coarse_cache_bytes": 360000,
+    "explicit_limits": [
+      "This is observed coverage, not a guarantee every order completes or every emergent trait occurs.",
+      "Sanctuary is not an implemented separate building: the supported equivalent is Pen plus handlers, care, research, breeding, release and habitat protection.",
+      "No paid demolition command exists; dam breach/destruction must come from actual opposing weapons or ecological physical events.",
+      "Production20km streaming and the remaining130traits are not implemented by this small-map test.",
+      "Naval faction1 launch uses the ordinary core paid transaction because there is no faction1 player UI.",
+      "Dedicated invariant/mechanism fixtures remain separately labelled from this ordinary long run."
+    ],
+    "finite_materials": {
+      "cargo": {},
+      "consumed": [
+        {
+          "metal": 220,
+          "power": 60,
+          "rations": 20,
+          "timber": 30
+        },
+        {
+          "metal": 0,
+          "power": 0,
+          "rations": 0,
+          "timber": 0
+        }
+      ],
+      "cut_liters": [
+        0,
+        0
+      ],
+      "fill_liters": [
+        0,
+        0
+      ],
+      "ledger_valid": true,
+      "named_external_production": [
+        {
+          "metal": 0,
+          "power": 0,
+          "rations": 0,
+          "timber": 0
+        },
+        {
+          "metal": 0,
+          "power": 0,
+          "rations": 0,
+          "timber": 0
+        }
+      ],
+      "ore_delivered": [
+        0,
+        0
+      ],
+      "ownership_note": "Reserved job materials remain owned exactly once by their job; a worker reference or delivered flag does not create another copy. Ore cargo and cancellation recovery crates are separate finite stocks.",
+      "recovery_crates": [],
+      "remaining_ore": [
+        {
+          "id": 0,
+          "initial": 50000,
+          "position": [
+            604.0,
+            1448.0
+          ],
+          "remaining": 50000
+        },
+        {
+          "id": 1,
+          "initial": 50000,
+          "position": [
+            4196.0,
+            1502.0
+          ],
+          "remaining": 50000
+        }
+      ],
+      "reserved_job_materials": [
+        {
+          "delivered": false,
+          "job": 1,
+          "phase": "Pickup",
+          "pickup_position": [
+            424.0,
+            1640.0
+          ],
+          "resources": {
+            "metal": 0,
+            "power": 4,
+            "rations": 0,
+            "timber": 0
+          },
+          "team": 0,
+          "work_position": [
+            424.0,
+            1750.0
+          ],
+          "worker": 65
+        },
+        {
+          "delivered": false,
+          "job": 2,
+          "phase": "Pickup",
+          "pickup_position": [
+            424.0,
+            1640.0
+          ],
+          "resources": {
+            "metal": 100,
+            "power": 20,
+            "rations": 0,
+            "timber": 160
+          },
+          "team": 0,
+          "work_position": [
+            466.0,
+            1652.0
+          ],
+          "worker": 66
+        },
+        {
+          "delivered": false,
+          "job": 3,
+          "phase": "Pickup",
+          "pickup_position": [
+            424.0,
+            1640.0
+          ],
+          "resources": {
+            "metal": 260,
+            "power": 100,
+            "rations": 0,
+            "timber": 120
+          },
+          "team": 0,
+          "work_position": [
+            382.0,
+            1652.0
+          ],
+          "worker": 67
+        },
+        {
+          "delivered": false,
+          "job": 4,
+          "phase": "Pickup",
+          "pickup_position": [
+            424.0,
+            1640.0
+          ],
+          "resources": {
+            "metal": 60,
+            "power": 20,
+            "rations": 0,
+            "timber": 10
+          },
+          "team": 0,
+          "work_position": [
+            496.0,
+            1610.0
+          ],
+          "worker": 68
+        },
+        {
+          "delivered": false,
+          "job": 5,
+          "phase": "Pickup",
+          "pickup_position": [
+            424.0,
+            1640.0
+          ],
+          "resources": {
+            "metal": 180,
+            "power": 30,
+            "rations": 0,
+            "timber": 80
+          },
+          "team": 0,
+          "work_position": [
+            556.0,
+            1496.0
+          ],
+          "worker": 69
+        },
+        {
+          "delivered": false,
+          "job": 6,
+          "phase": "Pickup",
+          "pickup_position": [
+            424.0,
+            1640.0
+          ],
+          "resources": {
+            "metal": 160,
+            "power": 0,
+            "rations": 0,
+            "timber": 0
+          },
+          "team": 0,
+          "work_position": [
+            424.0,
+            1530.0
+          ],
+          "worker": 70
+        },
+        {
+          "delivered": false,
+          "job": 7,
+          "phase": "Pickup",
+          "pickup_position": [
+            4376.0,
+            1712.0
+          ],
+          "resources": {
+            "metal": 0,
+            "power": 16,
+            "rations": 0,
+            "timber": 0
+          },
+          "team": 1,
+          "work_position": [
+            4280.0,
+            1712.0001220703125
+          ],
+          "worker": 137
+        },
+        {
+          "delivered": false,
+          "job": 8,
+          "phase": "Pickup",
+          "pickup_position": [
+            4376.0,
+            1712.0
+          ],
+          "resources": {
+            "metal": 180,
+            "power": 30,
+            "rations": 0,
+            "timber": 80
+          },
+          "team": 1,
+          "work_position": [
+            4244.0,
+            1550.0
+          ],
+          "worker": 138
+        },
+        {
+          "delivered": false,
+          "job": 9,
+          "phase": "Pickup",
+          "pickup_position": [
+            4376.0,
+            1712.0
+          ],
+          "resources": {
+            "metal": 160,
+            "power": 0,
+            "rations": 0,
+            "timber": 0
+          },
+          "team": 1,
+          "work_position": [
+            4200.0,
+            1888.0001220703125
+          ],
+          "worker": 139
+        }
+      ],
+      "spoil_liters": [
+        0,
+        0
+      ],
+      "stores": [
+        {
+          "metal": 11020,
+          "power": 19766,
+          "rations": 3980,
+          "timber": 9600
+        },
+        {
+          "metal": 11660,
+          "power": 19954,
+          "rations": 4000,
+          "timber": 9920
+        }
+      ]
+    },
+    "initial_ecological_damage": [
+      0,
+      0
+    ],
+    "initial_ore_deposits": 100000,
+    "initial_spawned": [
+      72,
+      72
+    ],
+    "kind": "stateful_ordinary_benchmark_orders",
+    "last_drive_tick": 79,
+    "metric_scope": {
+      "controller": "Declared omniscient test-harness placement and both-faction core orders; production player UI and ConservationDriver capture/release remain recon-filtered.",
+      "queues": "Completion evidence means queue ended after observed physical departure and return to its final waypoint. Cancellations without this physical evidence only count as ended.",
+      "satellite": "Active samples at the10second observation cadence, not a distinct pass count.",
+      "water": "Canonical PLAYER fixture-dam flag. Upstream means the first81managedriverrows, not upstream of every animal dam; natural dam/physical counters are reported separately by Campaign.physical."
+    },
+    "observations": {
+      "bridge_deck_cells_max": 0,
+      "camera_battery_depleted": false,
+      "camera_minimum_battery": null,
+      "camera_recharged": false,
+      "dam_closed_observed": false,
+      "dam_reopened_observed": false,
+      "deposited_liters": 0,
+      "eroded_liters": 0,
+      "evaporated_liters": 0,
+      "explored_cells": [
+        9,
+        284
+      ],
+      "flooded_road_blocked_cells_max": 0,
+      "flooded_road_cells_max": 0,
+      "infiltrated_liters": 2660,
+      "maximum_surface_water_liters": 17500990,
+      "maximum_upstream_liters": 11004794,
+      "minimum_upstream_liters": 11004794,
+      "queued_order_completions": 0,
+      "radar_cells_max": [
+        0,
+        0
+      ],
+      "satellite_active_samples": [
+        1,
+        0
+      ],
+      "seasons": [
+        "dry season"
+      ],
+      "transport_disembarked_observed": false,
+      "transport_loaded_observed": false,
+      "video_cells_max": [
+        9,
+        284
+      ]
+    },
+    "resume_contract": "Serialize OrderExercise with Campaign; restoring only one is an invalid checkpoint.",
+    "scout": 145,
+    "selected_queue_watches": {},
+    "transports": [
+      null,
+      null
+    ],
+    "unfinished_build_coverage": [
+      "faction0:trench",
+      "faction1:trench",
+      "faction0:mine",
+      "faction1:mine",
+      "faction0:solar",
+      "faction1:solar",
+      "faction0:road",
+      "faction1:road",
+      "faction0:depot",
+      "faction1:depot",
+      "faction0:mill",
+      "faction1:mill",
+      "faction0:barracks",
+      "faction1:barracks",
+      "faction0:farm",
+      "faction1:farm",
+      "faction0:camera",
+      "faction1:camera",
+      "faction0:radar",
+      "faction1:radar",
+      "faction0:wall",
+      "faction1:wall",
+      "faction0:turret",
+      "faction1:turret",
+      "faction0:pen",
+      "faction1:pen",
+      "faction0:research",
+      "faction1:research",
+      "faction0:foundation",
+      "faction1:foundation",
+      "faction0:smooth",
+      "faction1:smooth",
+      "faction0:bridge",
+      "faction1:bridge",
+      "faction0:dock",
+      "faction1:dock",
+      "faction0:dam",
+      "faction1:dam"
+    ],
+    "version": 1
+  },
+  "passed": true,
+  "physical_final": {
+    "active_jobs": 0,
+    "active_progress": [],
+    "biomass_received_from_ecology": 0,
+    "biomass_returned_to_ecology": 0,
+    "breeding_refuges": "specific_reserved_den_group_slots_and_unique_builder_owned_nest;underground_nest_shares_actual_room_with_adults_and_eggs",
+    "canopy_hosts": "one_aggregate_reference_per_macro_patch;fails_at_zero_actual_living_canopy_tissue;no_per_tree_precision",
+    "committed_traits": {},
+    "conserved": true,
+    "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+    "last_tick": 80,
+    "optional_retry_cooldowns": 0,
+    "queued_optional_intents": 0,
+    "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+    "rejected_optional_intents": 0,
+    "stale_optional_intents": 0,
+    "stalled_optional_jobs_released": 0,
+    "surface_received_mm3": 0,
+    "tracked_real_actors": 0,
+    "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+  },
+  "physical_initial": {
+    "active_jobs": 0,
+    "active_progress": [],
+    "biomass_received_from_ecology": 0,
+    "biomass_returned_to_ecology": 0,
+    "breeding_refuges": "specific_reserved_den_group_slots_and_unique_builder_owned_nest;underground_nest_shares_actual_room_with_adults_and_eggs",
+    "canopy_hosts": "one_aggregate_reference_per_macro_patch;fails_at_zero_actual_living_canopy_tissue;no_per_tree_precision",
+    "committed_traits": {},
+    "conserved": true,
+    "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+    "last_tick": 0,
+    "optional_retry_cooldowns": 0,
+    "queued_optional_intents": 0,
+    "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+    "rejected_optional_intents": 0,
+    "stale_optional_intents": 0,
+    "stalled_optional_jobs_released": 0,
+    "surface_received_mm3": 0,
+    "tracked_real_actors": 0,
+    "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+  },
+  "process_id": 5396,
+  "rejected_checkpoint": null,
+  "replay_origin": "fresh_named_initial_world",
+  "requested_rate": 4,
+  "requested_rate_sustained": true,
+  "schema_version": 1,
+  "scope_limits": {
+    "all160traits_implemented": false,
+    "full_20km_campaign_qualified": false,
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "million_wildlife_implemented": false,
+    "mutation_implemented": false,
+    "sequential_evolving_world_ramp_not_same_state_apples_to_apples": true,
+    "speed_target_met_is_separate_from_valid_phase_completion": true
+  },
+  "session_id": "probe-after-commit-crash-once-5396-1793398353281",
+  "source_identity": {
+    "built_at_utc": "2026-10-30T06:12:29.767751+00:00",
+    "executable_sha256": "6bac0962241beebcd60ab3476bc2bf1bd17a06304343687adbb5f92e67e790d9",
+    "native_source_sha256": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5",
+    "schema_version": 1,
+    "source_commit": "44e645fc638e78afd0252b220d9acc28e1a73c52",
+    "source_frozen_through_build": true,
+    "target": "x86_64-pc-windows-gnu",
+    "test_harnesses": [
+      {
+        "bytes": 1066250,
+        "inventory_source": null,
+        "path": "native/target/x86_64-pc-windows-gnu/release/deps/last_world-f133de0b800d76fa.exe",
+        "sha256": "e72a1ec3cd5d57823796a9cd179d896bb21972c5aad394b44a42650cd0bc1b42",
+        "suite": "cli",
+        "test_names": []
+      },
+      {
+        "bytes": 11145933,
+        "inventory_source": null,
+        "path": "native/target/x86_64-pc-windows-gnu/release/deps/last_world_native-f3c00bc9461da115.exe",
+        "sha256": "a3104a6f0c9b62ecbff9d1ddf3eebe67704b1ed4fa5eefaf75f3e0212d19e2cb",
+        "suite": "library",
+        "test_names": []
+      }
+    ],
+    "worktree_dirty": true
+  },
+  "started_utc_ms": 1793398353281,
+  "status": "passed",
+  "stop_reason": "measurement_complete"
+}

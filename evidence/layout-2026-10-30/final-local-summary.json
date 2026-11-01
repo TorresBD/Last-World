@@ -1,0 +1,39 @@
+{
+  "native_source_sha256": "0f1ddec07ab13aa609297fcda21b6cd136cb780b0fe033eab645b3b29aba4565",
+  "host_executable_sha256": "ccbde6a8dc795cb9cd92e4b913e826e79d841aab3aa1258e9a1b599a06af3693",
+  "windows_executable_sha256": "9e6bfd2ad2682ab4a141d45b8dbcc441a9c6e3e576a2483a71c565c7e290ed96",
+  "native_unit_tests": 250,
+  "native_library_tests": 245,
+  "native_cli_tests": 5,
+  "native_test_exits": [
+    0,
+    0
+  ],
+  "battle_actual_ticks": 24000,
+  "battle_initial_tactical_records": [
+    6000,
+    6000
+  ],
+  "battle_paid_completed_jobs": [
+    9,
+    15
+  ],
+  "battle_fired_rounds": 9521,
+  "battle_military_deaths": [
+    818,
+    453
+  ],
+  "battle_late_rounds": [
+    3215,
+    2553
+  ],
+  "battle_late_windows": [
+    20,
+    20
+  ],
+  "battle_core_passed": true,
+  "battle_window_and_performance_qualified": false,
+  "battle_input": "fixed50ms elapsed, requested4; unpaced correctness driver",
+  "heavy_build_concurrency": true,
+  "new_windows_runtime_executed_locally": false
+}

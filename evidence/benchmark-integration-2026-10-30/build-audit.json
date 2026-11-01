@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "kind": "read_only_frozen_three_windows_executable_build_and_PE_import_audit",
+  "created_utc": "2026-10-30T06:14:47.521004+00:00",
+  "passed": true,
+  "native_source_sha256": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5",
+  "native_input_count": 238,
+  "native_input_bytes": 4517950,
+  "native_input_scope": "Cargo.toml/Cargo.lock and source/shader/asset/vendor/qualification safe trees as defined by native/scripts/build_identity.py; source bytes independently rehashed",
+  "current_inputs_match_windows_stamp": true,
+  "current_inputs_match_host_stamp": true,
+  "both_stamps_source_frozen_through_build": true,
+  "stamped_source_commit": "44e645fc638e78afd0252b220d9acc28e1a73c52",
+  "windows_compilation_finished_successfully": true,
+  "compiler_build_finished_success_flags": [
+    true
+  ],
+  "windows_executables": [
+    {
+      "suite": "game",
+      "path": "native/target/x86_64-pc-windows-gnu/release/last-world.exe",
+      "bytes": 15179244,
+      "actual_sha256": "6bac0962241beebcd60ab3476bc2bf1bd17a06304343687adbb5f92e67e790d9",
+      "stamped_sha256": "6bac0962241beebcd60ab3476bc2bf1bd17a06304343687adbb5f92e67e790d9",
+      "matches_stamp": true,
+      "format": "pei-x86-64",
+      "subsystem": "Windows CUI",
+      "direct_import_names": [
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "dwmapi.dll",
+        "gdi32.dll",
+        "imm32.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ntdll.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "opengl32.dll",
+        "shell32.dll",
+        "user32.dll",
+        "uxtheme.dll"
+      ],
+      "direct_import_names_recognized_windows_os_or_api": true,
+      "unrecognized_direct_imports": [],
+      "execution_performed": false,
+      "recognized_direct_import_count": 14
+    },
+    {
+      "suite": "cli",
+      "path": "native/target/x86_64-pc-windows-gnu/release/deps/last_world-f133de0b800d76fa.exe",
+      "bytes": 1066250,
+      "actual_sha256": "e72a1ec3cd5d57823796a9cd179d896bb21972c5aad394b44a42650cd0bc1b42",
+      "stamped_sha256": "e72a1ec3cd5d57823796a9cd179d896bb21972c5aad394b44a42650cd0bc1b42",
+      "matches_stamp": true,
+      "format": "pei-x86-64",
+      "subsystem": "Windows CUI",
+      "direct_import_names": [
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ntdll.dll",
+        "userenv.dll"
+      ],
+      "direct_import_names_recognized_windows_os_or_api": true,
+      "unrecognized_direct_imports": [],
+      "execution_performed": false,
+      "recognized_direct_import_count": 6
+    },
+    {
+      "suite": "library",
+      "path": "native/target/x86_64-pc-windows-gnu/release/deps/last_world_native-f3c00bc9461da115.exe",
+      "bytes": 11145933,
+      "actual_sha256": "a3104a6f0c9b62ecbff9d1ddf3eebe67704b1ed4fa5eefaf75f3e0212d19e2cb",
+      "stamped_sha256": "a3104a6f0c9b62ecbff9d1ddf3eebe67704b1ed4fa5eefaf75f3e0212d19e2cb",
+      "matches_stamp": true,
+      "format": "pei-x86-64",
+      "subsystem": "Windows CUI",
+      "direct_import_names": [
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ntdll.dll",
+        "userenv.dll"
+      ],
+      "direct_import_names_recognized_windows_os_or_api": true,
+      "unrecognized_direct_imports": [],
+      "execution_performed": false,
+      "recognized_direct_import_count": 6
+    }
+  ],
+  "host_executable_hash_checks": [
+    {
+      "suite": "game",
+      "path": "native/target/release/last-world",
+      "actual_sha256": "98bda68a544e253415b45be47d393bfbbc9ed4226a7021bc0273bfc1efe2976f",
+      "stamped_sha256": "98bda68a544e253415b45be47d393bfbbc9ed4226a7021bc0273bfc1efe2976f",
+      "matches_stamp": true
+    },
+    {
+      "suite": "cli",
+      "path": "native/target/release/deps/last_world-657b11cb9d10eaef",
+      "actual_sha256": "1dfd40abd2c596984bdd90e9a9a4b0a529536dc947f93f062bdb8397c39f632a",
+      "stamped_sha256": "1dfd40abd2c596984bdd90e9a9a4b0a529536dc947f93f062bdb8397c39f632a",
+      "matches_stamp": true
+    },
+    {
+      "suite": "library",
+      "path": "native/target/release/deps/last_world_native-a4a6f9ad6047480b",
+      "actual_sha256": "7a45c4107e042a02c8bc730e73bb123665cd396f794a9ccd8c86ef5f69cc356d",
+      "stamped_sha256": "7a45c4107e042a02c8bc730e73bb123665cd396f794a9ccd8c86ef5f69cc356d",
+      "matches_stamp": true
+    }
+  ],
+  "archives": [
+    {
+      "file": "windows-release-build-stamp.json",
+      "source": "/workspace/sites/last-world/native/target/x86_64-pc-windows-gnu/release/native-build-stamp.json",
+      "sha256": "669ff703982f583d36f3a33a57af8d165c6447ba61dc5866ada8bdda7dc9d0fa",
+      "byte_identical": true,
+      "bytes": 1060
+    },
+    {
+      "file": "windows-release-build.log",
+      "source": "/workspace/scratch/5f5799dd0333/stress-windows-release-build.log",
+      "sha256": "a566d7d380e8dc2e47898959d3ae0ecf7584db42624cef67312b3986f8af35e0",
+      "byte_identical": true,
+      "bytes": 193325
+    }
+  ],
+  "direct_import_proof": {
+    "file": "windows-pe-import-proof.txt",
+    "sha256": "8dcfe60efaf6f9cfd0912d76401b174b49119a3c22310f216722b9252ca14201"
+  },
+  "current_regular_cpu_correctness": {
+    "native_source_sha256": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5",
+    "executable_sha256": "98bda68a544e253415b45be47d393bfbbc9ed4226a7021bc0273bfc1efe2976f",
+    "report": "current-connected-report.json",
+    "identity": "current-connected-identity.json",
+    "all14gates": true,
+    "ticks": 17320,
+    "fixture": {
+      "default_game_counts_unchanged": [
+        10000,
+        2000
+      ],
+      "live_wildlife": true,
+      "map_meters": [
+        4800,
+        3200
+      ],
+      "military": 512,
+      "workers": 64
+    },
+    "early_save": {
+      "compared_through_tick": 1240,
+      "exact_serialized_state_match": true,
+      "fixture_files_removed_after_verification": true,
+      "save_bytes": 66529857,
+      "saved_tick": 1200
+    },
+    "late_save": {
+      "compared_through_tick": 17320,
+      "exact_serialized_state_match": true,
+      "fixture_files_removed_after_verification": true,
+      "save_bytes": 91373432,
+      "saved_tick": 17280
+    },
+    "performance_qualified": false
+  },
+  "hardware_qualification": false,
+  "windows_execution_performed": false,
+  "windows_test_inventory_proven": false,
+  "powershell_cmd_supervision_executed": false,
+  "live_cpu_recovery_probes": {
+    "report": "live-native-recovery/probe-summary.json",
+    "report_sha256": "dfde008573828e3d9ed391cf051a529ce49770b93d269dfc7441ff9acf43b74a",
+    "passed": true,
+    "actual_process_attempts": 5,
+    "expected_native_aborts": 3,
+    "real_native_successes": 2,
+    "failed_case_absent_from_actual_saved_controller": true,
+    "skipped_case": "probe-after-commit-crash-always",
+    "scope": "actual frozen native CPU fault controls; Python writes supervisor-format rejection metadata only",
+    "windows_supervisor_executed": false,
+    "hardware_performance_qualified": false
+  },
+  "gpu_or_driver_runtime_proven": false,
+  "actual100x_or60fps_claimed": false,
+  "production20km_or_complete_baseline_qualified": false,
+  "limits": [
+    "PE import table and compiler/stamp identity checks only; no Windows startup, test execution, Job Object, memory guard, graphics adapter or DLL export availability verification",
+    "Recognized direct OS/API import names do not cover runtime dynamic loads",
+    "Current regular CPU report uses explicit512 military/64 workers resident4.8x3.2km fixture; it is exact-state correctness evidence, not production save-size/load-time or performance acceptance",
+    "Source-byte/overlay ZIP verification remains parent packaging work"
+  ]
+}

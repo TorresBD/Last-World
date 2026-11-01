@@ -1,0 +1,1 @@
+PASS: all launcher scripts parsed; both embedded C# classes compiled on portable PowerShell. No Win32 or GPU runtime called.

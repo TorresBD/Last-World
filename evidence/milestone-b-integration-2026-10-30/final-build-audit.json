@@ -1,0 +1,110 @@
+{
+  "ancestry_note": "Host and Windows stamp commits differ; equality is verified by native compilation-content digest, not by claiming identical commits.",
+  "audited_at_utc": "2026-10-30T05:07:51.586197+00:00",
+  "connected_small_CPU_fixture": {
+    "early_save_receipt": {
+      "compared_through_tick": 1240,
+      "exact_serialized_state_match": true,
+      "fixture_files_removed_after_verification": true,
+      "save_bytes": 66529833,
+      "saved_tick": 1200
+    },
+    "final_tick": 17320,
+    "fixture_save_cost_note": "Actual versioned JSON save sizes for this small fixture only; neither mature20km save size nor production256MiB/load15s targets are qualified. Compact/paged save work remains.",
+    "gates_total": 14,
+    "late_save_receipt": {
+      "compared_through_tick": 17320,
+      "exact_serialized_state_match": true,
+      "fixture_files_removed_after_verification": true,
+      "save_bytes": 91373408,
+      "saved_tick": 17280
+    },
+    "load_time_target_qualified": false,
+    "maximum_ticks": 24000,
+    "passed": true,
+    "performance_qualified": false,
+    "production_save_budget_qualified": false,
+    "strict_gates_passed": 14
+  },
+  "hardware_qualification": false,
+  "harness_deadline_change": "Only campaign-cpu240 to600 seconds; campaign-render240 and all other stage budgets unchanged. No gameplay clock, horizon, counts, gates or performance acceptance changed.",
+  "harness_wall_deadlines_seconds": {
+    "campaign-cpu": 600,
+    "campaign-render": 240,
+    "ground-cpu": 180,
+    "movement-dx12": 120,
+    "movement-vulkan": 120,
+    "river-render": 180
+  },
+  "host": {
+    "executable": "native/target/release/last-world",
+    "executable_sha256": "def0abdf61669cc8750b5573178a41df22e9d03827379a9b2692fac6d150437f",
+    "same_native_content_as_windows": true,
+    "source_commit": "88693b62bdc49bf4fb47ede22c0a65ad2fb68b85",
+    "source_frozen_through_build": true,
+    "stamped_executable_and_current_native_inputs_match": true
+  },
+  "kind": "read_only_frozen_native_build_and_PE_import_audit",
+  "native_compilation_input_files": 234,
+  "native_source_sha256": "7e8cdb70e5db3346dae53bd9991a9cf52237f1a2e0c92ffcc2bce7334e575f0a",
+  "passed": true,
+  "pe": {
+    "availability_on_target_windows_installation_proven": false,
+    "direct_import_names_are_recognized_windows_system_or_API_contracts": true,
+    "direct_imports_as_reported": [
+      "dwmapi.dll",
+      "gdi32.dll",
+      "imm32.dll",
+      "ntdll.dll",
+      "ole32.dll",
+      "opengl32.dll",
+      "user32.dll",
+      "uxtheme.dll",
+      "KERNEL32.dll",
+      "msvcrt.dll",
+      "kernel32.dll",
+      "kernel32.dll",
+      "bcryptprimitives.dll",
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "kernel32.dll",
+      "ntdll.dll",
+      "ole32.dll",
+      "oleaut32.dll",
+      "shell32.dll"
+    ],
+    "format": "pei-x86-64",
+    "inspection_evidence": "final-windows-pe-imports.txt",
+    "inspection_tool": "GNU objdump (GNU Binutils for Ubuntu) 2.42",
+    "runtime_driver_or_dynamically_loaded_DLLs_examined": false,
+    "subsystem": "Windows CUI",
+    "unique_import_names_casefolded": [
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "bcryptprimitives.dll",
+      "dwmapi.dll",
+      "gdi32.dll",
+      "imm32.dll",
+      "kernel32.dll",
+      "msvcrt.dll",
+      "ntdll.dll",
+      "ole32.dll",
+      "oleaut32.dll",
+      "opengl32.dll",
+      "shell32.dll",
+      "user32.dll",
+      "uxtheme.dll"
+    ],
+    "unknown_direct_import_names": []
+  },
+  "schema_version": 1,
+  "scope": "No native Windows/GPU execution, driver compatibility, gameplay frame rate, actual10k+2k integrated throughput, production20km streaming, complete baseline or all160 qualification is established by this audit.",
+  "windows": {
+    "bytes": 14413170,
+    "executable": "native/target/x86_64-pc-windows-gnu/release/last-world.exe",
+    "executable_sha256": "d9aa4b559610375014e7b4615e17f528af7229917b65f9928ca4a80695c5f3c3",
+    "source_commit": "ec909d1c2b11e490ceb6181dc9f14287af1def58",
+    "source_frozen_through_build": true,
+    "stamp": "final-windows-build-stamp.json",
+    "stamped_executable_and_current_native_inputs_match": true
+  },
+  "windows_execution_performed": false
+}

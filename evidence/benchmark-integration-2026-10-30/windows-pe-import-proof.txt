@@ -1,0 +1,56 @@
+Read-only Windows PE direct-import audit. No Windows execution performed.
+Command per executable: objdump -p <stamped path>
+Only format/subsystem/DLL-name lines retained below. Direct import recognition does not verify dynamic imports, installed OS exports or driver availability.
+
+game: native/target/x86_64-pc-windows-gnu/release/last-world.exe
+SHA256 6bac0962241beebcd60ab3476bc2bf1bd17a06304343687adbb5f92e67e790d9
+/workspace/sites/last-world/native/target/x86_64-pc-windows-gnu/release/last-world.exe:     file format pei-x86-64
+Subsystem		00000003	(Windows CUI)
+	DLL Name: dwmapi.dll
+	DLL Name: gdi32.dll
+	DLL Name: imm32.dll
+	DLL Name: ntdll.dll
+	DLL Name: ole32.dll
+	DLL Name: opengl32.dll
+	DLL Name: user32.dll
+	DLL Name: uxtheme.dll
+	DLL Name: KERNEL32.dll
+	DLL Name: msvcrt.dll
+	DLL Name: kernel32.dll
+	DLL Name: kernel32.dll
+	DLL Name: bcryptprimitives.dll
+	DLL Name: api-ms-win-core-synch-l1-2-0.dll
+	DLL Name: kernel32.dll
+	DLL Name: ntdll.dll
+	DLL Name: ole32.dll
+	DLL Name: oleaut32.dll
+	DLL Name: shell32.dll
+
+cli: native/target/x86_64-pc-windows-gnu/release/deps/last_world-f133de0b800d76fa.exe
+SHA256 e72a1ec3cd5d57823796a9cd179d896bb21972c5aad394b44a42650cd0bc1b42
+/workspace/sites/last-world/native/target/x86_64-pc-windows-gnu/release/deps/last_world-f133de0b800d76fa.exe:     file format pei-x86-64
+Subsystem		00000003	(Windows CUI)
+	DLL Name: ntdll.dll
+	DLL Name: KERNEL32.dll
+	DLL Name: msvcrt.dll
+	DLL Name: ntdll.dll
+	DLL Name: kernel32.dll
+	DLL Name: kernel32.dll
+	DLL Name: bcryptprimitives.dll
+	DLL Name: api-ms-win-core-synch-l1-2-0.dll
+	DLL Name: kernel32.dll
+	DLL Name: ntdll.dll
+	DLL Name: userenv.dll
+
+library: native/target/x86_64-pc-windows-gnu/release/deps/last_world_native-f3c00bc9461da115.exe
+SHA256 a3104a6f0c9b62ecbff9d1ddf3eebe67704b1ed4fa5eefaf75f3e0212d19e2cb
+/workspace/sites/last-world/native/target/x86_64-pc-windows-gnu/release/deps/last_world_native-f3c00bc9461da115.exe:     file format pei-x86-64
+Subsystem		00000003	(Windows CUI)
+	DLL Name: ntdll.dll
+	DLL Name: KERNEL32.dll
+	DLL Name: msvcrt.dll
+	DLL Name: ntdll.dll
+	DLL Name: bcryptprimitives.dll
+	DLL Name: api-ms-win-core-synch-l1-2-0.dll
+	DLL Name: ntdll.dll
+	DLL Name: userenv.dll

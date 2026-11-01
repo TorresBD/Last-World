@@ -1,0 +1,31 @@
+{
+  "rejections": [
+    {
+      "attempt_index": 1,
+      "case_id": "probe-after-commit-crash-once",
+      "process_id": 7,
+      "reason": "host_live_probe: actual owned SIGABRT after validated checkpoint/report commit; not a successful supervisor phase",
+      "recorded_utc": "2026-10-30T06:12:45.152095+00:00",
+      "session_id": "probe-after-commit-crash-once-7-1793340763309",
+      "source_identity": {
+        "executable_sha256": "98bda68a544e253415b45be47d393bfbbc9ed4226a7021bc0273bfc1efe2976f",
+        "native_source_sha256": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5"
+      },
+      "started_utc_ms": 1793340761872
+    },
+    {
+      "attempt_index": 1,
+      "case_id": "probe-after-commit-crash-always",
+      "process_id": 9,
+      "reason": "host_live_probe: actual owned SIGABRT after validated checkpoint/report commit; not a successful supervisor phase",
+      "recorded_utc": "2026-10-30T06:12:59.709059+00:00",
+      "session_id": "probe-after-commit-crash-always-9-1793340777580",
+      "source_identity": {
+        "executable_sha256": "98bda68a544e253415b45be47d393bfbbc9ed4226a7021bc0273bfc1efe2976f",
+        "native_source_sha256": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5"
+      },
+      "started_utc_ms": 1793340774095
+    }
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,26 @@
+Read-only objdump -p inspection; relevant header/import lines copied verbatim.
+EXE SHA256 d9aa4b559610375014e7b4615e17f528af7229917b65f9928ca4a80695c5f3c3
+/workspace/sites/last-world/native/target/x86_64-pc-windows-gnu/release/last-world.exe:     file format pei-x86-64
+ImageBase		0000000140000000
+MajorSubsystemVersion	5
+MinorSubsystemVersion	2
+Subsystem		00000003	(Windows CUI)
+	DLL Name: dwmapi.dll
+	DLL Name: gdi32.dll
+	DLL Name: imm32.dll
+	DLL Name: ntdll.dll
+	DLL Name: ole32.dll
+	DLL Name: opengl32.dll
+	DLL Name: user32.dll
+	DLL Name: uxtheme.dll
+	DLL Name: KERNEL32.dll
+	DLL Name: msvcrt.dll
+	DLL Name: kernel32.dll
+	DLL Name: kernel32.dll
+	DLL Name: bcryptprimitives.dll
+	DLL Name: api-ms-win-core-synch-l1-2-0.dll
+	DLL Name: kernel32.dll
+	DLL Name: ntdll.dll
+	DLL Name: ole32.dll
+	DLL Name: oleaut32.dll
+	DLL Name: shell32.dll

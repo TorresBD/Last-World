@@ -1,0 +1,20 @@
+..........E
+======================================================================
+ERROR: test_three_current_build_outputs_are_x64_pe32plus (__main__.WindowsExecutableContract.test_three_current_build_outputs_are_x64_pe32plus) (path='last_world_native-2cd2696664885b9e.exe')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5f5799dd0333/last-world/native/scripts/test-overlay-package.py", line 120, in test_three_current_build_outputs_are_x64_pe32plus
+    overlay.verify_windows_pe(path.read_bytes(), path.name)
+                              ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/5f5799dd0333/last-world/native/target/x86_64-pc-windows-gnu/release/deps/last_world_native-2cd2696664885b9e.exe'
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.021s
+
+FAILED (errors=1)

@@ -1,0 +1,58 @@
+{
+  "native_source_sha256": "7f903735711224e890734952248dc52a9532c408bd5a82e13f615e06c7243805",
+  "three_exact_binaries": [
+    {
+      "kind": "game",
+      "sha256": "3b09afc2d478f95b4d2582e752831a24558cfe8baa43f14ac00fdf229512894e",
+      "bytes": 15214664,
+      "imports": [
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "dwmapi.dll",
+        "gdi32.dll",
+        "imm32.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ntdll.dll",
+        "ole32.dll",
+        "oleaut32.dll",
+        "opengl32.dll",
+        "shell32.dll",
+        "user32.dll",
+        "uxtheme.dll"
+      ],
+      "matches_previous_os_import_set": true
+    },
+    {
+      "kind": "cli",
+      "sha256": "af3e8a4fec6c978c5110edc100533d8c2cf7ce355e7067cac564222ab5fb204f",
+      "bytes": 1065102,
+      "imports": [
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ntdll.dll",
+        "userenv.dll"
+      ],
+      "matches_previous_os_import_set": true
+    },
+    {
+      "kind": "library",
+      "sha256": "fb74e914910eb592e2e6d960b646a7837eeed0bdd5f60f941fca820a40a4a7c0",
+      "bytes": 11375339,
+      "imports": [
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "kernel32.dll",
+        "msvcrt.dll",
+        "ntdll.dll",
+        "userenv.dll"
+      ],
+      "matches_previous_os_import_set": true
+    }
+  ],
+  "direct_imports_only": true,
+  "initial_adhoc_allowlist_corrected": "uxtheme.dll and bcryptprimitives.dll were omitted from the first audit allowlist; unchanged from delivered baseline",
+  "actual_windows_runtime_tested": false
+}

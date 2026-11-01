@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "exact_history_and_previous_data_preserved_collision_archive_default_and_custom_ui_unknown_files_idempotence",
+    "interrupted_import_restart_uses_durable_marker",
+    "old_exclusive_lock_blocks_without_data_moves",
+    "new_exclusive_lock_blocks_without_data_moves",
+    "both_compatibility_and_data_locks_held_before_moves",
+    "injected_root_and_app_process_paths_block_without_scanning_processes",
+    "organized_app_and_tools_hashes_verified_before_moves",
+    "reparse_source_rejected_outside_install_untouched",
+    "manifest_parent_traversal_rejected"
+  ],
+  "skips": [],
+  "windows_qualification": false,
+  "retained_directory": "/tmp/Last World Layout ' & [5-53dca12facc24425b05a3ac066afd5aa]",
+  "schema_version": 1,
+  "platform": null,
+  "powershell_version": "7.4.6",
+  "passed": true
+}

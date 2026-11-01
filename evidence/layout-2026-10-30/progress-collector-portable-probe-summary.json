@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": [
+    "flat_progress_samples_archive_and_preservation",
+    "existing_progress_zip_replace_and_stationary_sample",
+    "organized_progress_samples_archive_and_preservation"
+  ],
+  "platform": "Linux portable PowerShell 7.4.6; not Windows CMD or PowerShell 5.1 execution",
+  "fixture": "/tmp/LW progress ' & [probe-8v3o3nre"
+}

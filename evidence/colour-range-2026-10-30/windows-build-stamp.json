@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "target": "x86_64-pc-windows-gnu",
+  "built_at_utc": "2026-10-31T02:45:38.515887+00:00",
+  "source_commit": "9aa8f0e5ad33c3367612ea2e4e9bf97992c4460d",
+  "native_source_sha256": "3c9147c8a52073d64788d521c8325c57a614a1f337ada31d0d706522f8686e1e",
+  "executable_sha256": "41dbfc9dea9553e6e681aa9a2ac951fa70b412362dc9f74d4aedebc55807e17f",
+  "source_frozen_through_build": true,
+  "worktree_dirty": true,
+  "test_harnesses": [
+    {
+      "suite": "cli",
+      "path": "native/target/x86_64-pc-windows-gnu/release/deps/last_world-145d7bc108d8d3ff.exe",
+      "sha256": "023216067b6d5f6ad9a414e43c72ca319e4309e5ed86d32a5f320ebac9616eb2",
+      "bytes": 1076161,
+      "inventory_source": null,
+      "test_names": []
+    },
+    {
+      "suite": "library",
+      "path": "native/target/x86_64-pc-windows-gnu/release/deps/last_world_native-2cd2696664885b9e.exe",
+      "sha256": "3521f7cc377f5761b7a66543b884fd0eae69d8cc60150c2296fbeced38304b2e",
+      "bytes": 11616652,
+      "inventory_source": null,
+      "test_names": []
+    }
+  ]
+}

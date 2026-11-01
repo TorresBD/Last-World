@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "kind": "portable_supervisor_model_and_source_invariant_QA_not_Windows_execution",
+  "checked_at_utc": "2026-10-30T06:04:35.434603+00:00",
+  "passed": true,
+  "checks": 18,
+  "raw_log": "supervisor-model-static-pass.log",
+  "powershell_available": false,
+  "cmd_executed": false,
+  "win32_AddType_helper_executed": false,
+  "windows_runtime_qualified": false,
+  "source_files": {
+    "native/launchers/Run-Checks.cmd": {
+      "sha256": "c1418a54abba6d3b5ac5bb72f7da2417feaf9c7f410aac028f48bc371dd3fa64",
+      "bytes": 3009
+    },
+    "native/launchers/Run-Checks.ps1": {
+      "sha256": "9bb45c1b922e894efab56fd5f9458e70200f6115cc32db430412233ea677a809",
+      "bytes": 41750
+    },
+    "native/launchers/Run-Checks-OwnedProcess.ps1": {
+      "sha256": "e1f7879d497b9f192e181ffc939ad9ae1626b8fa6e8b98f9722016030e3aba4d",
+      "bytes": 9140
+    },
+    "native/launchers/Run-Checks-Feedback.ps1": {
+      "sha256": "168ddb2896c4f6f82d0e8df046dd38095ed7fec0b2d98c28a6f9dfbf2ec40186",
+      "bytes": 7262
+    },
+    "native/scripts/test-supervisor-model.py": {
+      "sha256": "0f59e03b4d83033ed14242680acb757f49ee597da85c370725e19d23798a0da8",
+      "bytes": 18988
+    }
+  },
+  "independent_review": "Read-only PS5.1/C# inspection prompted canonical resumed command+named-test verification and monotonic deadline fixes; no confirmed additional binding/layout blocker found.",
+  "limitations": "Independent behavior models plus actual-source critical invariants/delimiter checks, not a full PowerShell parser or Windows runtime proof. Actual Windows discovery/retry/resume/job guard/feedback need PC evidence.",
+  "retry_protocol": "Child-only LAST_WORLD_BENCHMARK_ATTEMPT1/2; retry2 receipt shortcut rejected; failed case+attempt+native/executable hash-pair markers; native owns rollback; unit/baseline env absent and all child TEMP/TMP isolated.",
+  "report_identity_guard": "Both 64hex source/executable fields must match the preflight-verified adjacent stamp; extra source identity fields allowed; absent/malformed/foreign pairs fail."
+}

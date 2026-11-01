@@ -1,0 +1,6 @@
+Running actual CPU control probe-after-commit-crash-once attempt1; expected post_commit_SIGABRT
+Running actual CPU control probe-after-commit-crash-once attempt2; expected real_success
+Running actual CPU control probe-after-commit-crash-always attempt1; expected post_commit_SIGABRT
+Running actual CPU control probe-after-commit-crash-always attempt2; expected post_commit_SIGABRT
+Running actual CPU control probe-continue-after-skipped attempt1; expected real_success
+{"passed": true, "correctness_only": true, "summary": "/workspace/scratch/5f5799dd0333/native-recovery-live-final/probe-summary.json"}

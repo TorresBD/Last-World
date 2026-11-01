@@ -1,0 +1,11 @@
+{
+  "kind": "benchmark_local_regression_snapshot",
+  "library_checks": 224,
+  "cli_checks": 3,
+  "native_total": 227,
+  "portable_supervisor_checks": 17,
+  "build_identity_checks": 2,
+  "windows_runtime_tested": false,
+  "actual100x_achieved_claimed": false,
+  "scope": "host correctness and portable model/static checks; not real GPU/Windows benchmark qualification"
+}

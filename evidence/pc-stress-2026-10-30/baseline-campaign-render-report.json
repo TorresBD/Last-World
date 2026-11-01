@@ -1,0 +1,333 @@
+{
+  "accepted_frames": 1995,
+  "captures": [
+    true,
+    true,
+    true
+  ],
+  "conserved": true,
+  "frame_intervals": {
+    "max_ms": 1186.9854,
+    "mean_ms": 15.038114937343352,
+    "median_ms": 10.8345,
+    "p95_ms": 30.6421,
+    "p99_ms": 119.66250000000001,
+    "retained_samples": 1995,
+    "total_samples": 1995
+  },
+  "gpu_completed_simulation_speed": null,
+  "gpu_execution_ms": null,
+  "kind": "automated_small_native_campaign_check_not20km_full160_release",
+  "max_and_mean": "all_accepted_intervals",
+  "native_ui": {
+    "budget_ms_target": {
+      "cpu": 1.0,
+      "gpu": 1.0
+    },
+    "counters": {
+      "last_cpu_ms": 9.7566,
+      "last_dirty_rects": 1,
+      "last_upload_bytes": 10414080,
+      "layers_redrawn": 317,
+      "layers_reused": 780,
+      "model_cache_hits": 1,
+      "total_upload_bytes": 162443144,
+      "updates": 156,
+      "world_quads": 0
+    },
+    "cpu_composition_samples": {
+      "max_ms": 23.7122,
+      "mean_ms": 3.705765605095542,
+      "median_ms": 2.4012000000000002,
+      "p95_ms": 11.8423,
+      "p99_ms": 17.1978,
+      "retained_samples": 157,
+      "total_samples": 157
+    },
+    "glyph_source": "bundled licensed Rajdhani and IBM Plex Sans glyph atlases",
+    "gpu_ui_execution_ms": null,
+    "quad_capacity": 131072,
+    "rgba_texture_capacity_bytes": 37748736,
+    "scope": "CPU layout/raster/upload submission; includes explicit capture variants; no GPU timestamp measurement"
+  },
+  "native_ui_captures": [
+    "campaign-check-4040-1793397024819-ui-1366x768-calm.png",
+    "campaign-check-4040-1793397024819-ui-1366x768-build.png",
+    "campaign-check-4040-1793397024819-ui-1366x768-ecology.png",
+    "campaign-check-4040-1793397024819-ui-1366x768-food-web.png",
+    "campaign-check-4040-1793397024819-ui-1366x768-logistics.png",
+    "campaign-check-4040-1793397024819-ui-1920x1080-calm.png",
+    "campaign-check-4040-1793397024819-ui-1920x1080-build.png",
+    "campaign-check-4040-1793397024819-ui-1920x1080-ecology.png",
+    "campaign-check-4040-1793397024819-ui-1920x1080-food-web.png",
+    "campaign-check-4040-1793397024819-ui-1920x1080-logistics.png",
+    "campaign-check-4040-1793397024819-ui-2560x1440-calm.png",
+    "campaign-check-4040-1793397024819-ui-2560x1440-build.png",
+    "campaign-check-4040-1793397024819-ui-2560x1440-ecology.png",
+    "campaign-check-4040-1793397024819-ui-2560x1440-food-web.png",
+    "campaign-check-4040-1793397024819-ui-2560x1440-logistics.png"
+  ],
+  "quantiles": "nearest_rank_latest8192intervals",
+  "requested_speed": 4,
+  "stage_cpu_wall": {
+    "frames": 1995,
+    "scope": "CPU wall durations; event_gap includes OS/event scheduling; no GPU timestamps",
+    "stages": {
+      "capture": {
+        "max_ms": 2509.443,
+        "mean_ms": 1.3338167418546405
+      },
+      "encode_submit": {
+        "max_ms": 0.6074,
+        "mean_ms": 0.22865298245613977
+      },
+      "event_gap": {
+        "max_ms": 19.4771,
+        "mean_ms": 0.16100696741854623
+      },
+      "input": {
+        "max_ms": 0.0,
+        "mean_ms": 0.0
+      },
+      "present": {
+        "max_ms": 8.0386,
+        "mean_ms": 0.9543931328320807
+      },
+      "reporting": {
+        "max_ms": 1.3595,
+        "mean_ms": 0.017055839598997168
+      },
+      "simulation": {
+        "max_ms": 145.195,
+        "mean_ms": 11.861217744360898
+      },
+      "surface_acquire": {
+        "max_ms": 0.1451,
+        "mean_ms": 0.048576741854636486
+      },
+      "total_work": {
+        "max_ms": 2549.7012999999997,
+        "mean_ms": 16.15065022556393
+      },
+      "upload": {
+        "max_ms": 1112.8587,
+        "mean_ms": 1.7049966917293216
+      }
+    }
+  },
+  "state": {
+    "all160_implemented": false,
+    "attributed_ecological_damage": [
+      258,
+      258
+    ],
+    "biology_events": 45552,
+    "civilian_jobs_present": true,
+    "completed_jobs": 0,
+    "ecology": {
+      "animal_hydration": 1165024,
+      "biomass_units": 20231018,
+      "captive_animals": 0,
+      "dead_animals": 318,
+      "dead_plants": 0,
+      "death_reasons": {
+        "offspring/flooding": 18,
+        "predation": 300
+      },
+      "extinct_species": [
+        0
+      ],
+      "generation_accepted": true,
+      "generation_relocations": 258,
+      "living_plants": 24014,
+      "root_zone_water": 16516812,
+      "transit_animals": 141,
+      "viable_offspring": 0,
+      "viable_seeds": 150738,
+      "wild_animals": 14793
+    },
+    "field_support": {
+      "automatic_refill": false,
+      "candidate_limit_per_acquisition": 512,
+      "conserved": true,
+      "kind": "finite_paid_structure_ammunition_and_local_support",
+      "stocks": {},
+      "tick": 2400,
+      "totals": {
+        "acquisitions": 0,
+        "candidates_examined": 0,
+        "converted_metal_units": [
+          0,
+          0
+        ],
+        "destroyed_rounds": [
+          0,
+          0
+        ],
+        "fired_rounds": [
+          0,
+          0
+        ],
+        "imported_from_paid_construction": [
+          0,
+          0
+        ],
+        "supplied_rounds": [
+          0,
+          0
+        ],
+        "targets_killed": [
+          0,
+          0
+        ]
+      }
+    },
+    "integrated_performance_qualified": false,
+    "kind": "connected_native_milestone_B_small_map_not_production20km",
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "military_rules_present": true,
+    "pending_ticks": 0,
+    "physical": {
+      "active_jobs": 4,
+      "active_progress": [
+        {
+          "earned_labor_ticks": 0,
+          "last_progress_tick": 2400,
+          "organism": 2016,
+          "patch": 0,
+          "position_mm": [
+            76000,
+            20656
+          ],
+          "trait_id": 65,
+          "worksite": 0
+        },
+        {
+          "earned_labor_ticks": 0,
+          "last_progress_tick": 2400,
+          "organism": 2017,
+          "patch": 0,
+          "position_mm": [
+            76000,
+            20656
+          ],
+          "trait_id": 65,
+          "worksite": 0
+        },
+        {
+          "earned_labor_ticks": 0,
+          "last_progress_tick": 2400,
+          "organism": 3,
+          "patch": 1,
+          "position_mm": [
+            236000,
+            47788
+          ],
+          "trait_id": 46,
+          "worksite": 20
+        },
+        {
+          "earned_labor_ticks": 0,
+          "last_progress_tick": 2400,
+          "organism": 4,
+          "patch": 1,
+          "position_mm": [
+            236000,
+            47788
+          ],
+          "trait_id": 46,
+          "worksite": 20
+        }
+      ],
+      "biomass_received_from_ecology": 0,
+      "biomass_returned_to_ecology": 0,
+      "breeding_refuges": "specific_reserved_den_group_slots_and_unique_builder_owned_nest;underground_nest_shares_actual_room_with_adults_and_eggs",
+      "canopy_hosts": "one_aggregate_reference_per_macro_patch;fails_at_zero_actual_living_canopy_tissue;no_per_tree_precision",
+      "committed_traits": {},
+      "conserved": true,
+      "dams": "actual_links_inside_managed_river_only;static_generated_water_elsewhere",
+      "last_tick": 2400,
+      "optional_retry_cooldowns": 0,
+      "queued_optional_intents": 3782,
+      "raw_ground_cover": "visual_density_is_never_timber_or_fiber_supply",
+      "rejected_optional_intents": 0,
+      "stale_optional_intents": 0,
+      "stalled_optional_jobs_released": 0,
+      "surface_received_mm3": 0,
+      "tracked_real_actors": 4,
+      "underground_water": "derived_connected_hazard_from_authoritative_surface;no_separate_volume_or_momentum"
+    },
+    "requested_speed": 4,
+    "ship_health": [
+      10000,
+      10000
+    ],
+    "tactics": {
+      "deaths": [
+        6,
+        9
+      ],
+      "fired_ammunition": 258,
+      "initial_ammunition": 400000,
+      "lost_ammunition": 367,
+      "route_builds": 269,
+      "route_cache_hits": 7565,
+      "route_cost_refreshes": 29,
+      "route_invalidations": 263,
+      "route_node_expansions": 2019595,
+      "spawned": [
+        6000,
+        6000
+      ],
+      "supplied_ammunition": 0
+    },
+    "tick": 2400,
+    "water": {
+      "boundary_outflow_liters": 7451665,
+      "cells": 12288,
+      "conserved": true,
+      "dam_closed": false,
+      "dam_crest_mm": 11000,
+      "external_inflow_liters": 3000000,
+      "fixture": "isolated_river_water_no_military_or_campaign_rules",
+      "ground": {
+        "bed_sediment_liters": 391918977,
+        "biomass_outflow_units": 281967,
+        "cumulative_deposited_liters": 595713,
+        "cumulative_eroded_liters": 1892736,
+        "current_deposit_subset_liters": 588865,
+        "deposited_debris_units": 7784,
+        "evaporated_liters": 165018,
+        "foliage_exported_units": 487422,
+        "foliage_imported_units": 1644,
+        "infiltrated_liters": 6483518,
+        "initial_foliage_units": 49194717,
+        "initial_sediment_liters": 393216000,
+        "initial_soil_water_liters": 0,
+        "live_foliage_units": 47833243,
+        "mobile_debris_units": 585945,
+        "returned_to_surface_liters": 0,
+        "sediment_outflow_liters": 667887,
+        "soil_water_liters": 6318500,
+        "suspended_sediment_liters": 629136
+      },
+      "initial_liters": 17510400,
+      "links": 24352,
+      "processed_through_game_tick": 2400,
+      "rainfall_groundwater_ecosystem_biology_implemented": false,
+      "sample_meters": 8,
+      "stored_liters": 6575217,
+      "upstream_liters": 2776159,
+      "water_extracted_to_other_stocks_liters": 6483518,
+      "water_returned_from_other_stocks_liters": 0,
+      "wet_cells_10mm_or_more": 840
+    },
+    "winner": null
+  },
+  "status": "passed",
+  "tick": 2400,
+  "validation_error": null
+}

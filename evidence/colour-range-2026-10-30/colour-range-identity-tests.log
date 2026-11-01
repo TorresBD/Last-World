@@ -1,0 +1,7 @@
+test_scripts_docs_and_generated_vendor_caches_do_not_change_native_identity (__main__.BuildIdentityTests.test_scripts_docs_and_generated_vendor_caches_do_not_change_native_identity) ... ok
+test_vendor_manifest_build_rust_and_wgsl_edits_invalidate_identity (__main__.BuildIdentityTests.test_vendor_manifest_build_rust_and_wgsl_edits_invalidate_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.025s
+
+OK

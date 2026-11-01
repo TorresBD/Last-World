@@ -1,0 +1,22 @@
+{
+    "executable":  "Last-World-Cli-Checks.exe",
+    "source":  "actual_windows_owned_list",
+    "actual_names":  [
+                         "tests::counts_reject_invalid_input_without_reducing_requested_workload",
+                         "tests::duration_rejects_nonfinite_and_nonpositive_values",
+                         "tests::speed_accepts_only_explicit_testing_options"
+                     ],
+    "expected_host_names":  [
+                                "tests::counts_reject_invalid_input_without_reducing_requested_workload",
+                                "tests::duration_rejects_nonfinite_and_nonpositive_values",
+                                "tests::speed_accepts_only_explicit_testing_options"
+                            ],
+    "missing_from_windows":  [
+
+                             ],
+    "additional_windows_names":  [
+
+                                 ],
+    "actual_count":  3,
+    "inventory_drift":  false
+}

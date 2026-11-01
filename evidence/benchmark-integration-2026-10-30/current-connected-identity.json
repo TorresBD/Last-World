@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "identity": "current_frozen_regular_connected_correctness_report_not_benchmark_performance",
+  "source_commit": "44e645fc638e78afd0252b220d9acc28e1a73c52",
+  "native_source_sha256": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5",
+  "native_inputs_hash": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5",
+  "executable_sha256": "98bda68a544e253415b45be47d393bfbbc9ed4226a7021bc0273bfc1efe2976f",
+  "executable_path_relative": "native/target/release/last-world",
+  "executable_size_bytes": 15784992,
+  "report_sha256": "395f254f86d0d34420f5f45afa16a764753582d9ea52c6a002f28a041e106daa",
+  "stdout_sha256": "5793754253c39df9125851a739b7b05b617290445c47cf4195113cbbd63ba08c",
+  "final_buildstamp_pending": false,
+  "build_stamp_binding": "Final accepted host-release-build-stamp.json matches current native input and actual executable hashes; current all14-gate report is bound to this frozen build.",
+  "source_frozen_during_report_as_confirmed_by_parent": true,
+  "checks": {
+    "all14gates": true,
+    "reported_passed": true,
+    "late_receipt": true,
+    "late_exact_match": true,
+    "late40ticks": true,
+    "late_named_milestone": true,
+    "explicit_scope512plus64": true,
+    "no_fatal_or_panic": true
+  },
+  "verified_correctness_passed": true,
+  "ticks": 17320,
+  "late_save_receipt": {
+    "compared_through_tick": 17320,
+    "exact_serialized_state_match": true,
+    "fixture_files_removed_after_verification": true,
+    "save_bytes": 91373432,
+    "saved_tick": 17280
+  },
+  "fixture": {
+    "default_game_counts_unchanged": [
+      10000,
+      2000
+    ],
+    "live_wildlife": true,
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "military": 512,
+    "workers": 64
+  },
+  "timing_scope": "Regular --campaign-report drives fixed elapsed correctness ticks. Concurrent compilation occurred; this is not requested-rate, FPS or hardware performance evidence.",
+  "hardware_performance_qualified": false,
+  "full20km_qualified": false,
+  "retained_command_rejections": {
+    "count": 10,
+    "kinds": [
+      "Breeding needs compatible housed reproductive roles and space for the viable offspring"
+    ]
+  },
+  "final_host_buildstamp": "host-release-build-stamp.json",
+  "final_host_stamp_matches_native_and_executable": true
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "CPU_correctness_not_GPU_or_performance_qualification",
+  "scoped_checks": 2,
+  "library_checks": 214,
+  "CLI_checks": 3,
+  "all_checks_passed": true,
+  "new_persisted_fields": false,
+  "whole_resource_clones_in_handoff": false,
+  "regressions": [
+    "real carrier death releases existing identity, exact millimeter position, mineral wallet, finite ledgers and clears old work",
+    "physical handoff rejection preserves captivity and wallet",
+    "actual reserve-funded captive mortality cancels return and both release phases without replacement",
+    "saved capture coordinates and handling credit reject impossible state"
+  ],
+  "source_sha256": {
+    "native/src/campaign.rs": "5b37dc0f4888e6d134657f7fed790d439372dbdb05dc17c37684e0235677573e",
+    "native/src/campaign_scenarios.rs": "72338d2ae7889c4ea76c0e9c340a218f9d5a5b4d9c1d92b6208c0d1253289583",
+    "native/src/ecology.rs": "2236fceeb142b0f6927c37c73ab6743be08d063ef67a19b93eaaa3c3d4844c03",
+    "native/src/ecosystem_physics.rs": "c7e93d009f7863170de7bfa6e06b5dd4a580a4f1ab14a0d25e55f9179d484632"
+  },
+  "failure_history": "custody-mortality-float-failure-1.log and -2.log; see custody-mortality-check-history.txt"
+}

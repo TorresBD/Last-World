@@ -1,0 +1,30 @@
+{
+  "kind": "actual_Rust_core_module_export_verbatim_production_environment",
+  "seed": 78421,
+  "tick": 0,
+  "patches": 600,
+  "campaign_method_sha256": "c7850bbb99024f9a6541d8e5d81544dc4766153cc06a8afaeb06f234722e834a",
+  "constructor_normalization_sha256": "cf319933c116ca8ad6d93dbb10d1f5152a52d3c89713c6d200ce5b81e8881e81",
+  "ecology_initialization_sha256": "f566f47d8a133b67def397555ec3452ea8b05045203126bb645b0a6aef46f66c",
+  "module_sha256": {
+    "clock": "8f7666fff35b7c65ea8f6bfedad8a4627260ee817e9f10a6d67681c28f22f9a6",
+    "terrain": "42d636d57d852f0a7ebd1ceb4fa6f75c1469852e4ebc9f497c697c88b35256e0",
+    "water": "e2db45a51504149e95df1e8ebfacd2e7c65efad07650440ce92e336bf60b8a11",
+    "ground": "d2d432e9b81658fb18501c22cdde36edb41a3eed1af19e649da0bbfd3e87b6de",
+    "river": "d8cef380cecfd72a886be8160a46cbcb15b352ff9d1cc5b6eeffbdd773577b20",
+    "climate": "6840959979ddb039b6e093132659487d3e3189c0e5a36315f8b28230c2fdcf31",
+    "ecology": "8fa839785959afa56980ff02e93742ba57f07b56c2b6a1fa1719fc5d3171682e",
+    "habitat": "a16329be08134b67daac01221b6a69424970a283a7878f9ad88f57f4648bba5c",
+    "tactics": "12d3beae0611daa191809b8114c01286c7f1f8f17cb20e5e56200741128a43d1",
+    "ecology_navigation": "2c6cc3231d31472ede89854420af5360d8de22d928c3ce1475c83ad2fa77584f",
+    "logging": "f0f00d3b91dd7765831d5648a939be898cdaef0cbbfe3cd4a11c6897db270a52"
+  },
+  "notes": [
+    "No Python simulation reimplementation; Python only captures actual Rust module snapshot and verbatim production method/constructor text",
+    "HUD/renderer omitted because environment depends only on physical/ecological/navigation fields",
+    "Initial flow arrays zero and habitat world empty, exactly as Campaign constructor before the first tick",
+    "Tactical pawn spawning and recon do not alter fields read by environment(0)"
+  ],
+  "environment_sha256": "caf2f0cf8d38bfaa8d75abbc87b8f130f93124c498547de8878c91c0f828e2f8",
+  "output_bytes": 186555
+}

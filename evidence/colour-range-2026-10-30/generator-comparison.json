@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "form_comparisons": 3328,
+  "changed_fauna_forms": 256,
+  "distinct_generated_fauna_rgb_in_4096_samples": 4073,
+  "shape_and_alpha_identical": true,
+  "non_fauna_rgba_identical": true
+}

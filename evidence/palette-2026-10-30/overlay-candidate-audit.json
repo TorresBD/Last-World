@@ -1,0 +1,24 @@
+{
+  "archive": "dist/downloads/Last-World-Update-Windows.zip",
+  "layout_version": 1,
+  "crc": "passed",
+  "payload_hashes": "passed",
+  "source_snapshot": "included_and_verified",
+  "source_files": 591,
+  "source_bytes": 101561609,
+  "native_source_bytes": "independently_rehashed",
+  "native_compilation_inputs": 239,
+  "windows_pe_executables": 3,
+  "benchmark_cases": 13,
+  "adaptive_speed_ramps": 1,
+  "battle_case": "window-battle-20m-4x:24000ticks",
+  "catalog_test_counts": {
+    "Last-World-Mechanisms.exe": 245,
+    "Last-World-Cli-Checks.exe": 5
+  },
+  "catalog_tests": 250,
+  "zip_merge_existing_root_and_Data_logs_settings_saves_checkpoints_feedback_and_unowned_source_files": "preserved",
+  "first_launch_migration": "not_run_by_zip_overlay_audit",
+  "mutable_sentinels": 37,
+  "entries": 1335
+}

@@ -1,0 +1,17 @@
+{
+    "phase_count":  257,
+    "run_id":  "20261030T232422033Z-22544",
+    "passed":  false,
+    "schema_version":  2,
+    "unsafe_cleanup":  false,
+    "feedback_file":  "Send-Back.zip",
+    "completion_semantics":  "Passed phases completed their correctness protocol; requested-rate sustained/FPS/latency are separate native report metrics, not implied by suite completion.",
+    "performance_qualification":  false,
+    "status":  "completed_with_failures",
+    "passed_phases":  254,
+    "completed":  true,
+    "build_key":  "b9b8be86655d7de4ddd1999d18fc2c3453123e09a053efbae177a853efd44ae5",
+    "memory_guard_bytes":  6442450944,
+    "skipped_after_failures":  3,
+    "terminal_exit":  10
+}

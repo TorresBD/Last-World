@@ -1,0 +1,1239 @@
+{
+  "schema_version": 1,
+  "review_date_utc": "2026-10-30",
+  "scope": "Read-only audit of returned Windows evidence; no binaries, builds, tests or game runs performed by this review. All numbers belong to returned 6bac/2c build, not later source changes.",
+  "input_archives": [
+    {
+      "filename": "Send-Back-20960-639289951711982289.zip.part",
+      "sha256": "b9b69c88463b3d93e5c1cd03b06b78e50f839a857a24ccce33f8f0dbb9981732",
+      "entries": 669,
+      "crc_valid": true
+    },
+    {
+      "filename": "Send-Back-17524-639289951735827847.zip.part",
+      "sha256": "b3796427c58673a7ca3e67bc4a4e0edc5b862700c564971cedfa446bdcc47c23",
+      "entries": 669,
+      "crc_valid": true
+    }
+  ],
+  "archive_comparison": {
+    "identical_member_names": true,
+    "different_members": [
+      "feedback-bundle-notes.json"
+    ],
+    "notes": [
+      {
+        "old_feedback_zip_included": false,
+        "checkpoint_saves_included": false,
+        "created_utc": "2026-10-30T22:12:52.9216308Z",
+        "schema_version": 1,
+        "excluded_local_files": [
+          {
+            "path": "check-results/20261030T214513275Z-20960/suite-journal.json.previous",
+            "bytes": 1054585,
+            "reason": "not_feedback_type_or_large_local_checkpoint"
+          },
+          {
+            "path": "check-results/20261030T214513275Z-20960/benchmark/checkpoints",
+            "reason": "checkpoint_state_retained_locally_for_resume"
+          },
+          {
+            "path": "check-results/20261030T214513275Z-20960/benchmark/rejected-attempts.json.previous",
+            "bytes": 18964,
+            "reason": "not_feedback_type_or_large_local_checkpoint"
+          }
+        ],
+        "reason": "supervisor terminal exit 10",
+        "warnings": []
+      },
+      {
+        "old_feedback_zip_included": false,
+        "checkpoint_saves_included": false,
+        "created_utc": "2026-10-30T22:12:55.2781799Z",
+        "schema_version": 1,
+        "excluded_local_files": [
+          {
+            "path": "check-results/20261030T214513275Z-20960/suite-journal.json.previous",
+            "bytes": 1054585,
+            "reason": "not_feedback_type_or_large_local_checkpoint"
+          },
+          {
+            "path": "check-results/20261030T214513275Z-20960/benchmark/checkpoints",
+            "reason": "checkpoint_state_retained_locally_for_resume"
+          },
+          {
+            "path": "check-results/20261030T214513275Z-20960/benchmark/rejected-attempts.json.previous",
+            "bytes": 18964,
+            "reason": "not_feedback_type_or_large_local_checkpoint"
+          }
+        ],
+        "reason": "supervisor_watchdog_exhausted_or_preparation_failed; no suite pass inferred",
+        "warnings": []
+      }
+    ],
+    "part_extension_interpretation": "Feedback archive finalization bug; valid ZIP content and completed journal exist. It is not missing test data and not proof of a clean suite pass."
+  },
+  "identity": {
+    "run_id": "20261030T214513275Z-20960",
+    "build_key": "c3f41014caebcd533d2b102877745c8c5935d370d48cbaf9aeb25d429254e6ab",
+    "executable_sha256": "6bac0962241beebcd60ab3476bc2bf1bd17a06304343687adbb5f92e67e790d9",
+    "native_source_sha256": "2c367d4d424db6d168468757ac43616c8612e98070189b23ac093643314011d5",
+    "plan_sha256": "4e6e36e9d53244cb83289bd76d857488b794ae73f89899fff45b8a4da6e7a70d",
+    "unit_catalogue_sha256": "eb3b45cfd0322f52a60d824c5d4220e132ee51dfb8dd14d58d5c752ca4655992",
+    "cargo_lock_sha256": "921b490ce41295c60c8e04cd7b8122ed1888cccb00db93de8bb2d00995a3956e",
+    "manifest_source_commit": "d910929df617f420d58c6ed6fa2026bd7e682da1",
+    "native_build_stamp_source_commit": "44e645fc638e78afd0252b220d9acc28e1a73c52",
+    "binding": "Executable/native content hashes bind the returned runtime; packaging and stamped source commit ancestry differ.",
+    "input_member_sha256": {
+      "build-manifest.json": "e705cd1d357af390c948a69fef672992054b1995fab806cddac209366a790f77",
+      "native-build-stamp.json": "37b4f27f38812782809593f8ee8fcc81739173ecf0d90cb11cb8cc3fc1119908",
+      "check-results/20261030T214513275Z-20960/run-summary.json": "3ed652d57d8a4494c7fc92709a3ebba05324e43e8812cd1158a1f9fb10cb8c5b",
+      "check-results/20261030T214513275Z-20960/suite-journal.json": "0629a0b9b5d8dd4c6e27e7ff0febe159df6fb97ceb8c8474f5b34903b0fcc68e"
+    }
+  },
+  "hardware": {
+    "cpu": [
+      {
+        "Name": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "NumberOfCores": 12,
+        "NumberOfLogicalProcessors": 24
+      }
+    ],
+    "os": "Microsoft Windows 10 Pro",
+    "os_build": "19045",
+    "visible_physical_RAM_bytes": 34266181632,
+    "gpu": [
+      {
+        "Name": "NVIDIA GeForce RTX 2080 SUPER",
+        "DriverVersion": "32.0.16.2101",
+        "AdapterRAM": 4293918720
+      }
+    ],
+    "gpu_memory_caveat": "32bit WMI field may truncate; not a verified total VRAM measurement"
+  },
+  "suite": {
+    "phase_count": 262,
+    "run_id": "20261030T214513275Z-20960",
+    "passed": false,
+    "schema_version": 2,
+    "unsafe_cleanup": false,
+    "feedback_file": "Send-Back.zip",
+    "completion_semantics": "Passed phases completed their correctness protocol; requested-rate sustained/FPS/latency are separate native report metrics, not implied by suite completion.",
+    "performance_qualification": false,
+    "status": "completed_with_failures",
+    "passed_phases": 251,
+    "completed": true,
+    "build_key": "c3f41014caebcd533d2b102877745c8c5935d370d48cbaf9aeb25d429254e6ab",
+    "memory_guard_bytes": 6442450944,
+    "skipped_after_failures": 11,
+    "terminal_exit": 10,
+    "actual_windows_unit_passes": 227,
+    "windows_inventory_counts": [
+      {
+        "executable": "Last-World-Mechanisms.exe",
+        "actual_count": 224,
+        "missing_names": [],
+        "additional_names": [],
+        "inventory_drift": false
+      },
+      {
+        "executable": "Last-World-Cli-Checks.exe",
+        "actual_count": 3,
+        "missing_names": [],
+        "additional_names": [],
+        "inventory_drift": false
+      }
+    ],
+    "counts": {
+      "discovery_passed": 2,
+      "unit_passed": 227,
+      "baseline_passed": 6,
+      "benchmark_passed": 16,
+      "benchmark_skipped_after_failures": 11
+    },
+    "skip_category_counts": {
+      "missing_grown_bunker_material": 8,
+      "already_present": 1,
+      "expected_renderer_capacity_rejection": 1,
+      "expected_always_crash_control": 1
+    }
+  },
+  "measurement_semantics": {
+    "cpu_tick": "CPU fixed 20Hz rule tick, not GPU frame time",
+    "quantiles": "Whole case nearest-rank, complete distributions for listed CPU cases",
+    "rate_ramp": "Sequential evolving-world phases with preserved debt, not identical-state independent comparisons",
+    "memory": "Supervisor OS process attempt peaks, including setup/checkpoint; not allocator-only memory or total VRAM. Native RSS null on Windows.",
+    "gpu_timestamps_available": false,
+    "map_meters": [
+      4800,
+      3200
+    ],
+    "baseline_initial_military": 10000,
+    "baseline_initial_workers": 2000,
+    "initial_existing_wildlife_materializations": 5000,
+    "scope_limits": {
+      "all160traits_implemented": false,
+      "full_20km_campaign_qualified": false,
+      "map_meters": [
+        4800,
+        3200
+      ],
+      "million_wildlife_implemented": false,
+      "mutation_implemented": false,
+      "sequential_evolving_world_ramp_not_same_state_apples_to_apples": true,
+      "speed_target_met_is_separate_from_valid_phase_completion": true
+    }
+  },
+  "cpu_rate_ramp": [
+    {
+      "case_id": "cpu-rate-001",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-rate-001-14616-1793397064298-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 1,
+      "achieved_rate": 0.996963488485311,
+      "requested_rate_sustained": true,
+      "measurement_wall_seconds": 20.0609152,
+      "start_tick": 0,
+      "end_tick": 400,
+      "committed_ticks": 400,
+      "pending_ticks": {
+        "start": 0,
+        "end": 1,
+        "max": 1
+      },
+      "cpu_tick_ms": {
+        "count": 400,
+        "p50_ms": 9.066,
+        "p95_ms": 10.5168,
+        "p99_ms": 55.9093,
+        "max_ms": 74.3893
+      },
+      "advance_batch_max_ms": 74.3902,
+      "peak_working_set_bytes": 72347648,
+      "peak_private_bytes": 66289664,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 5000,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-rate-002",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-rate-002-1336-1793397087014-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 2,
+      "achieved_rate": 1.9967033030773882,
+      "requested_rate_sustained": true,
+      "measurement_wall_seconds": 20.0330214,
+      "start_tick": 400,
+      "end_tick": 1200,
+      "committed_ticks": 800,
+      "pending_ticks": {
+        "start": 1,
+        "end": 2,
+        "max": 2
+      },
+      "cpu_tick_ms": {
+        "count": 800,
+        "p50_ms": 10.2686,
+        "p95_ms": 13.4633,
+        "p99_ms": 59.4455,
+        "max_ms": 65.4128
+      },
+      "advance_batch_max_ms": 65.4141,
+      "peak_working_set_bytes": 271151104,
+      "peak_private_bytes": 176316416,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 5000,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-rate-004",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-rate-004-10040-1793397110050-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 4,
+      "achieved_rate": 3.815539892171652,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 20.1544217,
+      "start_tick": 1200,
+      "end_tick": 2738,
+      "committed_ticks": 1538,
+      "pending_ticks": {
+        "start": 2,
+        "end": 76,
+        "max": 76
+      },
+      "cpu_tick_ms": {
+        "count": 1538,
+        "p50_ms": 10.6461,
+        "p95_ms": 13.4536,
+        "p99_ms": 61.0054,
+        "max_ms": 65.5056
+      },
+      "advance_batch_max_ms": 865.2486,
+      "peak_working_set_bytes": 544923648,
+      "peak_private_bytes": 97865728,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3646,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-rate-008",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-rate-008-19504-1793397133345-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 8,
+      "achieved_rate": 3.5107979695567066,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 20.963895,
+      "start_tick": 2738,
+      "end_tick": 4210,
+      "committed_ticks": 1472,
+      "pending_ticks": {
+        "start": 76,
+        "end": 1959,
+        "max": 1959
+      },
+      "cpu_tick_ms": {
+        "count": 1472,
+        "p50_ms": 10.813,
+        "p95_ms": 56.4825,
+        "p99_ms": 96.9349,
+        "max_ms": 115.251
+      },
+      "advance_batch_max_ms": 1088.0987,
+      "peak_working_set_bytes": 288288768,
+      "peak_private_bytes": 245846016,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 4474,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-rate-016",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-rate-016-23544-1793397157538-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 16,
+      "achieved_rate": 3.4726419153324914,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 20.2727496,
+      "start_tick": 4210,
+      "end_tick": 5618,
+      "committed_ticks": 1408,
+      "pending_ticks": {
+        "start": 1959,
+        "end": 7038,
+        "max": 7038
+      },
+      "cpu_tick_ms": {
+        "count": 1408,
+        "p50_ms": 10.8471,
+        "p95_ms": 12.8538,
+        "p99_ms": 85.8433,
+        "max_ms": 91.6519
+      },
+      "advance_batch_max_ms": 983.121,
+      "peak_working_set_bytes": 597004288,
+      "peak_private_bytes": 720580608,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3675,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-rate-032",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-rate-032-9956-1793397181108-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 32,
+      "achieved_rate": 3.4544355219526217,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 20.379595899999998,
+      "start_tick": 5618,
+      "end_tick": 7026,
+      "committed_ticks": 1408,
+      "pending_ticks": {
+        "start": 7038,
+        "end": 18673,
+        "max": 18673
+      },
+      "cpu_tick_ms": {
+        "count": 1408,
+        "p50_ms": 10.9034,
+        "p95_ms": 69.7976,
+        "p99_ms": 84.2893,
+        "max_ms": 90.3451
+      },
+      "advance_batch_max_ms": 1003.3356,
+      "peak_working_set_bytes": 604368896,
+      "peak_private_bytes": 605470720,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3667,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-rate-064",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-rate-064-7680-1793397204834-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 64,
+      "achieved_rate": 3.013147850823728,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 20.1782332,
+      "start_tick": 7026,
+      "end_tick": 8242,
+      "committed_ticks": 1216,
+      "pending_ticks": {
+        "start": 18673,
+        "end": 43285,
+        "max": 43285
+      },
+      "cpu_tick_ms": {
+        "count": 1216,
+        "p50_ms": 11.2811,
+        "p95_ms": 77.2215,
+        "p99_ms": 129.5661,
+        "max_ms": 163.6082
+      },
+      "advance_batch_max_ms": 1207.5825,
+      "peak_working_set_bytes": 613507072,
+      "peak_private_bytes": 556707840,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3716,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-rate-100",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-rate-100-16132-1793397228415-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 100,
+      "achieved_rate": 3.0326028259072513,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 21.1039835,
+      "start_tick": 8242,
+      "end_tick": 9522,
+      "committed_ticks": 1280,
+      "pending_ticks": {
+        "start": 43285,
+        "end": 84213,
+        "max": 84213
+      },
+      "cpu_tick_ms": {
+        "count": 1280,
+        "p50_ms": 11.8709,
+        "p95_ms": 32.4719,
+        "p99_ms": 108.9342,
+        "max_ms": 118.0512
+      },
+      "advance_batch_max_ms": 1180.0433,
+      "peak_working_set_bytes": 614666240,
+      "peak_private_bytes": 745816064,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3709,
+      "failure": null
+    }
+  ],
+  "cpu_population": [
+    {
+      "case_id": "cpu-pop-50000-10000",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-pop-50000-10000-9568-1793398174227-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 100,
+      "achieved_rate": 1.844943392838738,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 31.4101778,
+      "start_tick": 0,
+      "end_tick": 1159,
+      "committed_ticks": 1159,
+      "pending_ticks": {
+        "start": 0,
+        "end": 61661,
+        "max": 61661
+      },
+      "cpu_tick_ms": {
+        "count": 1159,
+        "p50_ms": 22.1075,
+        "p95_ms": 51.0578,
+        "p99_ms": 83.047,
+        "max_ms": 98.654
+      },
+      "advance_batch_max_ms": 2589.7941,
+      "peak_working_set_bytes": 457232384,
+      "peak_private_bytes": 542957568,
+      "actual_tactical_records": 60001,
+      "fine_wildlife_records_final": 4999,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-pop-100000-20000",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-pop-100000-20000-11352-1793398210146-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 100,
+      "achieved_rate": 1.159227680591068,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 30.6238374,
+      "start_tick": 0,
+      "end_tick": 710,
+      "committed_ticks": 710,
+      "pending_ticks": {
+        "start": 0,
+        "end": 60537,
+        "max": 60537
+      },
+      "cpu_tick_ms": {
+        "count": 710,
+        "p50_ms": 40.5698,
+        "p95_ms": 51.4747,
+        "p99_ms": 91.7588,
+        "max_ms": 107.0672
+      },
+      "advance_batch_max_ms": 2925.8374,
+      "peak_working_set_bytes": 286797824,
+      "peak_private_bytes": 287948800,
+      "actual_tactical_records": 120001,
+      "fine_wildlife_records_final": 5000,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-pop-200000-40000",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-pop-200000-40000-3832-1793398245869-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 100,
+      "achieved_rate": 0.5666317210923777,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 34.5021277,
+      "start_tick": 0,
+      "end_tick": 391,
+      "committed_ticks": 391,
+      "pending_ticks": {
+        "start": 0,
+        "end": 68613,
+        "max": 68613
+      },
+      "cpu_tick_ms": {
+        "count": 391,
+        "p50_ms": 82.7586,
+        "p95_ms": 109.5914,
+        "p99_ms": 147.9645,
+        "max_ms": 153.9824
+      },
+      "advance_batch_max_ms": 6481.5808,
+      "peak_working_set_bytes": 829190144,
+      "peak_private_bytes": 1074741248,
+      "actual_tactical_records": 240001,
+      "fine_wildlife_records_final": 4718,
+      "failure": null
+    }
+  ],
+  "cpu_additional_seeds": [
+    {
+      "case_id": "cpu-seed-78422",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-seed-78422-10776-1793398285229-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 32,
+      "achieved_rate": 4.088015594655697,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 30.6994915,
+      "start_tick": 0,
+      "end_tick": 2510,
+      "committed_ticks": 2510,
+      "pending_ticks": {
+        "start": 0,
+        "end": 17137,
+        "max": 17137
+      },
+      "cpu_tick_ms": {
+        "count": 2510,
+        "p50_ms": 10.3819,
+        "p95_ms": 14.993,
+        "p99_ms": 68.0526,
+        "max_ms": 75.6534
+      },
+      "advance_batch_max_ms": 926.1158,
+      "peak_working_set_bytes": 312782848,
+      "peak_private_bytes": 421548032,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3701,
+      "failure": null
+    },
+    {
+      "case_id": "cpu-seed-78423",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-seed-78423-20748-1793398320087-report.json",
+      "status": "passed",
+      "core_phase_passed": true,
+      "requested_rate": 32,
+      "achieved_rate": 4.179197056630475,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 30.0296919,
+      "start_tick": 0,
+      "end_tick": 2510,
+      "committed_ticks": 2510,
+      "pending_ticks": {
+        "start": 0,
+        "end": 16709,
+        "max": 16709
+      },
+      "cpu_tick_ms": {
+        "count": 2510,
+        "p50_ms": 10.2347,
+        "p95_ms": 13.3214,
+        "p99_ms": 59.541,
+        "max_ms": 74.8578
+      },
+      "advance_batch_max_ms": 880.9008,
+      "peak_working_set_bytes": 75436032,
+      "peak_private_bytes": 68792320,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3414,
+      "failure": null
+    }
+  ],
+  "cpu_season_failed_attempts": [
+    {
+      "case_id": "cpu-season-78421",
+      "attempt": 1,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-season-78421-5240-1793397550333-report.json",
+      "status": "failed",
+      "core_phase_passed": false,
+      "requested_rate": 100,
+      "achieved_rate": 2.165295367644884,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 308.8955022,
+      "start_tick": 9522,
+      "end_tick": 22899,
+      "committed_ticks": 13377,
+      "pending_ticks": {
+        "start": 84213,
+        "end": 687982,
+        "max": 684008
+      },
+      "cpu_tick_ms": {
+        "count": 13376,
+        "p50_ms": 13.219,
+        "p95_ms": 69.2791,
+        "p99_ms": 297.9853,
+        "max_ms": 437.9526
+      },
+      "advance_batch_max_ms": 2129.9119,
+      "peak_working_set_bytes": 316768256,
+      "peak_private_bytes": 87371776,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3314,
+      "failure": "AlreadyPresent"
+    },
+    {
+      "case_id": "cpu-season-78421",
+      "attempt": 2,
+      "report_member": "check-results/20261030T214513275Z-20960/benchmark/cpu-season-78421-11396-1793397861414-report.json",
+      "status": "failed",
+      "core_phase_passed": false,
+      "requested_rate": 100,
+      "achieved_rate": 2.162848243219942,
+      "requested_rate_sustained": false,
+      "measurement_wall_seconds": 309.2449977,
+      "start_tick": 9522,
+      "end_tick": 22899,
+      "committed_ticks": 13377,
+      "pending_ticks": {
+        "start": 84213,
+        "end": 688675,
+        "max": 684700
+      },
+      "cpu_tick_ms": {
+        "count": 13376,
+        "p50_ms": 13.3138,
+        "p95_ms": 66.7855,
+        "p99_ms": 295.4268,
+        "max_ms": 434.2216
+      },
+      "advance_batch_max_ms": 2116.4026,
+      "peak_working_set_bytes": 317747200,
+      "peak_private_bytes": 89554944,
+      "actual_tactical_records": 12001,
+      "fine_wildlife_records_final": 3314,
+      "failure": "AlreadyPresent"
+    }
+  ],
+  "skipped_phases": [
+    {
+      "phase_id": "benchmark-window-rate-001",
+      "category": "missing_grown_bunker_material",
+      "native_failure": "No grown material for \"bunker\", team 0",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-window-rate-002",
+      "category": "missing_grown_bunker_material",
+      "native_failure": "No grown material for \"bunker\", team 0",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-window-rate-004",
+      "category": "missing_grown_bunker_material",
+      "native_failure": "No grown material for \"bunker\", team 0",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-window-rate-008",
+      "category": "missing_grown_bunker_material",
+      "native_failure": "No grown material for \"bunker\", team 0",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-window-rate-016",
+      "category": "missing_grown_bunker_material",
+      "native_failure": "No grown material for \"bunker\", team 0",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-window-rate-032",
+      "category": "missing_grown_bunker_material",
+      "native_failure": "No grown material for \"bunker\", team 0",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-window-rate-064",
+      "category": "missing_grown_bunker_material",
+      "native_failure": "No grown material for \"bunker\", team 0",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-window-rate-100",
+      "category": "missing_grown_bunker_material",
+      "native_failure": "No grown material for \"bunker\", team 0",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-cpu-season-78421",
+      "category": "already_present",
+      "native_failure": "AlreadyPresent",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-window-pop-100000-20000",
+      "category": "expected_renderer_capacity_rejection",
+      "native_failure": "Native renderer supports at most 100000 tactical display agents; this case requests 120000 military + workers. The declared capacity is unsupported; no population is constructed or reduced.",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        },
+        {
+          "attempt": 2,
+          "status": "native_nonzero",
+          "exit_code": 1,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": false
+        }
+      ]
+    },
+    {
+      "phase_id": "benchmark-probe-after-commit-crash-always",
+      "category": "expected_always_crash_control",
+      "native_failure": null,
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_crash",
+          "exit_code": -1073740791,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": true
+        },
+        {
+          "attempt": 2,
+          "status": "native_crash",
+          "exit_code": -1073740791,
+          "timed_out": false,
+          "guard_stop": false,
+          "native_crash": true
+        }
+      ]
+    }
+  ],
+  "recovery_controls": {
+    "probe-after-commit-crash-once": {
+      "status": "passed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_crash",
+          "exit_code": -1073740791
+        },
+        {
+          "attempt": 2,
+          "status": "passed",
+          "exit_code": 0
+        }
+      ],
+      "qualification_scope": "intentional supervisor recovery control, not gameplay/performance qualification"
+    },
+    "probe-after-commit-crash-always": {
+      "status": "skipped_after_failures",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "native_crash",
+          "exit_code": -1073740791
+        },
+        {
+          "attempt": 2,
+          "status": "native_crash",
+          "exit_code": -1073740791
+        }
+      ],
+      "qualification_scope": "intentional supervisor recovery control, not gameplay/performance qualification"
+    },
+    "probe-continue-after-skipped": {
+      "status": "passed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "passed",
+          "exit_code": 0
+        }
+      ],
+      "qualification_scope": "intentional supervisor recovery control, not gameplay/performance qualification"
+    }
+  },
+  "baseline_phases": [
+    {
+      "phase_id": "baseline-campaign-cpu",
+      "status": "passed",
+      "elapsed_seconds_including_setup": 124.2748905,
+      "peak_working_set_bytes": 607567872,
+      "peak_private_bytes": 349011968
+    },
+    {
+      "phase_id": "baseline-ground-cpu",
+      "status": "passed",
+      "elapsed_seconds_including_setup": 7.143512899999999,
+      "peak_working_set_bytes": 49565696,
+      "peak_private_bytes": 44711936
+    },
+    {
+      "phase_id": "baseline-movement-vulkan",
+      "status": "passed",
+      "elapsed_seconds_including_setup": 11.175846,
+      "peak_working_set_bytes": 289427456,
+      "peak_private_bytes": 368828416
+    },
+    {
+      "phase_id": "baseline-movement-dx12",
+      "status": "passed",
+      "elapsed_seconds_including_setup": 11.2802115,
+      "peak_working_set_bytes": 344764416,
+      "peak_private_bytes": 668168192
+    },
+    {
+      "phase_id": "baseline-river-render",
+      "status": "passed",
+      "elapsed_seconds_including_setup": 47.457167299999995,
+      "peak_working_set_bytes": 330084352,
+      "peak_private_bytes": 452120576
+    },
+    {
+      "phase_id": "baseline-campaign-render",
+      "status": "passed",
+      "elapsed_seconds_including_setup": 35.0422189,
+      "peak_working_set_bytes": 444071936,
+      "peak_private_bytes": 806506496
+    }
+  ],
+  "baseline_campaign_cpu": {
+    "passed": true,
+    "kind": "connected_campaign_cpu_correctness_not_performance",
+    "fixture": {
+      "default_game_counts_unchanged": [
+        10000,
+        2000
+      ],
+      "live_wildlife": true,
+      "map_meters": [
+        4800,
+        3200
+      ],
+      "military": 512,
+      "workers": 64
+    },
+    "ticks": 17320,
+    "gates": {
+      "actual_combat": true,
+      "capture_and_handler_return": true,
+      "compatible_breeding": true,
+      "continuing_care": true,
+      "cross_seed_smoke": true,
+      "discovery": true,
+      "exact_invariants": true,
+      "existing_animal_release": true,
+      "generated_habitat_food_web": true,
+      "mining_and_delivery": true,
+      "paid_worker_construction": true,
+      "real_captive_offspring": true,
+      "research": true,
+      "save_load_continuity": true
+    },
+    "final_state_save_receipt": {
+      "compared_through_tick": 17320,
+      "exact_serialized_state_match": true,
+      "fixture_files_removed_after_verification": true,
+      "save_bytes": 91373432,
+      "saved_tick": 17280
+    }
+  },
+  "baseline_campaign_render": {
+    "kind": "automated_small_native_campaign_check_not20km_full160_release",
+    "status": "passed",
+    "tick": 2400,
+    "accepted_frames": 1995,
+    "captures": [
+      true,
+      true,
+      true
+    ],
+    "frame_intervals": {
+      "max_ms": 1186.9854,
+      "mean_ms": 15.038114937343352,
+      "median_ms": 10.8345,
+      "p95_ms": 30.6421,
+      "p99_ms": 119.66250000000001,
+      "retained_samples": 1995,
+      "total_samples": 1995
+    },
+    "gpu_execution_ms": null,
+    "gpu_completed_simulation_speed": null,
+    "stage_cpu_wall": {
+      "frames": 1995,
+      "scope": "CPU wall durations; event_gap includes OS/event scheduling; no GPU timestamps",
+      "stages": {
+        "capture": {
+          "max_ms": 2509.443,
+          "mean_ms": 1.3338167418546405
+        },
+        "encode_submit": {
+          "max_ms": 0.6074,
+          "mean_ms": 0.22865298245613977
+        },
+        "event_gap": {
+          "max_ms": 19.4771,
+          "mean_ms": 0.16100696741854623
+        },
+        "input": {
+          "max_ms": 0.0,
+          "mean_ms": 0.0
+        },
+        "present": {
+          "max_ms": 8.0386,
+          "mean_ms": 0.9543931328320807
+        },
+        "reporting": {
+          "max_ms": 1.3595,
+          "mean_ms": 0.017055839598997168
+        },
+        "simulation": {
+          "max_ms": 145.195,
+          "mean_ms": 11.861217744360898
+        },
+        "surface_acquire": {
+          "max_ms": 0.1451,
+          "mean_ms": 0.048576741854636486
+        },
+        "total_work": {
+          "max_ms": 2549.7012999999997,
+          "mean_ms": 16.15065022556393
+        },
+        "upload": {
+          "max_ms": 1112.8587,
+          "mean_ms": 1.7049966917293216
+        }
+      }
+    },
+    "native_ui": {
+      "budget_ms_target": {
+        "cpu": 1.0,
+        "gpu": 1.0
+      },
+      "counters": {
+        "last_cpu_ms": 9.7566,
+        "last_dirty_rects": 1,
+        "last_upload_bytes": 10414080,
+        "layers_redrawn": 317,
+        "layers_reused": 780,
+        "model_cache_hits": 1,
+        "total_upload_bytes": 162443144,
+        "updates": 156,
+        "world_quads": 0
+      },
+      "cpu_composition_samples": {
+        "max_ms": 23.7122,
+        "mean_ms": 3.705765605095542,
+        "median_ms": 2.4012000000000002,
+        "p95_ms": 11.8423,
+        "p99_ms": 17.1978,
+        "retained_samples": 157,
+        "total_samples": 157
+      },
+      "glyph_source": "bundled licensed Rajdhani and IBM Plex Sans glyph atlases",
+      "gpu_ui_execution_ms": null,
+      "quad_capacity": 131072,
+      "rgba_texture_capacity_bytes": 37748736,
+      "scope": "CPU layout/raster/upload submission; includes explicit capture variants; no GPU timestamp measurement"
+    },
+    "native_ui_captures": [
+      "campaign-check-4040-1793397024819-ui-1366x768-calm.png",
+      "campaign-check-4040-1793397024819-ui-1366x768-build.png",
+      "campaign-check-4040-1793397024819-ui-1366x768-ecology.png",
+      "campaign-check-4040-1793397024819-ui-1366x768-food-web.png",
+      "campaign-check-4040-1793397024819-ui-1366x768-logistics.png",
+      "campaign-check-4040-1793397024819-ui-1920x1080-calm.png",
+      "campaign-check-4040-1793397024819-ui-1920x1080-build.png",
+      "campaign-check-4040-1793397024819-ui-1920x1080-ecology.png",
+      "campaign-check-4040-1793397024819-ui-1920x1080-food-web.png",
+      "campaign-check-4040-1793397024819-ui-1920x1080-logistics.png",
+      "campaign-check-4040-1793397024819-ui-2560x1440-calm.png",
+      "campaign-check-4040-1793397024819-ui-2560x1440-build.png",
+      "campaign-check-4040-1793397024819-ui-2560x1440-ecology.png",
+      "campaign-check-4040-1793397024819-ui-2560x1440-food-web.png",
+      "campaign-check-4040-1793397024819-ui-2560x1440-logistics.png"
+    ]
+  },
+  "natural_evolving_world_coverage": {
+    "successful_ramp_end_tick": 9522,
+    "successful_ramp_completed_jobs": 2,
+    "successful_ramp_physical_commits": {
+      "46": 2
+    },
+    "successful_ramp_traps": 2,
+    "failed_season_end_tick": 22899,
+    "failed_season_coverage_statuses": {
+      "conservation": "not_reached",
+      "construction": "observed",
+      "ecological_score": "observed",
+      "logistics_economy": "not_reached",
+      "military": "observed",
+      "mutation": "unimplemented",
+      "physical_ecology": "observed",
+      "recon": "observed",
+      "sanctuary": "unimplemented",
+      "saves": "observed",
+      "seasons": "not_reached",
+      "traits": "partially_instrumented",
+      "water_ground": "observed",
+      "wildlife_detail": "observed"
+    },
+    "failed_season_seasons": {
+      "end_tick": 22899,
+      "full_cycles_executed_in_this_phase": 0,
+      "one_full_cycle_requires": 72000,
+      "partial_run_is_not_full_season_qualification": true,
+      "phase_committed_ticks": 13377,
+      "season_boundaries_crossed": 1,
+      "start_tick": 9522
+    },
+    "failed_season_construction": {
+      "buildings": 8,
+      "completed_jobs": 11,
+      "phase_completed_jobs": 9,
+      "unfinished_jobs": 37
+    },
+    "failed_season_physical_commits": {
+      "12": 2,
+      "46": 5
+    },
+    "failed_season_habitats": {
+      "nodes": 4,
+      "passages": 2,
+      "traps": 5,
+      "nests": 0,
+      "dens": 0,
+      "shelters": 0,
+      "dams": [],
+      "reefs": [],
+      "wallows": 0
+    },
+    "failed_season_no_conservation_pair_release_offspring": true,
+    "interpretation": "Failed phase observations are retained diagnostics, not successful natural-world qualification; focused baseline CPU fixture separately passed all14gates."
+  },
+  "raw_capture_members": {
+    "root_png_count": 21,
+    "native_ui_png_count": 15,
+    "copied_by_this_review": false
+  },
+  "launcher_error_text": "The filename, directory name, or volume label syntax is incorrect."
+}

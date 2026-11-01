@@ -1,0 +1,20 @@
+{
+  "native_source_sha256": "7f903735711224e890734952248dc52a9532c408bd5a82e13f615e06c7243805",
+  "suites": [
+    {
+      "suite": "cli",
+      "tests": 3,
+      "sha256": "2f7920b64b21b99da6deb832a5bcfba78552fd69ed37f492a3220c8bcc3515e3",
+      "exit_code": 0
+    },
+    {
+      "suite": "library",
+      "tests": 234,
+      "sha256": "1e7041275f0ed4344695af6579ea159cb5089db133c29bd7c47ddc52409947ee",
+      "exit_code": 0
+    }
+  ],
+  "total": 237,
+  "heavy_build_concurrency": false,
+  "performance_qualification": false
+}

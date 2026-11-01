@@ -1,0 +1,12 @@
+{
+  "archive": "dist/downloads/Last-World-Update-Windows.zip",
+  "crc": "passed",
+  "payload_hashes": "passed",
+  "source_snapshot": "included_and_verified",
+  "source_files": 512,
+  "source_bytes": 93507392,
+  "native_source_bytes": "independently_rehashed",
+  "native_compilation_inputs": 238,
+  "overlay_existing_logs_settings_saves_feedback_and_unowned_source_files": "preserved",
+  "entries": 1256
+}

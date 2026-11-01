@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "target": "x86_64-pc-windows-gnu",
+  "built_at_utc": "2026-10-30T05:05:41.896528+00:00",
+  "source_commit": "ec909d1c2b11e490ceb6181dc9f14287af1def58",
+  "native_source_sha256": "7e8cdb70e5db3346dae53bd9991a9cf52237f1a2e0c92ffcc2bce7334e575f0a",
+  "executable_sha256": "d9aa4b559610375014e7b4615e17f528af7229917b65f9928ca4a80695c5f3c3",
+  "source_frozen_through_build": true,
+  "worktree_dirty": true
+}

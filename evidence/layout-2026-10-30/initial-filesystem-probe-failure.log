@@ -1,0 +1,22 @@
+Last World | organized layout 1 | native aaaaaaaaaaaa | exe 617530230813
+Install root: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/preservation
+One adaptive ramp; 20-minute 4x battle; CPU/RAM/GPU logging.
+WARNING: Preserved a migration conflict: saves/player.json -> Data/Legacy/Conflicts/saves/player.json. Existing Data file kept.
+WARNING: Preserved a migration conflict: settings.json -> Data/Legacy/Conflicts/settings.json. Existing Data file kept.
+WARNING: Preserved a migration conflict: ui/collision.json -> Data/Legacy/Conflicts/ui/collision.json. Existing Data file kept.
+Data: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/preservation/Data | migration operations: 30 | retained conflicts: 3
+Last World | organized layout 1 | native aaaaaaaaaaaa | exe 617530230813
+Install root: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/preservation
+One adaptive ramp; 20-minute 4x battle; CPU/RAM/GPU logging.
+Data: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/preservation/Data | migration operations: 0 | retained conflicts: 0
+Last World | organized layout 1 | native aaaaaaaaaaaa | exe 617530230813
+Install root: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/resume-marker
+One adaptive ramp; 20-minute 4x battle; CPU/RAM/GPU logging.
+Data: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/resume-marker/Data | migration operations: 2 | retained conflicts: 0
+Last World | organized layout 1 | native aaaaaaaaaaaa | exe 617530230813
+Install root: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/resume-marker
+One adaptive ramp; 20-minute 4x battle; CPU/RAM/GPU logging.
+Data: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/resume-marker/Data | migration operations: 1 | retained conflicts: 0
+Last World | organized layout 1 | native aaaaaaaaaaaa | exe 617530230813
+Install root: /tmp/Last World Layout ' & [5-b3504b99589848c983f1cbb19b61ebbd]/locked-old
+One adaptive ramp; 20-minute 4x battle; CPU/RAM/GPU logging.

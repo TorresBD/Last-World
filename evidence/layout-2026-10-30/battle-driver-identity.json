@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "target": "host-correctness-driver",
+  "built_at_utc": "2026-10-31T00:07:09.573688+00:00",
+  "native_source_sha256": "99f94710606efcb286bdcab99b97baa968ce244acf8db3a97e19a9af610aa986",
+  "executable_sha256": "1e786e9b99f5a9a304f15de4af3d2749c0afb72ae28c123ddddfc3cade45614c",
+  "driver_source_sha256": "0bfbd845c61247ac8197cd3db9c757c930b80d348fcc2c09b5adaeb59fe99f0f",
+  "source_commit": "dc9b26accc81e630380d392b4a7391d4d3bd4803",
+  "all_native_writers_frozen": true,
+  "newest_native_input_precedes_executable": true,
+  "source_frozen_through_build": true,
+  "scope": "fixed elapsed unpaced core correctness; no native GPU/window or performance qualification"
+}

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "compared_forms": 3328,
+  "changed_fauna_forms": 256,
+  "geometry_and_alpha": "identical for every comparison",
+  "unrelated_unit_and_building_rgba": "identical",
+  "atlas_metadata_bytes_identical": true
+}

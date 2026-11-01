@@ -1,0 +1,18 @@
+{
+  "native_source_sha256": "7f903735711224e890734952248dc52a9532c408bd5a82e13f615e06c7243805",
+  "host_executable_sha256": "e7c04932393da1ec526df9ca3d6de4ebd2aa412b052e394444713c8e04649844",
+  "windows_executable_sha256": "3b09afc2d478f95b4d2582e752831a24558cfe8baa43f14ac00fdf229512894e",
+  "unit_checks": 237,
+  "portable_supervisor_checks": 24,
+  "build_identity_checks": 2,
+  "connected_campaign_gates": 14,
+  "compiled_plan_cases": 12,
+  "adaptive_speed_cases": 1,
+  "actual_hardware_utilization_available_yet": false,
+  "new_windows_runtime_executed": false,
+  "actual_speed_tests_repeated_locally": false,
+  "same_source_frozen_host_and_windows_builds": true,
+  "host_link_failure_resolved": "quarantined only failed host test outputs and rebuilt same frozen input serially; final exact harness237 checks pass",
+  "hardware_telemetry_scope": "owned-process CPU+RAM, system headroom, optional WDDM engines and allocations,1Hz,8MiBsegments, no fake unavailable zero",
+  "current_raw_pc_measurements_belong_to": "previous6bac/2c367 build; see PC_STRESS_RESULTS_2026-10-30.md"
+}

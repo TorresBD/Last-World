@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "changed_rgb_pixels": 1232,
+  "unchanged": [
+    "all alpha",
+    "all non-fauna RGBA",
+    "all metadata",
+    "dimensions"
+  ]
+}

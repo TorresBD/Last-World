@@ -1,0 +1,5 @@
+{
+  "path": "native/target/release/deps/liblast_world_native.rlib",
+  "bytes": 41452538,
+  "reason": "rustcE0786; rmeta rootpointer0 and missingfooter observed; no source or toolchain change"
+}
