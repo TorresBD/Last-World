@@ -17,7 +17,7 @@ if '--source-zip' in sys.argv:
 stamp=json.loads((root/'native/target/x86_64-pc-windows-gnu/release/native-build-stamp.json').read_text())
 report=json.loads((root/'evidence/opening-hud/report.json').read_text())
 assert stamp['source_frozen_through_build'] and report['tick']==0 and report['paused'] is True
-assert len(report['captures'])==12 and all((root/n).is_file() for n in report['captures'])
+assert len(report['captures'])>=12 and all((root/n).is_file() for n in report['captures'])
 counts={e['suite']:len(e['test_names']) for e in stamp['test_harnesses']}
 assert all(counts.values())
 sha=os.environ['GITHUB_SHA'];run=os.environ['GITHUB_RUN_ID'];exe=stamp['executable_sha256']

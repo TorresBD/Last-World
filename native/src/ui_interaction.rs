@@ -110,9 +110,12 @@ pub enum Layer {
     Damage,
     Fauna,
     Territory,
+    Elevation,
+    Water,
+    Movement,
 }
 impl Layer {
-    pub const ALL: [Self; 9] = [
+    pub const ALL: [Self; 12] = [
         Self::Radar,
         Self::Cameras,
         Self::Roads,
@@ -122,6 +125,9 @@ impl Layer {
         Self::Damage,
         Self::Fauna,
         Self::Territory,
+        Self::Elevation,
+        Self::Water,
+        Self::Movement,
     ];
     pub fn name(self) -> &'static str {
         match self {
@@ -134,6 +140,9 @@ impl Layer {
             Self::Damage => "Damage",
             Self::Fauna => "Fauna",
             Self::Territory => "Territory",
+            Self::Elevation => "Elevation",
+            Self::Water => "Water",
+            Self::Movement => "Movement",
         }
     }
     pub fn hotkey(self) -> &'static str {
@@ -147,9 +156,77 @@ impl Layer {
             Self::Damage => "G",
             Self::Fauna => "K",
             Self::Territory => "T",
+            Self::Elevation => "Y",
+            Self::Water => "M",
+            Self::Movement => "Z",
+        }
+    }
+    /// Colour overlays tint map cells; only one is shown at a time.
+    pub fn tints_map(self) -> bool {
+        !matches!(self, Self::Radar | Self::Fauna | Self::Territory)
+    }
+    /// One-line explanation for hover help.
+    pub fn description(self) -> &'static str {
+        match self {
+            Self::Radar => "Anonymous radar contacts. Shows that something is there, never what it is.",
+            Self::Cameras => "Where your cameras and camera troopers currently have live video.",
+            Self::Roads => "Known roads. Troops move several times faster on roads.",
+            Self::Supply => "Ground served by your depots and mines.",
+            Self::Resources => "Known ore and resource deposits for mines.",
+            Self::Ecology => "Plant cover and soil moisture: the health of the living jungle.",
+            Self::Damage => "Ecological damage: craters, burns and cleared or scarred ground.",
+            Self::Fauna => "Identified animals currently in video.",
+            Self::Territory => "Territory claims (not recorded in this build).",
+            Self::Elevation => "High and low ground in view. High ground sees farther; steep slopes block movement.",
+            Self::Water => "Standing water depth and wet soil. Deep water stops troops on foot.",
+            Self::Movement => "How fast troops on foot cross each area: roads, open ground, jungle, mud and water.",
+        }
+    }
+    /// Colour key for the on-map legend.
+    pub fn legend(self) -> Vec<([u8; 4], &'static str)> {
+        match self {
+            Self::Cameras => vec![([85, 170, 158, 255], "Live video now")],
+            Self::Roads => vec![([232, 187, 81, 255], "Road (fast movement)")],
+            Self::Supply => vec![([90, 170, 215, 255], "Supplied by a depot or mine")],
+            Self::Resources => vec![([210, 171, 73, 255], "Resource deposit")],
+            Self::Ecology => vec![
+                ([80, 200, 90, 255], "Dense plant cover"),
+                ([80, 110, 80, 255], "Sparse cover"),
+                ([80, 150, 150, 255], "Wetter soil (bluer)"),
+            ],
+            Self::Damage => vec![([215, 100, 70, 255], "Damaged ground")],
+            Self::Elevation => ELEVATION_BANDS
+                .iter()
+                .zip(["Lowest in view", "", "", "", "", "Highest in view"])
+                .filter(|(_, l)| !l.is_empty())
+                .map(|(c, l)| (*c, l))
+                .collect(),
+            Self::Water => vec![
+                ([50, 110, 200, 255], "Deep water: too deep to wade"),
+                ([90, 170, 225, 255], "Shallow water: wadeable"),
+                ([70, 130, 170, 255], "Wet soil: slows troops"),
+                ([120, 165, 170, 255], "Damp soil"),
+            ],
+            Self::Movement => vec![
+                ([90, 200, 110, 255], "Road: fastest"),
+                ([170, 205, 90, 255], "Open ground: normal"),
+                ([235, 170, 70, 255], "Brush or damp: slow"),
+                ([225, 90, 70, 255], "Dense jungle or mud: very slow"),
+                ([140, 80, 190, 255], "Deep water: impassable on foot"),
+            ],
+            Self::Radar | Self::Fauna | Self::Territory => vec![],
         }
     }
 }
+/// Low to high ground colours for the elevation overlay.
+pub const ELEVATION_BANDS: [[u8; 4]; 6] = [
+    [40, 95, 135, 255],
+    [55, 135, 140, 255],
+    [95, 165, 110, 255],
+    [175, 185, 95, 255],
+    [215, 160, 80, 255],
+    [235, 215, 175, 255],
+];
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PanelLayout {
     pub kind: PanelKind,
@@ -176,6 +253,8 @@ pub struct UiPrefs {
     pub panels: Vec<PanelLayout>,
     pub layers: Vec<Layer>,
     pub seen_hints: BTreeSet<String>,
+    #[serde(default)]
+    pub guide_dismissed: bool,
 }
 impl Default for UiPrefs {
     fn default() -> Self {
@@ -211,6 +290,7 @@ impl Default for UiPrefs {
             .collect(),
             layers: vec![Layer::Radar],
             seen_hints: BTreeSet::new(),
+            guide_dismissed: false,
         }
     }
 }
@@ -359,6 +439,19 @@ struct PlanFlash {
     /// Highest job id that existed before this order was sent.
     after_job: u64,
 }
+/// "Field orders" first steps: label and the hint shown when clicked.
+pub const GUIDE_STEPS: [(&str, &str); 6] = [
+    ("Select your builders", "Click Builders in the selection panel, or drag a box around the workers by the ship."),
+    ("Plan a road from the ship", "Road tool (F4): click and drag on the map. Green outline = OK, red = refused, with the reason."),
+    ("Plan a supply depot", "Depots store and hand out supplies. Place one near the ship or along your road."),
+    ("Plan a mine on a deposit", "The Resources overlay (U) is now on: mines need a highlighted deposit and builders."),
+    ("Extend video with a camera", "You can only plan where you have live video. The ring shows the camera's view range."),
+    ("Press Play to start building", "Space or Play. Builders haul materials and build only while time runs."),
+];
+/// The command-card tool index that places this kind, if any.
+pub fn tool_for(kind: BuildKind) -> Option<usize> {
+    (0..64).find(|&t| build_kind(t) == Some(kind))
+}
 /// How long the accepted/refused flash stays on the map.
 pub const PLAN_FLASH_MS: u64 = 2600;
 /// Terrain line tools: road, trench and bridge.
@@ -394,6 +487,44 @@ pub struct UiPresentation {
     pub food_web_zoom: f32,
     pub disabled_layers: Vec<(Layer, String)>,
     pub disabled_tools: Vec<(usize,String)>,
+    /// Colour key for the active map overlay.
+    pub legend: Option<LegendView>,
+    /// "Field orders" first-steps checklist, until done or dismissed.
+    pub guide: Option<GuideView>,
+    /// Optical range of the camera being placed (screen centre, radius px).
+    pub range_ring: Option<RangeRing>,
+    /// Queued routes of selected units, in screen space.
+    pub order_lines: Vec<OrderLine>,
+}
+#[derive(Clone, Debug, PartialEq)]
+pub struct LegendView {
+    pub title: String,
+    pub hotkey: String,
+    pub entries: Vec<([u8; 4], String)>,
+    pub note: Option<String>,
+}
+#[derive(Clone, Debug, PartialEq)]
+pub struct GuideStepView {
+    pub label: String,
+    pub done: bool,
+}
+#[derive(Clone, Debug, PartialEq)]
+pub struct GuideView {
+    pub steps: Vec<GuideStepView>,
+    /// First unfinished step; highlighted and explained.
+    pub next: usize,
+    pub next_detail: String,
+}
+#[derive(Clone, Debug, PartialEq)]
+pub struct RangeRing {
+    pub centre: [f32; 2],
+    pub radius: f32,
+    pub valid: bool,
+}
+#[derive(Clone, Debug, PartialEq)]
+pub struct OrderLine {
+    pub points: Vec<[f32; 2]>,
+    pub attack: bool,
 }
 #[derive(Clone, Debug, PartialEq)]
 pub enum UiAction {
@@ -429,6 +560,10 @@ pub enum UiAction {
     ClearHelpSearch,
     FoodWebZoom(i8),
     FoodWebPan([f32; 2]),
+    /// Act on one "Field orders" checklist step.
+    GuideStep(u8),
+    /// Hide or show the "Field orders" checklist.
+    ToggleGuide,
 }
 #[derive(Clone, Debug, PartialEq)]
 pub enum UiHit {
@@ -584,6 +719,8 @@ pub struct UiState {
     plan_flash: Option<PlanFlash>,
     /// Highest construction job id seen when the HUD was last presented.
     last_job_id: u64,
+    /// Whether the world was paused at the last presentation.
+    world_paused: bool,
 }
 impl Default for UiState {
     fn default() -> Self {
@@ -623,6 +760,7 @@ impl Default for UiState {
             cursor_over_world: false,
             plan_flash: None,
             last_job_id: 0,
+            world_paused: true,
         }
     }
 }
@@ -959,7 +1097,19 @@ impl UiState {
                 if let Some(i) = self.prefs.layers.iter().position(|l| *l == layer) {
                     self.prefs.layers.remove(i);
                 } else {
+                    // Colour overlays replace each other so what you click is
+                    // what you see; marker layers (radar, fauna) stack on top.
+                    if layer.tints_map() {
+                        self.prefs.layers.retain(|l| !l.tints_map());
+                    }
                     self.prefs.layers.push(layer);
+                    if !self.prefs.seen_hints.contains("layer_legend") {
+                        self.hint(
+                            "layer_legend",
+                            "The legend beside the minimap explains the overlay colours. Hover a layer button for details.",
+                            now_ms,
+                        );
+                    }
                 }
                 vec![]
             }
@@ -1034,7 +1184,76 @@ impl UiState {
                 self.food_web_pan[1] += delta[1];
                 vec![]
             }
+            UiAction::ToggleGuide => {
+                self.prefs.guide_dismissed = !self.prefs.guide_dismissed;
+                if self.prefs.guide_dismissed {
+                    self.hint(
+                        "guide_hidden",
+                        "Field orders hidden. Turn them back on in Settings (P).",
+                        now_ms,
+                    );
+                }
+                vec![]
+            }
+            UiAction::GuideStep(step) => {
+                let (_, detail) = GUIDE_STEPS[(step as usize).min(GUIDE_STEPS.len() - 1)];
+                self.hint_text = detail.into();
+                self.hint_until_ms = now_ms.saturating_add(9_000);
+                match step {
+                    0 => self.activate(UiAction::SelectBuilders, _camera, now_ms),
+                    1 => self.activate(UiAction::ChooseTool(0), _camera, now_ms),
+                    2 => match tool_for(BuildKind::Depot) {
+                        Some(t) => self.activate(UiAction::ChooseTool(t), _camera, now_ms),
+                        None => vec![],
+                    },
+                    3 => {
+                        if !self.prefs.layers.contains(&Layer::Resources) {
+                            self.prefs.layers.retain(|l| !l.tints_map());
+                            self.prefs.layers.push(Layer::Resources);
+                        }
+                        match tool_for(BuildKind::Mine) {
+                            Some(t) => self.activate(UiAction::ChooseTool(t), _camera, now_ms),
+                            None => vec![],
+                        }
+                    }
+                    4 => self.activate(UiAction::ChooseTool(10), _camera, now_ms),
+                    _ if self.world_paused => vec![UiCommand::Pause],
+                    _ => vec![],
+                }
+            }
         }
+    }
+    /// Which "Field orders" steps the real game state has already satisfied.
+    fn guide_progress(&self, c: &Campaign) -> [bool; 6] {
+        use crate::construction::JobPhase;
+        let own_kind = |test: &dyn Fn(BuildKind) -> bool| {
+            c.construction
+                .jobs
+                .iter()
+                .any(|j| j.order.team == 0 && j.phase != JobPhase::Cancelled && test(j.order.kind))
+                || c.construction
+                    .buildings
+                    .iter()
+                    .any(|b| b.team == 0 && test(b.kind))
+        };
+        let any_order = c
+            .construction
+            .jobs
+            .iter()
+            .any(|j| j.order.team == 0 && j.phase != JobPhase::Cancelled);
+        let builders_selected = self.selection.iter().any(|id| {
+            self.known_units
+                .get(id)
+                .is_some_and(|u| u.team == 0 && u.role == Role::Worker)
+        });
+        [
+            builders_selected || any_order,
+            own_kind(&|k| k == BuildKind::Road),
+            own_kind(&|k| k == BuildKind::Depot),
+            own_kind(&|k| k == BuildKind::Mine),
+            own_kind(&|k| k.camera_spec().is_some()),
+            !c.paused,
+        ]
     }
     pub fn group_key(
         &mut self,
@@ -1676,6 +1895,80 @@ impl UiState {
         self.last_world_tick = c.processed_tick;
         self.hint("welcome","F4 Road · F6 Trench · F7 Camera. Box-select troops; right-click orders them. E Ecology.",now_ms);
     }
+    /// Plain-language description of what is under the cursor: a unit in
+    /// live video or one of your own planned orders. Never reveals hidden data.
+    fn world_hover_info(&self, c: &Campaign) -> Option<TooltipView> {
+        use crate::construction::JobPhase;
+        if let Some(id) = self.hovered {
+            if let Some(a) = c
+                .tactics
+                .agents
+                .iter()
+                .find(|a| a.id == id && a.alive() && c.recon.visible(0, a.position()))
+            {
+                let role = role_name(a.role).to_lowercase();
+                return Some(if a.team == 0 {
+                    let max = if matches!(a.role, Role::Boat | Role::Transport) { 600 } else { 100 };
+                    TooltipView {
+                        title: format!("Your {role}"),
+                        lines: vec![
+                            format!("Task: {}", unit_task(c, a)),
+                            format!("Health {} / {max}", a.health),
+                            "Click to select. Double-click selects all of this type on screen.".into(),
+                        ],
+                        anchor: self.cursor,
+                    }
+                } else {
+                    TooltipView {
+                        title: format!("Enemy {role}"),
+                        lines: vec![
+                            "Seen on live video now.".into(),
+                            "Select defenders, then right-click it to attack.".into(),
+                        ],
+                        anchor: self.cursor,
+                    }
+                });
+            }
+        }
+        let zoom = c.camera[2].max(0.12);
+        let p = self.cursor_world;
+        let (job, _) = c
+            .construction
+            .jobs
+            .iter()
+            .filter(|j| {
+                j.order.team == 0 && !matches!(j.phase, JobPhase::Complete | JobPhase::Cancelled)
+            })
+            .map(|j| {
+                let line = matches!(j.order.kind, BuildKind::Road | BuildKind::Trench | BuildKind::Bridge);
+                let reach = if line { 6. } else { crate::construction::site_size_meters(j.order.kind) * 0.5 };
+                let d = segment_distance(p, j.order.position, if line { j.order.end } else { j.order.position });
+                (j, d - reach)
+            })
+            .filter(|(_, d)| *d <= 8. / zoom)
+            .min_by(|a, b| a.1.total_cmp(&b.1))?;
+        let name = tool_label(tool_for(job.order.kind).unwrap_or(0));
+        let mut title: String = name.chars().take(1).flat_map(char::to_uppercase).collect();
+        title.push_str(&name[name.chars().next().map_or(0, char::len_utf8)..]);
+        let mut lines = vec![format!(
+            "{}: {}% built",
+            job_status(job.phase),
+            job.work_done as u64 * 100 / job.work_required.max(1) as u64
+        )];
+        if let Some(reason) = &job.blocked_reason {
+            lines.push(format!("Problem: {reason}"));
+        }
+        lines.push(if self.world_paused {
+            "Time is paused: press Play (Space) so builders can work.".into()
+        } else {
+            "Builders collect materials, carry them here and build.".into()
+        });
+        Some(TooltipView {
+            title: format!("{title} (planned order {})", job.id),
+            lines,
+            anchor: self.cursor,
+        })
+    }
     /// Construction outlines: own accepted orders, the order being placed, and
     /// a short accepted/refused flash. Returns live placement tooltip text.
     fn plan_outlines(
@@ -1793,6 +2086,13 @@ impl UiState {
         } else {
             None
         };
+        if let Some((_, range)) = kind.camera_spec() {
+            out.range_ring = Some(RangeRing {
+                centre: world_to_screen(to, c.camera, canvas),
+                radius: range * zoom,
+                valid: problem.is_none(),
+            });
+        }
         // A flash from the previous release keeps priority until the cursor
         // starts a new drag.
         if out.build_preview.is_none() || dragging {
@@ -2193,11 +2493,61 @@ impl UiState {
             .layers
             .iter()
             .rev()
-            .find(|l| !matches!(l, Layer::Radar | Layer::Fauna | Layer::Territory))
+            .find(|l| l.tints_map())
             .copied();
         if let Some(layer) = layer {
+            let entries = layer.legend();
+            if !entries.is_empty() {
+                out.legend = Some(LegendView {
+                    title: layer.name().into(),
+                    hotkey: layer.hotkey().into(),
+                    entries: entries.into_iter().map(|(c, l)| (c, l.to_string())).collect(),
+                    note: match layer {
+                        Layer::Movement => Some("Steep slopes cost extra and very steep ones block.".into()),
+                        Layer::Cameras => None,
+                        _ if c.visual_memory.is_some() => Some("Outside live video: last-seen state.".into()),
+                        _ => None,
+                    },
+                });
+            }
+            let remembers = |layer: Layer| {
+                c.visual_memory.is_some()
+                    && matches!(
+                        layer,
+                        Layer::Roads
+                            | Layer::Ecology
+                            | Layer::Damage
+                            | Layer::Supply
+                            | Layer::Resources
+                            | Layer::Elevation
+                            | Layer::Water
+                            | Layer::Movement
+                    )
+            };
+            let cell_at = |i: usize| {
+                let cell = (i / 150 * 4 + 2) * CW + i % 150 * 4 + 2;
+                c.visual_memory.as_ref().map(|m| m.cell_at(cell)).unwrap_or(c.terrain.cells[cell])
+            };
+            let in_view = |i: usize| {
+                let world = [(i % 150) as f32 * 32., (i / 150) as f32 * 32.];
+                let screen = world_to_screen(world, c.camera, canvas_f);
+                let size = 32. * c.camera[2];
+                !(screen[0] + size < 0.
+                    || screen[1] + size < 0.
+                    || screen[0] > canvas_f[0]
+                    || screen[1] > canvas_f[1])
+            };
+            // Elevation colours span the lowest..highest known ground in view.
+            let (low, high) = if layer == Layer::Elevation {
+                (0..15000)
+                    .filter(|&i| (c.recon.masks(0)[i] & VISIBLE != 0 || remembers(layer)) && in_view(i))
+                    .map(|i| cell_at(i).height)
+                    .fold((f32::MAX, f32::MIN), |(lo, hi), h| (lo.min(h), hi.max(h)))
+            } else {
+                (0., 0.)
+            };
             for i in 0..15000 {
-                if c.recon.masks(0)[i] & VISIBLE == 0 && (c.visual_memory.is_none() || !matches!(layer,Layer::Roads|Layer::Ecology|Layer::Damage|Layer::Supply|Layer::Resources)) {
+                if c.recon.masks(0)[i] & VISIBLE == 0 && !remembers(layer) {
                     continue;
                 }
                 let world = [(i % 150) as f32 * 32., (i / 150) as f32 * 32.];
@@ -2249,6 +2599,35 @@ impl UiState {
                     Layer::Damage if remembered.flags & 4 != 0 => {
                         Some([215, 100, 70, 60])
                     }
+                    Layer::Elevation => {
+                        let span = (high - low).max(1.);
+                        let band = (((remembered.height - low) / span) * 6.).floor().clamp(0., 5.) as usize;
+                        let mut colour = ELEVATION_BANDS[band];
+                        colour[3] = 85;
+                        Some(colour)
+                    }
+                    Layer::Water => {
+                        let depth = water_depth_mm(remembered);
+                        let moisture = soil_moisture_permille(remembered);
+                        if depth >= crate::terrain::WALK_WATER_LIMIT_MM {
+                            Some([50, 110, 200, 120])
+                        } else if depth > 0 {
+                            Some([90, 170, 225, 95])
+                        } else if moisture >= 500 {
+                            Some([70, 130, 170, 75])
+                        } else if moisture >= 250 {
+                            Some([120, 165, 170, 45])
+                        } else {
+                            None
+                        }
+                    }
+                    Layer::Movement => Some(match foot_cost(remembered) {
+                        None => [140, 80, 190, 110],
+                        Some(cost) if cost <= 150 => [90, 200, 110, 95],
+                        Some(cost) if cost <= 500 => [170, 205, 90, 55],
+                        Some(cost) if cost <= 800 => [235, 170, 70, 70],
+                        Some(_) => [225, 90, 70, 80],
+                    }),
                     _ => None,
                 };
                 if let Some(color) = tint {
@@ -2316,6 +2695,71 @@ impl UiState {
         }
         if placement_tip.is_some() {
             out.tooltip = placement_tip;
+        }
+        if let Some(UiAction::ToggleLayer(layer)) = self.hover_action.clone() {
+            let mut lines = vec![
+                layer.description().to_string(),
+                format!("Hotkey: {}", layer.hotkey()),
+            ];
+            match out.disabled_layers.iter().find(|(l, _)| *l == layer) {
+                Some((_, why)) => lines.push(why.clone()),
+                None => lines.push(
+                    if self.prefs.layers.contains(&layer) { "Click to hide." } else { "Click to show." }.into(),
+                ),
+            }
+            out.tooltip = Some(TooltipView {
+                title: format!("{} overlay", layer.name()),
+                lines,
+                anchor: self.cursor,
+            });
+        }
+        if out.tooltip.is_none()
+            && self.drag.is_none()
+            && self.cursor_over_world
+            && self.active_tool.is_none()
+            && out.modal.is_none()
+        {
+            out.tooltip = self.world_hover_info(c);
+        }
+        self.world_paused = c.paused;
+        if !self.prefs.guide_dismissed && out.modal.is_none() {
+            let done = self.guide_progress(c);
+            if let Some(next) = done.iter().position(|d| !d) {
+                out.guide = Some(GuideView {
+                    steps: GUIDE_STEPS
+                        .iter()
+                        .zip(done)
+                        .map(|((label, _), done)| GuideStepView { label: (*label).into(), done })
+                        .collect(),
+                    next,
+                    next_detail: GUIDE_STEPS[next].1.into(),
+                });
+            }
+        }
+        for a in selected.iter().take(40) {
+            use crate::campaign_commands::UnitOrderKind;
+            let Some(queue) = c.unit_order_queues.get(&a.id) else {
+                continue;
+            };
+            let mut points = vec![world_to_screen(a.position(), c.camera, canvas_f)];
+            let mut attack = false;
+            for order in queue.iter().take(6) {
+                let p = match &order.kind {
+                    UnitOrderKind::Move { position } | UnitOrderKind::Disembark { position } => Some(*position),
+                    UnitOrderKind::Attack { position, .. } => {
+                        attack = true;
+                        Some(*position)
+                    }
+                    UnitOrderKind::Board { last_known_position, .. } => Some(*last_known_position),
+                    _ => None,
+                };
+                if let Some(p) = p {
+                    points.push(world_to_screen(p, c.camera, canvas_f));
+                }
+            }
+            if points.len() > 1 {
+                out.order_lines.push(OrderLine { points, attack });
+            }
         }
         if self.prefs.hints && now_ms < self.hint_until_ms {
             out.hints.push(self.hint_text.clone());
@@ -2455,6 +2899,42 @@ fn nearest(items: &[Selectable], p: [f32; 2], radius: f32, friendly: bool) -> Op
 fn on_screen(position: [f32; 2], camera: [f32; 3], canvas: [f32; 2]) -> bool {
     let p = world_to_screen(position, camera, canvas);
     p[0] >= 0. && p[1] >= 0. && p[0] < canvas[0] && p[1] < canvas[1]
+}
+/// Distance from point `p` to the segment `a`..`b`.
+fn segment_distance(p: [f32; 2], a: [f32; 2], b: [f32; 2]) -> f32 {
+    let d = [b[0] - a[0], b[1] - a[1]];
+    let len2 = d[0] * d[0] + d[1] * d[1];
+    let t = if len2 <= f32::EPSILON {
+        0.
+    } else {
+        (((p[0] - a[0]) * d[0] + (p[1] - a[1]) * d[1]) / len2).clamp(0., 1.)
+    };
+    distance(p, [a[0] + d[0] * t, a[1] + d[1] * t])
+}
+/// Standing water depth of a terrain cell, in millimetres.
+fn water_depth_mm(cell: crate::terrain::Cell) -> u32 {
+    if cell.flags & crate::terrain::DYNAMIC_WATER != 0 {
+        cell.water
+    } else {
+        cell.water.saturating_mul(10)
+    }
+}
+fn soil_moisture_permille(cell: crate::terrain::Cell) -> u32 {
+    ((cell.flags & SOIL_MOISTURE_MASK) >> SOIL_MOISTURE_SHIFT).min(1000)
+}
+/// Flat-ground foot movement cost of a cell, matching the tactics path cost
+/// (road 100 + traction; off-road 350 + cover + traction); None = too deep.
+fn foot_cost(cell: crate::terrain::Cell) -> Option<u32> {
+    let road = cell.flags & 1 != 0;
+    if !road && water_depth_mm(cell) >= crate::terrain::WALK_WATER_LIMIT_MM {
+        return None;
+    }
+    let traction = soil_moisture_permille(cell) / 125;
+    Some(if road {
+        100 + traction * 2
+    } else {
+        350 + (cell.cover.clamp(0., 255.) as u32 / 8) * 24 + traction * 80
+    })
 }
 fn world_to_screen(position: [f32; 2], camera: [f32; 3], canvas: [f32; 2]) -> [f32; 2] {
     [
@@ -2844,7 +3324,7 @@ fn panel_projection(c: &Campaign, p: &PanelLayout, query: &str) -> PanelView {
                 ),
                 (
                     "Layers",
-                    "R radar; C video; O roads; L supply; U resources; V ecological health; G disturbance; K known fauna; T territory.",
+                    "R radar; C video; O roads; L supply; U resources; V ecological health; G disturbance; K known fauna; T territory; Y elevation; M water; Z movement speed. One colour overlay shows at a time; the legend explains it.",
                 ),
                 (
                     "Persistence",
@@ -3549,6 +4029,112 @@ mod opening_regressions {
         assert_ne!(view.build_preview.map(|p| p.state), Some(PlanState::Confirmed));
         ui.escape();
         assert!(ui.active_tool.is_none());
+    }
+
+    /// Regression (A-040): first-steps checklist reflects real state and
+    /// its steps arm the matching tools.
+    #[test]
+    fn field_orders_track_real_progress_and_arm_tools() {
+        let c = Campaign::new_crash_landing(crate::terrain::Terrain::new(78421)).unwrap();
+        let mut ui = UiState::default();
+        let view = ui.presentation(&c, [1920, 1080], 0);
+        let guide = view.guide.expect("new games show field orders");
+        assert_eq!(guide.steps.len(), GUIDE_STEPS.len());
+        assert_eq!(guide.next, 0);
+        assert!(guide.steps.iter().all(|s| !s.done));
+        ui.activate(UiAction::GuideStep(0), c.camera, 1);
+        assert!(!ui.selection.is_empty(), "step 1 selects the builders");
+        let view = ui.presentation(&c, [1920, 1080], 2);
+        assert_eq!(view.guide.as_ref().unwrap().next, 1);
+        ui.activate(UiAction::GuideStep(1), c.camera, 3);
+        assert_eq!(ui.active_tool, Some(0));
+        ui.activate(UiAction::GuideStep(3), c.camera, 4);
+        assert_eq!(ui.active_tool, tool_for(BuildKind::Mine));
+        assert!(ui.prefs.layers.contains(&Layer::Resources));
+        assert_eq!(ui.activate(UiAction::GuideStep(5), c.camera, 5), vec![UiCommand::Pause]);
+        ui.activate(UiAction::ToggleGuide, c.camera, 6);
+        assert!(ui.presentation(&c, [1920, 1080], 7).guide.is_none());
+        ui.activate(UiAction::ToggleGuide, c.camera, 8);
+        assert!(ui.presentation(&c, [1920, 1080], 9).guide.is_some());
+    }
+
+    /// Regression (A-040): every colour overlay has a legend, one shows at a
+    /// time, and the new movement/water/elevation overlays colour the map.
+    #[test]
+    fn colour_overlays_are_exclusive_have_legends_and_tint_the_map() {
+        let c = Campaign::new_crash_landing(crate::terrain::Terrain::new(78421)).unwrap();
+        let mut ui = UiState::default();
+        ui.presentation(&c, [1920, 1080], 0);
+        for layer in Layer::ALL {
+            assert!(!layer.description().is_empty());
+            assert_eq!(layer.tints_map(), !layer.legend().is_empty(), "{layer:?}");
+        }
+        for layer in [Layer::Movement, Layer::Water, Layer::Elevation, Layer::Roads] {
+            ui.activate(UiAction::ToggleLayer(layer), c.camera, 1);
+            assert_eq!(ui.prefs.layers.iter().filter(|l| l.tints_map()).count(), 1);
+            assert!(ui.prefs.layers.contains(&Layer::Radar), "marker layers stay on");
+            let view = ui.presentation(&c, [1920, 1080], 2);
+            let legend = view.legend.expect("legend for the shown overlay");
+            assert_eq!(legend.title, layer.name());
+            if layer != Layer::Roads && layer != Layer::Water {
+                assert!(!view.overlay_cells.is_empty(), "{layer:?} tints visible ground");
+            }
+        }
+        ui.activate(UiAction::ToggleLayer(Layer::Roads), c.camera, 3);
+        assert!(ui.presentation(&c, [1920, 1080], 4).legend.is_none());
+    }
+
+    #[test]
+    fn foot_cost_matches_tactics_rules() {
+        let mut cell = crate::terrain::Terrain::new(78421).cells[0];
+        cell.flags = 0;
+        cell.water = 0;
+        cell.cover = 0.;
+        assert_eq!(foot_cost(cell), Some(350));
+        cell.flags = 1;
+        assert_eq!(foot_cost(cell), Some(100));
+        cell.flags = 0;
+        cell.water = 40;
+        assert_eq!(foot_cost(cell), None, "400 mm of legacy water is too deep to wade");
+        cell.water = 0;
+        cell.flags = 1000 << SOIL_MOISTURE_SHIFT;
+        assert_eq!(foot_cost(cell), Some(350 + 8 * 80));
+    }
+
+    /// Regression (A-040): hovering your unit explains it; camera placement
+    /// shows the camera's real optical range.
+    #[test]
+    fn hover_explains_units_and_camera_placement_shows_range() {
+        let c = Campaign::new_crash_landing(crate::terrain::Terrain::new(78421)).unwrap();
+        let canvas = [1920., 1080.];
+        let mut ui = UiState::default();
+        ui.presentation(&c, [1920, 1080], 0);
+        let a = c
+            .tactics
+            .agents
+            .iter()
+            .find(|a| a.team == 0 && a.role == Role::Worker && c.recon.visible(0, a.position()))
+            .expect("a builder in video at the landing");
+        let units = vec![Selectable {
+            id: a.id,
+            team: 0,
+            role: a.role,
+            position: a.position(),
+            visible: true,
+            alive: true,
+            health: a.health,
+            max_health: 100,
+        }];
+        let screen = world_to_screen(a.position(), c.camera, canvas);
+        ui.pointer_move(UiHit::World, screen, a.position(), c.camera, canvas, &units);
+        let tip = ui.presentation(&c, [1920, 1080], 1).tooltip.expect("hover info");
+        assert_eq!(tip.title, "Your builder");
+        assert!(tip.lines[0].starts_with("Task: "));
+        ui.activate(UiAction::ChooseTool(10), c.camera, 2);
+        ui.pointer_move(UiHit::World, screen, a.position(), c.camera, canvas, &units);
+        let ring = ui.presentation(&c, [1920, 1080], 3).range_ring.expect("camera range ring");
+        let (_, range) = BuildKind::Camera.camera_spec().unwrap();
+        assert!((ring.radius - range * c.camera[2]).abs() < 0.01);
     }
 
     #[test]

@@ -63,7 +63,7 @@ jobs:
           if (-not (Test-Path evidence/opening-hud)) { Write-Output "No captures to publish"; exit 0 }
           $dest = Join-Path $env:RUNNER_TEMP "review-captures"
           New-Item -ItemType Directory -Force $dest | Out-Null
-          Copy-Item -Recurse -Force evidence/opening-hud/* $dest
+          Copy-Item -Force evidence/opening-hud/*-1366x768.png,evidence/opening-hud/*-1920x1080.png,evidence/opening-hud/report.json $dest -ErrorAction SilentlyContinue
           Set-Location $dest
           git init -q
           git config user.name "Last World CI"

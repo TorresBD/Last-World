@@ -420,6 +420,16 @@ pub struct UiLayout {
     category_buttons: Vec<(CommandCategory, Rect)>,
     tool_buttons: Vec<(usize, Rect)>,
     layer_buttons: Vec<(Layer, Rect)>,
+    /// Bounding box of the full layer-button grid.
+    layer_strip: Rect,
+    /// Overlay colour key, above the layer grid.
+    legend: Rect,
+    /// "Field orders" checklist and its rows / hide button.
+    guide: Rect,
+    guide_rows: Vec<Rect>,
+    guide_toggle: Rect,
+    /// Not enough height: show only the current step.
+    guide_compact: bool,
     quick_buttons: Vec<(String, Rect, UiAction)>,
     resource_buttons: Vec<Rect>,
     panels: Vec<(ui::PanelView, Rect)>,
@@ -512,6 +522,12 @@ impl UiLayout {
             category_buttons: vec![],
             tool_buttons: vec![],
             layer_buttons: vec![],
+            layer_strip: Rect::default(),
+            legend: Rect::default(),
+            guide: Rect::default(),
+            guide_rows: vec![],
+            guide_toggle: Rect::default(),
+            guide_compact: false,
             quick_buttons: vec![],
             resource_buttons: vec![],
             panels: vec![],
@@ -636,13 +652,16 @@ impl UiLayout {
                 hit: UiHit::Action(action),
             });
         }
-        for (i, layer) in [Layer::Radar, Layer::Cameras, Layer::Roads, Layer::Ecology]
-            .into_iter()
-            .enumerate()
-        {
+        // Every overlay gets a button: a grid above the minimap.
+        let step = hit + 2. * s;
+        // Never wider than the minimap, so the grid cannot reach the selection panel.
+        let per_row = ((minimap.width as f32 + 2. * s) / step).floor().max(1.) as usize;
+        let layer_rows = Layer::ALL.len().div_ceil(per_row);
+        let strip_y = minimap.y as f32 - g - layer_rows as f32 * step;
+        for (i, layer) in Layer::ALL.into_iter().enumerate() {
             let r = rect(
-                minimap.x as f32 + i as f32 * (hit + 2. * s),
-                minimap.y as f32 - hit - g,
+                minimap.x as f32 + (i % per_row) as f32 * step,
+                strip_y + (i / per_row) as f32 * step,
                 hit,
                 hit,
                 w,
@@ -652,6 +671,71 @@ impl UiLayout {
             out.targets.push(Target {
                 rect: r,
                 hit: UiHit::Action(UiAction::ToggleLayer(layer)),
+            });
+        }
+        out.layer_strip = rect(
+            minimap.x as f32,
+            strip_y,
+            per_row.min(Layer::ALL.len()) as f32 * step - 2. * s,
+            layer_rows as f32 * step - 2. * s,
+            w,
+            h,
+        );
+        if let Some(legend) = &v.legend {
+            let lw = (minimap.width as f32).max(250. * s).max(230.);
+            let rows = legend.entries.len() + usize::from(legend.note.is_some());
+            let lh = 34. * s + rows as f32 * (24. * s).max(20.) + 8. * s;
+            out.legend = rect(minimap.x as f32, strip_y - g - lh, lw, lh, w, h);
+        }
+        if let Some(guide) = &v.guide {
+            let gw = (320. * s).max(270.);
+            let row = (34. * s).max(32.);
+            let header = (36. * s).max(32.);
+            let detail = (46. * s).max(40.);
+            let full = header + guide.steps.len() as f32 * row + detail + 8. * s;
+            let compact = header + row + detail + 8. * s;
+            let gy = top.end_y() as f32 + g;
+            // Bottom-left column below: the legend, else the layer grid.
+            let limit = if out.legend.width > 0 { out.legend.y } else { out.layer_strip.y } as f32 - g;
+            out.guide_compact = gy + full > limit;
+            let gh = if out.guide_compact { compact } else { full };
+            let gx = if gy + gh <= limit {
+                g
+            } else {
+                out.legend.end_x().max(out.layer_strip.end_x()) as f32 + g
+            };
+            out.guide = rect(gx, gy, gw, gh, w, h);
+            out.guide_toggle = rect(
+                out.guide.end_x() as f32 - header,
+                out.guide.y as f32,
+                header,
+                header,
+                w,
+                h,
+            );
+            let shown: Vec<usize> = if out.guide_compact {
+                vec![guide.next]
+            } else {
+                (0..guide.steps.len()).collect()
+            };
+            for (slot, i) in shown.into_iter().enumerate() {
+                let r = rect(
+                    out.guide.x as f32 + 4. * s,
+                    out.guide.y as f32 + header + slot as f32 * row,
+                    out.guide.width as f32 - 8. * s,
+                    row,
+                    w,
+                    h,
+                );
+                out.guide_rows.push(r);
+                out.targets.push(Target {
+                    rect: r,
+                    hit: UiHit::Action(UiAction::GuideStep(i as u8)),
+                });
+            }
+            out.targets.push(Target {
+                rect: out.guide_toggle,
+                hit: UiHit::Action(UiAction::ToggleGuide),
             });
         }
         out.targets.push(Target {
@@ -884,6 +968,8 @@ pub fn hit_test(model: &HudModel, width: u32, height: u32, x: f64, y: f64) -> Ui
         l.minimap,
         l.selection,
         l.command,
+        l.guide,
+        l.legend,
     ]
     .iter()
     .any(|r| r.contains(px, py))
@@ -927,6 +1013,10 @@ fn settings_actions(model: &HudModel) -> Vec<(String, UiAction)> {
             UiAction::ToggleReduceMotion,
         ),
         (format!("Show icon IDs: {}",if v.prefs.show_icon_ids {"ON"}else{"OFF"}),UiAction::ToggleIconIds),
+        (
+            format!("Field orders checklist: {}", if v.prefs.guide_dismissed { "OFF" } else { "ON" }),
+            UiAction::ToggleGuide,
+        ),
         ("Save world  /  F5".into(), UiAction::Save),
         ("Load world  /  F9".into(), UiAction::Load),
     ];
@@ -1499,6 +1589,8 @@ enum Content {
     Modal(ui::ModalView),
     Tooltip(ui::TooltipView),
     Hint(String),
+    Legend(ui::LegendView),
+    Guide(ui::GuideView),
     Legacy(HudModel),
 }
 #[derive(Clone, PartialEq)]
@@ -1688,13 +1780,19 @@ fn specs(model: &HudModel, l: &UiLayout) -> Vec<Spec> {
         l.command,
         Content::Commands(v.category, v.active_tool, model.tools.clone(),v.disabled_tools.clone()),
     );
-    if let (Some((_, first)), Some((_, last))) = (l.layer_buttons.first(), l.layer_buttons.last()) {
+    if !l.layer_buttons.is_empty() {
         add(
             &mut out,
             210,
-            first.union(*last),
+            l.layer_strip,
             Content::Layers(v.layers.clone(), v.disabled_layers.clone()),
         );
+    }
+    if let Some(legend) = &v.legend {
+        add(&mut out, 220, l.legend, Content::Legend(legend.clone()));
+    }
+    if let Some(guide) = &v.guide {
+        add(&mut out, 150, l.guide, Content::Guide(guide.clone()));
     }
     if let (Some((_, first, _)), Some((_, last, _))) =
         (l.quick_buttons.first(), l.quick_buttons.last())
@@ -1743,8 +1841,17 @@ fn specs(model: &HudModel, l: &UiLayout) -> Vec<Spec> {
         );
     }
     if let Some(tooltip) = &v.tooltip {
-        let w = (Theme::global().metric("tooltip_width") * s).min(l.width as f32 - 16.);
-        let h = ((tooltip.lines.len().min(9) + 2) as f32 * 22. * s).min(l.height as f32 * 0.6);
+        let w = (Theme::global().metric("tooltip_width").max(360.) * s).min(l.width as f32 - 16.);
+        // Size to the wrapped text so long explanations are never cut off.
+        let body = (Theme::global().metric("body_px") * s).max(14.);
+        let per_line = ((w - 24. * s) / (body * 0.52)).max(12.);
+        let rows: usize = tooltip
+            .lines
+            .iter()
+            .take(8)
+            .map(|line| ((line.chars().count() as f32 / per_line).ceil() as usize).clamp(1, 3))
+            .sum();
+        let h = (44. * s + rows as f32 * body * 1.4 + 12. * s).min(l.height as f32 * 0.6);
         let x = (tooltip.anchor[0] + 16.)
             .min(l.width as f32 - w - 8.)
             .max(8.);
@@ -2361,6 +2468,121 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                 2,
             );
         }
+        Content::Legend(legend) => {
+            p.metal(r, false, false);
+            p.text(
+                r.x as f32 + 10. * s,
+                r.y as f32 + 6. * s,
+                &format!("{}  [{}]", legend.title.to_uppercase(), legend.hotkey),
+                heading,
+                accent,
+                "heading",
+                r.width as f32 - 20. * s,
+            );
+            let row = (24. * s).max(20.);
+            let mut y = r.y as f32 + 34. * s;
+            let swatch = (14. * s).max(12.);
+            for (colour, label) in &legend.entries {
+                let sw = rect(r.x as f32 + 12. * s, y + (row - swatch) * 0.5, swatch, swatch, l.width, l.height);
+                p.fill(sw.inset(0), t.color("black"));
+                p.fill(sw.inset(1), *colour);
+                p.text(
+                    r.x as f32 + 12. * s + swatch + 8. * s,
+                    y + (row - small) * 0.5 - 2. * s,
+                    label,
+                    small,
+                    text,
+                    "body",
+                    r.width as f32 - swatch - 32. * s,
+                );
+                y += row;
+            }
+            if let Some(note) = &legend.note {
+                p.text(
+                    r.x as f32 + 12. * s,
+                    y + (row - small) * 0.5 - 2. * s,
+                    note,
+                    small,
+                    muted,
+                    "body",
+                    r.width as f32 - 24. * s,
+                );
+            }
+        }
+        Content::Guide(guide) => {
+            p.metal(r, false, true);
+            let header = (36. * s).max(32.);
+            p.text(
+                r.x as f32 + 12. * s,
+                r.y as f32 + (header - heading) * 0.5 - 2. * s,
+                "FIELD ORDERS",
+                heading,
+                accent,
+                "heading",
+                r.width as f32 - header - 16. * s,
+            );
+            let done_count = guide.steps.iter().filter(|st| st.done).count();
+            p.text(
+                r.end_x() as f32 - header - 52. * s,
+                r.y as f32 + (header - small) * 0.5 - 2. * s,
+                &format!("{done_count}/{}", guide.steps.len()),
+                small,
+                muted,
+                "heading",
+                48. * s,
+            );
+            // Hide button: an x drawn from two lines.
+            let close = rect(r.end_x() as f32 - header, r.y as f32, header, header, l.width, l.height).inset((header * 0.32) as u32);
+            p.line([close.x as f32, close.y as f32], [close.end_x() as f32, close.end_y() as f32], muted, 2);
+            p.line([close.x as f32, close.end_y() as f32], [close.end_x() as f32, close.y as f32], muted, 2);
+            let row = (34. * s).max(32.);
+            let shown: Vec<(usize, &ui::GuideStepView)> = if l.guide_compact {
+                guide.steps.iter().enumerate().skip(guide.next).take(1).collect()
+            } else {
+                guide.steps.iter().enumerate().collect()
+            };
+            let rows_shown = shown.len();
+            for (slot, (i, step)) in shown.into_iter().enumerate() {
+                let y = r.y as f32 + header + slot as f32 * row;
+                let current = i == guide.next;
+                if current {
+                    let mut hl = accent;
+                    hl[3] = 40;
+                    p.fill(rect(r.x as f32 + 4. * s, y, r.width as f32 - 8. * s, row, l.width, l.height), hl);
+                    p.fill(rect(r.x as f32 + 4. * s, y, 3. * s, row, l.width, l.height), accent);
+                }
+                let bx = (18. * s).max(14.);
+                let b = rect(r.x as f32 + 14. * s, y + (row - bx) * 0.5, bx, bx, l.width, l.height);
+                p.fill(b, t.color("black"));
+                if step.done {
+                    p.fill(b.inset(2), green);
+                    let (x0, y0) = (b.x as f32, b.y as f32);
+                    p.line([x0 + bx * 0.22, y0 + bx * 0.52], [x0 + bx * 0.42, y0 + bx * 0.74], t.color("black"), 2);
+                    p.line([x0 + bx * 0.42, y0 + bx * 0.74], [x0 + bx * 0.8, y0 + bx * 0.28], t.color("black"), 2);
+                } else {
+                    p.outline(b.inset(1), if current { accent } else { t.color("edge") }, 1);
+                }
+                p.text(
+                    b.end_x() as f32 + 10. * s,
+                    y + (row - body) * 0.5 - 2. * s,
+                    &step.label,
+                    body,
+                    if step.done { muted } else if current { text } else { t.color("edge_light") },
+                    "body",
+                    r.end_x() as f32 - b.end_x() as f32 - 20. * s,
+                );
+            }
+            let y = r.y as f32 + header + rows_shown as f32 * row + 4. * s;
+            p.wrap(
+                r.x as f32 + 14. * s,
+                y,
+                &guide.next_detail,
+                small,
+                muted,
+                r.width as f32 - 28. * s,
+                2,
+            );
+        }
         Content::Tooltip(tip) => {
             p.metal(r, true, true);
             p.text(
@@ -2803,6 +3025,33 @@ pub fn world_quads(model: &HudModel, width: u32, height: u32) -> Vec<UiQuad> {
     };
     for cell in &v.overlay_cells {
         add(cell.rect, cell.color);
+    }
+    // Selected units' queued routes: thin dotted paths.
+    for line in v.order_lines.iter().take(40) {
+        let c = if line.attack { t.color("damage") } else { t.color("text") };
+        let c = [c[0], c[1], c[2], 170];
+        for pair in line.points.windows(2) {
+            let (a, b) = (pair[0], pair[1]);
+            let len = (b[0] - a[0]).hypot(b[1] - a[1]);
+            let step = 6f32.max(len / 120.);
+            let n = (len / step) as usize;
+            for i in 0..=n {
+                let f = if n == 0 { 0. } else { i as f32 / n as f32 };
+                let p = [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+                add(UiRect { x: p[0] - 1., y: p[1] - 1., width: 2., height: 2. }, c);
+            }
+            add(UiRect { x: b[0] - 3., y: b[1] - 3., width: 6., height: 6. }, c);
+        }
+    }
+    // Optical range of a camera being placed.
+    if let Some(ring) = &v.range_ring {
+        let c = if ring.valid { t.color("biology") } else { t.color("damage") };
+        let dots = ((ring.radius * std::f32::consts::TAU / 7.) as usize).clamp(24, 360);
+        for i in 0..dots {
+            let a = i as f32 / dots as f32 * std::f32::consts::TAU;
+            let p = [ring.centre[0] + a.cos() * ring.radius, ring.centre[1] + a.sin() * ring.radius];
+            add(UiRect { x: p[0] - 1.5, y: p[1] - 1.5, width: 3., height: 3. }, [c[0], c[1], c[2], 200]);
+        }
     }
     // Construction outlines: accepted orders first, the live/flashing one on top.
     for o in v.planned.iter().take(MAX_PLANNED_OUTLINES) {
@@ -3294,5 +3543,59 @@ mod tests {
         let quads = world_quads(&m, 1920, 1080);
         assert!(quads.len() <= WORLD_QUAD_BUDGET);
         assert!(quads.len() > 15000);
+    }
+
+    /// Regression (A-040): the overlay legend, full layer grid and field
+    /// orders stay on screen, are clickable and never cover core controls.
+    #[test]
+    fn legend_layer_grid_and_field_orders_fit_without_covering_controls() {
+        for (w, h) in [(1366, 768), (1920, 1080), (2560, 1440)] {
+            for scale in [750, 1000, 1500] {
+                let mut m = model();
+                let v = m.ui.as_mut().unwrap();
+                v.prefs.ui_scale_permille = scale;
+                v.selection.selected_count = 4;
+                v.legend = Some(ui::LegendView {
+                    title: Layer::Movement.name().into(),
+                    hotkey: "Z".into(),
+                    entries: Layer::Movement.legend().into_iter().map(|(c, l)| (c, l.into())).collect(),
+                    note: Some("note".into()),
+                });
+                v.guide = Some(ui::GuideView {
+                    steps: ui::GUIDE_STEPS
+                        .iter()
+                        .map(|(l, _)| ui::GuideStepView { label: (*l).into(), done: false })
+                        .collect(),
+                    next: 0,
+                    next_detail: "detail".into(),
+                });
+                let l = layout(&m, w, h);
+                let (cw, ch) = canvas_size(w, h);
+                assert_eq!(l.layer_buttons.len(), Layer::ALL.len());
+                for r in [l.legend, l.guide, l.layer_strip] {
+                    assert!(r.width > 0 && r.end_x() <= cw && r.end_y() <= ch, "{w}x{h}@{scale}");
+                    for core in [l.minimap, l.selection, l.command, l.top] {
+                        let overlap = r.x < core.end_x() && core.x < r.end_x() && r.y < core.end_y() && core.y < r.end_y();
+                        assert!(!overlap, "{r:?} overlaps {core:?} at {w}x{h}@{scale}");
+                    }
+                }
+                assert!(l.legend.end_y() <= l.layer_strip.y);
+                let sx = w as f64 / cw as f64;
+                let sy = h as f64 / ch as f64;
+                let overlap = |a: Rect, b: Rect| a.x < b.end_x() && b.x < a.end_x() && a.y < b.end_y() && b.y < a.end_y();
+                assert!(!overlap(l.guide, l.legend) && !overlap(l.guide, l.layer_strip), "{w}x{h}@{scale}");
+                for (layer, r) in &l.layer_buttons {
+                    let hit = hit_test(&m, w, h, (r.x as f64 + r.width as f64 * 0.5) * sx, (r.y as f64 + r.height as f64 * 0.5) * sy);
+                    if *layer != Layer::Territory {
+                        assert_eq!(hit, UiHit::Action(UiAction::ToggleLayer(*layer)), "{w}x{h}@{scale}");
+                    }
+                }
+                let (row, step) = if l.guide_compact { (l.guide_rows[0], 0) } else { (l.guide_rows[2], 2) };
+                assert_eq!(
+                    hit_test(&m, w, h, (row.x as f64 + 30.) * sx, (row.y as f64 + row.height as f64 * 0.5) * sy),
+                    UiHit::Action(UiAction::GuideStep(step))
+                );
+            }
+        }
     }
 }

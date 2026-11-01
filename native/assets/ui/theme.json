@@ -387,7 +387,7 @@
     "Ecology": "fauna:0:0:0",
     "Damage": "mortar",
     "Fauna": "fauna:1:0:0",
-    "Territory": "tower"
+    "Territory": "tower", "Elevation": "smooth", "Water": "dam", "Movement": "move"
   },
   "panels": {
     "Ecology": "fauna:0:0:0",
