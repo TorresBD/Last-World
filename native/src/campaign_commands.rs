@@ -198,6 +198,15 @@ impl Campaign {
                 return Err("This command is handled by the native window/session controls".into());
             }
         }
+        let recorded=match command {
+            UiCommand::MoveSelected{ids,..}=>Some((ids,"Move order accepted")),
+            UiCommand::AttackSelected{ids,..}=>Some((ids,"Attack order accepted")),
+            UiCommand::BoardSelected{ids,..}=>Some((ids,"Board order accepted")),
+            UiCommand::DisembarkSelected{transports,..}=>Some((transports,"Disembark order accepted")),
+            UiCommand::StopSelected{ids}=>Some((ids,"Hold order accepted")),
+            _=>None
+        };
+        if let Some((ids,text))=recorded { for &id in ids {self.record_unit_event(id,text);} }
         logging::log(
             "PLAYER_COMMAND",
             &serde_json::json!({"tick":self.data.clock.tick(),"command":command}).to_string(),

@@ -3,6 +3,9 @@
 //! apply rain as a named input and debit real stores for uptake/evaporation.
 use serde::{Deserialize, Serialize};
 pub const SEASON_CYCLE_TICKS: u64 = 72_000;
+/// Existing biological activity cycle: 24 normalized hours in 120 game seconds.
+pub const BIOLOGICAL_DAY_TICKS:u64=2_400;
+pub const DAYLIGHT_TICKS:u64=1_200;
 pub const CLIMATE_REFERENCE_PATCH_AREA_M2: u32 = 256;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum JungleSeason {

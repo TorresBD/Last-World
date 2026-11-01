@@ -111,6 +111,7 @@ def source_snapshot():
     ]
     trees = {
         'project': {'.md', '.txt', '.json'},
+        'assets/icons': {'.md', '.json'},
         'native/src': {'.rs'},
         'native/shaders': {'.wgsl'},
         'native/assets': {'.png', '.json', '.ttf', '.txt'},
@@ -140,10 +141,14 @@ def source_snapshot():
         record = root / name
         if not record.is_file() or not record.read_text(encoding='utf-8').strip():
             raise SystemExit('Required project record is missing or empty: ' + name)
+    unavailable_evidence = []
     selected = {root / name for name in exact}
     for folder, extensions in trees.items():
         base = root / folder
         if not base.is_dir():
+            if folder.startswith('evidence/'):
+                unavailable_evidence.append(folder)
+                continue
             raise SystemExit('Required source snapshot tree is missing: ' + folder)
         for source in base.rglob('*'):
             relative = source.relative_to(root)
@@ -158,6 +163,8 @@ def source_snapshot():
         if any(part in excluded_parts for part in Path(name).parts):
             raise SystemExit('Mutable/runtime source snapshot input: ' + name)
         file(source, 'Source/' + name)
+
+    manifest['unavailable_historical_evidence'] = unavailable_evidence
 
     # The source whitelist must never silently omit a compilation dependency
     # added to build_identity.py, including patched vendor includes/manifests.
@@ -238,13 +245,18 @@ if args.update_bundle:
     # Actual Windows --list discovery remains authoritative at runtime.
     harnesses = {entry['suite']: entry for entry in stamp.get('test_harnesses', [])}
     host_stamp_path = root / 'native/target/release/native-build-stamp.json'
-    if set(harnesses) != {'library', 'cli'} or not host_stamp_path.is_file():
-        raise SystemExit('Build both release test harnesses and the matching host inventory before packaging')
-    host_stamp = json.loads(host_stamp_path.read_text())
+    if set(harnesses) != {'library', 'cli'}:
+        raise SystemExit('Build both release test harnesses before packaging')
+    if os.name == 'nt' and all(entry.get('test_names') for entry in harnesses.values()):
+        host_stamp = stamp
+    elif host_stamp_path.is_file():
+        host_stamp = json.loads(host_stamp_path.read_text())
+    else:
+        raise SystemExit('Build the matching host inventory or enumerate actual Windows harnesses before packaging')
     if host_stamp.get('native_source_sha256') != source_hash:
         raise SystemExit('Host test inventory predates current native inputs')
     host_harnesses = {entry['suite']: entry for entry in host_stamp.get('test_harnesses', [])}
-    catalog = {'schema_version': 1, 'inventory_source': 'host_cfg_expected; actual Windows discovery required',
+    catalog = {'schema_version': 1, 'inventory_source': ('actual Windows runtime inventory' if os.name == 'nt' else 'host_cfg_expected; actual Windows discovery required'),
                'native_source_sha256': source_hash, 'executables': [], 'tests': []}
     for suite, executable_name in [('library', 'Last-World-Mechanisms.exe'), ('cli', 'Last-World-Cli-Checks.exe')]:
         entry = harnesses[suite]

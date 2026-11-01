@@ -32,22 +32,22 @@ fn water_depth(pos:vec2<f32>,nearest:Cell)->f32{
  return max(0.,head/wet_weight-bed);
 }
 @fragment fn fragment(@builtin(position) pixel:vec4<f32>)->@location(0)vec4<f32>{let world=floor(p.view.xy+(pixel.xy-p.screen.xy*.5)/p.screen.z);if any(world<vec2(0.))||any(world>=vec2(4800.,3200.)){return vec4(.035,.065,.045,1.);}let cell=cells[cell_at(world)];var color=textureLoad(ground,vec2<i32>(world*.5),0).rgb;let grain=random(vec2<i32>(world/2.))*.08-.04;
+ let vision_cell=u32(world.y/32.)*150u+u32(world.x/32.);let mask=intel[240000u+vision_cell];let visible=p.misc.y<.5||(mask&1u)!=0u;
  // Water is derived from finite CPU storage. Only connected wetted samples can
  // draw water; animated grain follows actual last-tick transfer direction.
  if (cell.flags&2u)!=0u&&cell.water>0u{
   let velocity=vec2(bitcast<f32>(cell.pad.x),bitcast<f32>(cell.pad.y));
-  let moving_grain=random(vec2<i32>(floor((world-velocity*(p.screen.w%512.))*.5)))*.055-.0275;
+  let moving_grain=random(vec2<i32>(floor((world-velocity*(select(0.,p.screen.w,visible)%512.))*.5)))*.055-.0275;
   let depth=water_depth(world,cell);
   let water_color=mix(vec3(.30,.205,.115),vec3(.085,.05,.027),clamp(depth/2.,0.,1.))+moving_grain*.5;
   color=mix(color,water_color,smoothstep(0.,.08,depth)*.96);
  }
  if (cell.flags&1u)!=0u{color=vec3(.412,.431,.427)+grain;if cell.water>0u{color=vec3(.443,.412,.329)+grain;}}
- let vision_cell=u32(world.y/32.)*150u+u32(world.x/32.);let mask=intel[240000u+vision_cell];let visible=p.misc.y<.5||(mask&1u)!=0u;
+
  if !visible{
   if p.counts.z!=0u {
-   // Until a remembered terrain snapshot is available, unseen campaign
-   // ground is neutral fog. Live erosion/foliage/water changes cannot leak.
-   color=select(vec3(.035,.071,.055),vec3(.055,.085,.067),(mask&8u)!=0u);
+   // Campaign buffers contain the initial survey / last optical snapshot.
+   if p.counts.w!=0u{color*=.72;}else{color=select(vec3(.035,.071,.055),vec3(.055,.085,.067),(mask&8u)!=0u);}
   }else{color=mix(vec3(.035,.071,.055),color,select(.12,.42,(mask&8u)!=0u));}
  }
  if p.counts.z==0u&&cell.object>0u&&cell.object<=p.counts.x{let b=objects[cell.object-1u];let xy=vec2<i32>((world-b.pos)/b.size*64.+vec2(32.));if visible&&all(xy>=vec2(0))&&all(xy<vec2(64)){let paint=textureLoad(atlas,vec2<i32>(b.uv.xy)+xy,0);color=mix(color,paint.rgb,paint.a);}}
@@ -135,6 +135,7 @@ struct ObjectVertex {
  @location(2) @interpolate(flat) origin:vec2<u32>,
  @location(3) @interpolate(flat) extent:vec2<u32>,
  @location(4) @interpolate(flat) completion:f32,
+ @location(5) @interpolate(flat) memory_tile:u32,
 }
 @vertex fn object_vertex(@builtin(vertex_index) v:u32,@builtin(instance_index) id:u32)->ObjectVertex {
  let b=objects[id];
@@ -147,12 +148,15 @@ struct ObjectVertex {
  out.origin=b.uv.xy;
  out.extent=b.uv.zw;
  out.completion=b.complete;
+ out.memory_tile=b.kind;
  return out;
 }
 @fragment fn object_fragment(in:ObjectVertex)->@location(0)vec4<f32>{
  if any(in.world<vec2(0.))||any(in.world>=vec2(4800.,3200.)){discard;}
  let vc=u32(in.world.y/32.)*150u+u32(in.world.x/32.);
- if p.misc.y>.5&&(intel[240000u+vc]&1u)==0u{discard;}
+ if (in.memory_tile&0x80000000u)!=0u {
+  if vc!=(in.memory_tile&0x7fffffffu){discard;}
+ }else if p.misc.y>.5&&(intel[240000u+vc]&1u)==0u{discard;}
  let xy=min(vec2<u32>(floor(in.uv*vec2<f32>(in.extent))),in.extent-vec2(1u));
  let paint=textureLoad(atlas,vec2<i32>(in.origin+xy),0);
  if paint.a<.5{discard;}
