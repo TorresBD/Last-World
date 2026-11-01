@@ -2638,6 +2638,11 @@ impl UiState {
                 }
             }
         }
+        // While placing anything, outline the edge of live video: orders can
+        // only be planned inside it, and remembered ground looks similar.
+        if self.active_tool.and_then(build_kind).is_some() {
+            out.overlay_cells.extend(video_edges(c, canvas_f));
+        }
         let placement_tip = self.plan_outlines(c, canvas_f, now_ms, &mut out);
         if let Some(tool) = self
             .hover_action
@@ -2679,6 +2684,7 @@ impl UiState {
                     if kind==BuildKind::MountedCamera { lines.push("Snaps to an owned completed wall/building; requires its host.".into()); }
                 }
                 lines.push("A worker collects materials, travels and performs the work.".into());
+                lines.push("Plan only inside the bright outline (live video); faded grey ground is remembered.".into());
             } else {
                 lines.push(match tool{20=>"Capture requires observed reachable wildlife, a handler and a suitable pen.",21=>"Research requires a delivered specimen, care and a research building.",22=>"Breeding requires researched compatible specimens and real care.",23=>"A handler collects and releases an existing captive.",25|26=>"Launch requires a completed dock, paid materials and sufficient depth.",27|28=>"Use an actual nearby transport and reachable shoreline.",_=>"Click the world to use this command."}.into());
             }
@@ -2894,6 +2900,42 @@ fn nearest(items: &[Selectable], p: [f32; 2], radius: f32, friendly: bool) -> Op
 fn on_screen(position: [f32; 2], camera: [f32; 3], canvas: [f32; 2]) -> bool {
     let p = world_to_screen(position, camera, canvas);
     p[0] >= 0. && p[1] >= 0. && p[0] < canvas[0] && p[1] < canvas[1]
+}
+/// Colour of the live-video boundary drawn while placing orders.
+pub const VIDEO_EDGE: [u8; 4] = [120, 235, 215, 235];
+/// Thin screen-space strips along the boundary of current live video.
+fn video_edges(c: &Campaign, canvas: [f32; 2]) -> Vec<LayerCell> {
+    let masks = c.recon.masks(0);
+    let live = |x: i32, y: i32| {
+        (0..150).contains(&x)
+            && (0..100).contains(&y)
+            && masks.get((y * 150 + x) as usize).is_some_and(|m| m & VISIBLE != 0)
+    };
+    let size = 32. * c.camera[2];
+    let t = 2f32.min(size * 0.25).max(1.);
+    let mut out = Vec::new();
+    for y in 0..100i32 {
+        for x in 0..150i32 {
+            if !live(x, y) {
+                continue;
+            }
+            let p = world_to_screen([x as f32 * 32., y as f32 * 32.], c.camera, canvas);
+            if p[0] + size < 0. || p[1] + size < 0. || p[0] > canvas[0] || p[1] > canvas[1] {
+                continue;
+            }
+            for (dx, dy, rect) in [
+                (-1, 0, UiRect { x: p[0], y: p[1], width: t, height: size }),
+                (1, 0, UiRect { x: p[0] + size - t, y: p[1], width: t, height: size }),
+                (0, -1, UiRect { x: p[0], y: p[1], width: size, height: t }),
+                (0, 1, UiRect { x: p[0], y: p[1] + size - t, width: size, height: t }),
+            ] {
+                if !live(x + dx, y + dy) {
+                    out.push(LayerCell { rect, color: VIDEO_EDGE });
+                }
+            }
+        }
+    }
+    out
 }
 /// Distance from point `p` to the segment `a`..`b`.
 fn segment_distance(p: [f32; 2], a: [f32; 2], b: [f32; 2]) -> f32 {
@@ -4101,6 +4143,17 @@ mod opening_regressions {
         assert!(ui.presentation(&c, [1920, 1080], 4).legend.is_none());
     }
 
+    /// Regression (A-041): placing an order outlines where live video is.
+    #[test]
+    fn placing_outlines_the_live_video_boundary() {
+        let c = Campaign::new_crash_landing(crate::terrain::Terrain::new(78421)).unwrap();
+        let mut ui = UiState::default();
+        let idle = ui.presentation(&c, [1920, 1080], 0);
+        assert!(!idle.overlay_cells.iter().any(|cell| cell.color == VIDEO_EDGE));
+        ui.activate(UiAction::ChooseTool(0), c.camera, 1);
+        let placing = ui.presentation(&c, [1920, 1080], 2);
+        assert!(placing.overlay_cells.iter().any(|cell| cell.color == VIDEO_EDGE));
+    }
     #[test]
     fn camera_view_stays_on_the_map() {
         let mut cam = [424., 1640., 0.85];

@@ -136,3 +136,8 @@ L-0029 | 2026-11-01 | SOURCE_CHANGE | A-040 batch: Field orders checklist (6 ste
 B-005 | 2026-11-01 | 33b3ad28986317026faef7fad0c8bd403efd6b18 | d243a5adab1b925f737bbe9a5fb219f8deb45bcc622c91d854d5252f74f249f2 | A-040 readability pass | CI run 41346549990: library 263 + CLI 5, release build, 18 captures reviewed, overlay audits; later text-only legend/guide wording verified by the merge run | N | #build
 
 Last entry: L-0029. Last approval: A-040. Last build: B-005.
+
+A-041 | 2026-11-01 | APPROVED | Tor: road refused with 'both ends need current video' although the ground looked covered; the road line must always draw while dragging (paused or running), even when the order will be refused. | #ui | chat
+L-0030 | 2026-11-01 | SOURCE_CHANGE | Cause: remembered (non-live) ground was only darkened to 72%, indistinguishable from live video on busy terrain; Tor was also still running the pre-A-039 build (no drag line). Changes: remembered ground now greyed and faded in the renderer; while any build tool is active a bright outline marks the live-video boundary; tool help and refusal messages say where to plan. The A-039 drag line already draws in red when refused, paused or running. Regression placing_outlines_the_live_video_boundary. | #ui
+
+Last entry: L-0030. Last approval: A-041. Last build: B-005.

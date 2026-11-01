@@ -47,7 +47,8 @@ fn water_depth(pos:vec2<f32>,nearest:Cell)->f32{
  if !visible{
   if p.counts.z!=0u {
    // Campaign buffers contain the initial survey / last optical snapshot.
-   if p.counts.w!=0u{color*=.72;}else{color=select(vec3(.035,.071,.055),vec3(.055,.085,.067),(mask&8u)!=0u);}
+   // Remembered, not live: clearly faded and greyed so live video stands out.
+   if p.counts.w!=0u{let grey=dot(color,vec3(.299,.587,.114));color=mix(vec3(grey),color,.4)*.58;}else{color=select(vec3(.035,.071,.055),vec3(.055,.085,.067),(mask&8u)!=0u);}
   }else{color=mix(vec3(.035,.071,.055),color,select(.12,.42,(mask&8u)!=0u));}
  }
  if p.counts.z==0u&&cell.object>0u&&cell.object<=p.counts.x{let b=objects[cell.object-1u];let xy=vec2<i32>((world-b.pos)/b.size*64.+vec2(32.));if visible&&all(xy>=vec2(0))&&all(xy<vec2(64)){let paint=textureLoad(atlas,vec2<i32>(b.uv.xy)+xy,0);color=mix(color,paint.rgb,paint.a);}}

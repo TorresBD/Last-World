@@ -2090,7 +2090,7 @@ impl Campaign {
             return Err("The selected tool is not a line order".into());
         }
         if !self.data.recon.visible(0, from) || !self.data.recon.visible(0, to) {
-            return Err("Both ends of a planned line need current video".into());
+            return Err("Both ends need live video. Faded grey ground is only remembered; plan inside the bright outlined area, or extend video with a camera or camera trooper.".into());
         }
         if distance(from, to) < 2. {
             to = [(from[0] + 64.).min(4792.), from[1]];
@@ -2118,7 +2118,7 @@ impl Campaign {
         }
         if !self.data.recon.visible(0, position) {
             return Err(
-                "No current video at that location. Extend cameras or wait for satellite coverage."
+                "No live video there (faded grey ground is only remembered). Plan inside the bright outlined area, extend cameras or wait for satellite coverage."
                     .into(),
             );
         }
