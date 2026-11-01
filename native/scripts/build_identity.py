@@ -9,6 +9,7 @@ def native_inputs(root):
     ignored_parts = {'target', '.git', '__pycache__', 'node_modules'}
     return sorted(
         [root / 'native/Cargo.toml', root / 'native/Cargo.lock']
+        + [p for p in (root / 'assets/icons').rglob('*') if p.is_file() and p.suffix == '.json']
         + [p for folder in ('src', 'shaders', 'assets', 'vendor', 'qualification')
            for p in (root / 'native' / folder).rglob('*')
            if p.is_file() and not ignored_parts.intersection(p.relative_to(root / 'native').parts)],

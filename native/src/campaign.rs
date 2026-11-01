@@ -96,6 +96,10 @@ pub struct CampaignData {
     pub clock: GameClock,
     pub processed_tick: u64,
     pub paused: bool,
+    #[serde(default)]
+    pub visual_memory: Option<crate::visual_memory::VisualMemory>,
+    #[serde(default)]
+    pub unit_history: BTreeMap<u64, std::collections::VecDeque<(u64, String)>>,
     pub camera: [f32; 3],
     pub selected_tool: usize,
     pub flash: f32,
@@ -197,16 +201,20 @@ impl Campaign {
     /// Named initial stress workload only. Existing organisms are never
     /// multiplied during a running world; normal creation limits stay intact.
     pub fn new_for_benchmark(seed: u32, military: u32, workers: u32) -> Result<Self, String> {
-        Self::new_with_limits(Terrain::new(seed), military, workers, true, false)
+        Self::new_with_limits(Terrain::new(seed), military, workers, true, false, false)
     }
     /// Named diagnostic initial deployment, not the ordinary crashed-ship opening.
     /// Only military spawn origins change, before the clock starts; every pawn,
     /// weapon, worker, terrain sample and finite salvage stock is retained.
     pub fn new_battle_benchmark(seed: u32, military: u32, workers: u32) -> Result<Self, String> {
-        Self::new_with_limits(Terrain::new(seed), military, workers, true, true)
+        Self::new_with_limits(Terrain::new(seed), military, workers, true, true, false)
     }
     pub fn new_from_terrain(terrain: Terrain, military: u32, workers: u32) -> Result<Self, String> {
-        Self::new_with_limits(terrain, military, workers, false, false)
+        Self::new_with_limits(terrain, military, workers, false, false, false)
+    }
+    /// Player opening; full-count constructors remain independent fixtures.
+    pub fn new_crash_landing(terrain: Terrain) -> Result<Self, String> {
+        Self::new_with_limits(terrain, 8, 12, false, false, true)
     }
     fn new_with_limits(
         mut terrain: Terrain,
@@ -214,6 +222,7 @@ impl Campaign {
         workers: u32,
         benchmark: bool,
         staged_frontline_clash: bool,
+        opening: bool,
     ) -> Result<Self, String> {
         let (military_limit, worker_limit) = if benchmark {
             (200_000, 40_000)
@@ -248,8 +257,8 @@ impl Campaign {
         for team in 0..2u8 {
             let count = (military / 2 + u32::from(team == 0 && military % 2 != 0)) as usize;
             // A real forward detachment is part of the selected army, not an extra spawn.
-            let forward = count.min(24);
-            let guards = (count - forward).min(24);
+            let forward = if opening { 0 } else { count.min(24) };
+            let guards = if opening { count } else { (count - forward).min(24) };
             let bulk = count - forward - guards;
             let base = TEAM_BASES[team as usize];
             let inward = if team == 0 { 1. } else { -1. };
@@ -280,6 +289,9 @@ impl Campaign {
                 &nav,
             )?;
             tactics.spawn_formation(team, Role::Soldier, center, forward, &nav)?;
+            if opening {
+                tactics.spawn_formation(team, Role::Scout, [base[0]+inward*32., base[1]+32.], 1, &nav)?;
+            }
             tactics.spawn_formation(
                 team,
                 Role::Worker,
@@ -344,7 +356,9 @@ impl Campaign {
                 seed,
                 clock: GameClock::default(),
                 processed_tick: 0,
-                paused: false,
+                paused: opening,
+                visual_memory: None,
+                unit_history: BTreeMap::new(),
                 camera: [424., 1640., 0.85],
                 selected_tool: 19,
                 flash: -1.,
@@ -403,6 +417,12 @@ impl Campaign {
             .accept_initial_habitat(&initial_environment)?;
         campaign.update_ground_conditions()?;
         campaign.rebuild_structures()?;
+        if opening {
+            // Place the moving footprint over the landing region at tick zero.
+            campaign.recon.satellite.team_phase_offsets[0] = 164;
+            campaign.data.visual_memory = Some(crate::visual_memory::VisualMemory::survey(&campaign.terrain));
+            campaign.status = "Landing secured. Select builders to plan construction; defenders protect the ship; camera trooper extends video.".into();
+        }
         campaign.recon_update(0)?;
         campaign.refresh_observation(0)?;
         campaign.validate()?;
@@ -1078,6 +1098,14 @@ impl Campaign {
         self.apply_navigation_structures()?;
         Ok(())
     }
+    pub fn record_unit_event(&mut self,id:u64,text:&str) {
+        if !self.data.tactics.agent(id).is_some_and(|a|a.team==0){return;}
+        let tick=self.data.clock.tick();
+        let events=self.data.unit_history.entry(id).or_default();
+        if events.back().is_some_and(|(t,s)|*t==tick&&s==text){return;}
+        if events.len()==16{events.pop_front();}
+        events.push_back((tick,text.into()));
+    }
     fn tactical_events(&mut self, events: Vec<TacticalEvent>, tick: u64) -> Result<(), String> {
         for event in events {
             match event {
@@ -1117,6 +1145,8 @@ impl Campaign {
                     let _ = team;
                 }
                 TacticalEvent::Shot { source, target, .. } => {
+                    self.record_unit_event(source,"Fired a shot");
+                    self.record_unit_event(target,"Hit by incoming fire");
                     self.data.last_combat_tick = tick;
                     if let (Some(a), Some(v)) = (
                         self.data.tactics.agent(source),
@@ -1237,9 +1267,9 @@ impl Campaign {
             .construction
             .buildings
             .iter()
-            .filter(|b| b.health > 0 && matches!(b.kind, BuildKind::Camera | BuildKind::Radar))
+            .filter(|b| b.health > 0 && (b.kind.camera_spec().is_some() || b.kind == BuildKind::Radar))
         {
-            sensors.push(Sensor::new(
+            let mut sensor = Sensor::new(
                 b.id,
                 b.team,
                 if b.kind == BuildKind::Radar {
@@ -1248,7 +1278,14 @@ impl Campaign {
                     SensorKind::Camera
                 },
                 b.position,
-            ));
+            );
+            if let Some((height,range)) = b.kind.camera_spec() {
+                sensor.height_mm=height; sensor.range_m=range;
+                if b.kind==BuildKind::MountedCamera {
+                    sensor.enabled=self.data.construction.mount_host(BuildOrder::at(b.team,b.kind,b.position)).is_some();
+                }
+            }
+            sensors.push(sensor);
         }
         for a in self
             .data
@@ -2080,8 +2117,7 @@ impl Campaign {
             self.data.status = format!("Rally order sent to{} military pawns", n);
             return Ok(());
         }
-        if self.data.selected_tool < BUILD_TOOLS.len() {
-            let kind = BUILD_TOOLS[self.data.selected_tool];
+        if let Some(kind) = crate::ui_interaction::build_kind(self.data.selected_tool) {
             let end = if matches!(
                 kind,
                 BuildKind::Road | BuildKind::Trench | BuildKind::Bridge
@@ -2609,7 +2645,7 @@ impl Campaign {
                 b.team as u32,
                 b.position,
                 b.size_meters,
-                if b.kind == BuildKind::Camera { 8. } else { 5. },
+                b.kind.camera_spec().map_or(5., |(h,_)|h as f32*0.001),
                 b.health as f32 / b.max_health as f32,
                 b.id as u32,
             )?);
@@ -2689,6 +2725,7 @@ impl Campaign {
         HudModel{ui:None,lines:vec!["LAST WORLD | Native connected Milestone B slice | 4.8 x 3.2 km".into(),format!("Metal{}  Timber{}  Food{}  Power{} | Ship{} | Your pawns in video{}",resources.metal,resources.timber,resources.rations,resources.power,self.data.ship_health[0],living),format!("{}x  {}  {}s  Debt{} ticks | {}",self.data.clock.speed().multiplier(),if self.data.paused{"PAUSED"}else{"RUNNING"},self.data.clock.tick()/20,self.data.clock.pending_ticks(),clock.season_name()),format!("Your attributed ecological damage{} | Completed jobs{} | Captive animals{}",self.data.ecological_damage[0],self.data.completed_jobs,self.data.ecology.captives.iter().filter(|c|c.team==0).count()),species_line,status],tools:BUILD_TOOLS.iter().map(|k|k.name().to_owned()).chain(ACTION_TOOLS.iter().map(|s|s.to_string())).collect(),selected_tool:self.data.selected_tool,footer:vec!["WASD pan | Wheel zoom | Right click rally | Left click selected tool".into(),"SPACE pause | F1/F2/F3 1x/2x/4x | TAB species | F5 save | F9 load".into(),"Cameras provide video. Radar contacts are unidentified. Satellite sweeps every3minutes.".into(),"Capture needs a pen/handler; research needs a cared-for delivered specimen and research building.".into()]}
     }
     pub fn validate(&self) -> Result<(), String> {
+        if let Some(memory) = &self.data.visual_memory { memory.validate()?; }
         if self.data.processed_tick > self.data.clock.tick()
             || self.data.clock.remainder_nanos() >= TICK_NANOS
         {
@@ -2864,10 +2901,17 @@ impl Campaign {
             return Err("Unsupported campaign state version".into());
         }
         let terrain = Terrain::restore(&state.terrain)?;
-        let game = Self {
+        let mut game = Self {
             terrain,
             data: state.data,
         };
+        if game.data.visual_memory.is_none() {
+            // Additive migration: unseen legacy terrain starts from its seeded
+            // survey, never from the current hidden runtime state.
+            let mut survey = Terrain::new(game.seed);
+            let _ = RiverFixture::new(&mut survey)?;
+            game.data.visual_memory = Some(crate::visual_memory::VisualMemory::survey(&survey));
+        }
         game.validate()?;
         logging::log(
             "CAMPAIGN_LOAD",

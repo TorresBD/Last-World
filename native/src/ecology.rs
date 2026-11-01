@@ -2401,7 +2401,7 @@ impl Ecology {
             c.dormant_until = 0;
         }
         let dormant = c.dormant_until > self.last_tick;
-        let resting = (self.last_tick % 2_400 < 1_200) == species.nocturnal;
+        let resting = (self.last_tick % crate::climate::BIOLOGICAL_DAY_TICKS < crate::climate::DAYLIGHT_TICKS) == species.nocturnal;
         let energy_period =
             species
                 .basal_period(c.stage)

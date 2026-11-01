@@ -27,7 +27,7 @@ pub struct Agent {
     pub next: i32,
 }
 #[repr(C)]
-#[derive(Clone, Copy, Pod, Zeroable)]
+#[derive(Clone, Copy, Pod, Zeroable, serde::Serialize, serde::Deserialize)]
 pub struct Object {
     pub pos: [f32; 2],
     pub size: f32,
@@ -1068,6 +1068,44 @@ impl Gpu {
 
     /// CPU data is authoritative. Upload only changed rows/rectangles; all
     /// commands precede the next simulation/render submission on this queue.
+    pub fn upload_campaign_terrain(&mut self, c: &mut crate::campaign::Campaign) -> Result<u64,String> {
+        self.params.counts[3]=u32::from(c.data.visual_memory.is_some());
+        if c.data.visual_memory.is_none() { return Ok(self.upload_terrain(&mut c.terrain)); }
+        let mut dirty=vec![false;15_000];
+        for range in c.terrain.take_dirty_cells() { for cell in range {
+            dirty[(cell/CW/4)*150+(cell%CW/4)]=true;
+        }}
+        for r in c.terrain.take_dirty_pixels() {
+            for y in r.y as usize/16..=(r.y as usize+r.height as usize-1)/16 {
+                for x in r.x as usize/16..=(r.x as usize+r.width as usize-1)/16 { dirty[y*150+x]=true; }
+            }
+        }
+        let objects=c.draw_objects()?;
+        let masks=c.intel().to_vec();
+        let memory=c.data.visual_memory.as_mut().ok_or("Missing presentation memory")?;
+        let spans=memory.refresh(&c.terrain,&masks,&dirty,&objects);
+        let mut bytes=0;
+        let stride=WW/2*4;
+        for (start,end) in spans {
+            let x=start%150; let y=start/150; let width=end-start;
+            for row in 0..4 {
+                let offset=(y*4+row)*CW+x*4;
+                let data=bytemuck::cast_slice::<Cell,u8>(&memory.cells[offset..offset+width*4]);
+                self.queue.write_buffer(&self.buffers[1],(offset*std::mem::size_of::<Cell>()) as u64,data);
+                bytes+=data.len() as u64;
+            }
+            let offset=(y*16*(WW/2)+x*16)*4;
+            let length=15*stride+width*16*4;
+            self.queue.write_texture(
+                wgpu::TexelCopyTextureInfo { texture:&self.ground_texture,mip_level:0,
+                    origin:wgpu::Origin3d{x:(x*16) as u32,y:(y*16) as u32,z:0},aspect:wgpu::TextureAspect::All },
+                &memory.rgba[offset..offset+length],
+                wgpu::TexelCopyBufferLayout { offset:0,bytes_per_row:Some(stride as u32),rows_per_image:Some(16) },
+                wgpu::Extent3d {width:(width*16) as u32,height:16,depth_or_array_layers:1});
+            bytes+=(width*16*16*4) as u64;
+        }
+        Ok(bytes)
+    }
     pub fn upload_terrain(&mut self, terrain: &mut Terrain) -> u64 {
         let mut bytes = 0u64;
         for range in terrain.take_dirty_cells() {

@@ -45,9 +45,8 @@ fn water_depth(pos:vec2<f32>,nearest:Cell)->f32{
  let vision_cell=u32(world.y/32.)*150u+u32(world.x/32.);let mask=intel[240000u+vision_cell];let visible=p.misc.y<.5||(mask&1u)!=0u;
  if !visible{
   if p.counts.z!=0u {
-   // Until a remembered terrain snapshot is available, unseen campaign
-   // ground is neutral fog. Live erosion/foliage/water changes cannot leak.
-   color=select(vec3(.035,.071,.055),vec3(.055,.085,.067),(mask&8u)!=0u);
+   // Campaign buffers contain the initial survey / last optical snapshot.
+   if p.counts.w!=0u{color*=.72;}else{color=select(vec3(.035,.071,.055),vec3(.055,.085,.067),(mask&8u)!=0u);}
   }else{color=mix(vec3(.035,.071,.055),color,select(.12,.42,(mask&8u)!=0u));}
  }
  if p.counts.z==0u&&cell.object>0u&&cell.object<=p.counts.x{let b=objects[cell.object-1u];let xy=vec2<i32>((world-b.pos)/b.size*64.+vec2(32.));if visible&&all(xy>=vec2(0))&&all(xy<vec2(64)){let paint=textureLoad(atlas,vec2<i32>(b.uv.xy)+xy,0);color=mix(color,paint.rgb,paint.a);}}
@@ -135,6 +134,7 @@ struct ObjectVertex {
  @location(2) @interpolate(flat) origin:vec2<u32>,
  @location(3) @interpolate(flat) extent:vec2<u32>,
  @location(4) @interpolate(flat) completion:f32,
+ @location(5) @interpolate(flat) memory_tile:u32,
 }
 @vertex fn object_vertex(@builtin(vertex_index) v:u32,@builtin(instance_index) id:u32)->ObjectVertex {
  let b=objects[id];
@@ -147,12 +147,15 @@ struct ObjectVertex {
  out.origin=b.uv.xy;
  out.extent=b.uv.zw;
  out.completion=b.complete;
+ out.memory_tile=b.kind;
  return out;
 }
 @fragment fn object_fragment(in:ObjectVertex)->@location(0)vec4<f32>{
  if any(in.world<vec2(0.))||any(in.world>=vec2(4800.,3200.)){discard;}
  let vc=u32(in.world.y/32.)*150u+u32(in.world.x/32.);
- if p.misc.y>.5&&(intel[240000u+vc]&1u)==0u{discard;}
+ if (in.memory_tile&0x80000000u)!=0u {
+  if vc!=(in.memory_tile&0x7fffffffu){discard;}
+ }else if p.misc.y>.5&&(intel[240000u+vc]&1u)==0u{discard;}
  let xy=min(vec2<u32>(floor(in.uv*vec2<f32>(in.extent))),in.extent-vec2(1u));
  let paint=textureLoad(atlas,vec2<i32>(in.origin+xy),0);
  if paint.a<.5{discard;}

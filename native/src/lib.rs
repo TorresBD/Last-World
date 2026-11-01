@@ -65,6 +65,8 @@ pub mod ecology;
 
 pub mod campaign_support;
 
+pub mod visual_memory;
+pub mod ui_icons;
 pub mod campaign;
 
 pub mod play;

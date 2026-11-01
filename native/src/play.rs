@@ -213,7 +213,9 @@ pub async fn windowed(
     config.format = gpu.format;
     config.present_mode = wgpu::PresentMode::AutoVsync;
     surface.configure(&gpu.device, &config);
-    let mut campaign = Campaign::new_from_terrain(terrain, MILITARY, WORKERS)?;
+    let mut campaign = if automated {
+        Campaign::new_from_terrain(terrain, MILITARY, WORKERS)?
+    } else { Campaign::new_crash_landing(terrain)? };
     campaign.clock.set_speed(speed);
     if automated {
         campaign.automation()?;
@@ -228,6 +230,7 @@ pub async fn windowed(
         });
     let (ui_w, ui_h) = hud::canvas_size(config.width, config.height);
     ui.resize_layout([ui_w, ui_h]);
+    if !automated { ui.begin_landing(&app.world().resource::<Campaign>()); }
     let mut saved_prefs = ui.prefs.clone();
     let mut next_ui_save = Instant::now();
     let mut hud_model = campaign_hud(
@@ -303,6 +306,7 @@ pub async fn windowed(
             }
             WindowEvent::KeyboardInput{event,..} if !automated=>{
                 let start=Instant::now();if let PhysicalKey::Code(key)=event.physical_key{let down=event.state==ElementState::Pressed;
+                    if ui.modal.is_some() {if down&&!event.repeat&&matches!(key,KeyCode::Escape|KeyCode::Enter){ui.dismiss_modal();}pan_keys=[false;4];hud_dirty=true;input_ms+=milliseconds(start.elapsed());return;}
                     if ui.help_search_focused&&down {match key{KeyCode::Escape=>ui.escape(),KeyCode::Backspace=>ui.backspace(),_=>{if !modifiers.control&&!modifiers.alt{if let Some(text)=&event.text{ui.text_input(text);}}}}hud_dirty=true;input_ms+=milliseconds(start.elapsed());return;}
                     let pan=if !down||(!modifiers.control&&!modifiers.alt){match key{KeyCode::KeyW|KeyCode::ArrowUp=>Some(0),KeyCode::KeyS|KeyCode::ArrowDown=>Some(1),KeyCode::KeyA|KeyCode::ArrowLeft=>Some(2),KeyCode::KeyD|KeyCode::ArrowRight=>Some(3),_=>None}}else{None};if let Some(i)=pan{pan_keys[i]=down;}
                     if down&&!event.repeat{let now_ms=ui_started.elapsed().as_millis() as u64;let mut c=app.world_mut().resource_mut::<Campaign>();let mut commands=Vec::new();let digit=match key{KeyCode::Digit1=>Some(1),KeyCode::Digit2=>Some(2),KeyCode::Digit3=>Some(3),KeyCode::Digit4=>Some(4),KeyCode::Digit5=>Some(5),KeyCode::Digit6=>Some(6),KeyCode::Digit7=>Some(7),KeyCode::Digit8=>Some(8),KeyCode::Digit9=>Some(9),_=>None};
@@ -324,7 +328,7 @@ pub async fn windowed(
                 last_flash_wall=begin;
                 if c.flash>=0. {c.flash+=flash_elapsed;if c.flash>=0.44{c.flash=-1.;}}
                 if load_reset{load_reset=false;ui.cancel_pointer();last_flash_wall=begin;previous_tick=c.clock.tick();measured=begin;measured_frames=0;interval_samples.clear();stage_samples.clear();hud_dirty=true;}
-                if !automated&&focused&&!ui.world_dragging()&&!ui.help_search_focused{let dt=(begin-last_pan).as_secs_f32().min(0.25);let distance=600.*dt/c.camera[2];let(w,h)=hud::canvas_size(config.width,config.height);let edge=ui.edge_pan(ui_point(cursor,config.width,config.height),[w as f32,h as f32]);c.camera[0]=(c.camera[0]+(pan_keys[3] as u8 as f32-pan_keys[2] as u8 as f32+edge[0])*distance).clamp(0.,WW as f32);c.camera[1]=(c.camera[1]+(pan_keys[1] as u8 as f32-pan_keys[0] as u8 as f32+edge[1])*distance).clamp(0.,HH as f32);}
+                if !automated&&focused&&ui.modal.is_none()&&!ui.world_dragging()&&!ui.help_search_focused{let dt=(begin-last_pan).as_secs_f32().min(0.25);let distance=600.*dt/c.camera[2];let(w,h)=hud::canvas_size(config.width,config.height);let edge=ui.edge_pan(ui_point(cursor,config.width,config.height),[w as f32,h as f32]);c.camera[0]=(c.camera[0]+(pan_keys[3] as u8 as f32-pan_keys[2] as u8 as f32+edge[0])*distance).clamp(0.,WW as f32);c.camera[1]=(c.camera[1]+(pan_keys[1] as u8 as f32-pan_keys[0] as u8 as f32+edge[1])*distance).clamp(0.,HH as f32);}
                 last_pan=begin;
                 if !automated&&begin>=next_ui_save&&ui.prefs!=saved_prefs {match ui.save_layout(Path::new("settings/ui-layout.json")){Ok(())=>saved_prefs=ui.prefs.clone(),Err(error)=>logging::log("UI_LAYOUT_ERROR",&error)}next_ui_save=begin+Duration::from_secs(2);}
                 let sim_begin=Instant::now();
@@ -370,9 +374,9 @@ pub async fn windowed(
                 let alpha=c.clock.remainder_nanos() as f32/TICK_NANOS as f32;
                 let agents=c.draw_agents(alpha);
                 let render_count=agents.len();
-                let objects=match c.draw_objects(){Ok(o)=>o,Err(error)=>{stop(&outcome,elwt,error);return;}};
                 let upload_result=(||{
-                    let mut bytes=gpu.upload_terrain(&mut c.terrain);
+                    let mut bytes=gpu.upload_campaign_terrain(&mut c)?;
+                    let objects = c.data.visual_memory.as_ref().map(|m| m.objects.iter().flatten().copied().collect::<Vec<_>>()).map(Ok).unwrap_or_else(|| c.draw_objects())?;
                     bytes+=gpu.upload_campaign_agents(&agents)?;
                     bytes+=gpu.upload_campaign_objects(&objects,objects.len())?;
                     bytes+=gpu.upload_campaign_intel(c.intel())?;

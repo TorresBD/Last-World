@@ -87,10 +87,13 @@ pub enum BuildKind {
     Dock,
     Pen,
     Research,
+    FieldCamera,
+    CameraTower,
+    MountedCamera,
 }
 impl BuildKind {
     /// Every construction tool, in the existing player-facing tool order.
-    pub const ALL: [Self; 19] = [
+    pub const ALL: [Self; 22] = [
         Self::Road,
         Self::Trench,
         Self::Foundation,
@@ -110,6 +113,9 @@ impl BuildKind {
         Self::Dock,
         Self::Pen,
         Self::Research,
+        Self::FieldCamera,
+        Self::CameraTower,
+        Self::MountedCamera,
     ];
 
     pub fn name(self) -> &'static str {
@@ -124,7 +130,10 @@ impl BuildKind {
             Self::Barracks => "barracks",
             Self::Solar => "solar",
             Self::Farm => "farm",
-            Self::Camera => "camera",
+            Self::Camera => "Camera pole",
+            Self::FieldCamera => "Field camera",
+            Self::CameraTower => "Camera tower",
+            Self::MountedCamera => "Mounted camera",
             Self::Radar => "radar",
             Self::Wall => "wall",
             Self::Turret => "turret",
@@ -145,7 +154,7 @@ impl BuildKind {
             Self::Barracks => "barracks",
             Self::Solar => "solar",
             Self::Farm => "farm",
-            Self::Camera => "camera",
+            Self::Camera | Self::FieldCamera | Self::CameraTower | Self::MountedCamera => "camera",
             Self::Radar => "radar",
             Self::Wall | Self::Dam => "wall",
             Self::Turret => "turret",
@@ -157,6 +166,11 @@ impl BuildKind {
             | Self::Bridge
             | Self::Dock => "depot",
         }
+    }
+    /// The legacy Camera identity remains the original 8m pole in old saves.
+    pub fn camera_spec(self) -> Option<(u32,f32)> {
+        match self { Self::Camera=>Some((8_000,420.)),Self::FieldCamera=>Some((2_000,240.)),
+            Self::CameraTower=>Some((18_000,720.)),Self::MountedCamera=>Some((7_000,360.)),_=>None }
     }
     pub fn is_terrain(self) -> bool {
         matches!(
@@ -175,6 +189,7 @@ impl BuildKind {
                 | Self::Dock
                 | Self::Farm
                 | Self::Solar
+                | Self::MountedCamera
         )
     }
     pub fn base_cost(self) -> Resources {
@@ -189,6 +204,9 @@ impl BuildKind {
             Self::Solar => Resources::new(160, 0, 0, 0),
             Self::Farm => Resources::new(40, 40, 20, 10),
             Self::Camera => Resources::new(60, 10, 0, 20),
+            Self::FieldCamera => Resources::new(35, 0, 0, 10),
+            Self::CameraTower => Resources::new(160, 100, 0, 40),
+            Self::MountedCamera => Resources::new(45, 0, 0, 15),
             Self::Radar => Resources::new(200, 40, 0, 80),
             Self::Wall => Resources::new(100, 40, 0, 10),
             Self::Turret => Resources::new(220, 40, 0, 30),
@@ -549,7 +567,22 @@ impl ConstructionWorld {
         }
         Ok(edits)
     }
-    pub fn enqueue(&mut self, order: BuildOrder, terrain: &Terrain) -> Result<u64, String> {
+    pub fn mount_host(&self, order: BuildOrder) -> Option<&Building> {
+        self.buildings.iter().filter(|b| b.team==order.team && b.health>0 &&
+            matches!(b.kind,BuildKind::Wall|BuildKind::Depot|BuildKind::Barracks|BuildKind::Research))
+            .find(|b| distance(b.position,order.position) <= b.size_meters*0.5+12.)
+    }
+    pub fn enqueue(&mut self, mut order: BuildOrder, terrain: &Terrain) -> Result<u64, String> {
+        if order.kind==BuildKind::MountedCamera {
+            let host=self.mount_host(order).ok_or("Mounted camera requires an owned completed wall or building; place near its edge")?;
+            // Snap to the closest exterior face, keeping worker access outside.
+            let dx=order.position[0]-host.position[0]; let dy=order.position[1]-host.position[1];
+            let r=host.size_meters*0.5+8.;
+            order.position=if dx.abs()>=dy.abs() {
+                [host.position[0]+if dx<0.{-r}else{r},host.position[1]+dy.clamp(-r,r)]
+            }else{[host.position[0]+dx.clamp(-r,r),host.position[1]+if dy<0.{-r}else{r}]};
+            order.end=order.position;
+        }
         if order.team > 1 {
             return Err("Invalid construction faction".into());
         }
@@ -1246,6 +1279,9 @@ impl ConstructionWorld {
                     complete: true,
                     size_meters: match j.order.kind {
                         BuildKind::Camera => 20.,
+                        BuildKind::FieldCamera => 12.,
+                        BuildKind::CameraTower => 32.,
+                        BuildKind::MountedCamera => 10.,
                         BuildKind::Wall => 24.,
                         BuildKind::Barracks => 56.,
                         _ => 40.,

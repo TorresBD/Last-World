@@ -70,7 +70,7 @@ impl CommandCategory {
             Self::Build => &[0, 1, 2, 3, 4, 14],
             Self::Economy => &[5, 6, 7, 8, 9, 29],
             Self::Defense => &[12, 13, 24, 29],
-            Self::Recon => &[10, 11, 19],
+            Self::Recon => &[30, 10, 31, 32, 11, 19],
             Self::Ecology => &[17, 18, 19, 20, 21, 22, 23],
             Self::Naval => &[15, 16, 25, 26, 27, 28],
         }
@@ -229,6 +229,7 @@ pub struct QueueItemView {
 }
 #[derive(Clone, Debug, Default, PartialEq)]
 pub struct SelectionView {
+    pub actions: Vec<(String, UiAction, bool)>,
     pub title: String,
     pub subtitle: String,
     pub portrait: String,
@@ -318,8 +319,11 @@ pub struct LayerCell {
     pub rect: UiRect,
     pub color: [u8; 4],
 }
+#[derive(Clone, Debug, PartialEq)]
+pub struct ModalView { pub title: String, pub lines: Vec<String>, pub button: String }
 #[derive(Clone, Debug, Default, PartialEq)]
 pub struct UiPresentation {
+    pub modal: Option<ModalView>,
     pub resources: Vec<ResourceView>,
     pub selection: SelectionView,
     pub minimap: MinimapView,
@@ -342,6 +346,12 @@ pub struct UiPresentation {
 }
 #[derive(Clone, Debug, PartialEq)]
 pub enum UiAction {
+    DismissModal,
+    Loadout,
+    History,
+    SelectBuilders,
+    SelectDefenders,
+    SelectCameras,
     ChooseCategory(CommandCategory),
     ChooseTool(usize),
     OpenPanel(PanelKind),
@@ -487,6 +497,8 @@ struct KnownUnit {
 #[derive(Clone, Debug)]
 pub struct UiState {
     pub prefs: UiPrefs,
+    pub modal: Option<ModalView>,
+    landing_stage: u8,
     pub selection: BTreeSet<u64>,
     pub groups: [BTreeSet<u64>; 9],
     pub bookmarks: [Option<[f32; 3]>; 4],
@@ -519,6 +531,8 @@ impl Default for UiState {
     fn default() -> Self {
         Self {
             prefs: UiPrefs::default(),
+            modal: None,
+            landing_stage: 0,
             selection: BTreeSet::new(),
             groups: std::array::from_fn(|_| BTreeSet::new()),
             bookmarks: [None; 4],
@@ -774,9 +788,56 @@ impl UiState {
             self.dirty = true;
         }
     }
+    pub fn begin_landing(&mut self,c:&Campaign) {
+        let wet=c.terrain.cells.iter().filter(|x|x.water>0).count()*100/c.terrain.cells.len();
+        let low=c.terrain.cells.iter().map(|x|x.height as i32).min().unwrap_or(0);
+        let high=c.terrain.cells.iter().map(|x|x.height as i32).max().unwrap_or(0);
+        let climate=crate::climate::SeasonState::at_tick(0,c.seed,0);
+        self.landing_stage=1;
+        self.modal=Some(ModalView { title:format!("Landing survey / planet {:08X}",c.seed),
+            lines:vec![
+                format!("Surveyed sector: {} x {} metres. Jungle canopy, clearings and river lowlands.",WW,HH),
+                format!("Surface water: {wet}% of survey cells. Relief: {}m.",(high-low)/100),
+                format!("Current climate: {}. Dry / arriving rains / wet / retreating rains.",climate.season_name()),
+                format!("Climate cycle: {} game minutes at 1x.",crate::climate::SEASON_CYCLE_TICKS/20/60),
+                format!("Daylight: 12h of the 24h biological day; compressed to {}s daylight per {}s day at 1x.",crate::climate::DAYLIGHT_TICKS/20,crate::climate::BIOLOGICAL_DAY_TICKS/20),
+                "Species, population counts, food webs and biological traits require discovery and research.".into(),
+                if c.recon.satellite_circle(0,0).is_some() {"Satellite in orbit and currently overhead. Video updates only within its moving footprint.".into()}else{"Satellite in orbit; next pass pending.".into()},
+                "Crew: 6 builders, 4 defenders, 1 unarmed camera trooper. The crashed ship holds your supplies.".into()
+            ],button:"Continue to planning".into() });
+        self.drag=None;self.help_search_focused=false;self.dirty=true;
+    }
+    pub fn dismiss_modal(&mut self) {
+        self.drag=None;
+        if self.landing_stage==1 {
+            self.landing_stage=2;
+            self.modal=Some(ModalView {title:"What is the build plan immediately after landing?".into(),
+                lines:vec![
+                    "The game stays paused. Select builders and plan roads, supply buildings and camera coverage.".into(),
+                    "Builders collect and deliver real supplies when time runs. Defenders protect the landing site.".into(),
+                    "Press Play / Space when setup is finished. Pause stops time but still allows planning.".into(),
+                    "1x is normal speed; 2x and 4x request faster simulation. Actual speed is shown beside the request.".into(),
+                    "Changing speed or closing either notice never starts time.".into()
+                ],button:"Start planning (stay paused)".into()});
+        }else{self.landing_stage=0;self.modal=None;}
+        self.dirty=true;
+    }
     pub fn activate(&mut self, action: UiAction, _camera: [f32; 3], now_ms: u64) -> Vec<UiCommand> {
+        if self.modal.is_some() {
+            if action==UiAction::DismissModal {self.dismiss_modal();}
+            return vec![];
+        }
         self.dirty = true;
         match action {
+            UiAction::DismissModal => { self.dismiss_modal(); vec![] }
+            UiAction::Loadout | UiAction::History => {
+                let history=action==UiAction::History;
+                self.modal=Some(ModalView {title:if history {"Unit event history".into()}else{"Unit loadout".into()},lines:vec![],button:"Return to command".into()});vec![]
+            }
+            UiAction::SelectBuilders | UiAction::SelectDefenders | UiAction::SelectCameras => {
+                let role=match action {UiAction::SelectBuilders=>Role::Worker,UiAction::SelectDefenders=>Role::Soldier,_=>Role::Scout};
+                self.selection=self.known_units.iter().filter(|(_,a)|a.team==0&&a.role==role&&a.health>0).map(|(&id,_)|id).collect();vec![]
+            }
             UiAction::ChooseCategory(c) => {
                 self.category = c;
                 self.active_tool = None;
@@ -970,6 +1031,7 @@ impl UiState {
         vec![]
     }
     pub fn escape(&mut self) {
+        if self.modal.is_some() {self.dismiss_modal(); return;}
         self.drag = None;
         if self.active_tool.take().is_none() {
             if let Some(p) = self
@@ -1018,6 +1080,7 @@ impl UiState {
         self.cursor = screen;
         self.drag = None;
         self.dirty = true;
+        if self.modal.is_some() && hit!=UiHit::Action(UiAction::DismissModal) {return vec![];}
         if !matches!(
             &hit,
             UiHit::Action(
@@ -1342,6 +1405,7 @@ impl UiState {
         }
     }
     pub fn wheel(&mut self, hit: UiHit, dy: f32) -> bool {
+        if self.modal.is_some() {return true;}
         match hit {
             UiHit::Minimap(rect) | UiHit::MinimapResize(rect) => {
                 let old = self.prefs.minimap_zoom_permille as f32 / 1000.;
@@ -1395,7 +1459,9 @@ impl UiState {
             self.selection.clear();
             self.groups = std::array::from_fn(|_| BTreeSet::new());
             self.known_units.clear();
-            self.known_cells.fill([9, 17, 14, 255]);
+            for i in 0..15000 {
+                self.known_cells[i]=c.visual_memory.as_ref().map(|m|m.color(i)).unwrap_or([9,17,14,255]);
+            }
             self.alerts.clear();
             self.bookmarks = [None; 4];
             self.last_click = None;
@@ -1443,6 +1509,7 @@ impl UiState {
             self.notice(&key, priority, text, position, now_ms);
         }
         for i in 0..15000 {
+            if let Some(memory)=&c.visual_memory {self.known_cells[i]=memory.color(i); continue;}
             if c.recon.masks(0)[i] & VISIBLE != 0 {
                 let x = i % 150 * 16 + 8;
                 let y = i / 150 * 16 + 8;
@@ -1506,6 +1573,7 @@ impl UiState {
         self.observe_world(c, now_ms);
         let canvas_f = [canvas[0] as f32, canvas[1] as f32];
         let mut out = UiPresentation {
+            modal: self.modal.clone(),
             category: self.category,
             active_tool: self.active_tool,
             prefs: self.prefs.clone(),
@@ -1562,8 +1630,13 @@ impl UiState {
             })
             .sum::<u64>();
         out.selection = SelectionView {
+            actions: vec![("Loadout".into(),UiAction::Loadout,!selected.is_empty()),("History".into(),UiAction::History,!selected.is_empty()),("Hold".into(),UiAction::Stop,!selected.is_empty()),
+                ("Build".into(),UiAction::ChooseCategory(CommandCategory::Build),roles.contains(&Role::Worker)),
+                ("Recon".into(),UiAction::ChooseCategory(CommandCategory::Recon),roles.contains(&Role::Scout)||roles.contains(&Role::Worker))],
             title: if self.selection.is_empty() {
-                "Command".into()
+                "Landing command".into()
+            } else if let [a] = selected.as_slice() {
+                format!("{} #{}",role_name(a.role),a.id)
             } else {
                 format!("{} selected", self.selection.len())
             },
@@ -1577,7 +1650,7 @@ impl UiState {
                     .collect::<Vec<_>>()
                     .join(" · ");
                 if groups.is_empty() {
-                    format!("{} currently in video", selected.len())
+                    if self.selection.is_empty() {"Select crew below; plan, then press Play.".into()} else {format!("{} currently in video", selected.len())}
                 } else {
                     format!("{groups} · {} currently in video", selected.len())
                 }
@@ -1617,6 +1690,13 @@ impl UiState {
                         ));
                     }
                 }
+                if let [a]=selected.as_slice() {
+                    stats.insert(0,format!("Task: {}",unit_task(c,a)));
+                }else{
+                    for role in &roles {
+                        stats.push(format!("{} {}",selected.iter().filter(|a|a.role==*role).count(),role_name(*role)));
+                    }
+                }
                 stats.push("Right-click: move / attack / board".into());
                 stats.push("Shift: queue | Ctrl+1..9: store group".into());
                 stats
@@ -1646,6 +1726,9 @@ impl UiState {
             selected_count: self.selection.len(),
             observed_count: selected.len(),
         };
+        if self.selection.is_empty() {
+            out.selection.actions=vec![("Builders".into(),UiAction::SelectBuilders,true),("Defenders".into(),UiAction::SelectDefenders,true),("Camera crew".into(),UiAction::SelectCameras,true)];
+        }
         let unit_orders = selected
             .iter()
             .flat_map(|a| {
@@ -1690,11 +1773,11 @@ impl UiState {
             let bits = c.recon.masks(0)[i];
             let mut rgba = *color;
             if bits & VISIBLE == 0 {
-                if bits & EXPLORED == 0 {
+                if bits & EXPLORED == 0 && c.visual_memory.is_none() {
                     rgba = [7, 12, 10, 255];
                 } else {
                     for v in &mut rgba[..3] {
-                        *v = (*v as u16 * 45 / 100) as u8;
+                        *v = (*v as u16 * 72 / 100) as u8;
                     }
                 }
             }
@@ -1923,6 +2006,10 @@ impl UiState {
                 if matches!(kind, BuildKind::Road | BuildKind::Trench) {
                     lines.push("Cost is per segment; final length is priced when ordered.".into());
                 }
+                if let Some((height, range))=kind.camera_spec() {
+                    lines.push(format!("{}m high | {}m optical range | blocked by terrain and canopy",height/1000,range));
+                    if kind==BuildKind::MountedCamera { lines.push("Snaps to an owned completed wall/building; requires its host.".into()); }
+                }
                 lines.push("A worker collects materials, travels and performs the work.".into());
             } else {
                 lines.push(match tool{20=>"Capture requires observed reachable wildlife, a handler and a suitable pen.",21=>"Research requires a delivered specimen, care and a research building.",22=>"Breeding requires researched compatible specimens and real care.",23=>"A handler collects and releases an existing captive.",25|26=>"Launch requires a completed dock, paid materials and sufficient depth.",27|28=>"Use an actual nearby transport and reachable shoreline.",_=>"Click the world to use this command."}.into());
@@ -1935,6 +2022,30 @@ impl UiState {
         }
         if self.prefs.hints && now_ms < self.hint_until_ms {
             out.hints.push(self.hint_text.clone());
+        }
+        if let Some(modal)=out.modal.as_mut() {
+            if modal.lines.is_empty() {
+                for a in &selected {
+                    if a.team!=0 {continue;}
+                    modal.lines.push(format!("{} #{} / {}",role_name(a.role),a.id,unit_task(c,a)));
+                    if modal.title=="Unit event history" {
+                        if let Some(events)=c.unit_history.get(&a.id) {
+                            for (tick,text) in events.iter().rev().take(6) {modal.lines.push(format!("t{tick}: {text}"));}
+                        }else{modal.lines.push("No recorded events for this unit yet.".into());}
+                    }else{
+                        modal.lines.push(format!("Health: {} / {}. Ammunition carried: {}.",a.health,if matches!(a.role,Role::Boat|Role::Transport){600}else{100},a.ammunition));
+                        modal.lines.push(match a.role {
+                            Role::Worker=>"Construction tools; collects, hauls and builds real materials. No weapon.",
+                            Role::Soldier=>"Rifle; move, hold, attack visible enemies and board transports. No camera.",
+                            Role::Scout=>"Unarmed camera; move to extend video, return to ship to recharge.",
+                            Role::Boat=>"Armed gunboat; requires navigable water.",
+                            Role::Transport=>"Troop transport; board and disembark at reachable shore."
+                        }.into());
+                    }
+                    if modal.lines.len()>10 {break;}
+                }
+                if modal.lines.is_empty(){modal.lines.push("Select one of your units in current video to inspect its real state.".into());}
+            }
         }
         self.dirty = false;
         out
@@ -2001,6 +2112,19 @@ fn quarantine_ui_layout(path: &Path) -> Result<std::path::PathBuf, String> {
     Err("Could not allocate a unique corrupt UI preferences quarantine".into())
 }
 
+fn role_name(role: Role) -> &'static str {
+    match role {Role::Soldier=>"Defender",Role::Worker=>"Builder",Role::Scout=>"Camera trooper",Role::Boat=>"Gunboat",Role::Transport=>"Transport"}
+}
+fn unit_task(c:&Campaign,a:&crate::tactics::TacticalAgent)->String {
+    if let Some(job)=a.job.and_then(|id|c.construction.jobs.iter().find(|j|j.id==id)) {
+        return format!("{} {}{}",job_status(job.phase),job.order.kind.name(),job.blocked_reason.as_ref().map(|s|format!(" / {s}")).unwrap_or_default());
+    }
+    if a.embarked_on.is_some(){return "Embarked".into();}
+    if a.commanded_target.is_some()||a.target.is_some(){return "Engaging observed target".into();}
+    if a.goal_mm.is_some()&&!a.arrived{return "Moving to assigned destination".into();}
+    if c.unit_order_queues.get(&a.id).is_some_and(|q|!q.is_empty()){return "Following command queue".into();}
+    match a.role {Role::Worker=>"Idle / ready to collect and build",Role::Soldier=>"Guarding / ready to move",Role::Scout=>"Video watch / ready to scout",_=>"Ready for orders"}.into()
+}
 fn role_icon(role: Role) -> &'static str {
     match role {
         Role::Soldier => "soldier",
@@ -2506,7 +2630,8 @@ fn panel_default(kind: PanelKind) -> UiRect {
         height,
     }
 }
-fn build_kind(tool: usize) -> Option<BuildKind> {
+pub fn build_kind(tool: usize) -> Option<BuildKind> {
+    if tool>=30 {return [BuildKind::FieldCamera,BuildKind::CameraTower,BuildKind::MountedCamera].get(tool-30).copied();}
     [
         BuildKind::Road,
         BuildKind::Trench,
@@ -2530,6 +2655,12 @@ fn build_kind(tool: usize) -> Option<BuildKind> {
     ]
     .get(tool)
     .copied()
+}
+pub fn tool_icon(tool:usize)->&'static str {
+    ["road","trench","foundation","smooth","depot","mine","mill","barracks","solar","farm",
+        "camera_pole","radar","wall","turret","dam","bridge","dock","pen","research","inspect",
+        "capture","research_action","breed","release","move","gunboat","transport","board",
+        "disembark","cancel","camera","camera_tower","camera_mounted"].get(tool).copied().unwrap_or("inspect")
 }
 pub fn tool_label(tool: usize) -> &'static str {
     if let Some(kind) = build_kind(tool) {

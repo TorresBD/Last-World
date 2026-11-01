@@ -111,6 +111,7 @@ def source_snapshot():
     ]
     trees = {
         'project': {'.md', '.txt', '.json'},
+        'assets/icons': {'.md', '.json'},
         'native/src': {'.rs'},
         'native/shaders': {'.wgsl'},
         'native/assets': {'.png', '.json', '.ttf', '.txt'},
