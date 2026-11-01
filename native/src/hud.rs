@@ -875,9 +875,6 @@ pub fn hit_test(model: &HudModel, width: u32, height: u32, x: f64, y: f64) -> Ui
                     return UiHit::Blocked;
                 }
             }
-            if let UiHit::Action(UiAction::ChooseTool(tool))=&target.hit {
-                if model.ui.as_ref().is_some_and(|v|v.disabled_tools.iter().any(|(disabled,_)|disabled==tool)){return UiHit::Blocked;}
-            }
             return target.hit.clone();
         }
     }

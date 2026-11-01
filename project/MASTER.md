@@ -49,7 +49,7 @@ For Ctrl+F, type two hash signs, a space, the section number and a period. For a
 ## 2. TOP RISKS (max 5; keep current)
 
 1. **Performance is unproven.** On Tor's PC only 1x and 2x were sustained. A 4x attempt reached about 3.42x with growing debt and about 1 presented frame/second. The earlier full baseline showed frame p99 about 120 ms and max about 1,187 ms against goals of 50 ms and 100 ms. These belong to older builds.
-2. **Lost work.** The previous session's HUD/opening edits were never recovered (rule 5.6).
+2. **Opening verification.** The lost HUD/opening changes have been recreated and saved on codex/opening-hud-recon. Native compilation and visual checks remain pending; resume this source, not the older checkpoint.
 3. **Scope vs. reality.** The resident map is 4.8 x 3.2 km, not 20 x 20 km. 130 of 160 traits, complete mandatory biology, full causal scoring and fuller naval/mounted-camera parity remain.
 4. **Information leaks.** The new HUD, terrain memory and radar must not reveal hidden positions, species, health or biology.
 5. **No weaker-hardware evidence.** All measurements are from one PC. Weaker-PC work is deferred, not dropped.
@@ -229,9 +229,10 @@ README.md     one screen: what this is, pointer to project/MASTER.md
 
 ## 9. NEXT STEP
 
-1. Keep the actual source directory's `project/MASTER.md` and `project/LEDGER.md` current in every version; include the entire reviewed `project/` tree in Source packages and synchronize matching Library copies when tools permit.
-2. Look for the interrupted diff; otherwise baseline is head 1177730b.
-3. Implement section 8 in this order: crew and paused opening, briefing and notices, selection and commands, cameras, icons, terrain memory. Run focused checks, package one update with Source, save to the Library.
+1. Resume the saved codex/opening-hud-recon source and L-0025. The seven changes are drafted; do not restart them from the palette checkpoint.
+2. Finish the pinned Windows CI compilation/regressions. Inspect production-renderer captures at 1366/1920/2560 widths and resolve actual failures.
+3. Run the overlay/source identity and user-data preservation audits, seal matching Master/Ledger records, and deliver the update plus dated complete Source zip. Synchronize Library copies when available.
+4. Keep all unmeasured 1.0/performance scope open; do not run a long speed suite for this UI correction.
 
 ---
 

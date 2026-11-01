@@ -327,7 +327,7 @@ pub async fn windowed(
                 let flash_elapsed=(begin-last_flash_wall).as_secs_f32();
                 last_flash_wall=begin;
                 if c.flash>=0. {c.flash+=flash_elapsed;if c.flash>=0.44{c.flash=-1.;}}
-                if load_reset{load_reset=false;ui.cancel_pointer();last_flash_wall=begin;previous_tick=c.clock.tick();measured=begin;measured_frames=0;interval_samples.clear();stage_samples.clear();hud_dirty=true;}
+                if load_reset{load_reset=false;ui.reset_after_load();last_flash_wall=begin;previous_tick=c.clock.tick();measured=begin;measured_frames=0;interval_samples.clear();stage_samples.clear();hud_dirty=true;}
                 if !automated&&focused&&ui.modal.is_none()&&!ui.world_dragging()&&!ui.help_search_focused{let dt=(begin-last_pan).as_secs_f32().min(0.25);let distance=600.*dt/c.camera[2];let(w,h)=hud::canvas_size(config.width,config.height);let edge=ui.edge_pan(ui_point(cursor,config.width,config.height),[w as f32,h as f32]);c.camera[0]=(c.camera[0]+(pan_keys[3] as u8 as f32-pan_keys[2] as u8 as f32+edge[0])*distance).clamp(0.,WW as f32);c.camera[1]=(c.camera[1]+(pan_keys[1] as u8 as f32-pan_keys[0] as u8 as f32+edge[1])*distance).clamp(0.,HH as f32);}
                 last_pan=begin;
                 if !automated&&begin>=next_ui_save&&ui.prefs!=saved_prefs {match ui.save_layout(Path::new("settings/ui-layout.json")){Ok(())=>saved_prefs=ui.prefs.clone(),Err(error)=>logging::log("UI_LAYOUT_ERROR",&error)}next_ui_save=begin+Duration::from_secs(2);}

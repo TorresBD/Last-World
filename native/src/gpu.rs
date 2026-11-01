@@ -1091,8 +1091,23 @@ impl Gpu {
         for r in c.terrain.take_dirty_pixels(){for y in r.y as usize/16..=(r.y as usize+r.height as usize-1)/16{
             for x in r.x as usize/16..=(r.x as usize+r.width as usize-1)/16{dirty[y*150+x]=true;}}}
         let objects=c.draw_objects()?;let masks=c.intel().to_vec();
+        let mut overlay_flags=vec![0u8;15_000];
+        let mut mark=|position:[f32;2],radius:f32,flag:u8|{
+            let lo=[((position[0]-radius)/32.).floor().max(0.) as usize,((position[1]-radius)/32.).floor().max(0.) as usize];
+            let hi=[((position[0]+radius)/32.).floor().clamp(0.,149.) as usize,((position[1]+radius)/32.).floor().clamp(0.,99.) as usize];
+            for y in lo[1]..=hi[1]{for x in lo[0]..=hi[0]{
+                if (x as f32*32.-position[0]).hypot(y as f32*32.-position[1])<radius {overlay_flags[y*150+x]|=flag;}
+            }}
+        };
+        for building in &c.data.construction.buildings {
+            if building.team==0&&building.health>0&&matches!(building.kind,crate::construction::BuildKind::Depot|crate::construction::BuildKind::Mine){
+                mark(building.position,building.size_meters.max(32.),1);
+            }
+        }
+        for deposit in &c.data.construction.deposits {mark(deposit.position,32.,2);}
         let memory=c.data.visual_memory.as_mut().ok_or("Missing presentation memory")?;
         let spans=memory.refresh(&c.terrain,&masks,&dirty,&objects);
+        for i in 0..15_000 {if masks[i]&crate::campaign_support::VISIBLE!=0 {memory.overlay_flags[i]=overlay_flags[i];}}
         for (start,end) in spans{
             let x=start%150;let y=start/150;let width=end-start;
             for row in 0..4{

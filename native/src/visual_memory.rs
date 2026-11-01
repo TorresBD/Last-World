@@ -12,6 +12,7 @@ pub struct VisualMemory {
     pub survey_colors:Vec<[u8;4]>,
     pub pages:BTreeMap<usize,MemoryPage>,
     pub objects:Vec<Vec<Object>>,
+    pub overlay_flags:Vec<u8>,
     #[serde(skip)] pub previous_masks:Vec<u32>,
     #[serde(skip)] pub uploaded:bool,
 }
@@ -25,10 +26,10 @@ impl VisualMemory {
             colors.push([terrain.rgba[pixel],terrain.rgba[pixel+1],terrain.rgba[pixel+2],255]);
         }
         Self{survey_cells:cells,survey_colors:colors,pages:BTreeMap::new(),
-            objects:vec![Vec::new();15_000],previous_masks:Vec::new(),uploaded:false}
+            objects:vec![Vec::new();15_000],overlay_flags:vec![0;15_000],previous_masks:Vec::new(),uploaded:false}
     }
     pub fn validate(&self)->Result<(),String>{
-        if self.survey_cells.len()!=15_000||self.survey_colors.len()!=15_000||self.objects.len()!=15_000||
+        if self.survey_cells.len()!=15_000||self.survey_colors.len()!=15_000||self.objects.len()!=15_000||self.overlay_flags.len()!=15_000||
             self.pages.iter().any(|(&id,page)|id>=15_000||page.cells.len()!=16||page.rgba.len()!=1024) {
             return Err("Invalid sparse remembered terrain".into());
         }

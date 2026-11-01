@@ -527,6 +527,7 @@ pub struct UiState {
     world_seed: Option<u32>,
     last_world_tick: u64,
     last_status: String,
+    blocked_tools:BTreeMap<usize,String>,
     last_resources: Option<(u64, Resources)>,
     resource_trends: [String; 4],
     hint_until_ms: u64,
@@ -561,6 +562,7 @@ impl Default for UiState {
             world_seed: None,
             last_world_tick: 0,
             last_status: String::new(),
+            blocked_tools:BTreeMap::new(),
             last_resources: None,
             resource_trends: std::array::from_fn(|_| String::new()),
             hint_until_ms: 0,
@@ -793,6 +795,9 @@ impl UiState {
             self.dirty = true;
         }
     }
+    pub fn reset_after_load(&mut self) {
+        self.modal=None;self.landing_stage=0;self.world_seed=None;self.drag=None;self.blocked_tools.clear();self.dirty=true;
+    }
     pub fn begin_landing(&mut self,c:&Campaign) {
         let wet=c.terrain.cells.iter().filter(|x|x.water>0).count()*100/c.terrain.cells.len();
         let low=c.terrain.cells.iter().map(|x|x.height as i32).min().unwrap_or(0);
@@ -849,6 +854,7 @@ impl UiState {
                 vec![]
             }
             UiAction::ChooseTool(tool) => {
+                if let Some(reason)=self.blocked_tools.get(&tool).cloned(){self.hint("unavailable_command",&reason,now_ms);return vec![];}
                 if !self.category.tools().contains(&tool) {
                     if let Some(category) = CommandCategory::ALL
                         .into_iter()
@@ -1622,7 +1628,7 @@ impl UiState {
             .agents
             .iter()
             .filter(|a| {
-                self.selection.contains(&a.id) && a.alive() && c.recon.visible(0, a.position())
+                self.selection.contains(&a.id) && a.team==0 && a.alive() && c.recon.visible(0, a.position())
             })
             .collect();
         let roles: BTreeSet<_> = selected.iter().map(|a| a.role).collect();
@@ -1749,6 +1755,7 @@ impl UiState {
             else{None};
             if let Some(reason)=reason{out.disabled_tools.push((tool,reason.into()));}
         }
+        self.blocked_tools=out.disabled_tools.iter().cloned().collect();
         let unit_orders = selected
             .iter()
             .flat_map(|a| {
@@ -1938,7 +1945,7 @@ impl UiState {
             .copied();
         if let Some(layer) = layer {
             for i in 0..15000 {
-                if c.recon.masks(0)[i] & VISIBLE == 0 && (c.visual_memory.is_none() || !matches!(layer,Layer::Roads|Layer::Ecology|Layer::Damage)) {
+                if c.recon.masks(0)[i] & VISIBLE == 0 && (c.visual_memory.is_none() || !matches!(layer,Layer::Roads|Layer::Ecology|Layer::Damage|Layer::Supply|Layer::Resources)) {
                     continue;
                 }
                 let world = [(i % 150) as f32 * 32., (i / 150) as f32 * 32.];
@@ -1960,20 +1967,20 @@ impl UiState {
                         Some([232, 187, 81, 90])
                     }
                     Layer::Supply
-                        if c.construction.buildings.iter().any(|b| {
+                        if c.visual_memory.as_ref().map(|m|m.overlay_flags[i]&1!=0).unwrap_or_else(||c.construction.buildings.iter().any(|b| {
                             b.team == 0
                                 && b.health > 0
                                 && matches!(b.kind, BuildKind::Depot | BuildKind::Mine)
                                 && distance(world, b.position) < b.size_meters.max(32.)
-                        }) =>
+                        })) =>
                     {
                         Some([90, 170, 215, 45])
                     }
                     Layer::Resources
-                        if c.construction
+                        if c.visual_memory.as_ref().map(|m|m.overlay_flags[i]&2!=0).unwrap_or_else(||c.construction
                             .deposits
                             .iter()
-                            .any(|d| distance(world, d.position) < 32.) =>
+                            .any(|d| distance(world, d.position) < 32.)) =>
                     {
                         Some([210, 171, 73, 100])
                     }
@@ -3193,6 +3200,9 @@ mod opening_regressions {
             }
         }
         assert!(c.construction.buildings.is_empty());
+        let reserve=c.construction.stores[0];
+        assert!(c.data.construction.enqueue(crate::construction::BuildOrder::at(0,BuildKind::MountedCamera,[424.,1640.]),&c.terrain).is_err());
+        assert_eq!(c.construction.stores[0],reserve);
         assert!(c.paused);
         assert!(c.recon.satellite_circle(0,0).is_some());
         let mut ui=UiState::default();ui.begin_landing(&c);

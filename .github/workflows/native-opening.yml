@@ -51,6 +51,9 @@ jobs:
         run: python native/scripts/build-release.py --target x86_64-pc-windows-gnu --test-harnesses
       - name: Capture production opening renderer
         run: cargo run --manifest-path native/Cargo.toml --locked --release --target x86_64-pc-windows-gnu --example opening-check
+      - name: Emit opening review images
+        if: always()
+        run: python native/scripts/emit-opening-preview.py
       - name: Package overlay with matching complete Source
         shell: pwsh
         run: python native/scripts/package-windows.py --update-bundle
