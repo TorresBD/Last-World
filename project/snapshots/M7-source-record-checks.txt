@@ -1,0 +1,8 @@
+.............
+----------------------------------------------------------------------
+Ran 13 tests in 0.098s
+
+OK
+
+Actual source_snapshot fixture cases: complete project tree included; missing and empty Master/Ledger rejected (5 cases).
+The initial SourceIdentityContract attempts hit Windows temporary-directory ACL errors. Retained normal workspace fixture directories fixed the runner environment; product code was not changed to bypass checks. No gameplay build or performance test was run.

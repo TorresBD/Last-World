@@ -1,0 +1,24 @@
+{
+  "master_revision": "M7",
+  "date": "2026-10-31",
+  "actual_source_directory": "E:\\Games I am Making\\Last-World\\Source",
+  "source_local_placement_verified": true,
+  "source_commit": "1177730b5808dfebb3a2806ce8323a18aa287416",
+  "uncommitted_changes": "project records and three packaging scripts",
+  "library_saved": false,
+  "native_source_sha256": "3c9147c8a52073d64788d521c8325c57a614a1f337ada31d0d706522f8686e1e",
+  "focused_checks_passed": 13,
+  "source_snapshot_fixture_cases_passed": 5,
+  "game_rebuilt": false,
+  "master_characters": 27453,
+  "summary_characters": 1066,
+  "record_hashes": {
+    "MASTER.md": "9ef3e3360fbc5ea66381454aac840db64131200c212c42909076ee6f8e66a3af",
+    "LEDGER.md": "60e921ee035fb2981372062f15956d916923b52607fdcde478bcfa17303ca279"
+  },
+  "script_hashes": {
+    "package-windows.py": "f9e529cd363322886abcff246b8516a3abb2aafffdc25805ec943f1981608875",
+    "check-overlay-package.py": "adf9e7a7becd81a9e88dac0e9aed82d63051a01880abd362f42e5e81346d4cd1",
+    "test-overlay-package.py": "7f9a3472c20a00f6be4cb14f80743a50e369ac820847450df4843e469d73b898"
+  }
+}

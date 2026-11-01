@@ -37,7 +37,7 @@ if args.update_bundle:
     scope = ('Small4.8x3.2km native Milestone B campaign integration with CPU-authoritative gameplay and the existing wgpu renderer. '
              'Run-Game.cmd opens --campaign. Run-Checks.cmd batches CPU campaign/ground reports, Vulkan/DX12 isolated movement checks, and automatic river/campaign rendering. '
              'Initial30 additional mechanism target plus required biology; not the20km/all160 finished release or a full-workload performance guarantee. '
-             'See Documentation/project-records/STATE.md for exact implemented/tested/measured scope and unresolved limitations.')
+             'See Source/project/MASTER.md for current instructions and Source/project/LEDGER.md for selective history; older project records are historical.')
     filename = 'Last-World-Update-Windows.zip'
     prefix = 'Last-World/'
 elif args.river_foundation:
@@ -99,7 +99,7 @@ def source_snapshot():
     """Archive only reviewed repository inputs, never an installed user folder."""
     exact = [
         'README.md', 'package.json', '.gitignore',
-        'RULES.md', 'STATE.md', 'DECISIONS.md', 'BLOCKERS.md', 'PARITY.md',
+        'project/MASTER.md', 'project/LEDGER.md',
         'native/README.md', 'native/Cargo.toml', 'native/Cargo.lock',
         'native/vendor/PATCHES.md',
         'native/vendor/wgpu/Cargo.toml', 'native/vendor/wgpu/Cargo.toml.orig',
@@ -110,6 +110,7 @@ def source_snapshot():
         'dist/config.mjs', 'dist/pixel-forms.mjs',
     ]
     trees = {
+        'project': {'.md', '.txt', '.json'},
         'native/src': {'.rs'},
         'native/shaders': {'.wgsl'},
         'native/assets': {'.png', '.json', '.ttf', '.txt'},
@@ -135,6 +136,10 @@ def source_snapshot():
         'saves', 'settings', 'check-results', 'console.txt', 'settings.json',
         'Send-Back.zip',
     }
+    for name in ('project/MASTER.md', 'project/LEDGER.md'):
+        record = root / name
+        if not record.is_file() or not record.read_text(encoding='utf-8').strip():
+            raise SystemExit('Required project record is missing or empty: ' + name)
     selected = {root / name for name in exact}
     for folder, extensions in trees.items():
         base = root / folder
@@ -197,8 +202,9 @@ def source_snapshot():
         'The build-release.py helper can record null Git ancestry when repository metadata is\n'
         'absent; this snapshot intentionally has no .git directory. Direct Cargo builds are\n'
         'independent of Git metadata.\n\n'
-        'Scope: the current small native Milestone B development slice. Read STATE.md, BLOCKERS.md,\n'
-        'PARITY.md and docs/MILESTONE_B_VERIFICATION.md for actual evidence and remaining work.\n'
+        'Scope: the current small native Milestone B development slice. Read project/MASTER.md;\n'
+        'selectively search project/LEDGER.md and consult docs/MILESTONE_B_VERIFICATION.md for evidence.\n'
+        'Master and Ledger are required source files in every future version; old root records are historical.\n'
         'Including source does not qualify production20km streaming, all160 traits, complete\n'
         'mandatory biology, native-PC visuals, throughput, memory or release gameplay.\n'
     )
@@ -303,8 +309,14 @@ if args.river_foundation:
     evidence = root / 'evidence/river-foundation-2026-10-29/cpu-interaction-report.json'
     if evidence.is_file():
         file(evidence, 'evidence/river-foundation-2026-10-29/cpu-interaction-report.json')
-for name in ['RULES.md', 'STATE.md', 'DECISIONS.md', 'BLOCKERS.md', 'PARITY.md']:
-    file(root / name, documentation_prefix + 'project-records/' + name)
+# Older native diagnostics name this path. Keep a small current pointer rather
+# than copying any superseded governing record into new update packages.
+payload[documentation_prefix + 'project-records/STATE.md'] = (
+    '# Current project records\n\n'
+    'Compatibility pointer for older native diagnostics; this is not a STATE record.\n'
+    'Read [Master](../../Source/project/MASTER.md) for current instructions and state.\n'
+    'Search [Ledger](../../Source/project/LEDGER.md) by ID/tag for history.\n'
+).encode('utf-8')
 
 registry = Path(os.environ.get('CARGO_HOME', str(Path.home() / '.cargo'))) / 'registry/src'
 notices = []

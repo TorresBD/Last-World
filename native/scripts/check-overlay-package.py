@@ -57,6 +57,20 @@ MUTABLE_SENTINELS = {
 }
 
 
+
+def verify_project_records(archive):
+    """Reject a future update that omits its maintained source-local records."""
+    for relative in ('project/MASTER.md', 'project/LEDGER.md'):
+        name = 'Last-World/Source/' + relative
+        assert name in archive.namelist(), 'Missing source-local project record: ' + relative
+        assert archive.read(name).decode('utf-8').strip(), 'Empty source-local project record: ' + relative
+
+    for legacy in ('RULES.md', 'STATE.md', 'DECISIONS.md', 'BLOCKERS.md', 'PARITY.md'):
+        assert 'Last-World/Source/' + legacy not in archive.namelist(), 'Superseded source-root governance record: ' + legacy
+        if legacy != 'STATE.md':
+            assert 'Last-World/Documentation/project-records/' + legacy not in archive.namelist(), 'Superseded documentation governance record: ' + legacy
+
+
 def verify_packaged_native_source(archive, source_root, manifest):
     """Recompute compilation identity from the independently extracted Source tree."""
     paths = [p.relative_to(source_root).as_posix() for p in native_inputs(source_root)]
@@ -147,9 +161,9 @@ def verify_archive(archive_path):
         assert snapshot['native_source_sha256'] == manifest['native_source_sha256'], 'Source snapshot/executable native identity differs'
         assert snapshot['mutable_session_files_included'] is False
         source_names = sorted(name for name in expected if name.startswith('Source/'))
+        verify_project_records(archive)
         for name in [
-            'Source/SOURCE-README.txt', 'Source/RULES.md', 'Source/STATE.md',
-            'Source/DECISIONS.md', 'Source/BLOCKERS.md', 'Source/PARITY.md',
+            'Source/SOURCE-README.txt', 'Source/project/MASTER.md', 'Source/project/LEDGER.md',
             'Source/native/Cargo.toml', 'Source/native/Cargo.lock',
             'Source/native/src/main.rs', 'Source/native/src/lib.rs',
             'Source/native/shaders/render.wgsl', 'Source/native/assets/pixel-atlas.png',

@@ -22,7 +22,7 @@ The native HUD uses the existing wgpu device. It bundles Rajdhani and IBM Plex S
 
 The payload excludes existing console/history, settings, saves, previous check results and feedback. Replacing its program files does not reset that data. The build manifest hashes the owned files so a mixed/partial update can be detected. Do not use a mirror/delete operation on your game folder.
 
-The milestone is the connected small native game: construction/logistics/combat and the procedural ecosystem/conservation loop share the same world and integer clock. **Read project-records/STATE.md for this exact build's implemented/tested/measured coverage and unresolved issues.** A build label or successful automated stage does not establish full milestone acceptance by itself.
+The milestone is the connected small native game: construction/logistics/combat and the procedural ecosystem/conservation loop share the same world and integer clock. **Read project/MASTER.md from the source root (Source/project/MASTER.md in an update package) for current implemented/tested/measured coverage and unresolved issues.** A build label or successful automated stage does not establish full milestone acceptance by itself.
 
 ## One requested PC run, one returned file
 
@@ -73,7 +73,7 @@ Existing movement/river controls: WASD/arrows pan, wheel zooms, Space pauses, F1
 
 ## Visual and architecture continuity
 
-One existing wgpu27 renderer/device is retained; optional Bevy rendering stays disabled and its wgpu30 handles are not mixed with it. Existing procedural ground and noise-grown material atlases are reused. The campaign renderer draws CPU positions and structures as instances and composites screen-space text/buttons on that same device. HUD text/rectangles are UI, not physical sprite art. Organic fauna materials come from the existing atlas. No new image-generation or primitive-stamped physical art was used; both require Tor's prior approval under RULES.md section8.
+One existing wgpu27 renderer/device is retained; optional Bevy rendering stays disabled and its wgpu30 handles are not mixed with it. Existing procedural ground and noise-grown material atlases are reused. The campaign renderer draws CPU positions and structures as instances and composites screen-space text/buttons on that same device. HUD text/rectangles are UI, not physical sprite art. Organic fauna materials come from the existing atlas. No new image-generation or primitive-stamped physical art was used; both require Tor's prior approval under project/MASTER.md rule 5.5, with the explicit pixel-map exceptions in rule 5.12.
 
 Terrain remains CPU-owned integer millimeter elevations with local changes and dirty buffer/texture updates. The local water/ground model owns finite stocks and uses staged transfers, erosion/deposition, finite foliage detachment and delayed soil drying. Coarse fixture sampling is8m; it is not the planned sparse fine-resolution production world. Water momentum, climate calibration and final balance cannot be inferred from conservation alone. Ground remains brown/disturbed/moist after drainage according to actual stored state, not an instant decorative reset.
 

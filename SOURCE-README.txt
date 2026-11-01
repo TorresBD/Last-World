@@ -3,8 +3,8 @@ LAST WORLD - SOURCE SNAPSHOT
 This source is inside the same Last-World update folder as the native executable.
 It is an application-owned reference snapshot, not a second game install or an update service.
 
-Snapshot parent commit: 382fac4e46a393680a9eff692a45fb5f4c7a8f0c
-Working tree has changes relative to that commit: False
+Snapshot parent commit: 1177730b5808dfebb3a2806ce8323a18aa287416
+Working tree has changes relative to that commit: True
 Native compilation-input SHA-256: 3c9147c8a52073d64788d521c8325c57a614a1f337ada31d0d706522f8686e1e
 Executable SHA-256: 41dbfc9dea9553e6e681aa9a2ac951fa70b412362dc9f74d4aedebc55807e17f
 
@@ -35,7 +35,8 @@ The build-release.py helper can record null Git ancestry when repository metadat
 absent; this snapshot intentionally has no .git directory. Direct Cargo builds are
 independent of Git metadata.
 
-Scope: the current small native Milestone B development slice. Read STATE.md, BLOCKERS.md,
-PARITY.md and docs/MILESTONE_B_VERIFICATION.md for actual evidence and remaining work.
+Scope: the current small native Milestone B development slice. Read project/MASTER.md;
+selectively search project/LEDGER.md and consult docs/MILESTONE_B_VERIFICATION.md for evidence.
+Master and Ledger are required source files in every future version; old root records are historical.
 Including source does not qualify production20km streaming, all160 traits, complete
 mandatory biology, native-PC visuals, throughput, memory or release gameplay.

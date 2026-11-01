@@ -109,6 +109,48 @@ class SourceIdentityContract(unittest.TestCase):
                 overlay.verify_packaged_native_source(archive, root, manifest)
 
 
+
+class SourceGovernanceContract(unittest.TestCase):
+    def archive(self, records):
+        data = BytesIO()
+        with zipfile.ZipFile(data, 'w') as archive:
+            for name, content in records.items():
+                archive.writestr('Last-World/Source/project/' + name, content)
+        return zipfile.ZipFile(data)
+
+    def test_both_source_local_records_are_accepted(self):
+        with self.archive({'MASTER.md': '# Master', 'LEDGER.md': '# Ledger'}) as archive:
+            overlay.verify_project_records(archive)
+
+    def test_missing_either_record_is_rejected(self):
+        for missing in ('MASTER.md', 'LEDGER.md'):
+            with self.subTest(missing=missing):
+                records = {name: '# Content' for name in ('MASTER.md', 'LEDGER.md') if name != missing}
+                with self.archive(records) as archive:
+                    with self.assertRaisesRegex(AssertionError, 'Missing source-local'):
+                        overlay.verify_project_records(archive)
+
+    def test_empty_either_record_is_rejected(self):
+        for empty in ('MASTER.md', 'LEDGER.md'):
+            with self.subTest(empty=empty):
+                records = {name: '  \n' if name == empty else '# Content' for name in ('MASTER.md', 'LEDGER.md')}
+                with self.archive(records) as archive:
+                    with self.assertRaisesRegex(AssertionError, 'Empty source-local'):
+                        overlay.verify_project_records(archive)
+
+    def test_superseded_governance_cannot_return_to_source_root(self):
+        for legacy in ('RULES.md', 'STATE.md', 'DECISIONS.md', 'BLOCKERS.md', 'PARITY.md'):
+            with self.subTest(legacy=legacy):
+                data = BytesIO()
+                with zipfile.ZipFile(data, 'w') as archive:
+                    archive.writestr('Last-World/Source/project/MASTER.md', '# Master')
+                    archive.writestr('Last-World/Source/project/LEDGER.md', '# Ledger')
+                    archive.writestr('Last-World/Source/' + legacy, '# Superseded')
+                with zipfile.ZipFile(data) as archive:
+                    with self.assertRaisesRegex(AssertionError, 'Superseded source-root'):
+                        overlay.verify_project_records(archive)
+
+
 class WindowsExecutableContract(unittest.TestCase):
     def test_three_current_build_outputs_are_x64_pe32plus(self):
         release = ROOT / 'native/target/x86_64-pc-windows-gnu/release'

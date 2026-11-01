@@ -1,0 +1,25 @@
+{
+  "master_revision": "M6",
+  "date": "2026-10-31",
+  "scope": "project-record organization only; no game-source relocation or game build",
+  "last_inspected_git_commit": "1177730b5808dfebb3a2806ce8323a18aa287416",
+  "git_commit_rechecked_this_session": false,
+  "library_saved": false,
+  "library_blocker": "No standalone Library read/write tool is available in this session.",
+  "master_characters": 25635,
+  "session_summary_characters": 1122,
+  "hashes": {
+    "project/archive/Last-World-One-Time-Handoff-2026-10-31.txt": "cd61ee2a0803249607931369915acdc4244b4edb0a99ff73660988bd5f184efc",
+    "project/archive/Last-World-Project-Handoff.txt": "96d50237ac2bae3daca928c8e055eaf2bd6c8335d899ea3960b137f91e761b06",
+    "project/archive/README.md": "a9fc6e8945621d9a192df45b6d24b373d00f8dd3c80b8d918b9b5c1ad93f1dd8",
+    "project/LEDGER.md": "1fc318b6d6ab244de18953af7e1a7fe1b0fe140d8c637bcbd342cef8af4fcd01",
+    "project/MASTER.md": "b7c8a2006b02ca46cf0a8d009e156be7a0eb3a35305bf1a87ff62d84d086bea8",
+    "project/README.md": "9f842652157c0d7757089e40060032b3e0659e382e89e8b358988de582d828e4",
+    "project/snapshots/LEDGER-M5-2026-10-31.md": "f2e7aa57522f3a91d7be66378cd1fbcdf28f071d30ccdaba485f782ad0a831b3",
+    "project/snapshots/LEDGER-M6-2026-10-31.md": "1fc318b6d6ab244de18953af7e1a7fe1b0fe140d8c637bcbd342cef8af4fcd01",
+    "project/snapshots/MASTER-M5-2026-10-31.md": "cc9c17b56735c41fd452a2a19123472edc3233d9bd4fb3be7b6a6a6728138f1c",
+    "project/snapshots/MASTER-M6-2026-10-31.md": "b7c8a2006b02ca46cf0a8d009e156be7a0eb3a35305bf1a87ff62d84d086bea8",
+    "project/snapshots/README.md": "3e2f1278d1802dee9517c7b143fbb2dfb6633780ecc898a599bf55e53fc062c9",
+    "README.md": "a3434fc3eedbacbbbdb4e326ce9c9c6f9accfe9afe128b97a7257db1ebc2fe80"
+  }
+}

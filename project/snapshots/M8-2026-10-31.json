@@ -1,0 +1,50 @@
+{
+  "master_revision": "M8",
+  "cleaned_source_directory": "D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\LastWorld-Cleaned-Source-M8",
+  "original_game_source_changed": false,
+  "filesystem_write_granted": false,
+  "removed": [
+    {
+      "path": "RULES.md",
+      "sha256": "0e52de01f01416dbbb338b14d1eb35ec61adf8b74f1c0c68e42e47b6e966a282",
+      "bytes": 8926,
+      "preserved_in": "project/archive/Last-World-Project-Handoff.txt",
+      "section": "[LW021]"
+    },
+    {
+      "path": "STATE.md",
+      "sha256": "4f6110cf76c86fbadd1c7104aeefbde606e0bbe36548d1e464beb5ec7f42dd64",
+      "bytes": 14517,
+      "preserved_in": "project/archive/Last-World-Project-Handoff.txt",
+      "section": "[LW032]"
+    },
+    {
+      "path": "DECISIONS.md",
+      "sha256": "13d22aebb40bfa19328da6872f5f3aeb3b36ee43523a96f3d8e3aad99c9e9e52",
+      "bytes": 36130,
+      "preserved_in": "project/archive/Last-World-Project-Handoff.txt",
+      "section": "[LW044]"
+    },
+    {
+      "path": "BLOCKERS.md",
+      "sha256": "1260f922ee8656aeb4a0036d5952dbb736d4ba409da2964b8901a4524c41d54d",
+      "bytes": 22687,
+      "preserved_in": "project/archive/Last-World-Project-Handoff.txt",
+      "section": "[LW070]"
+    },
+    {
+      "path": "PARITY.md",
+      "sha256": "500ef0eceed0985048bd15927c02aca22d09483974c79940d9860e4741606345",
+      "bytes": 51007,
+      "preserved_in": "project/archive/Last-World-Project-Handoff.txt",
+      "section": "[LW095]"
+    }
+  ],
+  "focused_checks_passed": 14,
+  "snapshot_cases_passed": 5,
+  "native_inputs_unchanged": true,
+  "library_saved": false,
+  "game_rebuilt": false,
+  "master_characters": 27981,
+  "summary_characters": 1037
+}

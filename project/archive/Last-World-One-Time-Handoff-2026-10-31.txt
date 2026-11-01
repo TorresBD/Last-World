@@ -1,0 +1,20 @@
+LAST WORLD — ONE-TIME HANDOFF: UNFINISHED OPENING / UI CHANGES
+October 31, 2026
+
+Continue the interrupted work below. Read Last-World-Project-Handoff.txt for standing project rules; keep that as the main continuity file.
+
+INTERRUPTION POINT
+The previous assistant reported pictograms, camera variants, terrain-memory rendering and a small opening roster (6 builders, 4 defenders, 1 camera trooper per faction); unit cards and landing notices were next. No matching source diff/build was recovered. GitHub main at 1177730b5808dfebb3a2806ce8323a18aa287416 still contains the earlier checkpoint. Recover the interrupted edits if available; otherwise explicitly recreate these changes from that checkpoint. This session updated documentation only.
+
+FINISH THESE CHANGES
+1. Replace bush-like UI icons with recognizable objects/actions and clear labels.
+2. Selection: show unit type/identity, stats, current task, loadout/history access and role-specific command buttons. Make idle units and their useful next actions understandable.
+3. Reveal initial terrain everywhere. Outside camera/satellite coverage, retain last-observed visuals while simulation continues. Radar scans give separate anonymous contacts. Apply this consistently to world rendering, minimap and overlays.
+4. Restore camera, post/pole and tower choices with meaningful placement, cost and LOS differences; retain mounted-camera scope.
+5. Start with only the crash-landed ship and a small builder/defender crew, perhaps one camera trooper. The reported 6/4/1 roster was an assistant choice. Preserve full late-game/benchmark capacity.
+6. Open a planet briefing using actual generated biomes, seasons, daylight and broad notable features. Withhold undiscovered facts. Say the satellite is orbiting and overhead, matching real coverage.
+7. Start paused. After closing the briefing, show exactly: "What is the build plan immediately after landing?" Below it, remind the player to press Play and explain 1x/2x/4x. Closing notices keeps pause; allow planning and prevent modal input reaching the world.
+
+DELIVERY
+Build, run focused checks, inspect the actual opening/HUD and deliver the Windows update with Source. Refresh the main handoff with verified results. Preserve saves and recon secrecy. No image generation or crude Python sprite stamping without approval. Use connected tools; do not request computer access.
+

@@ -1,0 +1,241 @@
+.....EEEE....
+======================================================================
+ERROR: test_added_compilation_input_cannot_be_hidden_by_old_inventory (__main__.SourceIdentityContract.test_added_compilation_input_cannot_be_hidden_by_old_inventory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 72, in native_snapshot
+    path.parent.mkdir(parents=True, exist_ok=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-yfenztd4\\native'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-yfenztd4'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 94, in test_added_compilation_input_cannot_be_hidden_by_old_inventory
+    with native_snapshot() as (root, manifest, archive):
+         ~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 66, in native_snapshot
+    with tempfile.TemporaryDirectory(prefix='last-world-source-contract-') as directory:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 971, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 975, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 955, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Python314\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 927, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-yfenztd4'
+
+======================================================================
+ERROR: test_extracted_compilation_bytes_must_equal_archive_bytes (__main__.SourceIdentityContract.test_extracted_compilation_bytes_must_equal_archive_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 72, in native_snapshot
+    path.parent.mkdir(parents=True, exist_ok=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-sppg7yob\\native'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-sppg7yob'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 100, in test_extracted_compilation_bytes_must_equal_archive_bytes
+    with native_snapshot() as (root, manifest, archive):
+         ~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 66, in native_snapshot
+    with tempfile.TemporaryDirectory(prefix='last-world-source-contract-') as directory:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 971, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 975, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 955, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Python314\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 927, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-sppg7yob'
+
+======================================================================
+ERROR: test_independent_source_inventory_ignores_unowned_build_cache (__main__.SourceIdentityContract.test_independent_source_inventory_ignores_unowned_build_cache)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 72, in native_snapshot
+    path.parent.mkdir(parents=True, exist_ok=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-kwjivt35\\native'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-kwjivt35'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 86, in test_independent_source_inventory_ignores_unowned_build_cache
+    with native_snapshot() as (root, manifest, archive):
+         ~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 66, in native_snapshot
+    with tempfile.TemporaryDirectory(prefix='last-world-source-contract-') as directory:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 971, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 975, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 955, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Python314\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 927, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-kwjivt35'
+
+======================================================================
+ERROR: test_source_hash_must_match_the_build_identity (__main__.SourceIdentityContract.test_source_hash_must_match_the_build_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 72, in native_snapshot
+    path.parent.mkdir(parents=True, exist_ok=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-w33h9a34\\native'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 377, in walk
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-w33h9a34'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 106, in test_source_hash_must_match_the_build_identity
+    with native_snapshot() as (root, manifest, archive):
+         ~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "D:\ChatGPT\2026-10-31\find-and-read-these-files-in\work\source-records-staging\native\scripts\test-overlay-package.py", line 66, in native_snapshot
+    with tempfile.TemporaryDirectory(prefix='last-world-source-contract-') as directory:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 971, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 975, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 955, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 689, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 413, in walk
+  File "C:\Python314\Lib\shutil.py", line 687, in onerror
+    onexc(os.scandir, err.filename, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 927, in onexc
+    _resetperms(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 283, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 272, in _dont_follow_symlinks
+    func(path, *args, follow_symlinks=False)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'D:\\ChatGPT\\2026-10-31\\find-and-read-these-files-in\\work\\source-records-test-temp\\last-world-source-contract-w33h9a34'
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.016s
+
+FAILED (errors=4)
