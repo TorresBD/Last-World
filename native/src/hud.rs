@@ -695,7 +695,10 @@ impl UiLayout {
             } else {
                 // Too short a screen for the left column: sit under the top bar,
                 // right of the layer grid.
-                rect(out.layer_strip.end_x() as f32 + g, top.end_y() as f32 + g, lw, lh, w, h)
+                let (lx, ly) = (out.layer_strip.end_x() as f32 + g, top.end_y() as f32 + g);
+                let beside_selection = lx < selection.end_x() as f32 && lx + lw > selection.x as f32;
+                let lh = if beside_selection { lh.min(selection.y as f32 - g - ly) } else { lh };
+                rect(lx, ly, lw, lh.max(1.), w, h)
             };
         }
         if let Some(guide) = &v.guide {
@@ -2496,6 +2499,9 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
             let mut y = r.y as f32 + 34. * s;
             let swatch = (14. * s).max(12.);
             for (colour, label) in &legend.entries {
+                if y + row > r.end_y() as f32 {
+                    break;
+                }
                 let sw = rect(r.x as f32 + 12. * s, y + (row - swatch) * 0.5, swatch, swatch, l.width, l.height);
                 p.fill(sw.inset(0), t.color("black"));
                 p.fill(sw.inset(1), *colour);
@@ -2510,7 +2516,7 @@ fn draw_spec(spec: &Spec, l: &UiLayout) -> Vec<u8> {
                 );
                 y += row;
             }
-            if let Some(note) = &legend.note {
+            if let Some(note) = legend.note.as_ref().filter(|_| y + row <= r.end_y() as f32) {
                 p.text(
                     r.x as f32 + 12. * s,
                     y + (row - small) * 0.5 - 2. * s,
