@@ -1,0 +1,46 @@
+name: Native opening and HUD checks
+on:
+  push:
+    branches: [codex/opening-hud-recon]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Rust and GNU linker
+        shell: pwsh
+        run: |
+          rustup toolchain install 1.97.1 --profile minimal
+          rustup default 1.97.1
+          rustup target add x86_64-pc-windows-gnu
+          "C:\msys64\mingw64\bin" >> $env:GITHUB_PATH
+      - name: Rebuild existing bundled assets
+        shell: pwsh
+        run: |
+          python -m pip install Pillow fonttools
+          node native/scripts/export-pixels.mjs
+          python native/scripts/bake-ui-fonts.py
+      - name: Compile and run library and CLI regressions
+        shell: pwsh
+        run: cargo test --manifest-path native/Cargo.toml --locked --target x86_64-pc-windows-gnu --lib --bin last-world
+      - name: Build stamped Windows release and test harnesses
+        shell: pwsh
+        run: python native/scripts/build-release.py --target x86_64-pc-windows-gnu --test-harnesses
+      - name: Package overlay with matching complete Source
+        shell: pwsh
+        run: python native/scripts/package-windows.py --update-bundle
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Last-World-Windows-Opening-HUD
+          path: dist/downloads/Last-World-Update-Windows.zip
+          if-no-files-found: error
