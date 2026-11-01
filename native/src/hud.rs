@@ -682,7 +682,11 @@ impl UiLayout {
             h,
         );
         if let Some(legend) = &v.legend {
-            let lw = (minimap.width as f32).max(250. * s).max(230.);
+            let mut lw = (minimap.width as f32).max(250. * s).max(230.);
+            // Beside a tall selection panel, stay left of it.
+            if strip_y - g > selection.y as f32 {
+                lw = lw.min(selection.x as f32 - g - minimap.x as f32);
+            }
             let rows = legend.entries.len() + usize::from(legend.note.is_some());
             let lh = 34. * s + rows as f32 * (24. * s).max(20.) + 8. * s;
             out.legend = rect(minimap.x as f32, strip_y - g - lh, lw, lh, w, h);
