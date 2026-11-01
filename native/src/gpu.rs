@@ -1469,7 +1469,9 @@ mod campaign_render_tests {
                 }
             }
         }
-        assert_eq!(names.len(), 19);
+        assert_eq!(names.len(), 22);
+        assert_eq!(BuildKind::ALL[10], BuildKind::Camera, "legacy pole identity remains stable");
+        assert_eq!(&BuildKind::ALL[19..], &[BuildKind::FieldCamera,BuildKind::CameraTower,BuildKind::MountedCamera]);
         assert_eq!(BuildKind::Wall.atlas_kind(), "wall");
         assert_eq!(BuildKind::Turret.atlas_kind(), "turret");
         assert_eq!(BuildKind::Dam.atlas_kind(), "wall");
