@@ -3560,6 +3560,8 @@ mod opening_regressions {
         let s_from = world_to_screen(from, c.camera, canvas);
         let s_to = world_to_screen(to, c.camera, canvas);
         let mut ui = UiState::default();
+        // The first presentation binds the UI to this world (and clears drags).
+        ui.presentation(&c, [1280, 800], 0);
         ui.active_tool = Some(0);
         ui.pointer_down(UiHit::World, s_from, from, false, Modifiers::default(), c.camera, canvas, &[], 0);
         ui.pointer_move(UiHit::World, s_to, to, c.camera, canvas, &[]);

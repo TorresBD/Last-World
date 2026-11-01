@@ -9,7 +9,7 @@ concurrency:
   group: native-opening-${{ github.ref }}
   cancel-in-progress: true
 permissions:
-  contents: read
+  contents: write
 jobs:
   windows:
     runs-on: windows-latest
@@ -56,6 +56,22 @@ jobs:
       - name: Emit opening review images
         if: always()
         run: python native/scripts/emit-opening-preview.py
+      - name: Publish review captures to a fetchable branch
+        if: always() && github.event_name == 'push'
+        shell: pwsh
+        run: |
+          if (-not (Test-Path evidence/opening-hud)) { Write-Output "No captures to publish"; exit 0 }
+          $dest = Join-Path $env:RUNNER_TEMP "review-captures"
+          New-Item -ItemType Directory -Force $dest | Out-Null
+          Copy-Item -Recurse -Force evidence/opening-hud/* $dest
+          Set-Location $dest
+          git init -q
+          git config user.name "Last World CI"
+          git config user.email "ci@users.noreply.github.com"
+          git checkout -q -b review
+          git add -A
+          git commit -q -m "Review captures for ${{ github.sha }} (run ${{ github.run_id }})"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "HEAD:refs/heads/ci-evidence/${{ github.ref_name }}"
       - name: Package overlay with matching complete Source
         shell: pwsh
         run: python native/scripts/package-windows.py --update-bundle
